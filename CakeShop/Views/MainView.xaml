@@ -4,10 +4,226 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainView"
-    Width="800"
-    Height="450"
+    Width="1200"
+    Height="700"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid Background="Azure" />
+    <Window.Resources>
+        <Storyboard x:Key="sbShowLeftMenu">
+            <ThicknessAnimation
+                DecelerationRatio=".9"
+                Storyboard.TargetProperty="Margin"
+                From="-250,0,0,0"
+                To="0,0,0,0"
+                Duration="0:0:0.2" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="GridMain" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.14" Value="100">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuadraticEase EasingMode="EaseIn" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Modal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.08" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbHideLeftMenu">
+            <ThicknessAnimation
+                AccelerationRatio=".9"
+                Storyboard.TargetProperty="Margin"
+                From="0,0,0,0"
+                To="-250,0,0,0"
+                Duration="0:0:0.2" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="GridMain" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.14" Value="100">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuadraticEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Modal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.08" Value="{x:Static Visibility.Hidden}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Grid Background="#fff">
+        <Grid
+            x:Name="Menu"
+            Width="250"
+            Margin="-250,0,0,0"
+            HorizontalAlignment="Left"
+            Panel.ZIndex="100"
+            Background="#FFF">
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <DockPanel LastChildFill="True">
+                    <Button
+                        x:Name="BtnHideMenu"
+                        Margin="0,15,0,0"
+                        HorizontalAlignment="Right"
+                        Background="#00000000"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="BtnHideMenu_Click"
+                        DockPanel.Dock="Top"
+                        Foreground="#F75C03">
+                        <materialDesign:PackIcon
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="Backburger">
+                            <materialDesign:PackIcon.LayoutTransform>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="3" ScaleY="3" />
+                            </materialDesign:PackIcon.LayoutTransform>
+                        </materialDesign:PackIcon>
+                    </Button>
+
+                    <StackPanel Margin="0,20,0,20" DockPanel.Dock="Top">
+                        <Label
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="Home"
+                            Cursor="Hand"
+                            FontSize="20" />
+                        <Border
+                            Height="1"
+                            Margin="10,0"
+                            BorderBrush="#FFD1D1D1"
+                            BorderThickness="1" />
+
+                        <ComboBox
+                            Name="CategoryList"
+                            MaxWidth="200"
+                            Margin="10,0"
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            materialDesign:HintAssist.Hint="Danh Mục"
+                            materialDesign:HintAssist.HintOpacity="1"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            FontSize="20"
+                            Foreground="#DD000000"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding TenDM}" />
+
+                        <Border
+                            Height="1"
+                            Margin="10,0"
+                            BorderBrush="#FFD1D1D1"
+                            BorderThickness="1" />
+                        <Label
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="Thêm Món ăn"
+                            Cursor="Hand"
+                            FontSize="20" />
+                    </StackPanel>
+                    <StackPanel
+                        Margin="0,10,0,20"
+                        VerticalAlignment="Bottom"
+                        DockPanel.Dock="Bottom">
+                        <Label
+                            Name="LienHe"
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="Liên Hệ"
+                            Cursor="Hand"
+                            FontSize="20" />
+                        <Border
+                            Height="1"
+                            Margin="10,0"
+                            BorderBrush="#FFD1D1D1"
+                            BorderThickness="1" />
+                        <Label
+                            Name="GopY"
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="Góp ý"
+                            Cursor="Hand"
+                            FontSize="20" />
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:Card>
+        </Grid>
+
+        <!--  MODAL LAYOUT  -->
+        <Grid
+            x:Name="Modal"
+            Panel.ZIndex="90"
+            Background="#7F000000"
+            MouseLeftButtonDown="Modal_Click"
+            Visibility="Hidden" />
+        <Grid x:Name="GridMain">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderBrush="#333" BorderThickness="0,0,0,0.5">
+                <DockPanel
+                    Grid.Row="0"
+                    Background="#F75C03"
+                    LastChildFill="True">
+                    <Grid DockPanel.Dock="Right">
+                        <Button
+                            Width="56"
+                            Height="40"
+                            Margin="0,0,26,0"
+                            materialDesign:ButtonAssist.CornerRadius="4"
+                            Background="#fff"
+                            BorderBrush="#000"
+                            BorderThickness="1"
+                            Click="BtnSearch_Click"
+                            Foreground="#000"
+                            IsDefault="True"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            ToolTip="Tìm kiếm">
+                            <materialDesign:PackIcon Kind="Magnify">
+                                <materialDesign:PackIcon.LayoutTransform>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
+                                </materialDesign:PackIcon.LayoutTransform>
+                            </materialDesign:PackIcon>
+                        </Button>
+                    </Grid>
+                    <Button
+                        Name="BtnShowMenu"
+                        Background="#00000000"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Click="BtnShowMenu_Click"
+                        DockPanel.Dock="Left"
+                        Foreground="#FFF">
+                        <materialDesign:PackIcon
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="Menu">
+                            <materialDesign:PackIcon.LayoutTransform>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="3" ScaleY="3" />
+                            </materialDesign:PackIcon.LayoutTransform>
+                        </materialDesign:PackIcon>
+                    </Button>
+                    <TextBox
+                        x:Name="SearchBox"
+                        Height="40"
+                        Margin="16,0,16,0"
+                        Padding="0,0,0,0"
+                        VerticalContentAlignment="Bottom"
+                        materialDesign:HintAssist.Background="#fff"
+                        materialDesign:HintAssist.Foreground="#000"
+                        materialDesign:HintAssist.Hint="Tìm kiếm"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="16"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#000"
+                        Background="#fff"
+                        FontSize="14"
+                        Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" />
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </Window>

@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,44 @@ namespace CakeShop.Views
         public MainView()
         {
             InitializeComponent();
+        }
+
+        private void BtnShowMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHideMenu("sbShowLeftMenu", BtnHideMenu, BtnShowMenu, Menu);
+        }
+
+        private void BtnHideMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHideMenu("sbHideLeftMenu", BtnHideMenu, BtnShowMenu, Menu);
+        }
+
+        private void Modal_Click(object sender, MouseButtonEventArgs e)
+        {
+            ShowHideMenu("sbHideLeftMenu", BtnHideMenu, BtnShowMenu, Menu);
+        }
+
+        private void ShowHideMenu(string Storyboard, Button btnHide, Button btnShow, Grid pnl)
+        {
+            Storyboard sb = Resources[Storyboard] as Storyboard;
+            sb.Begin(pnl);
+
+            if (Storyboard.Contains("Show"))
+            {
+                btnHide.Visibility = System.Windows.Visibility.Visible;
+                btnShow.Visibility = System.Windows.Visibility.Hidden;
+            }
+            else if (Storyboard.Contains("Hide"))
+            {
+                btnHide.Visibility = System.Windows.Visibility.Hidden;
+                btnShow.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
+        // Khi click vào nút tìm kiếm
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
