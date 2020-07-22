@@ -24,5 +24,51 @@ namespace CakeShop.Views
         {
             InitializeComponent();
         }
+
+        // Pagination
+        private void UpdatePagination()
+        {
+            //SetStylePagination();
+            //_list = Pages.GetSPPagination(Pages.CurrentPage);
+            //PaginationNumber.ItemsSource = PageStyleList;
+            //Products.ItemsSource = _list;
+        }
+
+        private void OnPageNumber_Click(object sender, RoutedEventArgs e)
+        {
+            //var Btn = (Button)sender;
+            //Pages.CurrentPage = (int)Btn.Content;
+            //UpdatePagination();
+        }
+
+        private void OnPrePage_Click(object sender, RoutedEventArgs e)
+        {
+            //if (Pages.CurrentPage > 1)
+            //{
+            //    Pages.CurrentPage--;
+            //    UpdatePagination();
+            //}
+        }
+
+        private void OnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            //if (Pages.CurrentPage < Pages.ToltalPage)
+            //{
+            //    Pages.CurrentPage++;
+            //    UpdatePagination();
+            //}
+        }
+
+        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            //Pages.CurrentPage = 1;
+            //UpdatePagination();
+        }
+
+        private void OnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            //Pages.CurrentPage = Pages.ToltalPage;
+            //UpdatePagination();
+        }
     }
 }

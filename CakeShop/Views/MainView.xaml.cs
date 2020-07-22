@@ -60,7 +60,7 @@ namespace CakeShop.Views
         // Khi click vào nút tìm kiếm
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-
+        
         }
     }
 }
