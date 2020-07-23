@@ -67,7 +67,7 @@
                         BorderThickness="0"
                         Click="BtnHideMenu_Click"
                         DockPanel.Dock="Top"
-                        Foreground="#F75C03">
+                        Foreground="#f0668d">
                         <materialDesign:PackIcon
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -171,7 +171,7 @@
                 Grid.Column="0"
                 BorderBrush="#333"
                 BorderThickness="0,0,0,0.5">
-                <DockPanel Background="#F75C03" LastChildFill="True">
+                <DockPanel Background="#f0668d" LastChildFill="True">
                     <Grid DockPanel.Dock="Right">
                         <Button
                             Width="56"
@@ -231,7 +231,8 @@
                 x:Name="ActiveItem"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="#fff" />
+                Background="#fff"
+                Content="" />
         </Grid>
     </Grid>
 </Window>
