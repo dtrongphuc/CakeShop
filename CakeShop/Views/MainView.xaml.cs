@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,17 @@ namespace CakeShop.Views
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
         
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+            var config = ConfigurationManager.AppSettings["ShowSplash"];
+            if (config.ToLower() == "true")
+            {
+                var screen = new Views.SplashWindow();
+                screen.ShowDialog();
+            }
         }
     }
 }
