@@ -167,6 +167,7 @@
     <Resource Include="Resource\Images\Icons\arrow-end-right.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Images\Products\detail-test.jpg" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

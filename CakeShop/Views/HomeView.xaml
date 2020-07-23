@@ -2,6 +2,7 @@
     x:Class="CakeShop.Views.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:cv="clr-namespace:CakeShop.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
@@ -97,11 +98,13 @@
                         <WrapPanel Grid.Row="2">
 
                             <Button
+                                x:Name="ProductItem"
                                 Width="366"
                                 Height="188"
                                 Margin="4,10"
                                 Padding="0"
                                 Panel.ZIndex="99"
+                                cal:Message.Attach="[Event Click] = [ShowDetail]"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 ClipToBounds="True"

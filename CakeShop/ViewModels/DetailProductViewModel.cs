@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using CakeShop.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace CakeShop.ViewModels
 {
     public class DetailProductViewModel : Screen
     {
+        //public DetailProductViewModel(string productId) { }
         public DetailProductViewModel() { }
     }
 }
