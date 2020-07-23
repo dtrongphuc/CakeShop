@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class Product: INotifyPropertyChanged
+    public class Product: INotifyPropertyChanged
     {
         private string _idCategory;
         public string IdCategory
@@ -21,7 +21,7 @@ namespace CakeShop.Models
         }
 
         private string _idProduct;
-            public string IdProduct
+        public string IdProduct
         {
             get { return _idProduct; }
             set
@@ -53,13 +53,13 @@ namespace CakeShop.Models
             }
         }
 
-        private string _Description;
+        private string _description;
         public string Description
         {
-            get { return _Description; }
+            get { return _description; }
             set
             {
-                _Description = value;
+                _description = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
             }
         }
@@ -85,10 +85,11 @@ namespace CakeShop.Models
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Quantity"));
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
        
-       public Product()
+        public Product()
         {
             this.IdCategory = " ";
             this.IdProduct = " ";
