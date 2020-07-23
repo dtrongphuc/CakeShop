@@ -9,25 +9,25 @@ namespace CakeShop.Models
 {
     class Product: INotifyPropertyChanged
     {
-        private string _IDCategory;
-        public string IDCategory
+        private string _IdCategory;
+        public string IdCategory
         {
-            get { return _IDCategory; }
+            get { return _IdCategory; }
             set
             {
-                _IDCategory = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IDCategory"));
+                _IdCategory = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdCategory"));
             }
         }
 
-        private string _IDProduct;
-            public string IDProduct
+        private string _IdProduct;
+            public string IdProduct
         {
-            get { return _IDProduct; }
+            get { return _IdProduct; }
             set
             {
-                _IDProduct = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IDProduct"));
+                _IdProduct = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdProduct"));
             }
         }
 
@@ -90,8 +90,8 @@ namespace CakeShop.Models
        
        public Product()
         {
-            this.IDCategory = " ";
-            this.IDProduct = " ";
+            this.IdCategory = " ";
+            this.IdProduct = " ";
             this.ProDuctName = " ";
             this.Image = " ";
             this.Description = " ";
