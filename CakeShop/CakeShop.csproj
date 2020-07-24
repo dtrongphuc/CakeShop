@@ -120,6 +120,7 @@
     <Compile Include="Views\SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualTreeHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -168,6 +169,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Images\Products\detail-test.jpg" />
+    <Resource Include="Resource\Images\Icons\chevron.png" />
+    <Resource Include="Resource\Images\Icons\chevron-right.png" />
+    <Resource Include="Resource\Images\Products\1.jpg" />
+    <Resource Include="Resource\Images\Products\2.jpg" />
+    <Resource Include="Resource\Images\Products\3.jpg" />
+    <Resource Include="Resource\Images\Products\4.jpg" />
+    <Resource Include="Resource\Images\Products\5.jpg" />
+    <Resource Include="Resource\Images\Products\6.jpg" />
+    <Resource Include="Resource\Images\Products\7.jpg" />
+    <Resource Include="Resource\Images\Products\8.jpg" />
+    <Resource Include="Resource\Images\Products\9.jpg" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
