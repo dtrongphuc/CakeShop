@@ -121,6 +121,14 @@
                             Content="Thêm Món ăn"
                             Cursor="Hand"
                             FontSize="20" />
+                        <Label
+                            x:Name="OrderList"
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"                            
+                            Content="Đơn hàng"
+                            Cursor="Hand"
+                            FontSize="20" />
                     </StackPanel>
                     <StackPanel
                         Margin="0,10,0,20"
@@ -234,6 +242,7 @@
                 Grid.Column="0"
                 Background="#fff"
                 Content="" />
+            
         </Grid>
     </Grid>
 </Window>

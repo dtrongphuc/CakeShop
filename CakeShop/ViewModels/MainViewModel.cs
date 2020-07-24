@@ -20,7 +20,7 @@ namespace CakeShop.ViewModels
                 NotifyOfPropertyChange(() => HomeViewModel);
             }
         }
-
+        
         /// <summary>
         /// Khởi tạo
         /// </summary>
@@ -30,6 +30,14 @@ namespace CakeShop.ViewModels
             ActivateItem(new HomeViewModel());
         }
 
+
+        public void OrderClick()
+        {
+           
+            DisplayName = "Đơn đặt hàng";
+            CloseCurrentView();
+            ActivateItem(new OrderProductsViewModelcs());
+        }
         /// <summary>
         /// Đóng view hiện tại
         /// </summary>

@@ -108,6 +108,10 @@
     <Compile Include="ViewModels\DetailProductViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OrderProductsViewModelcs.cs" />
+    <Compile Include="Views\OrderProductsView.xaml.cs">
+      <DependentUpon>OrderProductsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailProductView.xaml.cs">
       <DependentUpon>DetailProductView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +149,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\OrderProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
