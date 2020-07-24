@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class Connection
+    public class Connection
     {
         public static string cn_string = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=|DaTaDirectory\SQL\CakeShopmdf.mdf;Integrated Security=True";
         

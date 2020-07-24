@@ -98,8 +98,14 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\DetailOrder.cs" />
+    <Compile Include="Models\GetListObject.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SizeProduct.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
