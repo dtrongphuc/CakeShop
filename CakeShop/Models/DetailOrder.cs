@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class DetailOrder : INotifyPropertyChanged
+    public class DetailOrder : INotifyPropertyChanged
     {
 
         private string _idOrder;

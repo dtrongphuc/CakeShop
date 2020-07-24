@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class GetListObject : INotifyPropertyChanged
+    public class GetListObject : INotifyPropertyChanged
     {
         private string sql;
         private BindableCollection<Product> _listAllProduct { get; set; } = new BindableCollection<Product>();

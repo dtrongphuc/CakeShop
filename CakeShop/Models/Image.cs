@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class Image : INotifyPropertyChanged
+    public class Image : INotifyPropertyChanged
     {
 
         private string _idProduct;
@@ -21,14 +21,14 @@ namespace CakeShop.Models
             }
         }
 
-        private string _image;
-        public string Images
+        private string _imageUri;
+        public string ImagUri
         {
-            get { return _image; }
+            get { return _imageUri; }
             set
             {
-                _image = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Image"));
+                _imageUri = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImageUri"));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

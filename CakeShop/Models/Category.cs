@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class Category:INotifyPropertyChanged
+    public class Category:INotifyPropertyChanged
     {
         private string _idCategory;
         public string IdCategory
