@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,14 @@ namespace CakeShop.Models
 {
     public class Product: INotifyPropertyChanged
     {
-        private string _idCategory;
-        public string IdCategory
+        private string _categoryName;
+        public string CategoryName
         {
-            get { return _idCategory; }
+            get { return _categoryName; }
             set
             {
-                _idCategory = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdCategory"));
+                _categoryName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryName"));
             }
         }
 
@@ -75,29 +76,43 @@ namespace CakeShop.Models
             }
         }
 
-        private string _quantity;
-        public string Quantity
-        {
-            get { return _quantity; }
-            set
-            {
-                _quantity = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Quantity"));
-            }
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
        
         public Product()
         {
-            this.IdCategory = " ";
+            this.CategoryName = " ";
             this.IdProduct = " ";
             this.ProductName = " ";
             this.Image = " ";
             this.Description = " ";
             this.Price = "";
-            this.Quantity = " ";
+        }
+
+        public bool Find(string id)
+        {
+            bool check = false;
+            string sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE IDPRODUCT={id}";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                check = true;
+                Product product = new Product();
+                product.CategoryName = row["CATEGORYNAME"].ToString();
+                product.IdProduct = row["IDPRODUCT"].ToString();
+                product.ProductName = row["PRODUCTNAME"].ToString();
+                product.Price = row["PRICE"].ToString();
+                product.Description = row["DESCRIPTION"].ToString();
+                product.Image = row["IMAGE"].ToString();
+               
+            }
+            if (check == true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

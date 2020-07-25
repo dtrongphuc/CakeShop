@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +34,21 @@ namespace CakeShop.Models
             }
         }
 
+        private BindableCollection<Product> _listProduct { get; set; } = new BindableCollection<Product>();
+        public BindableCollection<Product> ListProduct
+        {
+            get
+            {
+                return _listProduct;
+            }
+            set
+            {
+                _listProduct = value;
+                PropertyChanged?.Invoke(
+                    this, new PropertyChangedEventArgs("ListProduct"));
+            }
+        }
+
         private string _quantity;
         public string Quantity
         {
@@ -43,17 +60,7 @@ namespace CakeShop.Models
             }
         }
 
-        private string _price;
-        public string Price
-        {
-            get { return _price; }
-            set
-            {
-                _price = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
-            }
-        }
-
+       
         private string _priceTotal;
         public string PriceTotal
         {
@@ -70,9 +77,29 @@ namespace CakeShop.Models
         {
             this.IdOrder = " ";
             this.IdProduct = " ";
-            this.Price = " ";
             this.PriceTotal = " ";
             this.Quantity = " ";
+        }
+
+        public bool Find(string id)
+        {
+            bool check = false;
+            string sql = $"SELECT * FROM DETAILORDER WHERE IDORDER={id}";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach(DataRow row in dt.Rows)
+            {
+                check = true;
+                Product product = new Product();
+                this.IdOrder = row["IDORDER"].ToString();
+                this.IdProduct = row["IDPRODUCT"].ToString();
+                product.Find(IdProduct);
+                ListProduct.Add(product);
+                this.Quantity = row["QUATITY"].ToString();
+                this.PriceTotal = row["TOTALPRICE"].ToString();
+            }
+            if (check == true)
+                return true;
+            return false;
         }
     }
 }

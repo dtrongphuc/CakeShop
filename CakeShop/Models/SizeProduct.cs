@@ -30,12 +30,24 @@ namespace CakeShop.Models
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             }
         }
+
+        private string _quantity;
+        public string Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Quantity"));
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SizeProduct()
         {
             this.IdProduct = " ";
             this.Size = " ";
+            this.Quantity = " ";
         }
     }
     

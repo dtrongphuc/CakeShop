@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class Order : INotifyPropertyChanged
+    public class Order : INotifyPropertyChanged
     {
         private string _idOrder;
         public string IdOrder
@@ -109,5 +109,6 @@ namespace CakeShop.Models
             this.Status = " ";
             this.Total = " ";
         }
+
     }
 }
