@@ -116,12 +116,14 @@
                             BorderBrush="#FFD1D1D1"
                             BorderThickness="1" />
                         <Label
+                            x:Name="Add"
                             Padding="0,12,0,12"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             Content="Thêm Món ăn"
                             Cursor="Hand"
-                            FontSize="20" />
+                            FontSize="20" 
+                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action AddProuct]"/>
                         <Label
                             x:Name="OrderList"
                             Padding="0,12,0,12"

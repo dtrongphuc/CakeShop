@@ -111,10 +111,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CreatProductViewModel.cs" />
     <Compile Include="ViewModels\DetailProductViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
+    <Compile Include="Views\CreatProductView.xaml.cs">
+      <DependentUpon>CreatProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailProductView.xaml.cs">
       <DependentUpon>DetailProductView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +159,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CreatProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
