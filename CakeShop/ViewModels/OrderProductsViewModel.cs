@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace CakeShop.ViewModels
 {
-    class OrderProductsViewModelcs : Screen
+    public class OrderProductsViewModel : Screen
     {
+        public OrderProductsViewModel() 
+        {
 
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using CakeShop.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,16 +11,27 @@ namespace CakeShop.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive, INotifyPropertyChanged
     {
-        private HomeViewModel _homeViewModel;
-        public HomeViewModel HomeViewModel
-        {
-            get { return _homeViewModel; }
-            set
-            {
-                _homeViewModel = value;
-                NotifyOfPropertyChange(() => HomeViewModel);
-            }
-        }
+        //private HomeViewModel _homeViewModel;
+        //public HomeViewModel HomeViewModel
+        //{
+        //    get { return _homeViewModel; }
+        //    set
+        //    {
+        //        _homeViewModel = value;
+        //        NotifyOfPropertyChange(() => HomeViewModel);
+        //    }
+        //}
+
+        //private OrderProductsViewModel _orderProductsViewModel;
+        //public OrderProductsViewModel OrderProductsViewModel
+        //{
+        //    get { return _orderProductsViewModel; }
+        //    set
+        //    {
+        //        _orderProductsViewModel = value;
+        //        NotifyOfPropertyChange(() => OrderProductsViewModel);
+        //    }
+        //}
         
         /// <summary>
         /// Khởi tạo
@@ -30,14 +42,13 @@ namespace CakeShop.ViewModels
             ActivateItem(new HomeViewModel());
         }
 
-
-        public void OrderClick()
+        public void ShowOrder()
         {
-           
-            DisplayName = "Đơn đặt hàng";
             CloseCurrentView();
-            ActivateItem(new OrderProductsViewModelcs());
+            ActivateItem(new OrderProductsViewModel());
+            DisplayName = "Đơn đặt hàng";
         }
+
         /// <summary>
         /// Đóng view hiện tại
         /// </summary>
