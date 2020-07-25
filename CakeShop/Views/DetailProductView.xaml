@@ -2,6 +2,8 @@
     x:Class="CakeShop.Views.DetailProductView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:cv="clr-namespace:CakeShop.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -11,6 +13,7 @@
     Initialized="UserControl_Initialized"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <cv:LessThanConverter x:Key="isLessThan" />
         <Storyboard x:Key="CarouselStoryboard">
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
@@ -35,229 +38,360 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid
-        x:Name="Container"
-        Background="#fff"
-        SnapsToDevicePixels="True">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="8*" />
-            <ColumnDefinition Width="0.5*" />
-        </Grid.ColumnDefinitions>
-        <Grid
-            Grid.Column="1"
-            Margin="0,20"
-            Background="{Binding Background, ElementName=Container}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4.5*" />
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="4.5*" />
-            </Grid.ColumnDefinitions>
-            <StackPanel
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3">
-                <Label
-                    Padding="0,10"
-                    VerticalContentAlignment="Center"
-                    Content="Bánh kem"
-                    FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="#000" />
-                <Separator
-                    Height="2"
-                    Margin="0,0"
-                    Background="#f0668d"
-                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            </StackPanel>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="7*" />
-                    <RowDefinition Height="3*" />
-                </Grid.RowDefinitions>
-
-                <Border
-                    x:Name="ImageSelected"
-                    Grid.Row="0"
-                    Height="400"
+    <Grid x:Name="Main">
+        <ScrollViewer Height="{Binding ElementName=Main, Path=Height}">
+            <ScrollViewer.Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+                    <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+                    <Style.Triggers>
+                        <!--<Trigger Property="{Binding Path=ActualHeight, ElementName=Main}" Value="true">
+                            <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                        </Trigger>-->
+                    </Style.Triggers>
+                </Style>
+            </ScrollViewer.Style>
+            <Grid
+                x:Name="Container"
+                Background="#fff"
+                SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Column="1"
                     Margin="0,20,0,0"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top">
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
-                    </Border.Background>
-                </Border>
-                <DockPanel
-                    x:Name="ImagesDetail"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
-                    <!--<Button
-                        Margin="0,0,-58,0"
-                        Panel.ZIndex="10"
-                        Background="#6C515151"
-                        DockPanel.Dock="Left"
-                        Foreground="White"
-                        Style="{StaticResource MaterialDesignIconForegroundButton}">
-                        <materialDesign:PackIcon Kind="ChevronLeft" />
-                    </Button>-->
-                    <Border
-                        Width="32"
-                        Height="32"
-                        Margin="0,0,-32,0"
-                        Panel.ZIndex="10"
-                        Cursor="Hand"
-                        DockPanel.Dock="Left"
-                        MouseLeftButtonDown="OnPrev_MouseLeftButtonDown">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Resource/Images/Icons/chevron.png" />
-                        </Border.Background>
-                    </Border>
-                    <ListView
-                        x:Name="CarouselTest"
-                        Width="{Binding Width, ElementName=Right}"
-                        BorderThickness="0"
-                        PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
-                        PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-                        ScrollViewer.CanContentScroll="False"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                        Style="{StaticResource ListViewStyle}">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListViewItem}">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                            <ContentPresenter />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Border
-                                    Width="122"
-                                    Height="122"
-                                    Margin="2"
-                                    BorderBrush="#FF666666"
-                                    BorderThickness="0.5"
-                                    Cursor="Hand"
-                                    MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
-                                    <Border.Background>
-                                        <ImageBrush
-                                            ImageSource="{Binding}"
-                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                            Stretch="UniformToFill" />
-                                    </Border.Background>
-                                </Border>
-
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <!--<Button
-                        Margin="-58,0,0,0"
-                        Panel.ZIndex="10"
-                        Background="#6C515151"
-                        DockPanel.Dock="Right"
-                        Foreground="White"
-                        Style="{StaticResource MaterialDesignIconForegroundButton}">
-                        <materialDesign:PackIcon Kind="ChevronRight" />
-                    </Button>-->
-                    <Border
-                        Width="32"
-                        Height="32"
-                        Margin="-32,0,0,0"
-                        Panel.ZIndex="10"
-                        Cursor="Hand"
-                        DockPanel.Dock="Right"
-                        MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
-                        </Border.Background>
-                    </Border>
-                    <TextBlock
-                        x:Name="CarouselCount"
-                        DockPanel.Dock="Bottom"
-                        Text="{Binding CarouselItemCount}"
-                        Visibility="Collapsed" />
-                </DockPanel>
-            </Grid>
-
-
-            <StackPanel
-                x:Name="Right"
-                Grid.Row="1"
-                Grid.Column="2"
-                Margin="0,20,0,0">
-
-                <TextBlock
-                    Height="80"
-                    Padding="12,0"
-                    FontSize="30"
-                    FontWeight="DemiBold"
-                    Foreground="#000"
-                    Text="BASAS BLACK LACE - LOW TOP - DARK GREY"
-                    TextWrapping="Wrap" />
-
-                <TextBlock
-                    Margin="0,40,0,0"
-                    Padding="12,0"
-                    VerticalAlignment="Center"
-                    FontSize="23"
-                    FontWeight="ExtraBlack"
-                    Foreground="#f0668d"
-                    Text="450.000 VND" />
-
-                <Rectangle
-                    Height="1"
-                    Margin="12,40,12,0"
-                    SnapsToDevicePixels="True"
-                    Stroke="#979797"
-                    StrokeDashArray="8 8"
-                    StrokeThickness="1" />
-                <Grid Margin="0,40,0,0">
+                    Background="{Binding Background, ElementName=Container}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="44" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="4.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="4.5*" />
                     </Grid.ColumnDefinitions>
-                    <Label
+                    <StackPanel
+                        Grid.Row="0"
                         Grid.Column="0"
-                        Padding="12,0"
-                        HorizontalAlignment="Left"
-                        Content="Size: "
-                        FontSize="26"
-                        FontWeight="ExtraBold" />
-                    <Label
-                        Grid.Column="1"
-                        Padding="12,0"
-                        HorizontalAlignment="Left"
-                        Content="Số lượng: "
-                        FontSize="26"
-                        FontWeight="ExtraBold" />
+                        Grid.ColumnSpan="3">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel
+                                cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowUpdate]"
+                                Cursor="Hand"
+                                DockPanel.Dock="Right"
+                                Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="20"
+                                    Height="20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="#000"
+                                    Kind="Pencil" />
+                                <Label
+                                    VerticalContentAlignment="Center"
+                                    Content="Chỉnh sửa"
+                                    FontSize="16"
+                                    Foreground="#000" />
+                            </StackPanel>
+                            <Label
+                                Padding="0,10"
+                                VerticalContentAlignment="Center"
+                                Content="Bánh kem"
+                                DockPanel.Dock="Left"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="#000" />
+                        </DockPanel>
+                        <Separator
+                            Height="2"
+                            Margin="0,0"
+                            Background="#f0668d"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </StackPanel>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+
+                        <Border
+                            x:Name="ImageSelected"
+                            Grid.Row="0"
+                            Height="400"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
+                            </Border.Background>
+                        </Border>
+                        <DockPanel
+                            x:Name="ImagesDetail"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top">
+                            <!--<Button
+                            Margin="0,0,-58,0"
+                            Panel.ZIndex="10"
+                            Background="#6C515151"
+                            DockPanel.Dock="Left"
+                            Foreground="White"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="ChevronLeft" />
+                        </Button>-->
+                            <Border
+                                Width="32"
+                                Height="32"
+                                Margin="0,0,-32,0"
+                                Panel.ZIndex="10"
+                                Cursor="Hand"
+                                DockPanel.Dock="Left"
+                                MouseLeftButtonDown="OnPrev_MouseLeftButtonDown">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/Resource/Images/Icons/chevron.png" />
+                                </Border.Background>
+                            </Border>
+                            <ListView
+                                x:Name="CarouselTest"
+                                Width="{Binding Width, ElementName=Right}"
+                                BorderThickness="0"
+                                PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
+                                PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                                ScrollViewer.CanContentScroll="False"
+                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                Style="{StaticResource ListViewStyle}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            Width="122"
+                                            Height="122"
+                                            Margin="2"
+                                            BorderBrush="#FF666666"
+                                            BorderThickness="0.5"
+                                            Cursor="Hand"
+                                            MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
+                                            <Border.Background>
+                                                <ImageBrush
+                                                    ImageSource="{Binding}"
+                                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                                    Stretch="UniformToFill" />
+                                            </Border.Background>
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <!--<Button
+                            Margin="-58,0,0,0"
+                            Panel.ZIndex="10"
+                            Background="#6C515151"
+                            DockPanel.Dock="Right"
+                            Foreground="White"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            <materialDesign:PackIcon Kind="ChevronRight" />
+                        </Button>-->
+                            <Border
+                                Width="32"
+                                Height="32"
+                                Margin="-32,0,0,0"
+                                Panel.ZIndex="10"
+                                Cursor="Hand"
+                                DockPanel.Dock="Right"
+                                MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
+                                </Border.Background>
+                            </Border>
+                            <TextBlock
+                                x:Name="CarouselCount"
+                                DockPanel.Dock="Bottom"
+                                Text="{Binding CarouselItemCount}"
+                                Visibility="Collapsed" />
+                        </DockPanel>
+                    </Grid>
+
+
+                    <StackPanel
+                        x:Name="Right"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,20,0,0">
+
+                        <TextBlock
+                            Height="80"
+                            Padding="12,0"
+                            FontSize="30"
+                            FontWeight="DemiBold"
+                            Foreground="#000"
+                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY"
+                            TextWrapping="Wrap" />
+
+                        <TextBlock
+                            Margin="0,40,0,0"
+                            Padding="12,0"
+                            VerticalAlignment="Center"
+                            FontSize="23"
+                            FontWeight="ExtraBlack"
+                            Foreground="#f0668d"
+                            Text="450.000 VND" />
+
+                        <Rectangle
+                            Height="1"
+                            Margin="12,40,12,0"
+                            SnapsToDevicePixels="True"
+                            Stroke="#979797"
+                            StrokeDashArray="8 8"
+                            StrokeThickness="1" />
+                        <DataGrid
+                            MinWidth="200"
+                            Margin="40,20,40,0"
+                            AutoGenerateColumns="False"
+                            IsReadOnly="True"
+                            SelectionMode="Extended"
+                            SelectionUnit="Cell">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Header="Size"
+                                    IsReadOnly="True">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                            <Setter Property="TextBlock.FontSize" Value="26" />
+                                            <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    FontSize="26"
+                                    FontWeight="ExtraBold"
+                                    Header="Số lượng"
+                                    IsReadOnly="True">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                            <Setter Property="TextBlock.FontSize" Value="26" />
+                                            <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <!--<Grid Margin="0,40,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="12,0"
+                            HorizontalAlignment="Left"
+                            Content="Size"
+                            FontSize="26"
+                            FontWeight="ExtraBold" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="12,0"
+                            HorizontalAlignment="Left"
+                            Content="Số lượng"
+                            FontSize="26"
+                            FontWeight="ExtraBold" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="S"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Foreground="#000" />
+                        -->
+                        <!--<Separator
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="0.5"
+                            Margin="0,0"
+                            Background="#FF959595"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
+                        <!--
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="M"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Foreground="#000" />
+                        -->
+                        <!--<Separator
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="0.5"
+                            Margin="0,0"
+                            Background="#FF959595"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
+                        <!--
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="L"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Foreground="#000" />
+                    </Grid>-->
+                        <Rectangle
+                            Height="1"
+                            Margin="12,20,12,0"
+                            SnapsToDevicePixels="True"
+                            Stroke="#979797"
+                            StrokeDashArray="8 8"
+                            StrokeThickness="1" />
+                        <TextBlock
+                            Margin="0,40,0,0"
+                            Padding="12,0"
+                            FontSize="16"
+                            FontWeight="Thin"
+                            Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán."
+                            TextWrapping="Wrap" />
+                    </StackPanel>
                 </Grid>
-                <Rectangle
-                    Height="1"
-                    Margin="12,40,12,0"
-                    SnapsToDevicePixels="True"
-                    Stroke="#979797"
-                    StrokeDashArray="8 8"
-                    StrokeThickness="1" />
-                <TextBlock
-                    Margin="0,40,0,0"
-                    Padding="12,0"
-                    FontSize="16"
-                    FontWeight="Thin"
-                    Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán."
-                    TextWrapping="Wrap" />
-            </StackPanel>
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -11,28 +11,6 @@ namespace CakeShop.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive, INotifyPropertyChanged
     {
-        //private HomeViewModel _homeViewModel;
-        //public HomeViewModel HomeViewModel
-        //{
-        //    get { return _homeViewModel; }
-        //    set
-        //    {
-        //        _homeViewModel = value;
-        //        NotifyOfPropertyChange(() => HomeViewModel);
-        //    }
-        //}
-
-        //private OrderProductsViewModel _orderProductsViewModel;
-        //public OrderProductsViewModel OrderProductsViewModel
-        //{
-        //    get { return _orderProductsViewModel; }
-        //    set
-        //    {
-        //        _orderProductsViewModel = value;
-        //        NotifyOfPropertyChange(() => OrderProductsViewModel);
-        //    }
-        //}
-        
         /// <summary>
         /// Khởi tạo
         /// </summary>

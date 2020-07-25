@@ -97,6 +97,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Converter\LessThanConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
+    <Compile Include="ViewModels\UpdateProductViewModel.cs" />
     <Compile Include="Views\DetailProductView.xaml.cs">
       <DependentUpon>DetailProductView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +131,9 @@
     </Compile>
     <Compile Include="Views\SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateProductView.xaml.cs">
+      <DependentUpon>UpdateProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualTreeHelpers.cs" />
   </ItemGroup>
@@ -172,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SplashWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
