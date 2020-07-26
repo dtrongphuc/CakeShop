@@ -1,5 +1,9 @@
-﻿using System;
+﻿using CakeShop.ViewModels;
+using Caliburn.Micro;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +25,13 @@ namespace CakeShop.Views
     /// </summary>
     public partial class CreatProductView : UserControl
     {
+        CreatProductViewModel Data = null;
+
         public CreatProductView()
         {
             InitializeComponent();
         }
+
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (sender is ListView && !e.Handled)
@@ -68,29 +75,35 @@ namespace CakeShop.Views
         }
 
         /// <summary>
-        /// Khi chọn ảnh ở carousel
+        /// Thêm hình
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSelectedImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        List<FileInfo> ImagesNameList = new List<FileInfo>(); // List lưu thông tin danh sách hình
+        private int _ImagesAddCount { get; set; } = 0; // Đếm số hình được add
+        private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Border selected = sender as Border;
-            ImageSelected.Background = selected.Background as ImageBrush;
-            AvatarImage.Opacity = 0;
-            ContentAddImg.Text = string.Empty;
-        }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" + "All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    var info = new FileInfo(filename);
+                    ImagesNameList.Add(info);
+                }
+            }
 
-        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //if (sender is ListView && !e.Handled)
-            //{
-            //    e.Handled = true;
-            //    var eventArg = new MouseButtonEventArgs(e.MouseDevice, e.Timestamp, e.ChangedButton);
-            //    eventArg.RoutedEvent = UIElement.MouseLeftButtonDownEvent;
-            //    eventArg.Source = sender;
-            //    var parent = ((Control)sender).Parent as UIElement;
-            //    parent.RaiseEvent(eventArg);
-            //}
+            Data = Main.DataContext as CreatProductViewModel;
+            BindableCollection<string> ImagesCarousel = Data.CarouselTest;
+
+            // Thêm vào list binding
+            for(int i = _ImagesAddCount; i < ImagesNameList.Count; ++i)
+            {
+                ImagesCarousel.Insert(0, ImagesNameList[i].FullName);
+            }
+
+            _ImagesAddCount = ImagesNameList.Count;
         }
 
         private void BtnAddAvatar(object sender, RoutedEventArgs e)

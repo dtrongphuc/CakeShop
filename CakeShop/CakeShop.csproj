@@ -101,7 +101,6 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converter\CarouselItemWidthConverter.cs" />
-    <Compile Include="Converter\LessThanConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
@@ -133,6 +132,9 @@
     </Compile>
     <Compile Include="Views\OrderProductsView.xaml.cs">
       <DependentUpon>OrderProductsView.xaml</DependentUpon>
+    </Compile>
+	<Compile Include="Views\CreatProductView.xaml.cs">
+      <DependentUpon>CreatProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>

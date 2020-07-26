@@ -13,7 +13,6 @@
     d:DesignWidth="1200"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <cv:LessThanConverter x:Key="isLessThan" />
         <cv:CarouselItemWidthConverter x:Key="itemWidthConverter" />
         <sys:Int32 x:Key="ItemOfCarousel">4</sys:Int32>
         <Storyboard x:Key="CarouselStoryboard">
