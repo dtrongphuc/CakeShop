@@ -19,12 +19,18 @@ namespace CakeShop.ViewModels
             ShowHome();
         }
 
+        /// <summary>
+        /// Mở màn hình trang chủ
+        /// </summary>
         public void ShowHome()
         {
-            DisplayName = "Trang chủ";
             ActivateItem(new HomeViewModel());
+            DisplayName = "Trang chủ";
         }
 
+        /// <summary>
+        /// Mở màn hình thêm sản phẩm
+        /// </summary>
         public void AddProuct()
         {
             CloseCurrentView();
@@ -32,6 +38,9 @@ namespace CakeShop.ViewModels
             DisplayName = "Thêm sản phẩm";
         }
 
+        /// <summary>
+        /// Mở màn hình đơn hàng
+        /// </summary>
         public void ShowOrder()
         {
             CloseCurrentView();
