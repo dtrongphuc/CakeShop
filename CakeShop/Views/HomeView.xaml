@@ -99,8 +99,8 @@
 
                             <Button
                                 x:Name="ProductItem"
-                                Width="366"
-                                Height="188"
+                                Width="368"
+                                Height="200"
                                 Margin="4,10"
                                 Padding="0"
                                 Panel.ZIndex="99"

@@ -29,5 +29,11 @@ namespace CakeShop.ViewModels
                 "/Resource/Images/Products/9.jpg"
             };
         }
+
+        public void ShowUpdate()
+        {
+            var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
+            parentConductor.ActivateItem(new UpdateProductViewModel());
+        }
     }
 }

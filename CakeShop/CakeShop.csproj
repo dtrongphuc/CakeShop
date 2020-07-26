@@ -52,6 +52,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
@@ -97,6 +100,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Converter\LessThanConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
@@ -116,9 +120,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
-    <Compile Include="Views\CreatProductView.xaml.cs">
-      <DependentUpon>CreatProductView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\UpdateProductViewModel.cs" />
     <Compile Include="Views\DetailProductView.xaml.cs">
       <DependentUpon>DetailProductView.xaml</DependentUpon>
     </Compile>
@@ -133,6 +135,9 @@
     </Compile>
     <Compile Include="Views\SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateProductView.xaml.cs">
+      <DependentUpon>UpdateProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualTreeHelpers.cs" />
   </ItemGroup>
@@ -183,6 +188,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UpdateProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -202,6 +211,9 @@
     <Resource Include="Resource\Images\Products\7.jpg" />
     <Resource Include="Resource\Images\Products\8.jpg" />
     <Resource Include="Resource\Images\Products\9.jpg" />
+    <Resource Include="Resource\Images\Icons\picture.png" />
+    <Resource Include="Resource\Images\Icons\icon.ico" />
+    <Resource Include="icon.ico" />
     <Resource Include="Resource\Images\Icons\camera.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
