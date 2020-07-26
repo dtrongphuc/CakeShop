@@ -88,28 +88,11 @@
                             Content="Home"
                             Cursor="Hand"
                             FontSize="20" />
-                        <Border
+                        <Separator
                             Height="1"
                             Margin="10,0"
-                            BorderBrush="#FFD1D1D1"
-                            BorderThickness="1" />
-
-                        <ComboBox
-                            Name="CategoryList"
-                            MaxWidth="200"
-                            Margin="10,0"
-                            Padding="0,12,0,12"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            materialDesign:HintAssist.Hint="Danh Mục"
-                            materialDesign:HintAssist.HintOpacity="1"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            FontSize="20"
-                            Foreground="#DD000000"
-                            IsReadOnly="True"
-                            ItemsSource="{Binding TenDM}" />
-
+                            Background="#f0668d"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         <Border
                             Height="1"
                             Margin="10,0"
@@ -120,10 +103,15 @@
                             Padding="0,12,0,12"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
+                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action AddProuct]"
                             Content="Thêm Món ăn"
                             Cursor="Hand"
-                            FontSize="20" 
-                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action AddProuct]"/>
+                            FontSize="20" />
+                        <Separator
+                            Height="1"
+                            Margin="10,0"
+                            Background="#f0668d"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         <Label
                             x:Name="OrderList"
                             Padding="0,12,0,12"
