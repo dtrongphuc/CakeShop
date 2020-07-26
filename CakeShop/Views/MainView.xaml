@@ -89,7 +89,7 @@
                             Cursor="Hand"
                             FontSize="20" />
                         <Separator
-                            Height="1"
+                            Height="0.5"
                             Margin="10,0"
                             Background="#f0668d"
                             Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
@@ -108,7 +108,7 @@
                             Cursor="Hand"
                             FontSize="20" />
                         <Separator
-                            Height="1"
+                            Height="0.5"
                             Margin="10,0"
                             Background="#f0668d"
                             Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
@@ -234,7 +234,6 @@
                 Grid.Column="0"
                 Background="#fff"
                 Content="" />
-
         </Grid>
     </Grid>
 </Window>

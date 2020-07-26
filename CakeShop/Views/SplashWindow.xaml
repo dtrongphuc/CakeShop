@@ -1,13 +1,16 @@
-﻿<Window x:Class="CakeShop.Views.SplashWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CakeShop.Views"
-        mc:Ignorable="d"
-        Title="SplashWindow" Height="288.03" Width="475.34" 
-        Loaded="Window_Loaded"
-        WindowStartupLocation="CenterScreen">
+﻿<Window
+    x:Class="CakeShop.Views.SplashWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="SplashWindow"
+    Width="475.34"
+    Height="300"
+    Loaded="Window_Loaded"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid>
         <Border>
             <Border.Background>
@@ -16,7 +19,6 @@
                     Opacity="1"
                     RenderOptions.BitmapScalingMode="HighQuality"
                     Stretch="UniformToFill" />
-
             </Border.Background>
 
             <StackPanel>
@@ -27,27 +29,30 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     FontWeight="Medium"
-                    Foreground="#F15E2C"
+                    Foreground="#fff"
                     Text="{Binding}"
                     TextAlignment="Center"
                     TextWrapping="Wrap" />
                 <CheckBox
                     x:Name="checkboxdisplay"
+                    Width="150"
                     Height="24"
-                    Margin="231,0,71.8,0"
                     HorizontalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    Foreground="#fff"
-                    Width="166">
+                    Background="#f0668d"
+                    Foreground="#fff">
                     <TextBlock
                         Margin="0,0,0,0"
                         VerticalAlignment="Center"
-                        Text="Tắt hiển thị thông báo" Foreground="White"/>
+                        Foreground="White"
+                        Text="Tắt hiển thị thông báo" />
                 </CheckBox>
                 <Button
                     x:Name="OKButton"
                     Height="30"
-                    Margin="271,8,121.8,0"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Background="#f0668d"
                     Click="OKButton_Click"
                     Content="Close" />
             </StackPanel>

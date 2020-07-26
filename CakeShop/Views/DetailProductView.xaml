@@ -227,8 +227,6 @@
                                 Visibility="Collapsed" />
                         </DockPanel>
                     </Grid>
-
-
                     <StackPanel
                         x:Name="Right"
                         Grid.Row="1"

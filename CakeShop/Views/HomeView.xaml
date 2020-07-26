@@ -44,7 +44,7 @@
                                 Margin="16,4,0,0"
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center"
-                                Content="Dành cho bạn"
+                                Content="Bánh của bạn"
                                 DockPanel.Dock="Left"
                                 FontSize="26"
                                 FontWeight="Bold" />

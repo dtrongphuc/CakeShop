@@ -4,11 +4,367 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="700"
     d:DesignWidth="1200"
     mc:Ignorable="d">
-    <Grid Background="Bisque">
-        <TextBlock FontSize="100" Text="1111111111111111111111111111" />
+    <UserControl.Resources>
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+            <Setter Property="Foreground" Value="#333E50" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="4" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid
+                            x:Name="GridRoot"
+                            Width="4"
+                            Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*" />
+                            </Grid.RowDefinitions>
+
+                            <Track
+                                x:Name="PART_Track"
+                                Grid.Row="0"
+                                Focusable="false"
+                                IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb
+                                        x:Name="Thumb"
+                                        Background="{TemplateBinding Foreground}"
+                                        Style="{DynamicResource ScrollThumbs}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageUp"
+                                        Command="ScrollBar.PageDownCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageDown"
+                                        Command="ScrollBar.PageUpCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource ButtonSelectBrush}" />
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource DarkBrush}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter Property="Height" Value="12" />
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid x:Name="Grid">
+                            <Rectangle
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Fill="Transparent" />
+                            <Border
+                                x:Name="Rectangle1"
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style
+            x:Key="CommonBox"
+            BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+            TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="#f0668d" />
+            <Setter Property="materialDesign:HintAssist.Background" Value="Black" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+            <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="1,-42" />
+            <Setter Property="materialDesign:HintAssist.FloatingScale" Value="0.56" />
+            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#f0668d" />
+        </Style>
+
+    </UserControl.Resources>
+    <Grid x:Name="Main">
+        <ScrollViewer Height="{Binding ElementName=Main, Path=Height}">
+            <ScrollViewer.Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+                    <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+                    <Style.Triggers>
+                        <!--<Trigger Property="{Binding Path=ActualHeight, ElementName=Main}" Value="true">
+                            <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                        </Trigger>-->
+                    </Style.Triggers>
+                </Style>
+            </ScrollViewer.Style>
+            <Grid
+                x:Name="Container"
+                Background="#fff"
+                SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="10,10,57,10"
+                    Background="{Binding Background, ElementName=Container}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="44" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="4.5*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                        <DockPanel LastChildFill="True">
+                            <Button
+                                x:Name="ShowDetail"
+                                Background="#f0668d"
+                                Content="Hoàn thành"
+                                DockPanel.Dock="Right"
+                                Foreground="#fff" />
+                            <!--<Label
+                                Padding="0,10"
+                                VerticalContentAlignment="Center"
+                                Content="Bánh kem"
+                                DockPanel.Dock="Left"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="#000" />-->
+                            <Label
+                                Content="Thêm món bánh mới"
+                                DockPanel.Dock="Left"
+                                FontSize="23"
+                                FontWeight="ExtraBold" />
+                            <!--<ComboBox
+                                Width="200"
+                                Padding="0,10"
+                                HorizontalAlignment="Left"
+                                materialDesign:HintAssist.Hint="Danh Mục..."
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
+                                DockPanel.Dock="Left">
+                                <ComboBoxItem>
+                                    <TextBlock Text="CHON DANH MUC" />
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <TextBlock Text="CHON DANH MUC" />
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <TextBlock Text="CHON DANH MUC" />
+                                </ComboBoxItem>
+                            </ComboBox>-->
+                        </DockPanel>
+                        <Separator
+                            Height="2"
+                            Margin="0,0"
+                            Background="#f0668d"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    </StackPanel>
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:Card
+                            Grid.Row="0"
+                            Height="400"
+                            Background="#FFEAEAEA"
+                            BorderBrush="#000"
+                            BorderThickness="1"
+                            Cursor="Hand">
+                            <StackPanel VerticalAlignment="Center">
+                                <Border
+                                    x:Name="ImageSelected"
+                                    Width="100"
+                                    Height="100"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Resource/Images/Icons/picture.png" />
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock
+                                    Margin="0,16,0,0"
+                                    HorizontalAlignment="Center"
+                                    FontSize="26"
+                                    FontWeight="DemiBold"
+                                    Foreground="#000"
+                                    Text="Chọn ảnh cho bánh của bạn" />
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </Grid>
+                    <StackPanel
+                        x:Name="Right"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,20,0,0">
+                        <TextBox
+                            Height="120"
+                            Padding="12,0"
+                            materialDesign:HintAssist.Hint="Tên bánh"
+                            AcceptsReturn="True"
+                            FontSize="30"
+                            FontWeight="DemiBold"
+                            Foreground="#000"
+                            Style="{StaticResource CommonBox}"
+                            Text="" />
+                        <TextBox
+                            Height="60"
+                            Margin="0,20,0,0"
+                            Padding="12,0"
+                            materialDesign:HintAssist.Hint="Giá"
+                            FontSize="23"
+                            FontWeight="ExtraBlack"
+                            Foreground="#f0668d"
+                            Style="{StaticResource CommonBox}"
+                            Text="" />
+                        <ComboBox
+                            Width="200"
+                            Height="40"
+                            Margin="4,20,0,0"
+                            Padding="0,10"
+                            HorizontalAlignment="Left"
+                            materialDesign:HintAssist.Hint="Danh Mục..."
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            BorderThickness="0">
+                            <ComboBoxItem>
+                                <TextBlock Text="CHON DANH MUC" />
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="CHON DANH MUC" />
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="CHON DANH MUC" />
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <Grid Margin="0,20,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <ComboBox
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Height="40"
+                                Padding="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Size..."
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0">
+                                <ComboBoxItem>
+                                    <TextBlock Text="S" />
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <TextBlock Text="M" />
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <TextBlock Text="L" />
+                                </ComboBoxItem>
+                            </ComboBox>
+
+                            <TextBox
+                                Grid.Column="1"
+                                Height="40"
+                                Margin="16,0,0,0"
+                                Padding="12,0"
+                                materialDesign:HintAssist.Hint="Số lượng..."
+                                materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
+                                FontSize="16"
+                                FontWeight="Normal"
+                                Foreground="#000"
+                                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                Text="" />
+                            <Button
+                                Grid.Column="2"
+                                Width="80"
+                                Background="#f0668d"
+                                Content="OK"
+                                Foreground="#fff" />
+                        </Grid>
+
+                        <TextBox
+                            Height="120"
+                            Margin="0,20,0,0"
+                            Padding="12,4"
+                            materialDesign:HintAssist.Hint="Mô tả"
+                            FontSize="16"
+                            FontWeight="Thin"
+                            Style="{StaticResource CommonBox}"
+                            Text="" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
