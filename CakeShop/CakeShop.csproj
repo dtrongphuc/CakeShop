@@ -202,6 +202,7 @@
     <Resource Include="Resource\Images\Products\7.jpg" />
     <Resource Include="Resource\Images\Products\8.jpg" />
     <Resource Include="Resource\Images\Products\9.jpg" />
+    <Resource Include="Resource\Images\Icons\camera.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

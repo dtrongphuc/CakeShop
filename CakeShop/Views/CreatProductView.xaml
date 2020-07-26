@@ -3,10 +3,409 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CakeShop.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Bisque">
-        <TextBlock Text="1111111111111111111111111111" FontSize="100"/>
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Storyboard x:Key="CarouselStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Style x:Key="ListViewStyle" TargetType="ListView">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            Name="Carousel"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <StackPanel.RenderTransform>
+                                <TranslateTransform x:Name="CarouselTransfrom" />
+                            </StackPanel.RenderTransform>
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style
+            x:Key="CommonBox"
+            BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}"
+            TargetType="TextBox">
+            <Setter Property="Background" Value="#252D36" />
+            <Setter Property="Padding" Value="6,0,6,6" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Regular" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="#D82A02" />
+            <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#BB2201" />
+        </Style>
+        <Style
+            x:Key="BoxTrigger"
+            BasedOn="{StaticResource CommonBox}"
+            TargetType="TextBox">
+            <Setter Property="Margin" Value="0,16" />
+        </Style>
+        <Style
+            x:Key="MemberNameBox"
+            BasedOn="{StaticResource BoxTrigger}"
+            TargetType="TextBox">
+            <Setter Property="materialDesign:HintAssist.Hint" Value="Tên thành viên" />
+        </Style>
+    </UserControl.Resources>
+    <Grid
+        x:Name="Container"
+        Background="#fff"
+        SnapsToDevicePixels="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Column="1"
+            Margin="0,20"
+            Background="{Binding Background, ElementName=Container}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4.5*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="4.5*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3">
+                <Label
+                    Padding="0,10"
+                    VerticalContentAlignment="Center"
+                    Content="Thêm bánh "
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="#000" />
+                <Separator
+                    Height="2"
+                    Margin="0,0"
+                    Background="#f0668d"
+                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+
+
+
+            <Grid Grid.Row="1" Grid.Column="0" x:Name="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                                Text="Thêm ảnh"
+                                FontSize="26"
+                                FontWeight="DemiBold" Margin="49,10,98.6,10.4"/>
+
+                <Button
+                                x:Name="ImageSelected"
+                                Height="Auto"
+                                Padding="0"
+                                Background="#d4d4d4"
+                                BorderThickness="0"
+                                Click="BtnAddAvatar" Margin="31,70,38.6,0" Grid.RowSpan="2" >
+                    <Border Padding="40,50">
+                        <Border.Background>
+                            <ImageBrush
+                                            x:Name="AddAvatar"
+                                            ImageSource="{Binding }"
+                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                            Stretch="Fill" />
+                        </Border.Background>
+                        <StackPanel Height="169">
+                            <Image
+                                             x:Name="AvatarImage"
+                                             Width="70"
+                                             Source="/Resource/Images/Icons/camera.png"
+                                             RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock
+                                            x:Name="ContentAddImg"
+                                            Margin="0,20,0,0"
+                                            FontSize="20"
+                                            FontWeight="Heavy"
+                                            Foreground="#8a8a8a"
+                                            Text="Chọn ảnh cho bánh"
+                                            TextWrapping="Wrap" Height="59" />
+                        </StackPanel>
+                    </Border>
+                </Button>
+
+                <DockPanel
+                    x:Name="ImagesDetail"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <!--<Button
+                        Margin="0,0,-58,0"
+                        Panel.ZIndex="10"
+                        Background="#6C515151"
+                        DockPanel.Dock="Left"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}">
+                        <materialDesign:PackIcon Kind="ChevronLeft" />
+                    </Button>-->
+                    <Border
+                        Width="32"
+                        Height="32"
+                        Margin="0,0,-32,0"
+                        Panel.ZIndex="10"
+                        Cursor="Hand"
+                        DockPanel.Dock="Left"
+                        MouseLeftButtonDown="OnPrev_MouseLeftButtonDown">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Resource/Images/Icons/chevron.png" />
+                        </Border.Background>
+                    </Border>
+                    <ListView
+                        x:Name="CarouselTest"
+                        Width="{Binding Width, ElementName=Right}"
+                        BorderThickness="0"
+                        PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
+                        PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                        ScrollViewer.CanContentScroll="False"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                        Style="{StaticResource ListViewStyle}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Width="122"
+                                    Height="122"
+                                    Margin="2"
+                                    BorderBrush="#FF666666"
+                                    BorderThickness="0.5"
+                                    Cursor="Hand"
+                                    MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
+                                    <Border.Background>
+                                        <ImageBrush
+                                            ImageSource="{Binding}"
+                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                            Stretch="UniformToFill" />
+                                    </Border.Background>
+                                </Border>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--<Button
+                        Margin="-58,0,0,0"
+                        Panel.ZIndex="10"
+                        Background="#6C515151"
+                        DockPanel.Dock="Right"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}">
+                        <materialDesign:PackIcon Kind="ChevronRight" />
+                    </Button>-->
+                    <Border
+                        Width="32"
+                        Height="32"
+                        Margin="-32,0,0,0"
+                        Panel.ZIndex="10"
+                        Cursor="Hand"
+                        DockPanel.Dock="Right"
+                        MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
+                        </Border.Background>
+                    </Border>
+                    <TextBlock
+                        x:Name="CarouselCount"
+                        DockPanel.Dock="Bottom"
+                        Text="{Binding CarouselItemCount}"
+                        Visibility="Collapsed" />
+                </DockPanel>
+            </Grid>
+
+            <ScrollViewer 
+                        Grid.Column="2"
+                    Grid.Row="2"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <StackPanel
+                            Grid.Column="2"
+                            x:Name="Right"
+                            Margin="0,20,0,0">
+
+                    <TextBlock
+                       Grid.Column="0"
+                       Padding="12,0"
+                       VerticalAlignment="Center"
+                       Text="Tên bánh"
+                       FontSize="26"
+                       FontWeight="DemiBold"
+                        Margin="0,0,0,15"/>
+
+                    <TextBox
+                        x:Name="ProductName"
+                        Height="80"
+                        Padding="12,0"
+                        FontSize="30"
+                        FontWeight="DemiBold"
+                        Foreground="#000"
+                        TextWrapping="Wrap"
+                        BorderThickness="0"
+                        Background="#ffe6f6"
+                        materialDesign:HintAssist.Foreground="Beige"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
+                        materialDesign:HintAssist.Hint="Tên bánh" Margin="0,0,11.8,0"/>
+
+                    <TextBlock
+                       Grid.Column="0"
+                       Padding="12,0"
+                       VerticalAlignment="Center"
+                       Text="Giá bánh"
+                       FontSize="26"
+                       FontWeight="DemiBold"
+                        Margin="0,40,0,15"/>
+                    <TextBox
+                        Margin="0,0,11.8,0"
+                        Padding="12,0"
+                        VerticalAlignment="Center"
+                        FontSize="23"
+                        FontWeight="ExtraBlack"
+                        BorderThickness="0"
+                        Foreground="#f0668d"
+                        Background="#ffe6f6"
+                        materialDesign:HintAssist.Foreground="Beige"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
+                        materialDesign:HintAssist.Hint="VND"/>
+
+                    <Rectangle
+                        Height="1"
+                        Margin="12,40,12,0"
+                        SnapsToDevicePixels="True"
+                        Stroke="#979797"
+                        StrokeDashArray="8 8"
+                        StrokeThickness="1" />
+                    <Grid Margin="0,40,0,0" Height="68">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                        Grid.Column="0"
+                                        Padding="12,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Content="Size: "
+                                        FontSize="26"
+                                        FontWeight="ExtraBold" />
+                            <TextBox
+                                        Padding="12 6"
+                                        VerticalAlignment="Center"
+                                        FontSize="23"
+                                        FontWeight="ExtraBlack"
+                                        BorderThickness="0"
+                                        Foreground="#f0668d"
+                                        Background="#ffe6f6"
+                                        materialDesign:HintAssist.Foreground="Beige"
+                                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                                        materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
+                                        materialDesign:HintAssist.Hint="M - L - XL"
+                                        Height="68" 
+                                        Width="161"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0.2,0,9.8,0">
+                            <Label                        
+                                        Padding="12,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Content="Số lượng: "
+                                        FontSize="26"
+                                        FontWeight="ExtraBold" />
+                            <TextBox
+                                         Padding="5 6"
+                                         VerticalAlignment="Center"
+                                         FontSize="23"
+                                         FontWeight="ExtraBlack"
+                                         BorderThickness="0"
+                                         Foreground="#f0668d"
+                                         Background="#ffe6f6"
+                                         materialDesign:HintAssist.Foreground="Beige"
+                                         materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                                         materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
+                                         materialDesign:HintAssist.Hint="VD: 2" 
+                                         Height="68" 
+                                         Width="89"/>
+                        </StackPanel>
+
+                    </Grid>
+                    <Rectangle
+                                Height="1"
+                                Margin="12,40,12,40"
+                                SnapsToDevicePixels="True"
+                                Stroke="#979797"
+                                StrokeDashArray="8 8"
+                                StrokeThickness="1" />
+
+                    <TextBlock
+                                Text="Thông tin bánh"
+                                FontSize="26"
+                                FontWeight="DemiBold"/>
+
+                    <TextBox
+                                Margin="0,10,11.8,0"
+                                Padding="12,0"
+                                FontSize="16"
+                                FontWeight="Thin"
+                                TextWrapping="Wrap" 
+                                BorderThickness="0"
+                                Background="#e3e3e3"
+                                materialDesign:HintAssist.Hint="....." 
+                                Height="158" />
+
+                    <Button
+                                x:Name="Finish"
+                                Width="140"
+                                Height="40"
+                                Margin="0,30"
+                                Background="#ff96ec"
+                                BorderThickness="0"
+                                Click="Add_Click"
+                                Content="Hoàn thành" />
+                </StackPanel>
+            </ScrollViewer>
+
+
+
+
+
+
+        </Grid>
+
+
     </Grid>
 </UserControl>
