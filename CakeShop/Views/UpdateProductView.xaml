@@ -14,13 +14,13 @@
             <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
             <Setter Property="Foreground" Value="#333E50" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Width" Value="10" />
+            <Setter Property="Width" Value="4" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
                         <Grid
                             x:Name="GridRoot"
-                            Width="10"
+                            Width="4"
                             Background="{TemplateBinding Background}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.00001*" />
@@ -121,18 +121,16 @@
 
         <Style
             x:Key="CommonBox"
-            BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}"
+            BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
             TargetType="TextBox">
-            <Setter Property="Background" Value="#252D36" />
-            <Setter Property="Padding" Value="6,0,6,6" />
-            <Setter Property="Height" Value="60" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontWeight" Value="Regular" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="materialDesign:HintAssist.Foreground" Value="#D82A02" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="#f0668d" />
+            <Setter Property="materialDesign:HintAssist.Background" Value="#fff" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
             <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
-            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#BB2201" />
+            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#f0668d" />
         </Style>
 
     </UserControl.Resources>
@@ -140,7 +138,7 @@
         <ScrollViewer Height="{Binding ElementName=Main, Path=Height}">
             <ScrollViewer.Style>
                 <Style TargetType="ScrollViewer">
-                    <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+                    <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
                     <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
                     <Style.Triggers>
                         <!--<Trigger Property="{Binding Path=ActualHeight, ElementName=Main}" Value="true">
@@ -160,7 +158,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid
                     Grid.Column="1"
-                    Margin="0,20,0,0"
+                    Grid.ColumnSpan="2"
+                    Margin="10,10,57,10"
                     Background="{Binding Background, ElementName=Container}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="44" />
@@ -177,6 +176,7 @@
                         Grid.ColumnSpan="3">
                         <DockPanel LastChildFill="True">
                             <Button
+                                x:Name="ShowDetail"
                                 Background="#f0668d"
                                 Content="Hoàn thành"
                                 DockPanel.Dock="Right"
@@ -193,6 +193,9 @@
                                 Width="200"
                                 Padding="0,10"
                                 HorizontalAlignment="Left"
+                                materialDesign:HintAssist.Hint="Danh Mục..."
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
                                 DockPanel.Dock="Left">
                                 <ComboBoxItem>
                                     <TextBlock Text="CHON DANH MUC" />
@@ -217,45 +220,65 @@
                             <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
 
-                        <Border
-                            x:Name="ImageSelected"
+                        <materialDesign:Card
                             Grid.Row="0"
                             Height="400"
-                            Margin="0,20,0,0"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top">
-                            <Border.Background>
-                                <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
-                            </Border.Background>
-                        </Border>
+                            Background="#FFEAEAEA"
+                            BorderBrush="#000"
+                            BorderThickness="1"
+                            Cursor="Hand">
+                            <StackPanel VerticalAlignment="Center">
+                                <Border
+                                    x:Name="ImageSelected"
+                                    Width="100"
+                                    Height="100"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Resource/Images/Icons/picture.png" />
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock
+                                    Margin="0,16,0,0"
+                                    HorizontalAlignment="Center"
+                                    FontSize="26"
+                                    FontWeight="DemiBold"
+                                    Foreground="#000"
+                                    Text="Chọn ảnh cho bánh của bạn" />
+                            </StackPanel>
+
+                        </materialDesign:Card>
                     </Grid>
                     <StackPanel
                         x:Name="Right"
                         Grid.Row="1"
                         Grid.Column="2"
                         Margin="0,20,0,0">
-
                         <TextBox
-                            Height="80"
+                            Height="120"
                             Padding="12,0"
+                            materialDesign:HintAssist.Hint="Tên bánh"
+                            AcceptsReturn="True"
                             FontSize="30"
                             FontWeight="DemiBold"
                             Foreground="#000"
-                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY"
-                            TextWrapping="Wrap" />
-
+                            Style="{StaticResource CommonBox}"
+                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY" />
                         <TextBox
-                            Margin="0,40,0,0"
+                            Height="60"
+                            Margin="0,20,0,0"
                             Padding="12,0"
-                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Giá"
                             FontSize="23"
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
+                            Style="{StaticResource CommonBox}"
                             Text="450.000 VND" />
 
                         <Rectangle
                             Height="1"
-                            Margin="12,40,12,0"
+                            Margin="0,40,0,0"
                             SnapsToDevicePixels="True"
                             Stroke="#979797"
                             StrokeDashArray="8 8"
@@ -300,18 +323,20 @@
                         </DataGrid>
                         <Rectangle
                             Height="1"
-                            Margin="12,20,12,0"
+                            Margin="0,20,0,0"
                             SnapsToDevicePixels="True"
                             Stroke="#979797"
                             StrokeDashArray="8 8"
                             StrokeThickness="1" />
                         <TextBox
-                            Margin="0,40,0,0"
-                            Padding="12,0"
+                            Height="120"
+                            Margin="0,20,0,0"
+                            Padding="12,4"
+                            materialDesign:HintAssist.Hint="Mô tả"
                             FontSize="16"
                             FontWeight="Thin"
-                            Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán."
-                            TextWrapping="Wrap" />
+                            Style="{StaticResource CommonBox}"
+                            Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán." />
                     </StackPanel>
                 </Grid>
             </Grid>
