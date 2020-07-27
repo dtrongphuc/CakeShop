@@ -8,12 +8,13 @@
     xmlns:local="clr-namespace:CakeShop.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="700"
     d:DesignWidth="1200"
-    Initialized="UserControl_Initialized"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <cv:LessThanConverter x:Key="isLessThan" />
+        <cv:CarouselItemWidthConverter x:Key="itemWidthConverter" />
+        <sys:Int32 x:Key="ItemOfCarousel">4</sys:Int32>
         <Storyboard x:Key="CarouselStoryboard">
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
@@ -37,202 +38,283 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+            <Setter Property="Foreground" Value="#333E50" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="4" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid
+                            x:Name="GridRoot"
+                            Width="4"
+                            Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*" />
+                            </Grid.RowDefinitions>
+
+                            <Track
+                                x:Name="PART_Track"
+                                Grid.Row="0"
+                                Focusable="false"
+                                IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb
+                                        x:Name="Thumb"
+                                        Background="{TemplateBinding Foreground}"
+                                        Style="{DynamicResource ScrollThumbs}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageUp"
+                                        Command="ScrollBar.PageDownCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageDown"
+                                        Command="ScrollBar.PageUpCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource ButtonSelectBrush}" />
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource DarkBrush}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter Property="Height" Value="12" />
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid x:Name="Grid">
+                            <Rectangle
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Fill="Transparent" />
+                            <Border
+                                x:Name="Rectangle1"
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid x:Name="Main">
-        <ScrollViewer Height="{Binding ElementName=Main, Path=Height}">
-            <ScrollViewer.Style>
-                <Style TargetType="ScrollViewer">
-                    <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
-                    <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
-                    <Style.Triggers>
-                        <!--<Trigger Property="{Binding Path=ActualHeight, ElementName=Main}" Value="true">
-                            <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
-                        </Trigger>-->
-                    </Style.Triggers>
-                </Style>
-            </ScrollViewer.Style>
+        <Grid
+            x:Name="Container"
+            Background="#fff"
+            SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
             <Grid
-                x:Name="Container"
-                Background="#fff"
-                SnapsToDevicePixels="True">
+                Grid.Column="1"
+                Margin="0,20,0,0"
+                Background="{Binding Background, ElementName=Container}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.5*" />
                     <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="8*" />
-                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="4.5*" />
                 </Grid.ColumnDefinitions>
-                <Grid
-                    Grid.Column="1"
-                    Margin="0,20,0,0"
-                    Background="{Binding Background, ElementName=Container}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="44" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4.5*" />
-                        <ColumnDefinition Width="0.5*" />
-                        <ColumnDefinition Width="4.5*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3">
-                        <DockPanel LastChildFill="True">
-                            <StackPanel
-                                cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowUpdate]"
-                                Cursor="Hand"
-                                DockPanel.Dock="Right"
-                                Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    Width="20"
-                                    Height="20"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Foreground="#000"
-                                    Kind="Pencil" />
-                                <Label
-                                    VerticalContentAlignment="Center"
-                                    Content="Chỉnh sửa"
-                                    FontSize="16"
-                                    Foreground="#000" />
-                            </StackPanel>
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel
+                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowUpdate]"
+                            Cursor="Hand"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="#000"
+                                Kind="Pencil" />
                             <Label
-                                Padding="0,10"
                                 VerticalContentAlignment="Center"
-                                Content="Bánh kem"
-                                DockPanel.Dock="Left"
+                                Content="Chỉnh sửa"
                                 FontSize="16"
-                                FontWeight="SemiBold"
                                 Foreground="#000" />
-                        </DockPanel>
-                        <Separator
-                            Height="2"
-                            Margin="0,0"
-                            Background="#f0668d"
-                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                    </StackPanel>
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="7*" />
-                            <RowDefinition Height="3*" />
-                        </Grid.RowDefinitions>
+                        </StackPanel>
+                        <Label
+                            Padding="0,10"
+                            VerticalContentAlignment="Center"
+                            Content="Bánh kem"
+                            DockPanel.Dock="Left"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Foreground="#000" />
+                    </DockPanel>
+                    <Separator
+                        Height="2"
+                        Margin="0,0"
+                        Background="#f0668d"
+                        Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                <Grid
+                    x:Name="MainLeft"
+                    Grid.Row="1"
+                    Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
 
+                    <Border
+                        x:Name="ImageSelected"
+                        Grid.Row="0"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
+                        </Border.Background>
+                    </Border>
+                    <DockPanel
+                        x:Name="ImagesDetail"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
                         <Border
-                            x:Name="ImageSelected"
-                            Grid.Row="0"
-                            Height="400"
-                            Margin="0,20,0,0"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top">
+                            Width="32"
+                            Height="32"
+                            Margin="0,0,-32,0"
+                            Panel.ZIndex="10"
+                            Cursor="Hand"
+                            DockPanel.Dock="Left"
+                            MouseLeftButtonDown="OnPrev_MouseLeftButtonDown">
                             <Border.Background>
-                                <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
+                                <ImageBrush ImageSource="/Resource/Images/Icons/chevron.png" />
                             </Border.Background>
                         </Border>
-                        <DockPanel
-                            x:Name="ImagesDetail"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="0,20,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
-                            <!--<Button
-                            Margin="0,0,-58,0"
-                            Panel.ZIndex="10"
-                            Background="#6C515151"
-                            DockPanel.Dock="Left"
-                            Foreground="White"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}">
-                            <materialDesign:PackIcon Kind="ChevronLeft" />
-                        </Button>-->
-                            <Border
-                                Width="32"
-                                Height="32"
-                                Margin="0,0,-32,0"
-                                Panel.ZIndex="10"
-                                Cursor="Hand"
-                                DockPanel.Dock="Left"
-                                MouseLeftButtonDown="OnPrev_MouseLeftButtonDown">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="/Resource/Images/Icons/chevron.png" />
-                                </Border.Background>
-                            </Border>
-                            <ListView
-                                x:Name="CarouselTest"
-                                Width="{Binding Width, ElementName=Right}"
-                                BorderThickness="0"
-                                PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
-                                PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-                                ScrollViewer.CanContentScroll="False"
-                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                Style="{StaticResource ListViewStyle}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                    <ContentPresenter />
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border
-                                            Width="122"
-                                            Height="122"
-                                            Margin="2"
-                                            BorderBrush="#FF666666"
-                                            BorderThickness="0.5"
-                                            Cursor="Hand"
-                                            MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
-                                            <Border.Background>
-                                                <ImageBrush
-                                                    ImageSource="{Binding}"
-                                                    RenderOptions.BitmapScalingMode="HighQuality"
-                                                    Stretch="UniformToFill" />
-                                            </Border.Background>
-                                        </Border>
+                        <ListView
+                            x:Name="CarouselTest"
+                            Width="{Binding ActualWidth, ElementName=MainLeft}"
+                            BorderThickness="0"
+                            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                            ScrollViewer.CanContentScroll="False"
+                            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            Style="{StaticResource ListViewStyle}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Width="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Height="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Margin="0,0,4,0"
+                                        BorderBrush="#FF666666"
+                                        BorderThickness="0.5"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
+                                        <Border.Background>
+                                            <ImageBrush
+                                                ImageSource="{Binding}"
+                                                RenderOptions.BitmapScalingMode="HighQuality"
+                                                Stretch="UniformToFill" />
+                                        </Border.Background>
+                                    </Border>
 
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <!--<Button
-                            Margin="-58,0,0,0"
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Border
+                            Width="32"
+                            Height="32"
+                            Margin="-32,0,0,0"
                             Panel.ZIndex="10"
-                            Background="#6C515151"
+                            Cursor="Hand"
                             DockPanel.Dock="Right"
-                            Foreground="White"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}">
-                            <materialDesign:PackIcon Kind="ChevronRight" />
-                        </Button>-->
-                            <Border
-                                Width="32"
-                                Height="32"
-                                Margin="-32,0,0,0"
-                                Panel.ZIndex="10"
-                                Cursor="Hand"
-                                DockPanel.Dock="Right"
-                                MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
-                                </Border.Background>
-                            </Border>
-                            <TextBlock
-                                x:Name="CarouselCount"
-                                DockPanel.Dock="Bottom"
-                                Text="{Binding CarouselItemCount}"
-                                Visibility="Collapsed" />
-                        </DockPanel>
-                    </Grid>
-                    <StackPanel
-                        x:Name="Right"
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Margin="0,20,0,0">
-
+                            MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
+                            </Border.Background>
+                        </Border>
+                        <TextBlock
+                            x:Name="CarouselCount"
+                            DockPanel.Dock="Bottom"
+                            Text="{Binding CarouselItemCount}"
+                            Visibility="Collapsed" />
+                    </DockPanel>
+                </Grid>
+                <ScrollViewer
+                    x:Name="Right"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="0,20,0,0"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
                         <TextBlock
                             Height="80"
                             Padding="12,0"
@@ -263,6 +345,7 @@
                             Margin="40,20,40,0"
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
+                            PreviewMouseWheel="Datagrid_PreviewMouseWheel"
                             SelectionMode="Extended"
                             SelectionUnit="Cell">
                             <DataGrid.Columns>
@@ -388,8 +471,8 @@
                             Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán."
                             TextWrapping="Wrap" />
                     </StackPanel>
-                </Grid>
+                </ScrollViewer>
             </Grid>
-        </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

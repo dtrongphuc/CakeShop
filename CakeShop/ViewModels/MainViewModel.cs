@@ -16,15 +16,31 @@ namespace CakeShop.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            DisplayName = "Trang chủ";
-            ActivateItem(new HomeViewModel());
+            ShowHome();
         }
+
+        /// <summary>
+        /// Mở màn hình trang chủ
+        /// </summary>
+        public void ShowHome()
+        {
+            ActivateItem(new HomeViewModel());
+            DisplayName = "Trang chủ";
+        }
+
+        /// <summary>
+        /// Mở màn hình thêm sản phẩm
+        /// </summary>
         public void AddProuct()
         {
             CloseCurrentView();
             ActivateItem(new CreatProductViewModel());
             DisplayName = "Thêm sản phẩm";
         }
+
+        /// <summary>
+        /// Mở màn hình đơn hàng
+        /// </summary>
         public void ShowOrder()
         {
             CloseCurrentView();

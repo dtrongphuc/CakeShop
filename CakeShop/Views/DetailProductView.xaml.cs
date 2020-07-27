@@ -26,23 +26,6 @@ namespace CakeShop.Views
             InitializeComponent();
         }
 
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-        }
-
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (sender is ListView && !e.Handled)
-            {
-                e.Handled = true;
-                var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
-                eventArg.RoutedEvent = UIElement.MouseWheelEvent;
-                eventArg.Source = sender;
-                var parent = ((Control)sender).Parent as UIElement;
-                parent.RaiseEvent(eventArg);
-            }
-        }
-
         private int _currentElement = 0;
         private void AnimateCarousel()
         {
@@ -83,17 +66,30 @@ namespace CakeShop.Views
             ImageSelected.Background = selected.Background as ImageBrush;
         }
 
-        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            //if (sender is ListView && !e.Handled)
-            //{
-            //    e.Handled = true;
-            //    var eventArg = new MouseButtonEventArgs(e.MouseDevice, e.Timestamp, e.ChangedButton);
-            //    eventArg.RoutedEvent = UIElement.MouseLeftButtonDownEvent;
-            //    eventArg.Source = sender;
-            //    var parent = ((Control)sender).Parent as UIElement;
-            //    parent.RaiseEvent(eventArg);
-            //}
+            if (sender is DataGrid && !e.Handled)
+            {
+                e.Handled = true;
+                var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                eventArg.RoutedEvent = UIElement.MouseWheelEvent;
+                eventArg.Source = sender;
+                var parent = ((Control)sender).Parent as UIElement;
+                parent.RaiseEvent(eventArg);
+            }
+        }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (sender is ListView && !e.Handled)
+            {
+                e.Handled = true;
+                var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                eventArg.RoutedEvent = UIElement.MouseWheelEvent;
+                eventArg.Source = sender;
+                var parent = ((Control)sender).Parent as UIElement;
+                parent.RaiseEvent(eventArg);
+            }
         }
     }
 }

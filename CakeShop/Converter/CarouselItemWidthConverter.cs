@@ -8,15 +8,13 @@ using System.Windows.Data;
 
 namespace CakeShop.Converter
 {
-    class LessThanConverter : IValueConverter
+    class CarouselItemWidthConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if((double)value < 700)
-            {
-                return true;
-            }
-            return false;
+            int param = (int)parameter;
+            double width = (double)value;
+            return ((width / param) - 2);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
