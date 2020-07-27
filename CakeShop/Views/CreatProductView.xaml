@@ -36,30 +36,17 @@
 
         <Style
             x:Key="CommonBox"
-            BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}"
+            BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
             TargetType="TextBox">
-            <Setter Property="Background" Value="#252D36" />
-            <Setter Property="Padding" Value="6,0,6,6" />
-            <Setter Property="Height" Value="60" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontWeight" Value="Regular" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="materialDesign:HintAssist.Foreground" Value="#D82A02" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="#f0668d" />
+            <Setter Property="materialDesign:HintAssist.Background" Value="#fff" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
             <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
-            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#BB2201" />
-        </Style>
-        <Style
-            x:Key="BoxTrigger"
-            BasedOn="{StaticResource CommonBox}"
-            TargetType="TextBox">
-            <Setter Property="Margin" Value="0,16" />
-        </Style>
-        <Style
-            x:Key="MemberNameBox"
-            BasedOn="{StaticResource BoxTrigger}"
-            TargetType="TextBox">
-            <Setter Property="materialDesign:HintAssist.Hint" Value="Tên thành viên" />
+            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#f0668d" />
         </Style>
     </UserControl.Resources>
     <Grid
@@ -164,51 +151,42 @@
                     x:Name="Right"
                     Grid.Column="2"
                     Margin="0,20,0,0">
-                    <TextBlock
+                    <!--<TextBlock
                         Grid.Column="0"
                         Margin="0,0,0,15"
                         Padding="12,0"
                         VerticalAlignment="Center"
                         FontSize="26"
                         FontWeight="DemiBold"
-                        Text="Tên bánh" />
+                        Text="Giá bánh" />-->
                     <TextBox
-                        x:Name="ProductName"
-                        Height="80"
-                        Margin="0,0,11.8,0"
-                        Padding="12,0"
-                        materialDesign:HintAssist.Foreground="Beige"
-                        materialDesign:HintAssist.Hint="Tên bánh"
-                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
-                        Background="#ffe6f6"
-                        BorderThickness="0"
-                        FontSize="30"
-                        FontWeight="DemiBold"
-                        Foreground="#000"
-                        TextWrapping="Wrap" />
+                            Height="120"
+                            Padding="12,0"
+                            materialDesign:HintAssist.Hint="Tên bánh"
+                            AcceptsReturn="True"
+                            FontSize="30"
+                            FontWeight="DemiBold"
+                            Foreground="#000"
+                            Style="{StaticResource CommonBox}" Width="470"/>
 
-                    <TextBlock
+                    <!--<TextBlock
                         Grid.Column="0"
                         Margin="0,40,0,15"
                         Padding="12,0"
                         VerticalAlignment="Center"
                         FontSize="26"
                         FontWeight="DemiBold"
-                        Text="Giá bánh" />
+                        Text="Giá bánh" />-->
                     <TextBox
-                        Margin="0,0,11.8,0"
-                        Padding="12,0"
-                        VerticalAlignment="Center"
-                        materialDesign:HintAssist.Foreground="Beige"
-                        materialDesign:HintAssist.Hint="VND"
-                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#7a4178"
-                        Background="#ffe6f6"
-                        BorderThickness="0"
-                        FontSize="23"
-                        FontWeight="ExtraBlack"
-                        Foreground="#f0668d" />
+                            Height="60"
+                            Margin="0,20,0,0"
+                            Padding="12,0"
+                            materialDesign:HintAssist.Hint="Giá"
+                            FontSize="23"
+                            FontWeight="ExtraBlack"
+                            Foreground="#f0668d"
+                            Style="{StaticResource CommonBox}"
+                            Width="471" />
 
                     <Rectangle
                         Height="1"
@@ -276,20 +254,18 @@
                         StrokeThickness="1" />
 
                     <TextBlock
-                        FontSize="26"
+                        FontSize="15"
                         FontWeight="DemiBold"
-                        Text="Thông tin bánh" />
+                        Text="Mô tả" Width="468" />
 
                     <TextBox
-                        Height="158"
-                        Margin="0,10,11.8,0"
-                        Padding="12,0"
-                        materialDesign:HintAssist.Hint="....."
-                        Background="#e3e3e3"
-                        BorderThickness="0"
-                        FontSize="16"
-                        FontWeight="Thin"
-                        TextWrapping="Wrap" />
+                            Height="120"
+                            Margin="0,5,0,0"
+                            Padding="12,4"
+                            materialDesign:HintAssist.Hint="Mô tả"
+                            FontSize="16"
+                            FontWeight="Thin"
+                            Style="{StaticResource CommonBox}" Width="472"/>
 
                     <Button
                         x:Name="Finish"
