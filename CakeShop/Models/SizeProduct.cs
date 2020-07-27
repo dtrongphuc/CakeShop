@@ -9,6 +9,7 @@ namespace CakeShop.Models
 {
     public class SizeProduct : INotifyPropertyChanged
     {
+        private string sql;
         private string _idProduct;
         public string IdProduct
         {
@@ -48,6 +49,14 @@ namespace CakeShop.Models
             this.IdProduct = " ";
             this.Size = " ";
             this.Quantity = " ";
+        }
+
+        public void Add()
+        {
+            sql = "SELECT IDENT_CURRENT('PRODUCT') as LastID";
+            IdProduct=Connection.GetCount_Data(sql).ToString();
+            sql = $"INSERT INTO SIZEPRODUCT VALUES ({_idProduct}, '{Size}' , {Quantity})";
+            Connection.Execute_SQL(sql);
         }
     }
     
