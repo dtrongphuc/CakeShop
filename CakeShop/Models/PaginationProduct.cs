@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace CakeShop.Models
 {
     class PaginationProduct : INotifyPropertyChanged
     {
-
+        private string sql;
         public static int Sum_record { get; set; }
         private int _currentPage;
         public int CurrentPage
@@ -77,7 +78,56 @@ namespace CakeShop.Models
             Sum_record = GetListObject.Get_CountALLProduct();
             //CalculateTotalPage();
             int sotranghienhanh = (CurrentPage - 1) * record1page;
-            ListProduct = GetCtrl.Get_AllProduct(sotranghienhanh, record1page);
+            ListProduct = Get_AllProduct(sotranghienhanh, record1page);
+            return ListProduct;
+        }
+
+        public BindableCollection<Product> GetProductInCategoryPagination(int _curr, string id)
+        {
+            CurrentPage = _curr;
+            sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id}";
+            Sum_record = Connection.GetCount_Data(sql);
+            //CalculateTotalPage();
+            int sotranghienhanh = (CurrentPage - 1) * record1page;
+            ListProduct = Get_ProductInCategory(id,sotranghienhanh, record1page);
+            return ListProduct;
+        }
+
+        public BindableCollection<Product> Get_AllProduct(int curr, int recode1trang)
+        {
+            ListProduct.Clear();
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { recode1trang} ROWS ONLY";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                Product product = new Product();
+                product.CategoryName = row["CATEGORYNAME"].ToString();
+                product.IdProduct = row["IDPRODUCT"].ToString();
+                product.ProductName = row["PRODUCTNAME"].ToString();
+                product.Price = row["PRICE"].ToString();
+                product.Description = row["DESCRIPTION"].ToString();
+                product.Image = row["IMAGE"].ToString();
+                ListProduct.Add(product);
+            }
+            return ListProduct;
+        }
+
+        public BindableCollection<Product> Get_ProductInCategory(string id, int curr, int recode1trang)
+        {
+            ListProduct.Clear();
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id} ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { recode1trang} ROWS ONLY";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                Product product = new Product();
+                product.CategoryName = row["CATEGORYNAME"].ToString();
+                product.IdProduct = row["IDPRODUCT"].ToString();
+                product.ProductName = row["PRODUCTNAME"].ToString();
+                product.Price = row["PRICE"].ToString();
+                product.Description = row["DESCRIPTION"].ToString();
+                product.Image = row["IMAGE"].ToString();
+                ListProduct.Add(product);
+            }
             return ListProduct;
         }
     }

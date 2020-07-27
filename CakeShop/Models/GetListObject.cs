@@ -92,7 +92,7 @@ namespace CakeShop.Models
         public BindableCollection<Product> Get_AllProduct(int curr, int recode1trang)
         {
             ListProduct.Clear();
-            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { recode1trang} ROWS ONLY";
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
             {
