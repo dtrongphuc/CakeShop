@@ -89,9 +89,10 @@ namespace CakeShop.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public BindableCollection<Product> Get_AllProduct()
+        public BindableCollection<Product> Get_AllProduct(int curr, int recode1trang)
         {
-            sql = "SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY";
+            ListProduct.Clear();
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { recode1trang} ROWS ONLY";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
             {
@@ -109,6 +110,7 @@ namespace CakeShop.Models
 
         public BindableCollection<Category> Get_AllCategory()
         {
+            ListCategory.Clear();
             sql = "SELECT * FROM CATEGORY";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
@@ -123,6 +125,7 @@ namespace CakeShop.Models
 
         public BindableCollection<Product> Get_ProductInCategory(string id)
         {
+            ListProduct.Clear();
             sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE P.IDCATEGORY={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)
@@ -141,6 +144,7 @@ namespace CakeShop.Models
 
         public BindableCollection<SizeProduct> Get_SizeProduct(string id)
         {
+            ListSizeProduct.Clear();
             sql = $"SELECT * FROM  SIZEPRODUCT WHERE IDPRODUCT={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
@@ -156,6 +160,7 @@ namespace CakeShop.Models
 
         public BindableCollection<Image> Get_ImageProduct(string id)
         {
+            ListImageProduct.Clear();
             sql = $"SELECT * FROM IMAGES WHERE IDPRODUCT={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
@@ -170,6 +175,7 @@ namespace CakeShop.Models
 
          public BindableCollection<Order> Get_AllOrder()
         {
+            ListOrder.Clear();
             sql = "SELECT * FROM ORDERS";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
@@ -186,6 +192,13 @@ namespace CakeShop.Models
                 ListOrder.Add(order);
             }
             return ListOrder;
+        }
+
+        public static int Get_CountALLProduct()
+        {
+            string sql = "SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT";
+            int id = Connection.GetCount_Data(sql);
+            return id;
         }
     }
 }

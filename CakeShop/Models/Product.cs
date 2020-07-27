@@ -10,6 +10,7 @@ namespace CakeShop.Models
 {
     public class Product: INotifyPropertyChanged
     {
+        private string sql;
         private string _categoryName;
         public string CategoryName
         {
@@ -29,6 +30,17 @@ namespace CakeShop.Models
             {
                 _idProduct = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdProduct"));
+            }
+        }
+
+        private string _idCategory;
+        public string IdCategory
+        {
+            get { return _idCategory; }
+            set
+            {
+                _idCategory = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdCategory"));
             }
         }
 
@@ -89,6 +101,7 @@ namespace CakeShop.Models
             this.Image = " ";
             this.Description = " ";
             this.Price = "";
+            this.IdCategory= " ";
         }
 
         public bool Find(string id)
@@ -113,6 +126,12 @@ namespace CakeShop.Models
                 return true;
             }
             return false;
+        }
+
+        public void Add()
+        {
+            sql = $"INSERT INTO PRODUCT VALUES ({IdProduct}, {IdCategory}, N'{ProductName}',{Price}, N'{Description}' , '{Image}' )";
+            Connection.Execute_SQL(sql);
         }
     }
 }

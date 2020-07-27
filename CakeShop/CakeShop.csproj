@@ -108,6 +108,7 @@
     <Compile Include="Models\GetListObject.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\PaginationProduct.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SizeProduct.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

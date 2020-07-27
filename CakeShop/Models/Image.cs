@@ -9,7 +9,7 @@ namespace CakeShop.Models
 {
     public class Image : INotifyPropertyChanged
     {
-
+        private string sql;
         private string _idProduct;
         public string IdProduct
         {
@@ -32,5 +32,19 @@ namespace CakeShop.Models
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Image()
+        {
+            this.ImagUri = " ";
+            this.IdProduct = " ";
+        }
+
+        public void Add()
+        {
+            sql = "SELECT IDENT_CURRENT('PRODUCT') as LastID";
+            _idProduct=Connection.GetCount_Data(sql).ToString();
+            sql = $"INSERT INTO IMAGES VALUES ({_idProduct}, '{_imageUri}')";
+            Connection.Execute_SQL(sql);
+        }
     }
 }
