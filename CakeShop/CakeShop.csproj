@@ -133,7 +133,7 @@
     <Compile Include="Views\OrderProductsView.xaml.cs">
       <DependentUpon>OrderProductsView.xaml</DependentUpon>
     </Compile>
-	<Compile Include="Views\CreatProductView.xaml.cs">
+    <Compile Include="Views\CreatProductView.xaml.cs">
       <DependentUpon>CreatProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SplashWindow.xaml.cs">
@@ -217,7 +217,6 @@
     <Resource Include="Resource\Images\Icons\picture.png" />
     <Resource Include="Resource\Images\Icons\icon.ico" />
     <Resource Include="icon.ico" />
-    <Resource Include="Resource\Images\Icons\camera.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

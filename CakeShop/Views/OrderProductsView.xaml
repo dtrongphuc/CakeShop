@@ -25,15 +25,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4.5*" />
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="4.5*" />
-            </Grid.ColumnDefinitions>
-            <StackPanel
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3">
+            <StackPanel Grid.Row="0">
                 <Label
                     Padding="0,10"
                     VerticalContentAlignment="Center"
@@ -51,8 +43,6 @@
             <DataGrid
                 Name="dgUsers"
                 Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
@@ -64,7 +54,6 @@
                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
                 SelectionMode="Extended"
                 SelectionUnit="Cell">
-
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="*"
@@ -162,7 +151,6 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>

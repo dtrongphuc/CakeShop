@@ -154,11 +154,12 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="AcceptsReturn" Value="True" />
             <Setter Property="materialDesign:HintAssist.Foreground" Value="#f0668d" />
-            <Setter Property="materialDesign:HintAssist.Background" Value="#fff" />
+            <Setter Property="materialDesign:HintAssist.Background" Value="Black" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
             <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
             <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+            <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="1,-42" />
+            <Setter Property="materialDesign:HintAssist.FloatingScale" Value="0.56" />
             <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#f0668d" />
         </Style>
     </UserControl.Resources>
@@ -208,12 +209,11 @@
                     Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             </StackPanel>
 
-
-
             <Grid
                 x:Name="MainLeft"
                 Grid.Row="1"
-                Grid.Column="0">
+                Grid.Column="0"
+                Margin="0,20,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*" />
                     <RowDefinition Height="3*" />
@@ -329,57 +329,53 @@
             </Grid>
 
             <ScrollViewer
-                Grid.Row="2"
+                x:Name="MainRight"
+                Grid.Row="1"
                 Grid.Column="2"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <StackPanel
-                    x:Name="Right"
-                    Grid.Column="2"
-                    Margin="0,20,0,0">
-                    <!--<TextBlock
-                        Grid.Column="0"
-                        Margin="0,0,0,15"
-                        Padding="12,0"
-                        VerticalAlignment="Center"
-                        FontSize="26"
-                        FontWeight="DemiBold"
-                        Text="Giá bánh" />-->
+                Margin="0,10,0,0"
+                Padding="4"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Visible">
+                <StackPanel Margin="4,10,4,4">
                     <TextBox
-                            Height="120"
-                            Padding="12,0"
-                            materialDesign:HintAssist.Hint="Tên bánh"
-                            AcceptsReturn="True"
-                            FontSize="30"
-                            FontWeight="DemiBold"
-                            Foreground="#000"
-                            Style="{StaticResource CommonBox}" Width="470"/>
-
-                    <!--<TextBlock
-                        Grid.Column="0"
-                        Margin="0,40,0,15"
+                        Height="120"
                         Padding="12,0"
-                        VerticalAlignment="Center"
-                        FontSize="26"
+                        materialDesign:HintAssist.Hint="Tên bánh"
+                        AcceptsReturn="True"
+                        FontSize="30"
                         FontWeight="DemiBold"
-                        Text="Giá bánh" />-->
+                        Foreground="#000"
+                        Style="{StaticResource CommonBox}"
+                        Text="" />
                     <TextBox
-                            Height="60"
-                            Margin="0,20,0,0"
-                            Padding="12,0"
-                            materialDesign:HintAssist.Hint="Giá"
-                            FontSize="23"
-                            FontWeight="ExtraBlack"
-                            Foreground="#f0668d"
-                            Style="{StaticResource CommonBox}"
-                            Width="471" />
-
-                    <Rectangle
-                        Height="1"
-                        Margin="12,40,12,0"
-                        SnapsToDevicePixels="True"
-                        Stroke="#979797"
-                        StrokeDashArray="8 8"
-                        StrokeThickness="1" />
+                        Height="60"
+                        Margin="0,20,0,0"
+                        Padding="12,0"
+                        materialDesign:HintAssist.Hint="Giá"
+                        FontSize="23"
+                        FontWeight="ExtraBlack"
+                        Foreground="#f0668d"
+                        Style="{StaticResource CommonBox}"
+                        Text="" />
+                    <ComboBox
+                        Width="200"
+                        Height="40"
+                        Margin="4,20,0,0"
+                        Padding="0,10"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Danh Mục..."
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0">
+                        <ComboBoxItem>
+                            <TextBlock Text="CHON DANH MUC" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="CHON DANH MUC" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="CHON DANH MUC" />
+                        </ComboBoxItem>
+                    </ComboBox>
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*" />
@@ -398,8 +394,7 @@
                             VerticalAlignment="Center"
                             materialDesign:HintAssist.Hint="Size..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0"
-                            FontSize="16">
+                            BorderThickness="0">
                             <ComboBoxItem>
                                 <TextBlock Text="S" />
                             </ComboBoxItem>
@@ -430,46 +425,18 @@
                             Content="OK"
                             Foreground="#fff" />
                     </Grid>
-                    <Rectangle
-                        Height="1"
-                        Margin="12,40,12,40"
-                        SnapsToDevicePixels="True"
-                        Stroke="#979797"
-                        StrokeDashArray="8 8"
-                        StrokeThickness="1" />
-
-                    <TextBlock
-                        FontSize="15"
-                        FontWeight="DemiBold"
-                        Text="Mô tả" Width="468" />
 
                     <TextBox
-                            Height="120"
-                            Margin="0,5,0,0"
-                            Padding="12,4"
-                            materialDesign:HintAssist.Hint="Mô tả"
-                            FontSize="16"
-                            FontWeight="Thin"
-                            Style="{StaticResource CommonBox}" Width="472"/>
-
-                    <Button
-                        x:Name="Finish"
-                        Width="140"
-                        Height="40"
-                        Margin="0,30"
-                        Background="#ff96ec"
-                        BorderThickness="0"
-                        Content="Hoàn thành" />
+                        Height="120"
+                        Margin="0,20,0,0"
+                        Padding="12,4"
+                        materialDesign:HintAssist.Hint="Mô tả"
+                        FontSize="16"
+                        FontWeight="Thin"
+                        Style="{StaticResource CommonBox}"
+                        Text="" />
                 </StackPanel>
             </ScrollViewer>
-
-
-
-
-
-
         </Grid>
-
-
     </Grid>
 </UserControl>

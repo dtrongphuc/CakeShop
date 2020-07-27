@@ -187,7 +187,5 @@ namespace CakeShop.Models
             }
             return ListOrder;
         }
-
-      
     }
 }

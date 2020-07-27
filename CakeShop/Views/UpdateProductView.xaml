@@ -210,14 +210,6 @@
                                 Content="Hoàn thành"
                                 DockPanel.Dock="Right"
                                 Foreground="#fff" />
-                            <!--<Label
-                                Padding="0,10"
-                                VerticalContentAlignment="Center"
-                                Content="Bánh kem"
-                                DockPanel.Dock="Left"
-                                FontSize="16"
-                                FontWeight="SemiBold"
-                                Foreground="#000" />-->
                             <ComboBox
                                 Width="200"
                                 Padding="0,10"
