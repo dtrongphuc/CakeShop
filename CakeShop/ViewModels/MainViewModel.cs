@@ -1,4 +1,5 @@
 ﻿using CakeShop.Models;
+using CakeShop.Views;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,15 @@ namespace CakeShop.ViewModels
             DisplayName = "Đơn đặt hàng";
         }
 
+        /// <summary>
+        /// Mở màn hình thêm đơn hàng
+        /// </summary>
+        public void ShowAddorder()
+        {
+            CloseCurrentView();
+            ActivateItem(new AddOrderViewModel());
+            DisplayName = "Thêm đơn hàng";
+        }
         /// <summary>
         /// Đóng view hiện tại
         /// </summary>
