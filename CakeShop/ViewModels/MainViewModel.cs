@@ -49,6 +49,13 @@ namespace CakeShop.ViewModels
             DisplayName = "Đơn đặt hàng";
         }
 
+        public void ShowStatistics()
+        {
+            CloseCurrentView();
+            ActivateItem(new StatisticsViewModel());
+            DisplayName = "Thống kê doanh thu";
+        }
+
         /// <summary>
         /// Mở màn hình thêm đơn hàng
         /// </summary>

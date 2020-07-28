@@ -25,11 +25,16 @@ namespace CakeShop.Views
     /// </summary>
     public partial class UpdateProductView : UserControl
     {
-        UpdateProductViewModel Data = null;
+        UpdateProductViewModel CurrentViewModel = null;
 
         public UpdateProductView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as UpdateProductViewModel;
         }
 
         private int _currentElement = 0;
@@ -73,10 +78,7 @@ namespace CakeShop.Views
                 parent.RaiseEvent(eventArg);
             }
         }
-
         
-        List<FileInfo> ImagesNameList = new List<FileInfo>(); // List lưu thông tin danh sách hình
-        private int _ImagesAddCount { get; set; } = 0; // Đếm số hình được add
         /// <summary>
         /// Thêm hình
         /// </summary>
@@ -85,6 +87,7 @@ namespace CakeShop.Views
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            List<FileInfo> ImagesFileList = new List<FileInfo>(); // List tạm lưu thông tin danh sách file hình mới
             openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" + "All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -93,19 +96,15 @@ namespace CakeShop.Views
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     var info = new FileInfo(filename);
-                    ImagesNameList.Add(info);
+                    ImagesFileList.Add(info);
                 }
             }
 
-            Data = Main.DataContext as UpdateProductViewModel;
-            BindableCollection<string> ImagesCarousel = Data.CarouselTest;
-
-            for (int i = _ImagesAddCount; i < ImagesNameList.Count; ++i)
+            if(ImagesFileList.Count > 0)
             {
-                ImagesCarousel.Insert(0, ImagesNameList[i].FullName);
+                // Liên lạc với viewmodel để thêm hình vào binding list
+                CurrentViewModel.UpdateImages(ImagesFileList);
             }
-
-            _ImagesAddCount = ImagesNameList.Count;
         }
     }
 }
