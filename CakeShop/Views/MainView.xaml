@@ -94,11 +94,6 @@
                             Margin="10,0"
                             Background="#f0668d"
                             Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                        <Border
-                            Height="1"
-                            Margin="10,0"
-                            BorderBrush="#FFD1D1D1"
-                            BorderThickness="1" />
                         <Label
                             x:Name="Add"
                             Padding="0,12,0,12"
@@ -120,6 +115,20 @@
                             VerticalContentAlignment="Center"
                             cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowOrder]"
                             Content="Đơn hàng"
+                            Cursor="Hand"
+                            FontSize="20" />
+                        <Separator
+                            Height="0.5"
+                            Margin="10,0"
+                            Background="#f0668d"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        <Label
+                            x:Name="Statistics"
+                            Padding="0,12,0,12"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowStatistics]"
+                            Content="Thống kê doanh thu"
                             Cursor="Hand"
                             FontSize="20" />
                     </StackPanel>

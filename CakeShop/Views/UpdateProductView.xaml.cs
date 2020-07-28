@@ -78,7 +78,6 @@ namespace CakeShop.Views
                 parent.RaiseEvent(eventArg);
             }
         }
-
         
         /// <summary>
         /// Thêm hình

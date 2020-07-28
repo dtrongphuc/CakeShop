@@ -24,5 +24,10 @@ namespace CakeShop.Views
         {
             InitializeComponent();
         }
+
+        private void PieChart_DataClick(object sender, LiveCharts.ChartPoint chartPoint)
+        {
+
+        }
     }
 }
