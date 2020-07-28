@@ -75,6 +75,9 @@ namespace CakeShop.Views
             }
         }
 
-       
+        private void HideMenuAndModal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ShowHideMenu("sbHideLeftMenu", BtnHideMenu, BtnShowMenu, Menu);
+        }
     }
 }
