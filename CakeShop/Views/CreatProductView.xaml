@@ -195,7 +195,8 @@
                         Background="#f0668d"
                         Content="Hoàn thành"
                         DockPanel.Dock="Right"
-                        Foreground="#fff" />
+                        Foreground="#fff" 
+                        Click="Submit_click"/>
                     <Label
                         Content="Thêm món bánh mới"
                         DockPanel.Dock="Left"
@@ -346,7 +347,8 @@
                         FontWeight="DemiBold"
                         Foreground="#000"
                         Style="{StaticResource CommonBox}"
-                        Text="" />
+                        Text="" 
+                        Name="Name"/>
                     <TextBox
                         Height="60"
                         Margin="0,20,0,0"
@@ -356,7 +358,8 @@
                         FontWeight="ExtraBlack"
                         Foreground="#f0668d"
                         Style="{StaticResource CommonBox}"
-                        Text="" />
+                        Text="" 
+                        Name="price"/>
                     <ComboBox
                         Width="200"
                         Height="40"
@@ -365,7 +368,8 @@
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Danh Mục..."
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0">
+                        BorderThickness="0"
+                        Name="CoboboxCategory">
                         <ComboBoxItem>
                             <TextBlock Text="CHON DANH MUC" />
                         </ComboBoxItem>
@@ -394,7 +398,8 @@
                             VerticalAlignment="Center"
                             materialDesign:HintAssist.Hint="Size..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Name="ComboboxSize">
                             <ComboBoxItem>
                                 <TextBlock Text="S" />
                             </ComboBoxItem>
@@ -417,13 +422,15 @@
                             FontWeight="Normal"
                             Foreground="#000"
                             Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                            Text="" />
+                            Text="" 
+                            Name="quantity"/>
                         <Button
                             Grid.Column="2"
                             Width="80"
                             Background="#f0668d"
                             Content="OK"
-                            Foreground="#fff" />
+                            Foreground="#fff" 
+                            Click="AddSize_Click"/>
                     </Grid>
 
                     <TextBox
@@ -434,7 +441,8 @@
                         FontSize="16"
                         FontWeight="Thin"
                         Style="{StaticResource CommonBox}"
-                        Text="" />
+                        Text="" 
+                        Name="description"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

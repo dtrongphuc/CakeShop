@@ -78,3 +78,32 @@ ALTER TABLE IMAGES ADD CONSTRAINT FK_IMAGES_PRODUCT FOREIGN KEY (IDPRODUCT) REFE
 alter table DETAILORDER drop constraint FK_DETAILPRODUCT_PRODUCT
 
 drop table DETAILORDER
+
+INSERT INTO CATEGORY 
+VALUES	(N'Bánh Kem Tươi'), (N'Bánh Mỳ Tươi'), (N'Bánh GaTo'), (N'Bánh Quy')
+
+INSERT INTO PRODUCT
+VALUES 
+		--(4,N'BÁNH QUY BƠ DỪA',35000, N'Bánh quy bơ dừa được làm từ nguyên liệu cao cấp. Bánh giòn xốp, hương thơm béo của dừa hoà quyện với vị ngậy từ bơ. Bánh quy phù hợp với buổi tiệc trà và cà phê.','/Resource/Images/Products/banhquysua1.jpg')
+		--(1,N'BÁNH KEM BOSTON CHOCOLATE', 350000, N'Bánh Boston Chocolate Fresh Garden có cốt bánh socola 3 lớp nhân kem socola, mặt bánh phủ socola, trang trí macaron và socola bi', '/Resource/Images/Products/banhkemboston1.jpg')
+		--(2,N'SANDWICH GIĂM BÔNG', 25000, N'Sandwich giăm bông được làm từ bột mì của bánh gối và được kết hợp giữa giăm bông, xà lách và cà chua cùng với sốt mayonnaise. Các nguyên liệu hòa quyện làm một tạo thành chiếc sandwich thơm ngon và béo ngậy', '/Resource/Images/Products/sandwichgiambong1.jpg')
+		--(3,N'BÁNH CUỘN KEM TƯƠI TRÀ XANH', 30000, N'Bánh cuộn kem tươi: Món ăn nhẹ phổ biến và ưa thích của mỗi gia đình người Nhật, nhân kem tươi béo ngậy cùng lớp bông lan mềm mịn sẽ khác hẳn với các loại nhân kem thông thường. Fresh Garden có hai phiên bản: Bánh cuộn vani và trà xanh cho bạn lựa chọn.', '/Resource/Images/Products/banhcuonkemtuoitraxanh1.jpg')
+
+INSERT INTO SIZEPRODUCT
+VALUES --(1, 'FREESIZE', 30)
+		--(2,'S', 10), (2,'M', 10), (2,'L', 0)
+		--(3, 'FREESIZE', 120)
+		(4, 'S' , 100), (4, 'M', 50), (4,'L', 120)
+
+INSERT INTO IMAGES
+VALUES --(1,'/Resource/Images/Products/banhquysua1.jpg'), (1,'/Resource/Images/Products/banhquysua2.jpg'), (1,'/Resource/Images/Products/banhquysua3.jpg'), (1,'/Resource/Images/Products/banhquysua4.jpg'), (1,'/Resource/Images/Products/banhquysua5.jpg')
+		--(2, '/Resource/Images/Products/banhkemboston1.jpg'), (2, '/Resource/Images/Products/banhkemboston2.jpg'), (2, '/Resource/Images/Products/banhkemboston3.jpg'), (2, '/Resource/Images/Products/banhkemboston4.jpg'), (2, '/Resource/Images/Products/banhkemboston5.jpg')
+		--(3,'/Resource/Images/Products/sandwichgiambong1.jpg'), (3,'/Resource/Images/Products/sandwichgiambong2.jpg'), (3,'/Resource/Images/Products/sandwichgiambong3.jpg'), (3,'/Resource/Images/Products/sandwichgiambong4.jpg'), (3,'/Resource/Images/Products/sandwichgiambong5.jpg')
+		(4,'/Resource/Images/Products/banhcuonkemtuoitraxanh1.jpg'), (4,'/Resource/Images/Products/banhcuonkemtuoitraxanh2.jpg'), (4,'/Resource/Images/Products/banhcuonkemtuoitraxanh3.jpg'), (4,'/Resource/Images/Products/banhcuonkemtuoitraxanh4.jpg'), (4,'/Resource/Images/Products/banhcuonkemtuoitraxanh5.jpg')
+CREATE TABLE IMAGES
+(
+	IDPRODUCT INT,
+	IMAGE VARCHAR(MAX)
+)
+
+select * from product

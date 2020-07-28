@@ -130,7 +130,7 @@ namespace CakeShop.Models
 
         public void Add()
         {
-            sql = $"INSERT INTO PRODUCT VALUES ({IdProduct}, {IdCategory}, N'{ProductName}',{Price}, N'{Description}' , '{Image}' )";
+            sql = $"INSERT INTO PRODUCT VALUES ({IdCategory}, N'{ProductName}',{Price}, N'{Description}' , 's{Image}' )";
             Connection.Execute_SQL(sql);
         }
     }

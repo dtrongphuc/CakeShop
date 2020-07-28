@@ -1,4 +1,5 @@
-﻿using CakeShop.ViewModels;
+﻿using CakeShop.Models;
+using CakeShop.ViewModels;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using System;
@@ -74,10 +75,12 @@ namespace CakeShop.Views
             }
         }
 
+        List<SizeProduct> _listSizeProduct = new List<SizeProduct>();
+
         /// <summary>
         /// Thêm hình
         /// </summary>
-        List<FileInfo> ImagesNameList = new List<FileInfo>(); // List lưu thông tin danh sách hình
+        List<FileInfo> _imagesNameList = new List<FileInfo>(); // List lưu thông tin danh sách hình
         private int _ImagesAddCount { get; set; } = 0; // Đếm số hình được add
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -90,7 +93,7 @@ namespace CakeShop.Views
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     var info = new FileInfo(filename);
-                    ImagesNameList.Add(info);
+                    _imagesNameList.Add(info);
                 }
             }
 
@@ -98,22 +101,69 @@ namespace CakeShop.Views
             BindableCollection<string> ImagesCarousel = Data.CarouselTest;
 
             // Thêm vào list binding
-            for(int i = _ImagesAddCount; i < ImagesNameList.Count; ++i)
+            for(int i = _ImagesAddCount; i < _imagesNameList.Count; ++i)
             {
-                ImagesCarousel.Insert(0, ImagesNameList[i].FullName);
+                ImagesCarousel.Insert(0, _imagesNameList[i].FullName);
             }
 
-            _ImagesAddCount = ImagesNameList.Count;
+            _ImagesAddCount = _imagesNameList.Count;
         }
 
-        private void BtnAddAvatar(object sender, RoutedEventArgs e)
+        private void Submit_click(object sender, RoutedEventArgs e)
         {
+            if (Name.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
+            {
+                var avartar="";
+                var folderfile = AppDomain.CurrentDomain.BaseDirectory;
+                int index = CoboboxCategory.SelectedIndex;
+                Product product = new Product();
+                product.IdCategory = (index +1).ToString();
+                product.ProductName = Name.Text.Trim();
+                product.Price = price.Text.Trim();
+                product.Description = description.Text.Trim();
+                if (_imagesNameList[0].Name != null)
+                {
+                    avartar = $"{Guid.NewGuid()}{_imagesNameList[0].Extension}";
+                    _imagesNameList[0].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                    product.Image = $"/Resource/Images/Products/{avartar}";
+                }
+                product.Add();
 
+                ///thêm ảnh vào database.
+                //anh đầu tiên cũng dc thêm vào image
+                Models.Image image = new Models.Image();
+                image.ImagUri = $"/Resource/Images/Products/{avartar}";
+                image.Add();
+                for(int i=1;i< _ImagesAddCount;i++)
+                {
+                    if (_imagesNameList[i].Name != null)
+                    {
+                        avartar = $"{Guid.NewGuid()}{_imagesNameList[i].Extension}";
+                        _imagesNameList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                        image.ImagUri= $"/Resource/Images/Products/{avartar}";
+                        image.Add();
+                    }
+                }
+
+                ///thêm kích thước và số lượng vào database.
+                foreach(var size in _listSizeProduct)
+                {
+                    size.Add();
+                }
+            }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddSize_Click(object sender, RoutedEventArgs e)
         {
-
+            SizeProduct sizeproduct = new SizeProduct();
+            ComboBoxItem selected = ComboboxSize.SelectedValue as ComboBoxItem;
+            TextBlock selectedTextBlock = selected.Content as TextBlock;
+            sizeproduct.Size = selectedTextBlock.Text;
+            if(quantity.Text.Trim() != string.Empty)
+            {
+                sizeproduct.Quantity = quantity.Text.Trim();
+            }
+            _listSizeProduct.Add(sizeproduct);
         }
     }
 }
