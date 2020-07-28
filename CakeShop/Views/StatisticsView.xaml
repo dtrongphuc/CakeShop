@@ -12,19 +12,19 @@
     mc:Ignorable="d">
     <Grid Background="#fff">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="24" />
             <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="12" />
             <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="24" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="7*" />
-            <RowDefinition Height="12" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <materialDesign:Card
             Grid.Row="0"
-            Grid.RowSpan="3"
-            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.Column="1"
             Margin="12"
             Padding="4,4,4,12"
             Background="#fff">
@@ -51,9 +51,19 @@
         <materialDesign:Card
             Grid.Row="0"
             Grid.Column="2"
-            Margin="12" />
+            Margin="12"
+            Padding="4">
+            <lvc:CartesianChart>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Salesman" Labels="Tháng" />
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Sold Apps" />
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </materialDesign:Card>
         <materialDesign:Card
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="2"
             Margin="12" />
     </Grid>
