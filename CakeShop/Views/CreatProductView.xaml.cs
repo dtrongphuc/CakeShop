@@ -27,11 +27,15 @@ namespace CakeShop.Views
     /// </summary>
     public partial class CreatProductView : UserControl
     {
-        CreatProductViewModel Data = null;
-
+        CreatProductViewModel CurrentViewModel = null;
         public CreatProductView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as CreatProductViewModel;
         }
 
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -81,7 +85,7 @@ namespace CakeShop.Views
         /// <summary>
         /// Thêm hình
         /// </summary>
-        List<FileInfo> _imagesNameList = new List<FileInfo>(); // List lưu thông tin danh sách hình
+        List<FileInfo> ImagesFileList = new List<FileInfo>(); // List lưu thông tin danh sách hình
         private int _ImagesAddCount { get; set; } = 0; // Đếm số hình được add
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -94,20 +98,15 @@ namespace CakeShop.Views
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     var info = new FileInfo(filename);
-                    _imagesNameList.Add(info);
+                    ImagesFileList.Add(info);
                 }
             }
 
-            Data = Main.DataContext as CreatProductViewModel;
-            BindableCollection<string> ImagesCarousel = Data.ImagesCarousel;
-
-            // Thêm vào list binding
-            for(int i = _ImagesAddCount; i < _imagesNameList.Count; ++i)
+            if (ImagesFileList.Count > 0)
             {
-                ImagesCarousel.Insert(0, _imagesNameList[i].FullName);
+                // Liên lạc với viewmodel để thêm hình vào binding list
+                CurrentViewModel.UpdateImages(ImagesFileList);
             }
-
-            _ImagesAddCount = _imagesNameList.Count;
         }
 
         private void Submit_click(object sender, RoutedEventArgs e)
@@ -122,10 +121,10 @@ namespace CakeShop.Views
                 product.ProductName = Name.Text.Trim();
                 product.Price = price.Text.Trim();
                 product.Description = description.Text.Trim();
-                if (_imagesNameList[0].Name != null)
+                if (ImagesFileList[0].Name != null)
                 {
-                    avartar = $"{Guid.NewGuid()}{_imagesNameList[0].Extension}";
-                    _imagesNameList[0].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                    avartar = $"{Guid.NewGuid()}{ImagesFileList[0].Extension}";
+                    ImagesFileList[0].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
                     product.Image = $"/Resource/Images/Products/{avartar}";
                 }
                 product.Add();
@@ -137,10 +136,10 @@ namespace CakeShop.Views
                 image.Add();
                 for(int i=1;i< _ImagesAddCount;i++)
                 {
-                    if (_imagesNameList[i].Name != null)
+                    if (ImagesFileList[i].Name != null)
                     {
-                        avartar = $"{Guid.NewGuid()}{_imagesNameList[i].Extension}";
-                        _imagesNameList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                        avartar = $"{Guid.NewGuid()}{ImagesFileList[i].Extension}";
+                        ImagesFileList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
                         image.ImagUri= $"/Resource/Images/Products/{avartar}";
                         image.Add();
                     }
@@ -172,7 +171,5 @@ namespace CakeShop.Views
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
-        
     }
 }
