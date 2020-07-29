@@ -247,7 +247,7 @@
                             </Border.Background>
                         </Border>
                         <ListView
-                            x:Name="CarouselTest"
+                            x:Name="ImagesCarousel"
                             Width="{Binding ActualWidth, ElementName=MainLeft}"
                             BorderThickness="0"
                             PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
@@ -270,8 +270,8 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Border
-                                        Width="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
-                                        Height="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Width="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Height="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
                                         Margin="0,0,4,0"
                                         BorderBrush="#FF666666"
                                         BorderThickness="0.5"

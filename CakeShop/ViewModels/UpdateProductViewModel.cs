@@ -12,26 +12,11 @@ namespace CakeShop.ViewModels
     public class UpdateProductViewModel : Screen
     {
         // Muốn lấy những hình ảnh mới thêm vào thì lấy CarouselTest.Count - _defaultImagesCount -> số ảnh lấy ở đầu list
-        private int _defaultImagesCount { get; set; } = 0;
+        //private int _defaultImagesCount { get; set; } = 0;
 
-        public BindableCollection<string> CarouselTest { get; set; }
+        public BindableCollection<string> ImagesCarousel { get; set; }
         public UpdateProductViewModel()
         {
-            CarouselTest = new BindableCollection<string>
-            {
-                "/Resource/Images/Products/detail-test.jpg",
-                "/Resource/Images/Products/1.jpg",
-                "/Resource/Images/Products/2.jpg",
-                "/Resource/Images/Products/3.jpg",
-                "/Resource/Images/Products/4.jpg",
-                "/Resource/Images/Products/5.jpg",
-                "/Resource/Images/Products/6.jpg",
-                "/Resource/Images/Products/7.jpg",
-                "/Resource/Images/Products/8.jpg",
-                "/Resource/Images/Products/9.jpg"
-            };
-
-            _defaultImagesCount = CarouselTest.Count;
         }
 
         /// <summary>
@@ -54,7 +39,7 @@ namespace CakeShop.ViewModels
             foreach(var image in images)
             {
                 // Thêm hình mới update vào đầu
-                CarouselTest.Insert(0, image.FullName);
+                ImagesCarousel.Insert(0, image.FullName);
             }
         }
     }

@@ -29,11 +29,11 @@ namespace CakeShop.Views
         private int _currentElement = 0;
         private void AnimateCarousel()
         {
-            var carousel = VisualTreeHelpers.FindChild<StackPanel>(CarouselTest, "Carousel");
+            var carousel = VisualTreeHelpers.FindChild<StackPanel>(ImagesCarousel, "Carousel");
             Storyboard storyboard = (this.Resources["CarouselStoryboard"] as Storyboard);
             DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
             Storyboard.SetTarget(animation, carousel);
-            animation.To = -(CarouselTest.ActualWidth + 10) * _currentElement;
+            animation.To = -(ImagesCarousel.ActualWidth + 10) * _currentElement;
             storyboard.Begin();
         }
 

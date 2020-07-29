@@ -193,10 +193,10 @@
                     <Button
                         x:Name="ShowDetail"
                         Background="#f0668d"
+                        Click="Submit_click"
                         Content="Hoàn thành"
                         DockPanel.Dock="Right"
-                        Foreground="#fff" 
-                        Click="Submit_click"/>
+                        Foreground="#fff" />
                     <Label
                         Content="Thêm món bánh mới"
                         DockPanel.Dock="Left"
@@ -270,7 +270,7 @@
                         </Border.Background>
                     </Border>
                     <ListView
-                        x:Name="CarouselTest"
+                        x:Name="ImagesCarousel"
                         Width="{Binding ActualWidth, ElementName=MainLeft}"
                         BorderThickness="0"
                         PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
@@ -293,8 +293,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border
-                                    Width="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
-                                    Height="{Binding ActualWidth, ElementName=CarouselTest, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                    Width="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                    Height="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
                                     Margin="0,0,4,0"
                                     BorderBrush="#FF666666"
                                     BorderThickness="0.5"
@@ -339,6 +339,7 @@
                 VerticalScrollBarVisibility="Visible">
                 <StackPanel Margin="4,10,4,4">
                     <TextBox
+                        Name="Name"
                         Height="120"
                         Padding="12,0"
                         materialDesign:HintAssist.Hint="Tên bánh"
@@ -347,9 +348,9 @@
                         FontWeight="DemiBold"
                         Foreground="#000"
                         Style="{StaticResource CommonBox}"
-                        Text="" 
-                        Name="Name"/>
+                        Text="" />
                     <TextBox
+                        Name="price"
                         Height="60"
                         Margin="0,20,0,0"
                         Padding="12,0"
@@ -358,9 +359,9 @@
                         FontWeight="ExtraBlack"
                         Foreground="#f0668d"
                         Style="{StaticResource CommonBox}"
-                        Text="" 
-                        Name="price"/>
+                        Text="" />
                     <ComboBox
+                        Name="CoboboxCategory"
                         Width="200"
                         Height="40"
                         Margin="4,20,0,0"
@@ -368,8 +369,7 @@
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Danh Mục..."
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        Name="CoboboxCategory">
+                        BorderThickness="0">
                         <ComboBoxItem>
                             <TextBlock Text="CHON DANH MUC" />
                         </ComboBoxItem>
@@ -390,6 +390,7 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <ComboBox
+                            Name="ComboboxSize"
                             Grid.Row="0"
                             Grid.Column="0"
                             Height="40"
@@ -398,8 +399,7 @@
                             VerticalAlignment="Center"
                             materialDesign:HintAssist.Hint="Size..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0"
-                            Name="ComboboxSize">
+                            BorderThickness="0">
                             <ComboBoxItem>
                                 <TextBlock Text="S" />
                             </ComboBoxItem>
@@ -412,6 +412,7 @@
                         </ComboBox>
 
                         <TextBox
+                            Name="quantity"
                             Grid.Column="1"
                             Height="40"
                             Margin="16,0,0,0"
@@ -423,18 +424,18 @@
                             Foreground="#000"
                             PreviewTextInput="NumberValidationTextBox"
                             Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                            Text="" 
-                            Name="quantity"/>
+                            Text="" />
                         <Button
                             Grid.Column="2"
                             Width="80"
                             Background="#f0668d"
+                            Click="AddSize_Click"
                             Content="OK"
-                            Foreground="#fff" 
-                            Click="AddSize_Click"/>
+                            Foreground="#fff" />
                     </Grid>
 
                     <TextBox
+                        Name="description"
                         Height="120"
                         Margin="0,20,0,0"
                         Padding="12,4"
@@ -442,8 +443,7 @@
                         FontSize="16"
                         FontWeight="Thin"
                         Style="{StaticResource CommonBox}"
-                        Text="" 
-                        Name="description"/>
+                        Text="" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
