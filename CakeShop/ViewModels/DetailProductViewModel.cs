@@ -11,7 +11,6 @@ namespace CakeShop.ViewModels
     public class DetailProductViewModel : Screen
     {
         GetListObject getListObject = new GetListObject();
-        SizeProduct sizeProduct = new SizeProduct();
         Product product = new Product();  
         public BindableCollection<Image> ImagesCarousel { get; set; }
         public BindableCollection<SizeProduct> SizeQuantify { get; set; }
@@ -46,7 +45,7 @@ namespace CakeShop.ViewModels
         public void ShowUpdate()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
-            parentConductor.ActivateItem(new UpdateProductViewModel());
+            parentConductor.ActivateItem(new UpdateProductViewModel(product.IdProduct));
         }
     }
 }

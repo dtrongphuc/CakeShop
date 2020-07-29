@@ -14,10 +14,35 @@ namespace CakeShop.ViewModels
     {
         // Muốn lấy những hình ảnh mới thêm vào thì lấy CarouselTest.Count - _defaultImagesCount -> số ảnh lấy ở đầu list
         //private int _defaultImagesCount { get; set; } = 0;
+        GetListObject getListObject = new GetListObject();
+        Product product = new Product();
+        public BindableCollection<Image> ImagesCarousel { get; set; }
+        public BindableCollection<SizeProduct> SizeQuantify { get; set; }
 
-        public BindableCollection<string> ImagesCarousel { get; set; } = new BindableCollection<string>();
-        public UpdateProductViewModel()
+        public string ProductName { get; set; }
+        public string Price { get; set; }
+        public string Descriptiontext { get; set; }
+        public string ImageSelectChange { get; set; }
+        public BindableCollection<string> AddImagesCarousel { get; set; } = new BindableCollection<string>();
+        public UpdateProductViewModel(string idProduct)
         {
+            product.ChooesProduct(idProduct);
+
+            //tên sản phẩm
+            ProductName = product.ProductName;
+
+            //giá sản phẩm
+            Price = product.Price;
+
+            //mô tả sản phẩm
+            Descriptiontext = product.Description;
+
+            //danh sách số lượng và size sản phẩm
+            SizeQuantify = getListObject.Get_SizeProduct(idProduct);
+
+            //danh sách các hình của sản phẩm
+            ImagesCarousel = getListObject.Get_ImageProduct(idProduct);
+            
         }
 
         /// <summary>
@@ -41,7 +66,7 @@ namespace CakeShop.ViewModels
             foreach(var image in images)
             {
                 // Thêm hình mới update vào đầu
-                ImagesCarousel.Insert(0, image.FullName);
+                AddImagesCarousel.Insert(0, image.FullName);
             }
         }
 

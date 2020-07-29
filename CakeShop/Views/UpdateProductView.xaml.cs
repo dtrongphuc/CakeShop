@@ -106,5 +106,10 @@ namespace CakeShop.Views
                 CurrentViewModel.UpdateImages(ImagesFileList);
             }
         }
+
+        private void OnSelectedImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
