@@ -15,19 +15,12 @@ namespace CakeShop.ViewModels
     {
         public BindableCollection<string> ImagesCarousel { get; set; } = new BindableCollection<string>();
         GetListObject Getlist = new GetListObject();
-        public BindableCollection<string> ImagesCarousel { get; set; }
+       
         public BindableCollection<Category> ComboboxCategoryBD { get; set; }
         public ImageSource AddAvatar { get; set; }
 
         public CreatProductViewModel()
         {
-            //AddAvatar = new BitmapImage(new Uri(@"/Resource/Images/Products/detail-test.jpg", UriKind.Absolute));
-            //AddAvatar = ImageSource;
-            ImagesCarousel = new BindableCollection<string>
-            {
-                
-            };
-
             //liệt kê trong các danh mục trong combobox
             ComboboxCategoryBD = Getlist.Get_AllCategory();
         }

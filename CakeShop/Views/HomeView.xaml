@@ -63,7 +63,7 @@
                             Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
                         <ListView
-                            Name="Products"
+                            x:Name="Products"
                             Grid.Row="1"
                             HorizontalAlignment="Center"
                             ScrollViewer.CanContentScroll="False"

@@ -115,7 +115,7 @@ namespace CakeShop.Views
             if (Name.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
             {
                 //thêm sản phẩm vào database
-                var index = CoboboxCategory.SelectedIndex;
+                var index = ComboboxCategory.SelectedIndex;
                  avartar = CurrentViewModel.AddProduct(Name.Text,index, price.Text, description.Text, ImagesFileList[0]);
             }
             if (_ImagesAddCount > 0)
