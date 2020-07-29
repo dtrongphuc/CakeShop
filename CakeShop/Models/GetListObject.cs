@@ -194,6 +194,27 @@ namespace CakeShop.Models
             return ListOrder;
         }
 
+        public BindableCollection<Order> Get_MonthlyOrder()
+        {
+            ListOrder.Clear();
+            sql = "SELECT IDORDER, CUSTOMERNAME, ADDRESS, EMAIL, NOTE, TOTAL, STATUS, MONTH(DATE)AS 'MONTH' FROM ORDERS";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                Order order = new Order();
+                order.IdOrder = row["IDORDER"].ToString();
+                order.CustomerName = row["CUSTOMERNAME"].ToString();
+                order.Address = row["ADDRESS"].ToString();
+                order.Email = row["EMAIL"].ToString();
+                order.Note = row["NOTE"].ToString();
+                order.Total = row["TOTAL"].ToString();
+                order.Status = row["STATUS"].ToString();
+                order.Date = row["MONTH"].ToString();
+                ListOrder.Add(order);
+            }
+            return ListOrder;
+        }
+
         public static int Get_CountALLProduct()
         {
             string sql = "SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT";

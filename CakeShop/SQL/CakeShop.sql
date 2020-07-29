@@ -107,3 +107,9 @@ CREATE TABLE IMAGES
 )
 
 select * from product
+
+INSERT INTO ORDERS 
+VALUES --(N'Lý Văn Đức', N'27 Phố Lợi, Phường Từ, Huyện Cường Châu Sơn La', 'Duc@gmail.com', N'Tên Bánh Kem là Chúc Kem xú tuổi mới học giỏi', 350000, 0 , '7/29/2020')
+		(N'Khoa Mạnh Vĩnh', N'690, Ấp Việt Cổ, Phường Vọng Nhậm, Huyện Ly Lâm Sóc Trăng', 'Vinh@gmail.com', N'sandwich cho nhiều giăm bông', 50000,1, '6/29/2020')
+
+SELECT IDORDER,CUSTOMERNAME,ADDRESS,EMAIL, NOTE,TOTAL,STATUS, MONTH(DATE) AS 'MONTH' FROM ORDERS
