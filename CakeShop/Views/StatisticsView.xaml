@@ -53,13 +53,13 @@
             Grid.Column="2"
             Margin="12"
             Padding="4">
-            <lvc:CartesianChart>
+            <lvc:CartesianChart
+                Padding="10"
+                LegendLocation="None"
+                Series="{Binding CartesianChartData}">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Salesman" Labels="Tháng" />
+                    <lvc:Axis Title="Tháng" Labels="{Binding MonthLabels}" />
                 </lvc:CartesianChart.AxisX>
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Sold Apps" />
-                </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
         </materialDesign:Card>
         <materialDesign:Card
