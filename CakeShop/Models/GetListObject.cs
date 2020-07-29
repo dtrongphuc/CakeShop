@@ -168,7 +168,7 @@ namespace CakeShop.Models
             {
                 Image image = new Image();
                 image.IdProduct = row["IDPRODUCT"].ToString();
-                image.ImagUri = row["IMAGE"].ToString();
+                image.ImageUri = row["IMAGE"].ToString();
                 ListImageProduct.Add(image);
             }
             return ListImageProduct;

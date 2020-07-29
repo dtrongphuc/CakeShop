@@ -225,7 +225,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
                         <Border.Background>
-                            <ImageBrush ImageSource="{Binding ImageSelectChange, Converter={StaticResource pathConverter}}" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImageSelectChange, Converter={StaticResource pathConverter}}" Stretch="Fill" />
                         </Border.Background>
                     </Border>
                     <DockPanel
@@ -255,7 +255,6 @@
                             ScrollViewer.CanContentScroll="False"
                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                            ItemsSource="{Binding ImagesCarouselList}"
                             Style="{StaticResource ListViewStyle}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
@@ -281,12 +280,11 @@
                                         MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
                                         <Border.Background>
                                             <ImageBrush
-                                                ImageSource="{Binding Image, Converter={StaticResource pathConverter}}"
+                                                ImageSource="{Binding ImageUri, Converter={StaticResource pathConverter}}"
                                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                                Stretch="UniformToFill" />
+                                                Stretch="Fill" />
                                         </Border.Background>
                                     </Border>
-
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
@@ -313,7 +311,7 @@
                     x:Name="Right"
                     Grid.Row="1"
                     Grid.Column="2"
-                    Margin="0,20,0,0"
+                    Padding="0,20"
                     HorizontalScrollBarVisibility="Disabled"
                     VerticalScrollBarVisibility="Auto">
                     <StackPanel>
@@ -322,12 +320,12 @@
                             Padding="12,0"
                             FontSize="30"
                             FontWeight="DemiBold"
-                            Foreground="#000"                            
+                            Foreground="#000"
                             Text="{Binding ProductName}"
                             TextWrapping="Wrap" />
 
                         <TextBlock
-                            Margin="0,40,0,0"
+                            Margin="0,20,0,0"
                             Padding="12,0"
                             VerticalAlignment="Center"
                             FontSize="23"
@@ -337,7 +335,7 @@
 
                         <Rectangle
                             Height="1"
-                            Margin="12,40,12,0"
+                            Margin="12,20,12,0"
                             SnapsToDevicePixels="True"
                             Stroke="#979797"
                             StrokeDashArray="8 8"
@@ -347,10 +345,10 @@
                             Margin="40,20,40,0"
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
+                            ItemsSource="{Binding SizeQuantify}"
                             PreviewMouseWheel="Datagrid_PreviewMouseWheel"
                             SelectionMode="Extended"
-                            SelectionUnit="Cell"
-                            ItemsSource="{Binding SizeQuantify}">
+                            SelectionUnit="Cell">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"
@@ -365,13 +363,13 @@
                                             <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
-                                 
+
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
                                     Width="*"
+                                    Binding="{Binding Quantity}"
                                     FontSize="26"
                                     FontWeight="ExtraBold"
-                                    Binding="{Binding Quantity}"
                                     Header="Số lượng"
                                     IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
@@ -385,84 +383,6 @@
                                 </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <!--<Grid Margin="0,40,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="30" />
-                        </Grid.RowDefinitions>
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Padding="12,0"
-                            HorizontalAlignment="Left"
-                            Content="Size"
-                            FontSize="26"
-                            FontWeight="ExtraBold" />
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Padding="12,0"
-                            HorizontalAlignment="Left"
-                            Content="Số lượng"
-                            FontSize="26"
-                            FontWeight="ExtraBold" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Content="S"
-                            FontSize="20"
-                            FontWeight="DemiBold"
-                            Foreground="#000" />
-                        -->
-                        <!--<Separator
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Height="0.5"
-                            Margin="0,0"
-                            Background="#FF959595"
-                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
-                        <!--
-                        <Label
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Content="M"
-                            FontSize="20"
-                            FontWeight="DemiBold"
-                            Foreground="#000" />
-                        -->
-                        <!--<Separator
-                            Grid.Row="4"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Height="0.5"
-                            Margin="0,0"
-                            Background="#FF959595"
-                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
-                        <!--
-                        <Label
-                            Grid.Row="5"
-                            Grid.Column="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Content="L"
-                            FontSize="20"
-                            FontWeight="DemiBold"
-                            Foreground="#000" />
-                    </Grid>-->
-                       
                         <Rectangle
                             Height="1"
                             Margin="12,20,12,0"
@@ -471,12 +391,12 @@
                             StrokeDashArray="8 8"
                             StrokeThickness="1" />
                         <TextBlock
-                            Margin="0,40,0,0"
+                            Margin="0,20,0,0"
                             Padding="12,0"
                             FontSize="16"
                             FontWeight="Thin"
-                            TextWrapping="Wrap"
-                            Text="{Binding Descriptiontext}"/>
+                            Text="{Binding Descriptiontext}"
+                            TextWrapping="Wrap" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

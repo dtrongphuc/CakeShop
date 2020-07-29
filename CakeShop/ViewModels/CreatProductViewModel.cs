@@ -62,7 +62,7 @@ namespace CakeShop.ViewModels
         public void AddImageProduct(List<FileInfo> ImagesFileList, int _ImagesAddCount, string avartar)
         {
             Models.Image image = new Models.Image();
-            image.ImagUri = $"/Resource/Images/Products/{avartar}";
+            image.ImageUri = $"/Resource/Images/Products/{avartar}";
             image.Add();
             for (int i = 1; i < _ImagesAddCount; i++)
             {
@@ -70,7 +70,7 @@ namespace CakeShop.ViewModels
                 {
                     avartar = $"{Guid.NewGuid()}{ImagesFileList[i].Extension}";
                     ImagesFileList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
-                    image.ImagUri = $"/Resource/Images/Products/{avartar}";
+                    image.ImageUri = $"/Resource/Images/Products/{avartar}";
                     image.Add();
                 }
             }

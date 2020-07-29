@@ -22,7 +22,7 @@ namespace CakeShop.Models
         }
 
         private string _imageUri;
-        public string ImagUri
+        public string ImageUri
         {
             get { return _imageUri; }
             set
@@ -35,7 +35,7 @@ namespace CakeShop.Models
 
         public Image()
         {
-            this.ImagUri = " ";
+            this.ImageUri = " ";
             this.IdProduct = " ";
         }
 

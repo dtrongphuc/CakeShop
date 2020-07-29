@@ -13,9 +13,8 @@ namespace CakeShop.ViewModels
         GetListObject getListObject = new GetListObject();
         SizeProduct sizeProduct = new SizeProduct();
         Product product = new Product();  
-        public BindableCollection<string> ImagesCarousel { get; set; }
+        public BindableCollection<Image> ImagesCarousel { get; set; }
         public BindableCollection<SizeProduct> SizeQuantify { get; set; }
-        public BindableCollection<Image> ImagesCarouselList { get; set; }
         
         public string ProductName { get; set; }
         public string Price { get; set; }
@@ -24,16 +23,22 @@ namespace CakeShop.ViewModels
         public DetailProductViewModel(string productId) 
         {
             product.ChooesProduct(productId);
+
             //tên sản phẩm
             ProductName = product.ProductName;
+
             //giá sản phẩm
             Price = product.Price;
+
             //mô tả sản phẩm
             Descriptiontext = product.Description;
+
             //danh sách số lượng và size sản phẩm
             SizeQuantify = getListObject.Get_SizeProduct(productId);
+
             //danh sách các hình của sản phẩm
-            ImagesCarouselList = getListObject.Get_ImageProduct(productId);
+            ImagesCarousel = getListObject.Get_ImageProduct(productId);
+
             //ảnh đại diện sản phẩm
             ImageSelectChange = product.Image;
         }
