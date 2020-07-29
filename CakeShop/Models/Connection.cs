@@ -10,7 +10,7 @@ namespace CakeShop.Models
 {
     public class Connection
     {
-        public static string cn_string = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=|DaTaDirectory\SQL\CakeShopmdf.mdf;Integrated Security=True";
+        public static string cn_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DaTaDirectory|\SQL\CakeShop.mdf;Integrated Security=True";
         
 
         /// <summary>
@@ -62,7 +62,8 @@ namespace CakeShop.Models
         {
             SqlConnection cn_connection = Get_Connection();
             SqlCommand cmd_Command = new SqlCommand(sql, cn_connection);
-            int id = (int)cmd_Command.ExecuteScalar();
+            var temp = cmd_Command.ExecuteScalar();
+            int id = Convert.ToInt32(temp);
             Close_Connection();
             return id;
         }
