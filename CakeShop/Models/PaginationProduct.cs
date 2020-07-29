@@ -49,7 +49,7 @@ namespace CakeShop.Models
             }
         }
 
-        private BindableCollection<Product> _listProduct;
+        private BindableCollection<Product> _listProduct = new BindableCollection<Product>();
 
         public BindableCollection<Product> ListProduct
         {
@@ -68,7 +68,7 @@ namespace CakeShop.Models
         {
             Sum_record = 0;
             CurrentPage = 1;
-            ListProduct = new BindableCollection<Product>();
+            //ListProduct = new BindableCollection<Product>();
         }
 
         GetListObject GetCtrl = new GetListObject();
@@ -78,8 +78,7 @@ namespace CakeShop.Models
             Sum_record = GetListObject.Get_CountALLProduct();
             //CalculateTotalPage();
             int sotranghienhanh = (CurrentPage - 1) * record1page;
-            ListProduct = Get_AllProduct(sotranghienhanh, record1page);
-            return ListProduct;
+            return Get_AllProduct(sotranghienhanh, record1page);
         }
 
         public BindableCollection<Product> GetProductInCategoryPagination(int _curr, string id)

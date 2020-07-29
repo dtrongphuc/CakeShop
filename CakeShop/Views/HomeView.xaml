@@ -53,9 +53,9 @@
                                 Margin="0,4,16,0"
                                 HorizontalAlignment="Right"
                                 materialDesign:HintAssist.Hint="Danh mục"
+                                DisplayMemberPath="CategoryName"
                                 DockPanel.Dock="Right"
-                                ItemsSource="{Binding CatogoryCombobox}"
-                                DisplayMemberPath="CategoryName"/>
+                                ItemsSource="{Binding CatogoryCombobox}" />
                         </DockPanel>
                         <Separator
                             Grid.Row="1"
@@ -64,7 +64,8 @@
 
                         <ListView
                             x:Name="Products"
-                            Grid.Row="1"
+                            Grid.Row="2"
+                            Grid.Column="0"
                             HorizontalAlignment="Center"
                             ScrollViewer.CanContentScroll="False"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -93,46 +94,42 @@
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-
                                     <Button
-                                x:Name="ProductItem"
-                                Width="368"
-                                Height="200"
-                                Margin="4,10"
-                                Padding="0"
-                                Panel.ZIndex="99"
-                                cal:Message.Attach="[Event Click] = [ShowDetail]"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                ClipToBounds="True"
-                                Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                                        Width="344"
+                                        Height="188"
+                                        Margin="4,10"
+                                        Padding="0"
+                                        Panel.ZIndex="99"
+                                        cal:Message.Attach="[Event Click] = [ShowDetail($dataContext)]"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        ClipToBounds="True"
+                                        Style="{StaticResource MaterialDesignRaisedAccentButton}">
                                         <materialDesign:Card
-                                    Width="360"
-                                    Padding="-1,0"
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                    materialDesign:ShadowAssist.ShadowEdges="Bottom, Right, Left"
-                                    UniformCornerRadius="4">
+                                            Width="340"
+                                            Padding="-1,0"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                            materialDesign:ShadowAssist.ShadowEdges="All"
+                                            UniformCornerRadius="4">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="180" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="180" />
-                                                    <ColumnDefinition Width="180" />
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="170" />
                                                 </Grid.ColumnDefinitions>
                                                 <Image
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            HorizontalAlignment="Stretch"
-                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                            RenderTransformOrigin="0.5 0.5"
-                                            Source="{Binding Image, Converter={StaticResource pathConverter}}"
-                                            Stretch="UniformToFill" 
-                                            />
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                                    RenderTransformOrigin="0.5 0.5"
+                                                    Source="{Binding Image, Converter={StaticResource pathConverter}}"
+                                                    Stretch="Fill" />
                                                 <Grid
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Background="#fff">
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Background="#fff">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
@@ -143,46 +140,46 @@
                                                         <RowDefinition Height="*" />
                                                     </Grid.RowDefinitions>
                                                     <TextBlock
-                                                Grid.Row="0"
-                                                Margin="0,10,0,0"
-                                                Padding="10,0"
-                                                VerticalAlignment="Top"
-                                                FontSize="15"
-                                                FontWeight="Bold"
-                                                Foreground="#FF3E3E3E"
-                                                Text="{Binding ProductName}"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
+                                                        Grid.Row="0"
+                                                        Margin="0,10,0,0"
+                                                        Padding="10,0"
+                                                        VerticalAlignment="Top"
+                                                        FontSize="15"
+                                                        FontWeight="Bold"
+                                                        Foreground="#FF3E3E3E"
+                                                        Text="{Binding ProductName}"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        TextWrapping="Wrap" />
                                                     <Separator
-                                                Grid.Row="1"
-                                                Margin="10,0"
-                                                Background="#f0668d"
-                                                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                                        Grid.Row="1"
+                                                        Margin="10,0"
+                                                        Background="#f0668d"
+                                                        Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                                                     <TextBlock
-                                                Grid.Row="2"
-                                                Margin="0,4,0,0"
-                                                Padding="10,0"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                FontSize="12"
-                                                Foreground="#FF646464"
-                                                Text="{Binding CategoryName}"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
+                                                        Grid.Row="2"
+                                                        Margin="0,4,0,0"
+                                                        Padding="10,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="12"
+                                                        Foreground="#FF646464"
+                                                        Text="{Binding CategoryName}"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        TextWrapping="Wrap" />
                                                     <TextBlock
-                                                Grid.Row="3"
-                                                Padding="10,0"
-                                                FontSize="12"
-                                                Text="{Binding Description}"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
+                                                        Grid.Row="3"
+                                                        Padding="10,0"
+                                                        FontSize="12"
+                                                        Text="{Binding Description}"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        TextWrapping="Wrap" />
                                                 </Grid>
 
                                             </Grid>
                                         </materialDesign:Card>
                                     </Button>
 
-                            </DataTemplate>
+                                </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                         <StackPanel

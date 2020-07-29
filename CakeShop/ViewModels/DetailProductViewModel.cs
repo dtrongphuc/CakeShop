@@ -10,11 +10,10 @@ namespace CakeShop.ViewModels
 {
     public class DetailProductViewModel : Screen
     {
-        //public DetailProductViewModel(string productId) { }
         public BindableCollection<string> ImagesCarousel { get; set; }
         
-        public DetailProductViewModel() 
-        {
+        public DetailProductViewModel(string productId) 
+        { 
         }
 
         public void ShowUpdate()

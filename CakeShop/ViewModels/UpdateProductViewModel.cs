@@ -1,4 +1,5 @@
 ﻿
+using CakeShop.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,15 @@ namespace CakeShop.ViewModels
         }
 
         /// <summary>
-        /// Mở trang chi tiết
+        /// Mở trang chi tiết 
         /// </summary>
-        public void ShowDetail()
+        /// <param name="productSelected">Sản phẩm được chọn</param>
+        public void ShowDetail(Product productSelected)
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
             Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
-            parentConductor.ActivateItem(new DetailProductViewModel());
+            parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
 
         /// <summary>
