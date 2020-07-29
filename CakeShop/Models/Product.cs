@@ -104,6 +104,22 @@ namespace CakeShop.Models
             this.IdCategory= " ";
         }
 
+        public Product ChooesProduct(string id)
+        {
+            string sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE IDPRODUCT={id}";
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                this.CategoryName = row["CATEGORYNAME"].ToString();
+                this.IdProduct = row["IDPRODUCT"].ToString();
+                this.ProductName = row["PRODUCTNAME"].ToString();
+                this.Price = row["PRICE"].ToString();
+                this.Description = row["DESCRIPTION"].ToString();
+                this.Image = row["IMAGE"].ToString();
+
+            }
+            return this;
+        }
         public bool Find(string id)
         {
             bool check = false;
