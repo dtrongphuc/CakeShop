@@ -20,7 +20,7 @@ namespace CakeShop.ViewModels
             //AddAvatar = ImageSource;
             CarouselTest = new BindableCollection<string>
             {
-               
+                
             };
         }
     }
