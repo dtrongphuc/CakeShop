@@ -13,6 +13,7 @@
     d:DesignWidth="1200"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
         <cv:CarouselItemWidthConverter x:Key="itemWidthConverter" />
         <sys:Int32 x:Key="ItemOfCarousel">4</sys:Int32>
         <Storyboard x:Key="CarouselStoryboard">
@@ -223,9 +224,9 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                        <!--<Border.Background>
-                            <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
-                        </Border.Background>-->
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding ImageSelectChange, Converter={StaticResource pathConverter}}" Stretch="UniformToFill" />
+                        </Border.Background>
                     </Border>
                     <DockPanel
                         x:Name="ImagesDetail"
@@ -254,6 +255,7 @@
                             ScrollViewer.CanContentScroll="False"
                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            ItemsSource="{Binding ImagesCarouselList}"
                             Style="{StaticResource ListViewStyle}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
@@ -279,7 +281,7 @@
                                         MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
                                         <Border.Background>
                                             <ImageBrush
-                                                ImageSource="{Binding}"
+                                                ImageSource="{Binding Image, Converter={StaticResource pathConverter}}"
                                                 RenderOptions.BitmapScalingMode="HighQuality"
                                                 Stretch="UniformToFill" />
                                         </Border.Background>
@@ -320,8 +322,8 @@
                             Padding="12,0"
                             FontSize="30"
                             FontWeight="DemiBold"
-                            Foreground="#000"
-                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY"
+                            Foreground="#000"                            
+                            Text="{Binding ProductName}"
                             TextWrapping="Wrap" />
 
                         <TextBlock
@@ -331,7 +333,7 @@
                             FontSize="23"
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
-                            Text="450.000 VND" />
+                            Text="{Binding Price}" />
 
                         <Rectangle
                             Height="1"
@@ -347,10 +349,12 @@
                             IsReadOnly="True"
                             PreviewMouseWheel="Datagrid_PreviewMouseWheel"
                             SelectionMode="Extended"
-                            SelectionUnit="Cell">
+                            SelectionUnit="Cell"
+                            ItemsSource="{Binding SizeQuantify}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"
+                                    Binding="{Binding Size}"
                                     Header="Size"
                                     IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
@@ -361,11 +365,13 @@
                                             <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
+                                 
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
                                     Width="*"
                                     FontSize="26"
                                     FontWeight="ExtraBold"
+                                    Binding="{Binding Quantity}"
                                     Header="Số lượng"
                                     IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
@@ -456,6 +462,7 @@
                             FontWeight="DemiBold"
                             Foreground="#000" />
                     </Grid>-->
+                       
                         <Rectangle
                             Height="1"
                             Margin="12,20,12,0"
@@ -468,8 +475,8 @@
                             Padding="12,0"
                             FontSize="16"
                             FontWeight="Thin"
-                            Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán."
-                            TextWrapping="Wrap" />
+                            TextWrapping="Wrap"
+                            Text="{Binding Descriptiontext}"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
