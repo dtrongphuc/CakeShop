@@ -223,9 +223,9 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                        <Border.Background>
+                        <!--<Border.Background>
                             <ImageBrush ImageSource="/Resource/Images/Products/detail-test.jpg" Stretch="UniformToFill" />
-                        </Border.Background>
+                        </Border.Background>-->
                     </Border>
                     <DockPanel
                         x:Name="ImagesDetail"
