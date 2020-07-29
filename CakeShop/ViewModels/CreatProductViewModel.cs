@@ -11,14 +11,14 @@ namespace CakeShop.ViewModels
 {
     public class CreatProductViewModel : Screen
     {
-        public BindableCollection<string> CarouselTest { get; set; }
+        public BindableCollection<string> ImagesCarousel { get; set; }
         public ImageSource AddAvatar { get; set; }
 
         public CreatProductViewModel()
         {
             //AddAvatar = new BitmapImage(new Uri(@"/Resource/Images/Products/detail-test.jpg", UriKind.Absolute));
             //AddAvatar = ImageSource;
-            CarouselTest = new BindableCollection<string>
+            ImagesCarousel = new BindableCollection<string>
             {
                
             };
