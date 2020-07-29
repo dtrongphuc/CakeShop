@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using CakeShop.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace CakeShop.ViewModels
 {
     public class CreatProductViewModel : Screen
     {
+        GetListObject Getlist = new GetListObject();
         public BindableCollection<string> ImagesCarousel { get; set; }
+        public BindableCollection<Category> ComboboxCategoryBD { get; set; }
         public ImageSource AddAvatar { get; set; }
 
         public CreatProductViewModel()
@@ -22,6 +25,9 @@ namespace CakeShop.ViewModels
             {
                 
             };
+
+            //liệt kê trong các danh mục trong combobox
+            ComboboxCategoryBD = Getlist.Get_AllCategory();
         }
     }
 }

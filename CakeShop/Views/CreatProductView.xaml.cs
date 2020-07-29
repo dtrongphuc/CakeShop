@@ -116,7 +116,7 @@ namespace CakeShop.Views
             {
                 var avartar="";
                 var folderfile = AppDomain.CurrentDomain.BaseDirectory;
-                int index = CoboboxCategory.SelectedIndex;
+                int index = ComboboxCategory.SelectedIndex;
                 Product product = new Product();
                 product.IdCategory = (index +1).ToString();
                 product.ProductName = Name.Text.Trim();

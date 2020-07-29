@@ -10,9 +10,17 @@ namespace CakeShop.ViewModels
 {
     public class HomeViewModel : Screen
     {
+        GetListObject Getlist = new GetListObject();
+        PaginationProduct  PagProduct = new PaginationProduct();
+        public BindableCollection<Product> Products { get; set; }
+        public BindableCollection<Category> CatogoryCombobox { get; set; }
+
         public HomeViewModel()
         {
-
+            //danh mục
+            CatogoryCombobox = Getlist.Get_AllCategory();
+            //danh sách sản phẩm
+            Products = PagProduct.GetProductPagination(1);
         }
 
         /// <summary>

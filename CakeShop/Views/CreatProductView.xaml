@@ -361,7 +361,7 @@
                         Style="{StaticResource CommonBox}"
                         Text="" />
                     <ComboBox
-                        Name="CoboboxCategory"
+                        Name="ComboboxCategory"
                         Width="200"
                         Height="40"
                         Margin="4,20,0,0"
@@ -369,17 +369,9 @@
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Danh Mục..."
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0">
-                        <ComboBoxItem>
-                            <TextBlock Text="CHON DANH MUC" />
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="CHON DANH MUC" />
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="CHON DANH MUC" />
-                        </ComboBoxItem>
-                    </ComboBox>
+                        BorderThickness="0"
+                        ItemsSource="{Binding ComboboxCategoryBD}"/>
+
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*" />
