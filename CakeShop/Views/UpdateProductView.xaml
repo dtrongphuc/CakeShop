@@ -368,7 +368,8 @@
                             FontWeight="DemiBold"
                             Foreground="#000"
                             Style="{StaticResource CommonBox}"
-                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY" />
+                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY" 
+                            Name="NameProduct"/>
                         <TextBox
                             Height="60"
                             Margin="0,20,0,0"

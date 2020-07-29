@@ -14,7 +14,7 @@ namespace CakeShop.ViewModels
         // Muốn lấy những hình ảnh mới thêm vào thì lấy CarouselTest.Count - _defaultImagesCount -> số ảnh lấy ở đầu list
         //private int _defaultImagesCount { get; set; } = 0;
 
-        public BindableCollection<string> ImagesCarousel { get; set; }
+        public BindableCollection<string> ImagesCarousel { get; set; } = new BindableCollection<string>();
         public UpdateProductViewModel()
         {
         }
@@ -42,5 +42,7 @@ namespace CakeShop.ViewModels
                 ImagesCarousel.Insert(0, image.FullName);
             }
         }
+
+      
     }
 }
