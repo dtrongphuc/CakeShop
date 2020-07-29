@@ -18,20 +18,40 @@ namespace CakeShop.ViewModels
 
         public StatisticsViewModel ()
         {
-            
+            GetDataForCartesianChart();
 
-            MonthLabels = new[] { "Tháng 1", "Tháng 2", "Tháng 3" };
+            MonthLabels = new[] {
+                "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+                "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+            };
+            
         }
 
         public void GetDataForCartesianChart()
         {
-            //Order OrderInMonth = 
-            //_getList.Get_MonthlyOrder();
+            BindableCollection<Order> OrdersInMonth = _getList.Get_MonthlyOrder();
+            ChartValues<double> MonthChartValues = new ChartValues<double>();
+            for( int month = 1; month <= 12; ++month)
+            {
+                var CurrentMonth = OrdersInMonth.Where(item => int.Parse(item.Date) == month).ToList();
+                bool IsExist = CurrentMonth.Count > 0;
+                if(IsExist)
+                {
+                    double total = 0;
+                    CurrentMonth.ForEach(order => { 
+                        total += Double.Parse(order.Total); 
+                    });
+                    MonthChartValues.Add(total);
+                    continue;
+                }
+                MonthChartValues.Add(0);
+            }
+
             CartesianChartData.Add(
                 new ColumnSeries
                 {
                     Title = string.Empty,
-                    Values = new ChartValues<int> { 10, 20, 30 },
+                    Values = MonthChartValues
                 }
             );
         }
