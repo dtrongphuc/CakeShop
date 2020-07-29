@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="CakeShop.Views.SearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cv="clr-namespace:CakeShop.Converter"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CakeShop.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="GridMain" Background="#F8F8F8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card
+                    Grid.Row="1"
+                    Margin="26,0,26,30"
+                    Padding="0,10"
+                    UniformCornerRadius="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Text="Kết quả tìm kiếm cho từ khóa 'Bánh quy'"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+
+                        <Separator
+                            Grid.Row="1"
+                            Margin="10,0"
+                            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+                        <ListView
+                            x:Name="Products"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            ScrollViewer.CanContentScroll="False"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter />
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Button
+                                x:Name="ProductItem"
+                                Width="368"
+                                Height="200"
+                                Margin="4,10"
+                                Padding="0"
+                                Panel.ZIndex="99"
+                                cal:Message.Attach="[Event Click] = [ShowDetail]"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                ClipToBounds="True"
+                                Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                                        <materialDesign:Card
+                                    Width="360"
+                                    Padding="-1,0"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                    materialDesign:ShadowAssist.ShadowEdges="Bottom, Right, Left"
+                                    UniformCornerRadius="4">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="180" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="180" />
+                                                    <ColumnDefinition Width="180" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch"
+                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                            RenderTransformOrigin="0.5 0.5"
+                                            Source="{Binding Image, Converter={StaticResource pathConverter}}"
+                                            Stretch="UniformToFill" 
+                                            />
+                                                <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Background="#fff">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="1" />
+                                                        <RowDefinition Height="26" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock
+                                                Grid.Row="0"
+                                                Margin="0,10,0,0"
+                                                Padding="10,0"
+                                                VerticalAlignment="Top"
+                                                FontSize="15"
+                                                FontWeight="Bold"
+                                                Foreground="#FF3E3E3E"
+                                                Text="{Binding ProductName}"
+                                                TextTrimming="CharacterEllipsis"
+                                                TextWrapping="Wrap" />
+                                                    <Separator
+                                                Grid.Row="1"
+                                                Margin="10,0"
+                                                Background="#f0668d"
+                                                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                                    <TextBlock
+                                                Grid.Row="2"
+                                                Margin="0,4,0,0"
+                                                Padding="10,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontSize="12"
+                                                Foreground="#FF646464"
+                                                Text="{Binding CategoryName}"
+                                                TextTrimming="CharacterEllipsis"
+                                                TextWrapping="Wrap" />
+                                                    <TextBlock
+                                                Grid.Row="3"
+                                                Padding="10,0"
+                                                FontSize="12"
+                                                Text="{Binding Description}"
+                                                TextTrimming="CharacterEllipsis"
+                                                TextWrapping="Wrap" />
+                                                </Grid>
+
+                                            </Grid>
+                                        </materialDesign:Card>
+                                    </Button>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel
+                            x:Name="Pagination"
+                            Grid.Row="3"
+                            Margin="0,0,26,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <Button
+                                Width="44"
+                                Height="30"
+                                Margin="0,0,8,0"
+                                Padding="0"
+                                VerticalContentAlignment="Center"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="Gainsboro"
+                                BorderThickness="0"
+                                Click="OnFirstPage_Click"
+                                ToolTip="First page">
+                                <Border Width="14" Height="14">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Resource/Images/Icons/arrow-end-left.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Border.Background>
+                                </Border>
+                            </Button>
+
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Padding="0"
+                                VerticalContentAlignment="Center"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="Gainsboro"
+                                BorderThickness="0"
+                                Click="OnPrePage_Click"
+                                ToolTip="Previous Page">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="MenuLeft">
+                                        <materialDesign:PackIcon.LayoutTransform>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
+                                        </materialDesign:PackIcon.LayoutTransform>
+                                    </materialDesign:PackIcon>
+                                </StackPanel>
+                            </Button>
+                            <ItemsControl x:Name="PaginationNumber">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel
+                                            Height="30"
+                                            Margin="4,0"
+                                            Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Click="OnPageNumber_Click"
+                                            Content="{Binding Number}"
+                                            Style="{Binding PageBtnStyle}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Padding="0"
+                                VerticalContentAlignment="Center"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="Gainsboro"
+                                BorderThickness="0"
+                                Click="OnNextPage_Click"
+                                ToolTip="Next Page">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="MenuRight">
+                                        <materialDesign:PackIcon.LayoutTransform>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
+                                        </materialDesign:PackIcon.LayoutTransform>
+                                    </materialDesign:PackIcon>
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Width="44"
+                                Height="30"
+                                Margin="8,0,0,0"
+                                Padding="0"
+                                VerticalContentAlignment="Center"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="Gainsboro"
+                                BorderThickness="0"
+                                Click="OnLastPage_Click"
+                                ToolTip="Last page">
+                                <Border Width="14" Height="14">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Resource/Images/Icons/arrow-end-right.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Border.Background>
+                                </Border>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
