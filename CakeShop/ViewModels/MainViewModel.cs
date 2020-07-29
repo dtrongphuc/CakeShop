@@ -65,6 +65,16 @@ namespace CakeShop.ViewModels
             ActivateItem(new AddOrderViewModel());
             DisplayName = "Thêm đơn hàng";
         }
+
+        /// <summary>
+        ///Mở màn hình tìm kiếm 
+        /// </summary>
+        public void ShowSearch()
+        {
+            CloseCurrentView();
+            ActivateItem(new SearchViewModel());
+            DisplayName = "Tìm kiếm sản phẩm";
+        }
         /// <summary>
         /// Đóng view hiện tại
         /// </summary>

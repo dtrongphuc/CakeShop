@@ -189,6 +189,7 @@
                 <DockPanel Background="#f0668d" LastChildFill="True">
                     <Grid DockPanel.Dock="Right">
                         <Button
+                            cal:Message.Attach="[Event Click] = [Action ShowSearch]"
                             Width="56"
                             Height="40"
                             Margin="0,0,26,0"
