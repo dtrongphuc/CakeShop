@@ -111,45 +111,22 @@ namespace CakeShop.Views
 
         private void Submit_click(object sender, RoutedEventArgs e)
         {
+            string avartar = "";
             if (Name.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
             {
-                var avartar="";
-                var folderfile = AppDomain.CurrentDomain.BaseDirectory;
-                int index = CoboboxCategory.SelectedIndex;
-                Product product = new Product();
-                product.IdCategory = (index +1).ToString();
-                product.ProductName = Name.Text.Trim();
-                product.Price = price.Text.Trim();
-                product.Description = description.Text.Trim();
-                if (ImagesFileList[0].Name != null)
-                {
-                    avartar = $"{Guid.NewGuid()}{ImagesFileList[0].Extension}";
-                    ImagesFileList[0].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
-                    product.Image = $"/Resource/Images/Products/{avartar}";
-                }
-                product.Add();
-
+                //thêm sản phẩm vào database
+                var index = ComboboxCategory.SelectedIndex;
+                 avartar = CurrentViewModel.AddProduct(Name.Text,index, price.Text, description.Text, ImagesFileList[0]);
+            }
+            if (_ImagesAddCount > 0)
+            {
                 ///thêm ảnh vào database.
-                //anh đầu tiên cũng dc thêm vào image
-                Models.Image image = new Models.Image();
-                image.ImagUri = $"/Resource/Images/Products/{avartar}";
-                image.Add();
-                for(int i=1;i< _ImagesAddCount;i++)
-                {
-                    if (ImagesFileList[i].Name != null)
-                    {
-                        avartar = $"{Guid.NewGuid()}{ImagesFileList[i].Extension}";
-                        ImagesFileList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
-                        image.ImagUri= $"/Resource/Images/Products/{avartar}";
-                        image.Add();
-                    }
-                }
-
+                CurrentViewModel.AddImageProduct(ImagesFileList, _ImagesAddCount, avartar);
+            }
+            if (_listSizeProduct.Count > 0)
+            {
                 ///thêm kích thước và số lượng vào database.
-                foreach(var size in _listSizeProduct)
-                {
-                    size.Add();
-                }
+                CurrentViewModel.AddSizeProduct(_listSizeProduct);
             }
         }
 

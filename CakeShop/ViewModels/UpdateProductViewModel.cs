@@ -42,5 +42,7 @@ namespace CakeShop.ViewModels
                 ImagesCarousel.Insert(0, image.FullName);
             }
         }
+
+      
     }
 }

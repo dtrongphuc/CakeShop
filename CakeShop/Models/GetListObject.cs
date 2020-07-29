@@ -42,6 +42,7 @@ namespace CakeShop.Models
             }
         }
 
+     
         private BindableCollection<SizeProduct> _listSizeProduct { get; set; } = new BindableCollection<SizeProduct>();
         public BindableCollection<SizeProduct> ListSizeProduct
         {

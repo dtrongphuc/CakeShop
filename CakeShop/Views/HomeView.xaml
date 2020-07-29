@@ -53,19 +53,17 @@
                                 Margin="0,4,16,0"
                                 HorizontalAlignment="Right"
                                 materialDesign:HintAssist.Hint="Danh mục"
-                                DockPanel.Dock="Right">
-                                <ComboBoxItem Content="Bánh Kem" />
-                                <ComboBoxItem Content="Bánh Kem" />
-                                <ComboBoxItem Content="Bánh Kem" />
-                            </ComboBox>
+                                DockPanel.Dock="Right"
+                                ItemsSource="{Binding CatogoryCombobox}"
+                                DisplayMemberPath="CategoryName"/>
                         </DockPanel>
                         <Separator
                             Grid.Row="1"
                             Margin="10,0"
                             Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
-                        <!--<ListView
-                            Name="Products"
+                        <ListView
+                            x:Name="Products"
                             Grid.Row="1"
                             HorizontalAlignment="Center"
                             ScrollViewer.CanContentScroll="False"
@@ -94,10 +92,9 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
-                                <DataTemplate>-->
-                        <WrapPanel Grid.Row="2">
+                                <DataTemplate>
 
-                            <Button
+                                    <Button
                                 x:Name="ProductItem"
                                 Width="368"
                                 Height="200"
@@ -109,42 +106,43 @@
                                 BorderThickness="0"
                                 ClipToBounds="True"
                                 Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                                <materialDesign:Card
+                                        <materialDesign:Card
                                     Width="360"
                                     Padding="-1,0"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                     materialDesign:ShadowAssist.ShadowEdges="Bottom, Right, Left"
                                     UniformCornerRadius="4">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="180" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="180" />
-                                            <ColumnDefinition Width="180" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="180" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="180" />
+                                                    <ColumnDefinition Width="180" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image
                                             Grid.Row="0"
                                             Grid.Column="0"
                                             HorizontalAlignment="Stretch"
                                             RenderOptions.BitmapScalingMode="HighQuality"
                                             RenderTransformOrigin="0.5 0.5"
-                                            Source="/Resource/Images/Products/buttercreamfillvan.jpg"
-                                            Stretch="UniformToFill" />
-                                        <Grid
+                                            Source="{Binding Image, Converter={StaticResource pathConverter}}"
+                                            Stretch="UniformToFill" 
+                                            />
+                                                <Grid
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Background="#fff">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="60" />
-                                                <RowDefinition Height="1" />
-                                                <RowDefinition Height="26" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            <TextBlock
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="1" />
+                                                        <RowDefinition Height="26" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock
                                                 Grid.Row="0"
                                                 Margin="0,10,0,0"
                                                 Padding="10,0"
@@ -152,15 +150,15 @@
                                                 FontSize="15"
                                                 FontWeight="Bold"
                                                 Foreground="#FF3E3E3E"
-                                                Text="Buttercream Filled Vanilla Cupcake"
+                                                Text="{Binding ProductName}"
                                                 TextTrimming="CharacterEllipsis"
                                                 TextWrapping="Wrap" />
-                                            <Separator
+                                                    <Separator
                                                 Grid.Row="1"
                                                 Margin="10,0"
                                                 Background="#f0668d"
                                                 Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                            <TextBlock
+                                                    <TextBlock
                                                 Grid.Row="2"
                                                 Margin="0,4,0,0"
                                                 Padding="10,0"
@@ -168,194 +166,25 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="12"
                                                 Foreground="#FF646464"
-                                                Text="Danh mục"
+                                                Text="{Binding CategoryName}"
                                                 TextTrimming="CharacterEllipsis"
                                                 TextWrapping="Wrap" />
-                                            <TextBlock
+                                                    <TextBlock
                                                 Grid.Row="3"
                                                 Padding="10,0"
                                                 FontSize="12"
-                                                Text="Vanilla cake filled with buttercream icing, topped with buttercream icing and sprinkles"
+                                                Text="{Binding Description}"
                                                 TextTrimming="CharacterEllipsis"
                                                 TextWrapping="Wrap" />
-                                        </Grid>
+                                                </Grid>
 
-                                    </Grid>
-                                </materialDesign:Card>
-                            </Button>
-                            <Button
-                                Width="366"
-                                Height="188"
-                                Margin="4,10"
-                                Padding="0"
-                                Panel.ZIndex="99"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                ClipToBounds="True"
-                                Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                                <materialDesign:Card
-                                    Width="360"
-                                    Padding="-1,0"
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                    materialDesign:ShadowAssist.ShadowEdges="Bottom, Right, Left"
-                                    UniformCornerRadius="4">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="180" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="180" />
-                                            <ColumnDefinition Width="180" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            HorizontalAlignment="Stretch"
-                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                            RenderTransformOrigin="0.5 0.5"
-                                            Source="/Resource/Images/Products/buttercreamfillvan.jpg"
-                                            Stretch="UniformToFill" />
-                                        <Grid
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Background="#fff">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="60" />
-                                                <RowDefinition Height="1" />
-                                                <RowDefinition Height="26" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Margin="0,10,0,0"
-                                                Padding="10,0"
-                                                VerticalAlignment="Top"
-                                                FontSize="15"
-                                                FontWeight="Bold"
-                                                Foreground="#FF3E3E3E"
-                                                Text="Buttercream Filled Vanilla Cupcake"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                            <Separator
-                                                Grid.Row="1"
-                                                Margin="10,0"
-                                                Background="#f0668d"
-                                                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                            </Grid>
+                                        </materialDesign:Card>
+                                    </Button>
 
-                                            <TextBlock
-                                                Grid.Row="2"
-                                                Margin="0,4,0,0"
-                                                Padding="10,0"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                FontSize="12"
-                                                Foreground="#FF646464"
-                                                Text="Danh mục"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                            <TextBlock
-                                                Grid.Row="3"
-                                                Padding="10,0"
-                                                FontSize="12"
-                                                Text="Vanilla cake filled with buttercream icing, topped with buttercream icing and sprinkles"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                        </Grid>
-
-                                    </Grid>
-                                </materialDesign:Card>
-                            </Button>
-                            <Button
-                                Width="366"
-                                Height="188"
-                                Margin="4,10"
-                                Padding="0"
-                                Panel.ZIndex="99"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                ClipToBounds="True"
-                                Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                                <materialDesign:Card
-                                    Width="360"
-                                    Padding="-1,0"
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                    materialDesign:ShadowAssist.ShadowEdges="Bottom, Right, Left"
-                                    UniformCornerRadius="4">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="180" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="180" />
-                                            <ColumnDefinition Width="180" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            HorizontalAlignment="Stretch"
-                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                            RenderTransformOrigin="0.5 0.5"
-                                            Source="/Resource/Images/Products/buttercreamfillvan.jpg"
-                                            Stretch="UniformToFill" />
-                                        <Grid
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Background="#fff">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="60" />
-                                                <RowDefinition Height="1" />
-                                                <RowDefinition Height="26" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Margin="0,10,0,0"
-                                                Padding="10,0"
-                                                VerticalAlignment="Top"
-                                                FontSize="15"
-                                                FontWeight="Bold"
-                                                Foreground="#FF3E3E3E"
-                                                Text="Buttercream Filled Vanilla Cupcake"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                            <Separator
-                                                Grid.Row="1"
-                                                Margin="10,0"
-                                                Background="#f0668d"
-                                                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                            <TextBlock
-                                                Grid.Row="2"
-                                                Margin="0,4,0,0"
-                                                Padding="10,0"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                FontSize="12"
-                                                Foreground="#FF646464"
-                                                Text="Danh mục"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                            <TextBlock
-                                                Grid.Row="3"
-                                                Padding="10,0"
-                                                FontSize="12"
-                                                Text="Vanilla cake filled with buttercream icing, topped with buttercream icing and sprinkles"
-                                                TextTrimming="CharacterEllipsis"
-                                                TextWrapping="Wrap" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </Button>
-                        </WrapPanel>
-
-                        <!--</DataTemplate>
+                            </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>-->
+                        </ListView>
                         <StackPanel
                             x:Name="Pagination"
                             Grid.Row="3"
