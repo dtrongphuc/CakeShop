@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="CakeShop.Views.AddOrderView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CakeShop.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1200">
+﻿<UserControl
+    x:Class="CakeShop.Views.AddOrderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="1200"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <Style
             x:Key="CommonBox"
@@ -24,14 +26,12 @@
             <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#f0668d" />
         </Style>
 
-        <Style 
-            x:Key="datepicker"            
-            TargetType="DatePickerTextBox">
+        <Style x:Key="datepicker" TargetType="DatePickerTextBox">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Padding" Value="2" />
         </Style>
     </UserControl.Resources>
-    <Grid  
+    <Grid
         x:Name="Main"
         Background="#fff"
         SnapsToDevicePixels="True">
@@ -78,127 +78,133 @@
 
             <StackPanel Grid.Row="1" Margin="00,15,0,0">
                 <TextBox
+                    Height="68"
                     Margin="10,10,9.6,0"
-                        Padding="12,0"
-                        materialDesign:HintAssist.Hint="Tên khách hàng"
-                        AcceptsReturn="True"
-                        FontSize="30"
-                        FontWeight="DemiBold"
-                        Foreground="#000"
-                        Style="{StaticResource CommonBox}" 
-                     Height="68" 
-                         />
+                    Padding="12,0"
+                    materialDesign:HintAssist.Hint="Tên khách hàng"
+                    AcceptsReturn="True"
+                    FontSize="30"
+                    FontWeight="DemiBold"
+                    Foreground="#000"
+                    Style="{StaticResource CommonBox}" />
 
                 <TextBox
-                            Height="55"
-                            Padding="12,0"
-                            materialDesign:HintAssist.Hint="Email khách hàng"
-                            AcceptsReturn="True"
-                            FontSize="15"
-                            FontWeight="DemiBold"
-                            Foreground="#000"
-                            Style="{StaticResource CommonBox}"
-                            Text="" Margin="10,30,9.6,0"/>
-
-
-
-
-                <TextBox
+                    Height="55"
                     Margin="10,30,9.6,0"
-                            Padding="12,0"
-                            materialDesign:HintAssist.Hint="Địa chỉ"
-                            AcceptsReturn="True"
-                            FontSize="15"
-                            FontWeight="DemiBold"
-                            Foreground="#000"
-                            Style="{StaticResource CommonBox}"
-                    Height="55" 
-                    />
+                    Padding="12,0"
+                    materialDesign:HintAssist.Hint="Email khách hàng"
+                    AcceptsReturn="True"
+                    FontSize="15"
+                    FontWeight="DemiBold"
+                    Foreground="#000"
+                    Style="{StaticResource CommonBox}"
+                    Text="" />
 
-                <StackPanel Orientation="Horizontal"  Margin="10,30,9.6,0">
+
+
+
+                <TextBox
+                    Height="55"
+                    Margin="10,30,9.6,0"
+                    Padding="12,0"
+                    materialDesign:HintAssist.Hint="Địa chỉ"
+                    AcceptsReturn="True"
+                    FontSize="15"
+                    FontWeight="DemiBold"
+                    Foreground="#000"
+                    Style="{StaticResource CommonBox}" />
+
+                <StackPanel Margin="10,30,9.6,0" Orientation="Horizontal">
                     <ComboBox
                         Width="200"
                         Height="55"
-                        VerticalAlignment="Bottom"
                         Margin="20,0,0,0"
                         Padding="0,10"
                         HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
                         materialDesign:HintAssist.Hint="Trạng thái"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0">
                         <ComboBoxItem Height="46" Margin="0,0,0.4,0">
-                            <TextBlock Text="Đã giao hàng" FontSize="23" Padding="10,0,0,0" FontWeight="Regular"/>
+                            <TextBlock
+                                Padding="10,0,0,0"
+                                FontSize="23"
+                                FontWeight="Regular"
+                                Text="Đã giao hàng" />
                         </ComboBoxItem>
                         <ComboBoxItem Height="45" Margin="0,0,0.4,0">
-                            <TextBlock Text="Chưa giao hàng" FontSize="23" Padding="10,0,0,0" FontWeight="Regular"/>
+                            <TextBlock
+                                Padding="10,0,0,0"
+                                FontSize="23"
+                                FontWeight="Regular"
+                                Text="Chưa giao hàng" />
                         </ComboBoxItem>
                     </ComboBox>
 
-                    <DatePicker    
+                    <DatePicker
+                        x:Name="OrderDay"
+                        Grid.Column="2"
+                        Width="172"
+                        Height="46"
                         Margin="75,0,0,0"
-                            Grid.Column="2"
-                            x:Name="OrderDay"
-                            Width="172"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            VerticalContentAlignment="Center"  
-                            FontSize="16"
-                            Foreground="Black" 
-                            Height="46" />
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        VerticalContentAlignment="Center"
+                        FontSize="16"
+                        Foreground="Black" />
                 </StackPanel>
                 <TextBox
                     Grid.Row="9"
-                        Height="225"
-                        Margin="10,30,9.6,0"
-                        Padding="12,4"
-                        materialDesign:HintAssist.Hint="Mô tả đơn hàng"
-                        FontSize="16"
-                        FontWeight="Thin"
-                        Style="{StaticResource CommonBox}"
-                        Text="" />
+                    Height="225"
+                    Margin="10,30,9.6,0"
+                    Padding="12,4"
+                    materialDesign:HintAssist.Hint="Mô tả đơn hàng"
+                    FontSize="16"
+                    FontWeight="Thin"
+                    Style="{StaticResource CommonBox}"
+                    Text="" />
 
             </StackPanel>
             <StackPanel
                 Grid.Row="1"
-                Grid.Column="2"                
+                Grid.Column="2"
                 Margin="4,10,4,4">
-                <ComboBox      
-                        Height="64"
-                        Padding="5,10"
-                        HorizontalAlignment="Left"
-                        materialDesign:HintAssist.Hint="Tên sản phẩm"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0" 
-                    Width="477" 
-                    Margin="10,15,0,0">
+                <ComboBox
+                    Width="477"
+                    Height="64"
+                    Margin="10,15,0,0"
+                    Padding="5,10"
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.Hint="Tên sản phẩm"
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                    BorderThickness="0">
                     <ComboBoxItem>
-                        <TextBlock Text="Bánh kem socola" 
-                                       FontSize="20"/>
+                        <TextBlock FontSize="20" Text="Bánh kem socola" />
                     </ComboBoxItem>
                     <ComboBoxItem>
-                        <TextBlock Text="Bánh xe" FontSize="20"/>
+                        <TextBlock FontSize="20" Text="Bánh xe" />
                     </ComboBoxItem>
                     <ComboBoxItem>
-                        <TextBlock Text="Bánh đục" FontSize="20"/>
+                        <TextBlock FontSize="20" Text="Bánh đục" />
                     </ComboBoxItem>
                 </ComboBox>
 
-                <StackPanel Orientation="Horizontal" Margin="00,10,0,0">
-                    <TextBlock 
-                        Text="Size"
-                        FontSize="10"
-                        FontWeight="SemiBold"
+                <StackPanel Margin="00,10,0,0" Orientation="Horizontal">
+                    <TextBlock
                         Margin="50,0,0,0"
-                        Foreground="#cfcfcf"/>
-                    <TextBlock 
-                        Text="Số lượng"
                         FontSize="10"
                         FontWeight="SemiBold"
+                        Foreground="#cfcfcf"
+                        Text="Size" />
+                    <TextBlock
                         Margin="155,0,0,0"
-                        Foreground="#cfcfcf"/>
+                        FontSize="10"
+                        FontWeight="SemiBold"
+                        Foreground="#cfcfcf"
+                        Text="Số lượng" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="10,0,-0.2,0">
-                    <ComboBox                
+                <StackPanel Margin="10,0,-0.2,0" Orientation="Horizontal">
+                    <ComboBox
                         Width="97"
                         Height="48"
                         Padding="5,10"
@@ -207,106 +213,108 @@
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0">
                         <ComboBoxItem>
-                            <TextBlock Text="M" 
-                                       FontSize="20" TextAlignment="Center" IsEnabled="True"/>
+                            <TextBlock
+                                FontSize="20"
+                                IsEnabled="True"
+                                Text="M"
+                                TextAlignment="Center" />
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="L" FontSize="20" TextAlignment="Center"/>
+                            <TextBlock
+                                FontSize="20"
+                                Text="L"
+                                TextAlignment="Center" />
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="XL" FontSize="20" TextAlignment="Center"/>
+                            <TextBlock
+                                FontSize="20"
+                                Text="XL"
+                                TextAlignment="Center" />
                         </ComboBoxItem>
                     </ComboBox>
 
-                    <StackPanel 
-                        Margin="80,0,0,0"
+                    <StackPanel
                         Grid.Column="1"
+                        Margin="80,0,0,0"
                         Orientation="Horizontal">
                         <Button
-                            Width="40"
-                            Background="Transparent"                               
                             x:Name="BtnMinusNumProduct"
                             Grid.Column="0"
+                            Width="40"
+                            Background="Transparent"
                             BorderThickness="0"
                             Click="BtnMinusNumProduct_Click">
-                            <Image 
-                                    Source="/Resource/Images/Icons/Minus.png"
-                                    Height="15"
-                                />
+                            <Image Height="15" Source="/Resource/Images/Icons/Minus.png" />
 
                         </Button>
                         <TextBox
-                                x:Name="AmountProductTextbox"
-                                Grid.Column="1"
-                                FontSize="18"
-                                Text="1"
-                                VerticalAlignment="Center"
-                                TextAlignment="Center"
+                            x:Name="AmountProductTextbox"
+                            Grid.Column="1"
                             Width="28"
-                            BorderThickness="0"/>
-                        <Button
-                            Background="Transparent"    
-                            Grid.Column="0"
+                            VerticalAlignment="Center"
                             BorderThickness="0"
+                            FontSize="18"
+                            Text="1"
+                            TextAlignment="Center" />
+                        <Button
+                            Grid.Column="0"
                             Width="40"
+                            Background="Transparent"
+                            BorderThickness="0"
                             Click="BtnPlusNumProduct_Click">
-                            <Image 
-                                    Source="/Resource/Images/Icons/plus.png"
-                                    Height="15"/>
+                            <Image Height="15" Source="/Resource/Images/Icons/plus.png" />
                         </Button>
                     </StackPanel>
                     <Button
-                        
+                        Margin="90,0,9.8,0"
                         Background="#f0668d"
                         Content="Thêm"
                         DockPanel.Dock="Right"
-                        Foreground="#fff" Margin="90,0,9.8,0" />
+                        Foreground="#fff" />
                 </StackPanel>
                 <ListBox
-                        x:Name="LocationListbox"
-                        Grid.Column="0"
-                        Height="259"
-                        HorizontalAlignment="Stretch"
-                        BorderBrush="#7B7D7D"
-                        BorderThickness="0,0,1,0"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                    Margin="10,30,10,0">
+                    x:Name="LocationListbox"
+                    Grid.Column="0"
+                    Height="259"
+                    Margin="10,30,10,0"
+                    HorizontalAlignment="Stretch"
+                    BorderBrush="#7B7D7D"
+                    BorderThickness="0,0,1,0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <!--<ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,6" Orientation="Horizontal">
-                               
+
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>-->
                     <ListBoxItem>
                         <StackPanel Orientation="Horizontal">
-                            <Image 
-                                Source="/Resource/Images/Products/1.jpg"
-                                Height="30"
-                                Width="30"/>
+                            <Image Width="30" Height="30" />
                             <TextBlock
-                                Text="Tên sản phẩm Tên sản phẩm Tên sản phẩm"
-                                TextWrapping="Wrap"
-                                FontSize="13"
-                                FontWeight="DemiBold" 
                                 Width="225"
-                                Margin="10,0,0,0"/>
+                                Margin="10,0,0,0"
+                                FontSize="13"
+                                FontWeight="DemiBold"
+                                Text="Tên sản phẩm Tên sản phẩm Tên sản phẩm"
+                                TextWrapping="Wrap" />
                             <TextBlock
-                                TextWrapping="Wrap"
+                                Margin="10,0,0,0"
                                 FontSize="13"
                                 Text="Số lượng: 2"
-                                Margin="10,0,0,0"/>
+                                TextWrapping="Wrap" />
                             <TextBlock
-                                TextWrapping="Wrap"
+                                Margin="10,0,0,0"
                                 FontSize="13"
                                 Text="Size: L"
-                                Margin="10,0,0,0"/>
+                                TextWrapping="Wrap" />
                             <TextBlock
-                                Text="99.000đ"
-                                Foreground="Red"
+                                Width="63"
+                                Margin="15,0,0,0"
                                 FontSize="13"
-                                Margin="15,0,0,0" Width="63"/>
+                                Foreground="Red"
+                                Text="99.000đ" />
                         </StackPanel>
 
                     </ListBoxItem>
@@ -317,35 +325,35 @@
 
                 <Grid Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="15"/>
-                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="2.5*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Grid.Column="1"
-                        Text="Tổng tiền:"
+                        VerticalAlignment="Center"
                         FontSize="15"
                         FontWeight="Light"
                         Foreground="Black"
-                        TextAlignment="Center"
-                        VerticalAlignment="Center"/>
+                        Text="Tổng tiền:"
+                        TextAlignment="Center" />
                     <TextBlock
-                       Grid.Column="2"
-                        Text="đ"
+                        Grid.Column="2"
+                        VerticalAlignment="Top"
                         FontSize="20"
                         FontWeight="Light"
                         Foreground="Red"
-                        TextAlignment="Left"
-                        VerticalAlignment="Top"/>
+                        Text="đ"
+                        TextAlignment="Left" />
                     <TextBlock
                         Grid.Column="3"
-                        Text="100.000"
+                        VerticalAlignment="Top"
                         FontSize="30"
                         FontWeight="Medium"
                         Foreground="Red"
-                        TextAlignment="Left"
-                        VerticalAlignment="Top"/>
+                        Text="100.000"
+                        TextAlignment="Left" />
                 </Grid>
             </StackPanel>
 
