@@ -372,7 +372,7 @@
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
                         ItemsSource="{Binding ComboboxCategoryBD}"
-                        />
+                        DisplayMemberPath="CategoryName"/>
 
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
