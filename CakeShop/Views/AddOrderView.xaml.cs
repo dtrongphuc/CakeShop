@@ -81,7 +81,7 @@ namespace CakeShop.Views
             Product product = new Product();
             if (CoboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)
             {
-               
+
                 ComboBoxItem selected = CoboboxSize.SelectedValue as ComboBoxItem;
                 TextBlock selectedTextBlock = selected.Content as TextBlock;
                 var size = selectedTextBlock.Text;
@@ -101,6 +101,18 @@ namespace CakeShop.Views
                 listProductSize.Add(getlist.Get_ProductAndSizeProduct(detail, product));
                 listOrder.Add(detail);
             }
+
+
+            string Productname = CoboboxNameProduct.Text.Trim();
+            string Priceproduct = PriceproductTextblock.Text.Trim();
+            string Size = CoboboxSize.Text.Trim();
+            string Amount = AmountProductTextbox.Text.Trim();
+            //tổng tiền 1 sản phẩm
+            int TotalPriceProduct = int.Parse(Amount) * int.Parse(Priceproduct);
+            //tổng tiền tất tất cả các sản phẩm
+
+            CurrentViewModel.AddToListbox(Productname, Priceproduct, Size, Amount);
+
         }
     }
 }

@@ -194,7 +194,7 @@
                         ItemsSource="{Binding ProductsNameCombobox}" />
 
                     <TextBlock
-                        x:Name="Priceproduct"
+                        x:Name="PriceproductTextblock"
                         Margin="20,15,0,0"
                         VerticalAlignment="Center"
                         materialDesign:HintAssist.Hint="Giá"
