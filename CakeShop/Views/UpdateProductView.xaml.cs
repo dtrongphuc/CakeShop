@@ -124,12 +124,14 @@ namespace CakeShop.Views
             string avartar = "";
             if (NameProduct.Text.Trim() != string.Empty && PriceProduct.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty)
             {
-                if(ImagesFileList.Count>0)
+                if (ImagesFileList.Count > 0)
+                {
                     avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text);
+                    CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
+                }
                 else
-                    avartar = CurrentViewModel.UpdateProductNoAvartar( NameProduct.Text, PriceProduct.Text, Description.Text);
+                    avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text);
             }
-            CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
