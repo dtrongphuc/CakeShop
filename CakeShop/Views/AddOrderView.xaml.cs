@@ -23,6 +23,7 @@ namespace CakeShop.Views
     public partial class AddOrderView : UserControl
     {
         AddOrderViewModel CurrentViewModel = null;
+        public static AddOrderView Instance { get; set; }
         GetListObject getlist = new GetListObject();
         BindableCollection<dynamic> listProductSize { get; set; } = new BindableCollection<dynamic>();
         public AddOrderView()
