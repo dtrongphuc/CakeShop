@@ -64,6 +64,7 @@ namespace CakeShop.Views
 
             DetailOrder detail = new DetailOrder();
             product.Find((index + 1).ToString());
+            //thành tiền sản phẩm
             int totalprice = int.Parse(product.Price) * int.Parse(Amount);
             detail.PriceTotal = totalprice.ToString();
             detail.Quantity = Amount;
@@ -79,6 +80,7 @@ namespace CakeShop.Views
 
             //lưu lại số tiền hiện tại trong listbox
             Totalproductlist += totalprice;
+            //binding tổng tiền
             TotalPriceProductsTextblock = Totalproductlist.ToString();
         }
     }

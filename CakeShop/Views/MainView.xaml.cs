@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace CakeShop.Views
     /// </summary>
     public partial class MainView : Window
     {
+        MainViewModel mainviewmodel = null;
         public MainView()
         {
             InitializeComponent();
         }
+
 
         private void BtnShowMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -59,11 +62,7 @@ namespace CakeShop.Views
         }
 
         // Khi click vào nút tìm kiếm
-        private void BtnSearch_Click(object sender, RoutedEventArgs e)
-        {
-        
-        }
-
+      
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Show();
@@ -73,11 +72,18 @@ namespace CakeShop.Views
                 var screen = new Views.SplashWindow();
                 screen.ShowDialog();
             }
+            mainviewmodel = GridMain.DataContext as MainViewModel;
         }
 
         private void HideMenuAndModal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ShowHideMenu("sbHideLeftMenu", BtnHideMenu, BtnShowMenu, Menu);
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string Keyword = SearchBox.Text.Trim();
+            mainviewmodel.ShowSearch(Keyword);
         }
     }
 }
