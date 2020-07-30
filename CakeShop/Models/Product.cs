@@ -140,5 +140,7 @@ namespace CakeShop.Models
             sql = $"UPDATE PRODUCT SET PRODUCTNAME=N'{ProductName}', PRICE={Price}, DESCRIPTION=N'{Description}', IMAGE='{Image}' WHERE IDPRODUCT={IdProduct}";
             Connection.Execute_SQL(sql);
         }
+
+
     }
 }

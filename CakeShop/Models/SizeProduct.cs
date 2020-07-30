@@ -64,6 +64,8 @@ namespace CakeShop.Models
             sql = $"UPDATE SIZEPRODUCT SET QUANTITY={Quantity} WHERE IDPRODUCT={IdProduct} AND SIZE=N'{Size}'";
             Connection.Execute_SQL(sql);
         }
+
+       
     }
     
 }

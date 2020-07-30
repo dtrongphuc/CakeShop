@@ -23,6 +23,7 @@ namespace CakeShop.ViewModels
         {
             //liệt kê trong các danh mục trong combobox
             ComboboxCategoryBD = Getlist.Get_AllCategory();
+            
         }
 
         /// <summary>
