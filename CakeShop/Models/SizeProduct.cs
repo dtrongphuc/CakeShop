@@ -58,6 +58,12 @@ namespace CakeShop.Models
             sql = $"INSERT INTO SIZEPRODUCT VALUES ({_idProduct}, '{Size}' , {Quantity})";
             Connection.Execute_SQL(sql);
         }
+
+        public void Update()
+        {
+            sql = $"UPDATE SIZEPRODUCT SET QUANTITY={Quantity} WHERE IDPRODUCT={IdProduct} AND SIZE=N'{Size}'";
+            Connection.Execute_SQL(sql);
+        }
     }
     
 }

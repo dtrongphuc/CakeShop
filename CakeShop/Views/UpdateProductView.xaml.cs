@@ -132,6 +132,8 @@ namespace CakeShop.Views
                 else
                     avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text);
             }
+
+            CurrentViewModel.UpadateSizeProduct();
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
