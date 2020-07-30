@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="700"
     d:DesignWidth="1200"
-    mc:Ignorable="d"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <Style
             x:Key="CommonBox"
@@ -60,10 +60,10 @@
                     <Button
                         x:Name="ShowDetail"
                         Background="#f0668d"
+                        Click="Submit_Click"
                         Content="Hoàn thành"
                         DockPanel.Dock="Right"
-                        Foreground="#fff" 
-                        Click="Submit_Click"/>
+                        Foreground="#fff" />
                     <Label
                         Content="Thêm đơn hàng"
                         DockPanel.Dock="Left"
@@ -80,6 +80,7 @@
 
             <StackPanel Grid.Row="1" Margin="00,15,0,0">
                 <TextBox
+                    Name="NameCustomer"
                     Height="68"
                     Margin="10,10,9.6,0"
                     Padding="12,0"
@@ -88,10 +89,10 @@
                     FontSize="30"
                     FontWeight="DemiBold"
                     Foreground="#000"
-                    Style="{StaticResource CommonBox}" 
-                    Name="NameCustomer"/>
+                    Style="{StaticResource CommonBox}" />
 
                 <TextBox
+                    Name="EmailCustomer"
                     Height="55"
                     Margin="10,30,9.6,0"
                     Padding="12,0"
@@ -101,13 +102,13 @@
                     FontWeight="DemiBold"
                     Foreground="#000"
                     Style="{StaticResource CommonBox}"
-                    Text="" 
-                    Name="EmailCustomer"/>
+                    Text="" />
 
 
 
 
                 <TextBox
+                    Name="AddressCustomer"
                     Height="55"
                     Margin="10,30,9.6,0"
                     Padding="12,0"
@@ -116,11 +117,11 @@
                     FontSize="15"
                     FontWeight="DemiBold"
                     Foreground="#000"
-                    Style="{StaticResource CommonBox}" 
-                    Name="AddressCustomer"/>
+                    Style="{StaticResource CommonBox}" />
 
                 <StackPanel Margin="10,30,9.6,0" Orientation="Horizontal">
                     <ComboBox
+                        Name="CoboboxStatus"
                         Width="200"
                         Height="55"
                         Margin="20,0,0,0"
@@ -130,7 +131,6 @@
                         materialDesign:HintAssist.Hint="Trạng thái"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        Name="CoboboxStatus"
                         SelectedIndex="1">
                         <ComboBoxItem Height="46" Margin="0,0,0.4,0">
                             <TextBlock
@@ -139,7 +139,7 @@
                                 FontWeight="Regular"
                                 Text="Đã giao hàng" />
                         </ComboBoxItem>
-                        <ComboBoxItem Height="45" Margin="0,0,0.4,0" >
+                        <ComboBoxItem Height="45" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
                                 FontSize="23"
@@ -158,10 +158,10 @@
                         VerticalAlignment="Bottom"
                         VerticalContentAlignment="Center"
                         FontSize="16"
-                        Foreground="Black" 
-                        />
+                        Foreground="Black" />
                 </StackPanel>
                 <TextBox
+                    Name="Description"
                     Grid.Row="9"
                     Height="148"
                     Margin="10,30,9.6,0"
@@ -170,8 +170,7 @@
                     FontSize="16"
                     FontWeight="Thin"
                     Style="{StaticResource CommonBox}"
-                    Text="" 
-                    Name="Description"/>
+                    Text="" />
 
             </StackPanel>
             <StackPanel
@@ -185,27 +184,26 @@
                         Height="64"
                         Margin="10,15,0,0"
                         Padding="5,10"
-                        FontSize="18"
-                        DockPanel.Dock="Left"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Tên sản phẩm"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        ItemsSource="{Binding ProductsNameCombobox}"
                         DisplayMemberPath="ProductName"
-                        SelectionChanged="CoboboxNameProduct_SelectionChanged"/>
+                        DockPanel.Dock="Left"
+                        FontSize="18"
+                        ItemsSource="{Binding ProductsNameCombobox}" />
 
                     <TextBlock
-                        DockPanel.Dock="Right"
                         Margin="20,15,0,0"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Giá"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        DockPanel.Dock="Right"
                         FontSize="20"
                         FontWeight="ExtraBlack"
-                        Foreground="#f0668d"        
-                        TextAlignment="Center"
-                        VerticalAlignment="Center"
-                        materialDesign:HintAssist.Hint="Tên sản phẩm"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        Text="{Binding PriceProduct}"/>
+                        Foreground="#f0668d"
+                        Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
+                        TextAlignment="Center" />
                 </DockPanel>
 
                 <StackPanel Margin="00,10,0,0" Orientation="Horizontal">
@@ -224,6 +222,7 @@
                 </StackPanel>
                 <StackPanel Margin="10,0,-0.2,0" Orientation="Horizontal">
                     <ComboBox
+                        Name="CoboboxSize"
                         Width="97"
                         Height="48"
                         Padding="5,10"
@@ -231,8 +230,7 @@
                         materialDesign:HintAssist.Hint="Size"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        SelectedIndex="0"
-                        Name="CoboboxSize">
+                        SelectedIndex="0">
                         <ComboBoxItem>
                             <TextBlock
                                 FontSize="20"
@@ -276,8 +274,7 @@
                             BorderThickness="0"
                             FontSize="18"
                             Text="1"
-                            TextAlignment="Center" 
-                           />
+                            TextAlignment="Center" />
                         <Button
                             Grid.Column="0"
                             Width="40"
@@ -290,10 +287,10 @@
                     <Button
                         Margin="90,0,9.8,0"
                         Background="#f0668d"
+                        Click="Them_click"
                         Content="Thêm"
                         DockPanel.Dock="Right"
-                        Foreground="#fff" 
-                        Click="Them_click"/>
+                        Foreground="#fff" />
                 </StackPanel>
                 <ListBox
                     x:Name="LocationListbox"

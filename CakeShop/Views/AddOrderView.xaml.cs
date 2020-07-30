@@ -69,9 +69,6 @@ namespace CakeShop.Views
                 var index = CoboboxStatus.SelectedIndex;//trang thái
                 CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text,index, sum);
             }
-
-
-
         }
 
         private void Them_click(object sender, RoutedEventArgs e)
@@ -98,12 +95,6 @@ namespace CakeShop.Views
                 sum += totalprice;
                 listOrder.Add(detail);
             }
-        }
-
-        private void CoboboxNameProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Product product = CoboboxNameProduct.SelectedItem as Product;
-            CurrentViewModel.BindingPriceProduct(product.IdProduct);
         }
     }
 }
