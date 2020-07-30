@@ -11,7 +11,7 @@ namespace CakeShop.Models
 {
     public class DetailOrder : INotifyPropertyChanged
     {
-
+        private string sql;
         private string _idOrder;
         public string IdOrder
         {
@@ -60,7 +60,18 @@ namespace CakeShop.Models
             }
         }
 
-       
+        private string _size;
+        public string Size
+        {
+            get { return _size; }
+            set
+            {
+                _size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
+
+
         private string _priceTotal;
         public string PriceTotal
         {
@@ -79,12 +90,13 @@ namespace CakeShop.Models
             this.IdProduct = " ";
             this.PriceTotal = " ";
             this.Quantity = " ";
+            this.Size = " ";
         }
 
         public bool Find(string id)
         {
             bool check = false;
-            string sql = $"SELECT * FROM DETAILORDER WHERE IDORDER={id}";
+             sql = $"SELECT * FROM DETAILORDER WHERE IDORDER={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
             {
@@ -95,11 +107,20 @@ namespace CakeShop.Models
                 product.Find(IdProduct);
                 ListProduct.Add(product);
                 this.Quantity = row["QUATITY"].ToString();
+                this.Size = row["SIZE"].ToString();
                 this.PriceTotal = row["TOTALPRICE"].ToString();
             }
             if (check == true)
                 return true;
             return false;
+        }
+
+        public void Add()
+        {
+            sql = "SELECT IDENT_CURRENT('ORDERS') as LastID";
+            IdOrder = Connection.GetCount_Data(sql).ToString();
+            sql = $"INSERT INTO DETAILORDER VALUES ({IdOrder}, {IdProduct}, {Quantity}, '{Size}', {PriceTotal})";
+            Connection.Execute_SQL(sql);
         }
     }
 }

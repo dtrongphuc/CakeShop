@@ -110,5 +110,10 @@ namespace CakeShop.Models
             this.Total = " ";
         }
 
+        public void Add()
+        {
+            string sql = $"INSERT INTO ORDERS VALUES (N'{CustomerName}', N'{Address}', '{Email}', N'{Note}', {Total}, {Status}, '{Date}')";
+            Connection.Execute_SQL(sql);
+        }
     }
 }

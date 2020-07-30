@@ -89,7 +89,7 @@ namespace CakeShop.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public BindableCollection<Product> Get_AllProduct(int curr, int recode1trang)
+        public BindableCollection<Product> Get_AllProduct()
         {
             ListProduct.Clear();
             sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY";
