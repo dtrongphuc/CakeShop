@@ -20,8 +20,9 @@ namespace CakeShop.Views
         //tổng giá 1 sản phẩm 
         public string TotalPriceProductTextbox { get; set; }
         public string TotalPriceProductsTextblock { get; set; }
-        public BindableCollection<Product> ProductsNameCombobox { get; set; } 
-        int sum;
+        public BindableCollection<Product> ProductsNameCombobox { get; set; }
+        private List<DetailOrder> listOrder = new List<DetailOrder>();
+        public BindableCollection<dynamic> OrderedList { get; set; } = new BindableCollection<dynamic>();
 
         public AddOrderViewModel()
         {
@@ -55,13 +56,25 @@ namespace CakeShop.Views
             PriceProduct = product.Price;
         }
 
-        public void AddToListbox(string Productname, string Price, string Size, string Amount)//Productname, Priceproduct, Size, Amount
-        { 
+        private int sum = 0;
+        
+        public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
+        {
+            Product product = new Product();
 
-            if (Productname != string.Empty && Size != string.Empty)
-            {
+            DetailOrder detail = new DetailOrder();
+            product.Find((index + 1).ToString());
+            int totalprice = int.Parse(product.Price) * int.Parse(Amount);
+            detail.PriceTotal = totalprice.ToString();
+            detail.Quantity = Amount;
+            detail.IdProduct = (index + 1).ToString();
+            detail.Size = Size;
+            sum += totalprice;
 
-            }
+            //binding
+            OrderedList.Insert(0, GetList.Get_ProductAndSizeProduct(detail, product));
+
+            listOrder.Add(detail);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace CakeShop.Views
         AddOrderViewModel CurrentViewModel = null;
         public static AddOrderView Instance { get; set; }
         GetListObject getlist = new GetListObject();
-        BindableCollection<dynamic> listProductSize { get; set; } = new BindableCollection<dynamic>();
+
         public AddOrderView()
         {
             InitializeComponent();
@@ -62,56 +62,43 @@ namespace CakeShop.Views
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-           if(listOrder.Count>0)
-            {
-                ///goi hàm thêm vào database. sum là tổng tiền tất cả các sản phẩm
-                CurrentViewModel.AddDetailOrder(listOrder);
-            }
-           
+            //if (listOrder.Count > 0)
+            //{
+            //    / goi hàm thêm vào database. sum là tổng tiền tất cả các sản phẩm
+            //    CurrentViewModel.AddDetailOrder(listOrder);
+            //}
 
-            if(NameCustomer.Text.Trim() != string.Empty && EmailCustomer.Text.Trim() != string.Empty && AddressCustomer.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty && OrderDay.Text.Trim() != string.Empty)
-            {
-                var index = CoboboxStatus.SelectedIndex;//trang thái
-                CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text,index, sum);
-            }
+
+            //if (NameCustomer.Text.Trim() != string.Empty && EmailCustomer.Text.Trim() != string.Empty && AddressCustomer.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty && OrderDay.Text.Trim() != string.Empty)
+            //{
+            //    var index = CoboboxStatus.SelectedIndex;//trang thái
+            //    CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text, index, sum);
+            //}
         }
 
         private void ADD_click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
+           
             if (CoboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)
-            {
-
+            {                
+                
                 ComboBoxItem selected = CoboboxSize.SelectedValue as ComboBoxItem;
+               
                 TextBlock selectedTextBlock = selected.Content as TextBlock;
                 var size = selectedTextBlock.Text;
 
+                //ten sản phẩm
                 var index = CoboboxNameProduct.SelectedIndex;
+                string Amount = AmountProductTextbox.Text.Trim();
 
-                product.Find((index + 1).ToString());
+                //gọi hàm binding
+                CurrentViewModel.AddToListbox(size, Amount, index);
 
-                DetailOrder detail = new DetailOrder();
-                product.Find((index + 1).ToString());
-                int totalprice = int.Parse(product.Price) * int.Parse(AmountProductTextbox.Text);
-                detail.PriceTotal = totalprice.ToString();
-                detail.Quantity = AmountProductTextbox.Text;
-                detail.IdProduct = (index + 1).ToString();
-                detail.Size = size;
-                sum += totalprice;
-                listProductSize.Add(getlist.Get_ProductAndSizeProduct(detail, product));
-                listOrder.Add(detail);
             }
 
 
-            string Productname = CoboboxNameProduct.Text.Trim();
-            string Priceproduct = PriceproductTextblock.Text.Trim();
-            string Size = CoboboxSize.Text.Trim();
-            string Amount = AmountProductTextbox.Text.Trim();
-            //tổng tiền 1 sản phẩm
-            int TotalPriceProduct = int.Parse(Amount) * int.Parse(Priceproduct);
-            //tổng tiền tất tất cả các sản phẩm
+           
 
-            CurrentViewModel.AddToListbox(Productname, Priceproduct, Size, Amount);
 
         }
     }
