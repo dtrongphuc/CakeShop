@@ -29,6 +29,7 @@ namespace CakeShop.Views
         {
             InitializeComponent();
             OrderDay.SelectedDate = DateTime.Today;
+            Instance = this;
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
