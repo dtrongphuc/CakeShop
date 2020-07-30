@@ -55,6 +55,8 @@ namespace CakeShop.ViewModels
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
             parentConductor.ActivateItem(new DetailProductViewModel(product.IdProduct));
         }
+         
+       
 
         /// <summary>
         /// Phương thức xử lý update hình
@@ -86,8 +88,18 @@ namespace CakeShop.ViewModels
             }
             product.Update();
             return avartar;
-        } 
-        
+        }
+
+        public string UpdateProductNoAvartar( string name, string price, string des)
+        {
+            string avartar = "";
+            product.ProductName = name;
+            product.Price = price;
+            product.Description = des;
+            product.Update();
+            return avartar;
+        }
+
         public void UpdateImageProduct(List<FileInfo> listimages, string avartar)
         {
 
