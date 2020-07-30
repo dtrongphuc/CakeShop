@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converter\CarouselItemWidthConverter.cs" />
+    <Compile Include="Converter\IndexToOrderCountConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CakeShop.Views;
 using System.IO;
+using System.IO.Packaging;
 
 namespace CakeShop.Views
 {
@@ -15,8 +16,13 @@ namespace CakeShop.Views
         Product product = new Product();
         GetListObject GetList = new GetListObject();
         public string PriceProduct { get; set; }
+
+        //tổng giá 1 sản phẩm 
+        public string TotalPriceProductTextbox { get; set; }
+        public string TotalPriceProductsTextblock { get; set; }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
-        int sum;
+        private List<DetailOrder> listOrder = new List<DetailOrder>();
+        public BindableCollection<dynamic> OrderedList { get; set; } = new BindableCollection<dynamic>();
 
         public AddOrderViewModel()
         {
@@ -50,24 +56,25 @@ namespace CakeShop.Views
             PriceProduct = product.Price;
         }
 
-        public void AddToListbox()
+        private int sum = 0;
+        
+        public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {
-            string Productname = AddOrderView.Instance.CoboboxNameProduct.Text.Trim();
-            string Priceproduct = AddOrderView.Instance.Priceproduct.Text.Trim();
-            string Size = AddOrderView.Instance.CoboboxSize.Text.Trim();
-            string Amount = AddOrderView.Instance.AmountProductTextbox.Text.Trim();
+            Product product = new Product();
 
-            if(Productname != string.Empty && Size != string.Empty)
-            {
-                Product product = new Product();
-                //{
-                //    ProductName = Productname,
-                //    Price = Priceproduct,
-                //    si
-                //};
-                GetListObject getListObject = new GetListObject();
-               
-            }
+            DetailOrder detail = new DetailOrder();
+            product.Find((index + 1).ToString());
+            int totalprice = int.Parse(product.Price) * int.Parse(Amount);
+            detail.PriceTotal = totalprice.ToString();
+            detail.Quantity = Amount;
+            detail.IdProduct = (index + 1).ToString();
+            detail.Size = Size;
+            sum += totalprice;
+
+            //binding
+            OrderedList.Insert(0, GetList.Get_ProductAndSizeProduct(detail, product));
+
+            listOrder.Add(detail);
         }
     }
 }
