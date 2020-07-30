@@ -79,6 +79,8 @@ namespace CakeShop.Views
             }
         }
 
+        List<FileInfo> ImagesFileList = new List<FileInfo>(); // List tạm lưu thông tin danh sách file hình mới
+
         /// <summary>
         /// Thêm hình
         /// </summary>
@@ -86,8 +88,8 @@ namespace CakeShop.Views
         /// <param name="e"></param>
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            ImagesFileList.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            List<FileInfo> ImagesFileList = new List<FileInfo>(); // List tạm lưu thông tin danh sách file hình mới
             openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" + "All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -110,6 +112,12 @@ namespace CakeShop.Views
         private void OnSelectedImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            string avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text);
+            CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
         }
     }
 }

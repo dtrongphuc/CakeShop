@@ -104,22 +104,7 @@ namespace CakeShop.Models
             this.IdCategory= " ";
         }
 
-        public Product ChooesProduct(string id)
-        {
-            string sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE IDPRODUCT={id}";
-            DataTable dt = Connection.GetALL_Data(sql);
-            foreach (DataRow row in dt.Rows)
-            {
-                this.CategoryName = row["CATEGORYNAME"].ToString();
-                this.IdProduct = row["IDPRODUCT"].ToString();
-                this.ProductName = row["PRODUCTNAME"].ToString();
-                this.Price = row["PRICE"].ToString();
-                this.Description = row["DESCRIPTION"].ToString();
-                this.Image = row["IMAGE"].ToString();
-
-            }
-            return this;
-        }
+       
         public bool Find(string id)
         {
             bool check = false;
@@ -129,12 +114,12 @@ namespace CakeShop.Models
             {
                 check = true;
                 Product product = new Product();
-                product.CategoryName = row["CATEGORYNAME"].ToString();
-                product.IdProduct = row["IDPRODUCT"].ToString();
-                product.ProductName = row["PRODUCTNAME"].ToString();
-                product.Price = row["PRICE"].ToString();
-                product.Description = row["DESCRIPTION"].ToString();
-                product.Image = row["IMAGE"].ToString();
+                this._categoryName = row["CATEGORYNAME"].ToString();
+                this._idProduct = row["IDPRODUCT"].ToString();
+                this._productName = row["PRODUCTNAME"].ToString();
+                this._price = row["PRICE"].ToString();
+                this._description = row["DESCRIPTION"].ToString();
+                this._image = row["IMAGE"].ToString();
                
             }
             if (check == true)
@@ -147,6 +132,12 @@ namespace CakeShop.Models
         public void Add()
         {
             sql = $"INSERT INTO PRODUCT VALUES ({IdCategory}, N'{ProductName}',{Price}, N'{Description}' , 's{Image}' )";
+            Connection.Execute_SQL(sql);
+        }
+
+        public void Update()
+        {
+            sql = $"UPDATE PRODUCT SET PRODUCTNAME=N'{ProductName}', PRICE={Price}, DESCRIPTION=N'{Description}', IMAGE='{Image}' WHERE IDPRODUCT={IdProduct}";
             Connection.Execute_SQL(sql);
         }
     }

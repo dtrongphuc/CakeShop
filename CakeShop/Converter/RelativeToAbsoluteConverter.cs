@@ -12,8 +12,12 @@ namespace CakeShop.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var relative = (string)value;
+            string relative = (string)value;
             var baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+            if(relative[0] != '/')
+            {
+                return relative;
+            }
             var absolute = $"{baseFolder}{relative}";
             return absolute;
         }

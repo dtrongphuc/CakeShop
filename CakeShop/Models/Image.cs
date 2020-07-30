@@ -46,5 +46,11 @@ namespace CakeShop.Models
             sql = $"INSERT INTO IMAGES VALUES ({_idProduct}, '{_imageUri}')";
             Connection.Execute_SQL(sql);
         }
+
+        public void Update()
+        {
+            sql = $"INSERT INTO IMAGES VALUES ({_idProduct}, '{_imageUri}')";
+            Connection.Execute_SQL(sql);
+        }
     }
 }

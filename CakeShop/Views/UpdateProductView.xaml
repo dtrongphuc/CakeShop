@@ -211,7 +211,8 @@
                                 Background="#f0668d"
                                 Content="Hoàn thành"
                                 DockPanel.Dock="Right"
-                                Foreground="#fff" />
+                                Foreground="#fff" 
+                                Click="Submit_Click"/>
                             <ComboBox
                                 Width="200"
                                 Padding="0,10"
@@ -380,7 +381,8 @@
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
                             Style="{StaticResource CommonBox}"
-                            Text="{Binding Price}" />
+                            Text="{Binding Price}" 
+                            Name="PriceProduct"/>
 
                         <Rectangle
                             Height="1"
@@ -445,7 +447,8 @@
                             FontSize="16"
                             FontWeight="Thin"
                             Style="{StaticResource CommonBox}"
-                            Text="{Binding Descriptiontext}" />
+                            Text="{Binding Descriptiontext}" 
+                            Name="Description"/>
                     </StackPanel>
                 </Grid>
             </Grid>

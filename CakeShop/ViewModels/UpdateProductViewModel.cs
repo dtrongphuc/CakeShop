@@ -13,19 +13,19 @@ namespace CakeShop.ViewModels
     public class UpdateProductViewModel : Screen
     {
         // Muốn lấy những hình ảnh mới thêm vào thì lấy CarouselTest.Count - _defaultImagesCount -> số ảnh lấy ở đầu list
-        //private int _defaultImagesCount { get; set; } = 0;
+        private int _defaultImagesCount { get; set; } = 0;
         GetListObject getListObject = new GetListObject();
         Product product = new Product();
         public BindableCollection<Image> ImagesCarousel { get; set; }
         public BindableCollection<SizeProduct> SizeQuantify { get; set; }
-
+        string folderfile = AppDomain.CurrentDomain.BaseDirectory;
         public string ProductName { get; set; }
         public string Price { get; set; }
         public string Descriptiontext { get; set; }
         public string ImageSelectChange { get; set; }
         public UpdateProductViewModel(string idProduct)
         {
-            product.ChooesProduct(idProduct);
+            product.Find(idProduct);
 
             //tên sản phẩm
             ProductName = product.ProductName;
@@ -41,7 +41,8 @@ namespace CakeShop.ViewModels
 
             //danh sách các hình của sản phẩm
             ImagesCarousel = getListObject.Get_ImageProduct(idProduct);
-            
+
+            _defaultImagesCount = ImagesCarousel.Count;
         }
 
         /// <summary>
@@ -55,34 +56,64 @@ namespace CakeShop.ViewModels
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
             parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
-
-        public string ConvertImaes(string image)//		image.FullName	"C:\\Users\\Nghia_DX\\Pictures\\646447.jpg"	string
-        {
-            string imageconvet = "";
-            for (int i = image.Length-1; i > 0; i--)
-            {
-                if(image[i] == '\\')
-                {
-                    imageconvet = image.Substring(i+1, (image.Length - 1 - i));
-                    break;    
-                }
-            }
-            return imageconvet;
-        }
+         2
+       
 
         Image image1 = new Image();
         /// <summary>
         /// Phương thức xử lý update hình
         /// </summary>
         /// <param name="images"></param>
-        public void UpdateImages(List<FileInfo> images)//_imageUri	"/Resource/Images/Products/sandwichgiambong1.jpg"
+        public void UpdateImages(List<FileInfo> images)
         {
             foreach (var image in images)
             {
                 // Thêm hình mới update vào đầu    
-                image1.ImageUri = "/Resource/Images/Products/" + ConvertImaes(image.FullName);
-                ImagesCarousel.Insert(0, image1);
+                Image imageuri = new Image();
+                imageuri.ImageUri = image.FullName;
+                ImagesCarousel.Insert(0, imageuri);
             }
-        }      
+        }
+        
+        
+        public string UpdateProduct(FileInfo listimage, string name, string price, string des)
+        {
+            string avartar="";
+            product.ProductName = name;
+            product.Price = price;
+            product.Description = des;
+            if (listimage.Name != null)
+            {
+                avartar = $"{Guid.NewGuid()}{listimage.Extension}";
+                listimage.CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                product.Image = $"/Resource/Images/Products/{avartar}";
+            }
+            product.Update();
+            return avartar;
+        } 
+        
+        public void UpdateImageProduct(List<FileInfo> listimages, string avartar)
+        {
+
+            Models.Image image = new Models.Image();
+            image.ImageUri = $"/Resource/Images/Products/{avartar}";
+            image.IdProduct = product.IdProduct;
+            image.Update();
+            for (int i = 1; i < listimages.Count; i++)
+            {
+                if (listimages[i].Name != null)
+                {
+                    avartar = $"{Guid.NewGuid()}{listimages[i].Extension}";
+                    listimages[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
+                    image.ImageUri = $"/Resource/Images/Products/{avartar}";
+                    image.Update();
+                }
+            }
+        }
+        
+        public void UpadateSizeProduct()
+        {
+
+        }    
     }
 }

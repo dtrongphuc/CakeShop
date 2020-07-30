@@ -21,7 +21,7 @@ namespace CakeShop.ViewModels
         public string ImageSelectChange { get; set; }
         public DetailProductViewModel(string productId) 
         {
-            product.ChooesProduct(productId);
+            product.Find(productId);
 
             //tên sản phẩm
             ProductName = product.ProductName;
