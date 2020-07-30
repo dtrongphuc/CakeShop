@@ -121,7 +121,10 @@ namespace CakeShop.ViewModels
         
         public void UpadateSizeProduct()
         {
-
+            foreach(var size in SizeQuantify)
+            {
+                size.Update();
+            }
         }    
     }
 }
