@@ -375,10 +375,9 @@
                             Foreground="#f0668d"
                             Style="{StaticResource CommonBox}"
                             Text="{Binding Price}" />
-
                         <Rectangle
                             Height="1"
-                            Margin="0,40,0,0"
+                            Margin="12,20,12,0"
                             SnapsToDevicePixels="True"
                             Stroke="#979797"
                             StrokeDashArray="8 8"
@@ -387,11 +386,17 @@
                             MinWidth="200"
                             Margin="40,20,40,0"
                             AutoGenerateColumns="False"
-                            IsReadOnly="True"
-                            ItemsSource="{Binding SizeQuantify}"
+                            CanUserAddRows="False"
+                            IsReadOnly="False"
+                            ItemsSource="{Binding SizeQuantify, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             PreviewMouseWheel="Datagrid_PreviewMouseWheel"
                             SelectionMode="Extended"
                             SelectionUnit="Cell">
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <EventSetter Event="PreviewMouseDoubleClick" Handler="CellQuantity_DoubleClick" />
+                                </Style>
+                            </DataGrid.CellStyle>
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"
@@ -409,11 +414,11 @@
                                 </DataGridTextColumn>
                                 <DataGridTextColumn
                                     Width="*"
-                                    Binding="{Binding Quantity}"
+                                    Binding="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     FontSize="26"
                                     FontWeight="ExtraBold"
                                     Header="Số lượng"
-                                    IsReadOnly="True">
+                                    IsReadOnly="False">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
                                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -427,7 +432,7 @@
                         </DataGrid>
                         <Rectangle
                             Height="1"
-                            Margin="0,20,0,0"
+                            Margin="12,20,12,0"
                             SnapsToDevicePixels="True"
                             Stroke="#979797"
                             StrokeDashArray="8 8"

@@ -123,6 +123,7 @@ namespace CakeShop.Views
         {
             //string avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text);
             //CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
+            var a = CurrentViewModel.SizeQuantify;
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -136,6 +137,12 @@ namespace CakeShop.Views
                 var parent = ((Control)sender).Parent as UIElement;
                 parent.RaiseEvent(eventArg);
             }
+        }
+
+        private void CellQuantity_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridCell CellSelected = sender as DataGridCell;
+            CellSelected.IsEditing = true;
         }
     }
 }

@@ -91,7 +91,7 @@ namespace CakeShop.ViewModels
         public void UpdateImageProduct(List<FileInfo> listimages, string avartar)
         {
 
-            Models.Image image = new Models.Image();
+            Image image = new Image();
             image.ImageUri = $"/Resource/Images/Products/{avartar}";
             image.IdProduct = product.IdProduct;
             image.Update();
