@@ -13,7 +13,15 @@ namespace CakeShop.Views
     public class AddOrderViewModel : Screen
     {
         Product product = new Product();
+        GetListObject GetList = new GetListObject();
+        public string PriceProduct { get; set; }
+        public BindableCollection<Product> ProductsNameCombobox { get; set; }
         int sum;
+
+        public AddOrderViewModel()
+        {
+            ProductsNameCombobox = GetList.Get_AllProduct();
+        }
         public void AddOrder(string name, string email, string address, string des, string date, int status, int sum)
         {
             Order order = new Order();
@@ -33,6 +41,13 @@ namespace CakeShop.Views
             {
                 detail.Add();
             }
+        }
+
+        //binding gia sản phẩm tương ứng
+        public void BindingPriceProduct(string idproduct)
+        {
+            product.Find(idproduct);
+            PriceProduct = product.Price;
         }
     }
 }

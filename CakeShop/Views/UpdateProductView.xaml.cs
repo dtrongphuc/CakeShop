@@ -146,5 +146,11 @@ namespace CakeShop.Views
                 parent.RaiseEvent(eventArg);
             }
         }
+
+        private void CellQuantity_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridCell CellSelected = sender as DataGridCell;
+            CellSelected.IsEditing = true;
+        }
     }
 }
