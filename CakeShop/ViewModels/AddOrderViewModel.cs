@@ -16,7 +16,6 @@ namespace CakeShop.Views
         GetListObject GetList = new GetListObject();
         public string PriceProduct { get; set; }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
-        int sum;
 
         public AddOrderViewModel()
         {

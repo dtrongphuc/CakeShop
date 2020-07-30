@@ -66,6 +66,14 @@
         <materialDesign:Card
             Grid.Row="1"
             Grid.Column="2"
-            Margin="12" />
+            Margin="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

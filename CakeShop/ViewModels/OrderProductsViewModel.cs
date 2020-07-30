@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using CakeShop.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace CakeShop.ViewModels
 {
     public class OrderProductsViewModel : Screen
     {
+        public GetListObject GetData = new GetListObject();
+        public BindableCollection<Order> OrdersDataGrid { get; set; }
+       
         public OrderProductsViewModel() 
         {
-
+            OrdersDataGrid = GetData.Get_AllOrder();
         }
     }
 }
