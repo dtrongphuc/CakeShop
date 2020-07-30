@@ -23,7 +23,6 @@ namespace CakeShop.ViewModels
         public string Price { get; set; }
         public string Descriptiontext { get; set; }
         public string ImageSelectChange { get; set; }
-        public BindableCollection<string> AddImagesCarousel { get; set; } = new BindableCollection<string>();
         public UpdateProductViewModel(string idProduct)
         {
             product.ChooesProduct(idProduct);
@@ -57,19 +56,33 @@ namespace CakeShop.ViewModels
             parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
 
+        public string ConvertImaes(string image)//		image.FullName	"C:\\Users\\Nghia_DX\\Pictures\\646447.jpg"	string
+        {
+            string imageconvet = "";
+            for (int i = image.Length-1; i > 0; i--)
+            {
+                if(image[i] == '\\')
+                {
+                    imageconvet = image.Substring(i+1, (image.Length - 1 - i));
+                    break;    
+                }
+            }
+            return imageconvet;
+        }
+
+        Image image1 = new Image();
         /// <summary>
         /// Phương thức xử lý update hình
         /// </summary>
         /// <param name="images"></param>
-        public void UpdateImages(List<FileInfo> images)
+        public void UpdateImages(List<FileInfo> images)//_imageUri	"/Resource/Images/Products/sandwichgiambong1.jpg"
         {
-            foreach(var image in images)
+            foreach (var image in images)
             {
-                // Thêm hình mới update vào đầu
-                AddImagesCarousel.Insert(0, image.FullName);
+                // Thêm hình mới update vào đầu    
+                image1.ImageUri = "/Resource/Images/Products/" + ConvertImaes(image.FullName);
+                ImagesCarousel.Insert(0, image1);
             }
-        }
-
-      
+        }      
     }
 }
