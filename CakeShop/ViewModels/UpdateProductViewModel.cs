@@ -56,7 +56,7 @@ namespace CakeShop.ViewModels
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
             parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
-         2
+         
        
 
         Image image1 = new Image();
