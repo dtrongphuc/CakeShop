@@ -1,4 +1,5 @@
 ﻿using CakeShop.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace CakeShop.Views
     {
         AddOrderViewModel CurrentViewModel = null;
         public static AddOrderView Instance { get; set; }
+        GetListObject getlist = new GetListObject();
+        BindableCollection<dynamic> listProductSize { get; set; } = new BindableCollection<dynamic>();
         public AddOrderView()
         {
             InitializeComponent();
@@ -95,6 +98,7 @@ namespace CakeShop.Views
                 detail.IdProduct = (index + 1).ToString();
                 detail.Size = size;
                 sum += totalprice;
+                listProductSize.Add(getlist.Get_ProductAndSizeProduct(detail, product));
                 listOrder.Add(detail);
             }
         }

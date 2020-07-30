@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -221,6 +222,18 @@ namespace CakeShop.Models
             string sql = "SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT";
             int id = Connection.GetCount_Data(sql);
             return id;
+        }
+
+
+        public ExpandoObject Get_ProductAndSizeProduct(DetailOrder detail, Product product)
+        {
+            dynamic productAndSize = new ExpandoObject();
+            productAndSize.image = product.Image;
+            productAndSize.nameProduct = product.ProductName;
+            productAndSize.size = detail.Size;
+            productAndSize.Quantity = detail.Quantity;
+            productAndSize.price = product.Price;
+            return productAndSize;
         }
     }
 }
