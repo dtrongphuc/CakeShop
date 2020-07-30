@@ -2,14 +2,24 @@
     x:Class="CakeShop.Views.OrderProductsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:cal="http://www.caliburnproject.org"
+    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:cv="clr-namespace:CakeShop.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="700"
     d:DesignWidth="1200"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <cv:IndexToOrderCountConverter x:Key="indexToCount" />
+        <collections:ArrayList x:Key="statusList">
+            <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
+            <collections:DictionaryEntry Key="Đã giao hàng" Value="1" />
+        </collections:ArrayList>
+    </UserControl.Resources>
     <Grid
         x:Name="Container"
         Background="#fff"
@@ -27,86 +37,50 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <!--<StackPanel Grid.Row="0">
-                <StackPanel Orientation="Horizontal">
-                     <Label
-                    Padding="0,10"
-                    VerticalContentAlignment="Center"
-                    Content="Đơn  hàng"
-                    FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="#000" />
-                    <DockPanel LastChildFill="True">
-                        <StackPanel
-                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowUpdate]"
-                            Cursor="Hand"
-                            DockPanel.Dock="Right"
-                            Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                Width="20"
-                                Height="20"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="#000"
-                                Kind="Pencil" />
-                            <Label
-                                VerticalContentAlignment="Center"
-                                Content="Chỉnh sửa"
-                                FontSize="16"
-                                Foreground="#000" />
-                        </StackPanel>
-                    </DockPanel>
-                </StackPanel>
-               
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3">
+                <DockPanel LastChildFill="True">
+                    <StackPanel
+                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowAddorder]"
+                        Cursor="Hand"
+                        DockPanel.Dock="Right"
+                        Orientation="Horizontal">
+                        <Image
+                            Width="32"
+                            Height="32"
+                            Source="/Resource/Images/Icons/order.png"
+                            Stretch="UniformToFill" />
+                        <Label
+                            VerticalContentAlignment="Center"
+                            Content="Thêm đơn hàng"
+                            FontSize="16"
+                            Foreground="#000" />
+                    </StackPanel>
+                    <Label
+                        Padding="0,10"
+                        VerticalContentAlignment="Center"
+                        Content="Đơn hàng"
+                        DockPanel.Dock="Left"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#000" />
+                </DockPanel>
                 <Separator
                     Height="2"
                     Margin="0,0"
                     Background="#f0668d"
                     Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            </StackPanel>-->
-            <StackPanel
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3">
-                <DockPanel LastChildFill="True">
-                    <StackPanel
-                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowAddorder]"
-                            Cursor="Hand"
-                            DockPanel.Dock="Right"
-                            Orientation="Horizontal">
-                        <Image 
-                            Source="/Resource/Images/Icons/Addorder.png" 
-                            Stretch="Fill"
-                            Width="30"
-                            Height="30"/>
-                        <Label
-                                VerticalContentAlignment="Center"
-                                Content="Thêm đơn hàng"
-                                FontSize="16"
-                                Foreground="#000" />
-                    </StackPanel>
-                    <Label
-                            Padding="0,10"
-                            VerticalContentAlignment="Center"
-                            Content="Bánh kem"
-                            DockPanel.Dock="Left"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="#000" />
-                </DockPanel>
-                <Separator
-                        Height="2"
-                        Margin="0,0"
-                        Background="#f0668d"
-                        Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             </StackPanel>
 
             <DataGrid
-                Name="dgUsers"
+                x:Name="OrdersDataGrid"
                 Grid.Row="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
+                AlternationCount="{Binding Path=OrdersDataGrid.Count}"
                 AutoGenerateColumns="False"
                 BorderBrush="#252D36"
                 BorderThickness="0.5"
@@ -115,22 +89,34 @@
                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
                 SelectionMode="Extended"
                 SelectionUnit="Cell">
+                <DataGrid.CellStyle>
+                    <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Num}"
-                        Header="Số TT"
+                        Width="1*"
+                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex, Converter={StaticResource indexToCount}}"
+                        Header="STT"
                         IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                 <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                <Setter Property="TextBlock.Padding" Value="4 0" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Name}"
+                        Width="2*"
+                        Binding="{Binding CustomerName}"
                         Header="Tên khách hàng"
                         IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
@@ -141,31 +127,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Local}"
-                        Header="Địa chỉ"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Email}"
-                        Header="Email"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="*"
+                        Width="2*"
                         Binding="{Binding Date}"
                         Header="Ngày đặt"
                         IsReadOnly="True">
@@ -177,20 +139,8 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding Note}"
-                        Header="Ghi chú"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding TotalMoney}"
+                        Width="2*"
+                        Binding="{Binding Total}"
                         Header="Tổng tiền"
                         IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
@@ -200,20 +150,33 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding TT}"
+                    <DataGridTemplateColumn
+                        Width="2*"
                         Header="Trạng thái"
                         IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                    materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
+                                    DisplayMemberPath="Key"
+                                    ItemsSource="{StaticResource statusList}"
+                                    SelectedValuePath="Value">
+                                    <ComboBox.Style>
+                                        <Style BasedOn="{StaticResource MaterialDesignFilledComboBox}" TargetType="ComboBox">
+                                            <Setter Property="SelectedIndex" Value="0" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="1">
+                                                    <Setter Property="SelectedIndex" Value="1" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Style>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
+                <!--<DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <DockPanel Background="GhostWhite">
                             <Image
@@ -253,7 +216,7 @@
                             </Grid>
                         </DockPanel>
                     </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
+                </DataGrid.RowDetailsTemplate>-->
             </DataGrid>
         </Grid>
     </Grid>

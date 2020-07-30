@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converter\CarouselItemWidthConverter.cs" />
+    <Compile Include="Converter\IndexToOrderCountConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
@@ -301,6 +302,7 @@
     <None Include="Resource\Images\Products\banhcuonkemtuoitraxanh5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Resource\Images\Icons\order.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
