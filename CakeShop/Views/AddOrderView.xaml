@@ -303,7 +303,8 @@
                     BorderBrush="#7B7D7D"
                     BorderThickness="0,0,1,0"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ItemsSource="{Binding OrderedList}">
                     <!--<ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,6" Orientation="Horizontal">
@@ -313,7 +314,10 @@
                     </ListBox.ItemTemplate>-->
                     <ListBoxItem>
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="30" Height="30" />
+                            <Image 
+                                Width="30" 
+                                Height="30"
+                                />
                             <TextBlock
                                 Width="225"
                                 Margin="10,0,0,0"
@@ -331,7 +335,7 @@
                                 FontSize="13"
                                 Text="Size: L"
                                 TextWrapping="Wrap" />
-                            <TextBlock
+                            <TextBlock x:Name="TotalPriceProductTextblock"                                
                                 Width="63"
                                 Margin="15,0,0,0"
                                 FontSize="13"
@@ -369,6 +373,7 @@
                         Text="đ"
                         TextAlignment="Left" />
                     <TextBlock
+                        x:Name="TotalPriceProductsTextblock"
                         Grid.Column="3"
                         VerticalAlignment="Top"
                         FontSize="30"

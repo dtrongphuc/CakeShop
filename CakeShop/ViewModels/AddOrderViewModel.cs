@@ -15,6 +15,10 @@ namespace CakeShop.Views
         Product product = new Product();
         GetListObject GetList = new GetListObject();
         public string PriceProduct { get; set; }
+
+        //tổng giá 1 sản phẩm 
+        public string TotalPriceProductTextbox { get; set; }
+        public string TotalPriceProductsTextblock { get; set; }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
         int sum;
 
@@ -52,21 +56,28 @@ namespace CakeShop.Views
 
         public void AddToListbox()
         {
+            int Count = 0;
             string Productname = AddOrderView.Instance.CoboboxNameProduct.Text.Trim();
             string Priceproduct = AddOrderView.Instance.Priceproduct.Text.Trim();
             string Size = AddOrderView.Instance.CoboboxSize.Text.Trim();
             string Amount = AddOrderView.Instance.AmountProductTextbox.Text.Trim();
+            //tổng tiền 1 sản phẩm
+            int TotalPriceProduct = int.Parse(Amount) * int.Parse(Priceproduct);
+            //tổng tiền tất tất cả các sản phẩm
+            
 
             if(Productname != string.Empty && Size != string.Empty)
             {
+               
                 Product product = new Product();
                 //{
                 //    ProductName = Productname,
                 //    Price = Priceproduct,
                 //    si
                 //};
-                GetListObject getListObject = new GetListObject();
-               
+
+                //tăng có lượng thêm vào combobox
+                Count++;
             }
         }
     }
