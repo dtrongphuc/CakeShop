@@ -289,6 +289,7 @@
                         x:Name="AddToListbox"
                         Margin="90,0,9.8,0"
                         Background="#f0668d"
+                        Click="ADD_click"
                         Content="Thêm"
                         DockPanel.Dock="Right"
                         Foreground="#fff" />

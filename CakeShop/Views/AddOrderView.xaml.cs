@@ -73,7 +73,7 @@ namespace CakeShop.Views
             }
         }
 
-        private void Them_click(object sender, RoutedEventArgs e)
+        private void ADD_click(object sender, RoutedEventArgs e)
         {
             Product product = new Product();
             if (CoboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)

@@ -59,12 +59,12 @@ namespace CakeShop.ViewModels
             return avartar;
         }
 
-        public void AddImageProduct(List<FileInfo> ImagesFileList, int _ImagesAddCount, string avartar)
+        public void AddImageProduct(List<FileInfo> ImagesFileList, string avartar)
         {
             Models.Image image = new Models.Image();
             image.ImageUri = $"/Resource/Images/Products/{avartar}";
             image.Add();
-            for (int i = 1; i < _ImagesAddCount; i++)
+            for (int i = 1; i < ImagesFileList.Count; i++)
             {
                 if (ImagesFileList[i].Name != null)
                 {

@@ -118,16 +118,18 @@ namespace CakeShop.Views
                 var index = ComboboxCategory.SelectedIndex;
                  avartar = CurrentViewModel.AddProduct(Name.Text,index, price.Text, description.Text, ImagesFileList[0]);
             }
-            if (_ImagesAddCount > 0)
+            if (ImagesFileList.Count > 0)
             {
                 ///thêm ảnh vào database.
-                CurrentViewModel.AddImageProduct(ImagesFileList, _ImagesAddCount, avartar);
+                CurrentViewModel.AddImageProduct(ImagesFileList, avartar);
             }
             if (_listSizeProduct.Count > 0)
             {
                 ///thêm kích thước và số lượng vào database.
                 CurrentViewModel.AddSizeProduct(_listSizeProduct);
             }
+            MessageBox.Show("Thêm Bánh thành Công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
         private void AddSize_Click(object sender, RoutedEventArgs e)
@@ -141,6 +143,7 @@ namespace CakeShop.Views
                 sizeproduct.Quantity = quantity.Text.Trim();
             }
             _listSizeProduct.Add(sizeproduct);
+            MessageBox.Show("Thêm kích thước Bánh thành Công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
