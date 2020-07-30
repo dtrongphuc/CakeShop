@@ -48,18 +48,16 @@ namespace CakeShop.ViewModels
         /// <summary>
         /// Mở trang chi tiết 
         /// </summary>
-        /// <param name="productSelected">Sản phẩm được chọn</param>
-        public void ShowDetail(Product productSelected)
+        public void ShowDetail()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
             Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
-            parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
+            parentConductor.ActivateItem(new DetailProductViewModel(product.IdProduct));
         }
          
        
 
-        Image image1 = new Image();
         /// <summary>
         /// Phương thức xử lý update hình
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,25 +22,36 @@ namespace CakeShop.Views
     /// </summary>
     public partial class DetailProductView : UserControl
     {
+        public DetailProductViewModel CurrentViewModel { get; private set; } = null;
+
+        private int _currentElement { get; set; } = 0;
+        private int _maximumImagesCount { get; set; } = 0;
+
         public DetailProductView()
         {
             InitializeComponent();
         }
 
-        private int _currentElement = 0;
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as DetailProductViewModel;
+            _maximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
+            _currentElement = _maximumImagesCount >= 4 ? 4 : _maximumImagesCount;
+        }
+
         private void AnimateCarousel()
         {
             var carousel = VisualTreeHelpers.FindChild<StackPanel>(ImagesCarousel, "Carousel");
             Storyboard storyboard = (this.Resources["CarouselStoryboard"] as Storyboard);
             DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
             Storyboard.SetTarget(animation, carousel);
-            animation.To = -(ImagesCarousel.ActualWidth + 10) * _currentElement;
+            animation.To = -(ImagesCarousel.ActualWidth/4.0 + 2) * (_currentElement - 4);
             storyboard.Begin();
         }
 
         private void OnPrev_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_currentElement > 0)
+            if (_currentElement > 4)
             {
                 _currentElement--;
                 AnimateCarousel();
@@ -48,7 +60,7 @@ namespace CakeShop.Views
 
         private void OnNext_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_currentElement < 10)
+            if (_currentElement < _maximumImagesCount)
             {
                 _currentElement++;
                 AnimateCarousel();
