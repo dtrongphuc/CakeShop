@@ -194,6 +194,7 @@
                         ItemsSource="{Binding ProductsNameCombobox}" />
 
                     <TextBlock
+                        x:Name="Priceproduct"
                         Margin="20,15,0,0"
                         VerticalAlignment="Center"
                         materialDesign:HintAssist.Hint="Giá"
@@ -285,9 +286,9 @@
                         </Button>
                     </StackPanel>
                     <Button
+                        x:Name="AddToListbox"
                         Margin="90,0,9.8,0"
                         Background="#f0668d"
-                        Click="Them_click"
                         Content="Thêm"
                         DockPanel.Dock="Right"
                         Foreground="#fff" />

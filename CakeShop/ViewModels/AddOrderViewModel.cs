@@ -49,5 +49,25 @@ namespace CakeShop.Views
             product.Find(idproduct);
             PriceProduct = product.Price;
         }
+
+        public void AddToListbox()
+        {
+            string Productname = AddOrderView.Instance.CoboboxNameProduct.Text.Trim();
+            string Priceproduct = AddOrderView.Instance.Priceproduct.Text.Trim();
+            string Size = AddOrderView.Instance.CoboboxSize.Text.Trim();
+            string Amount = AddOrderView.Instance.AmountProductTextbox.Text.Trim();
+
+            if(Productname != string.Empty && Size != string.Empty)
+            {
+                Product product = new Product();
+                //{
+                //    ProductName = Productname,
+                //    Price = Priceproduct,
+                //    si
+                //};
+                GetListObject getListObject = new GetListObject();
+               
+            }
+        }
     }
 }
