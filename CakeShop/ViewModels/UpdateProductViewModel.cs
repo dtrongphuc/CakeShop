@@ -88,8 +88,18 @@ namespace CakeShop.ViewModels
             }
             product.Update();
             return avartar;
-        } 
-        
+        }
+
+        public string UpdateProductNoAvartar( string name, string price, string des)
+        {
+            string avartar = "";
+            product.ProductName = name;
+            product.Price = price;
+            product.Description = des;
+            product.Update();
+            return avartar;
+        }
+
         public void UpdateImageProduct(List<FileInfo> listimages, string avartar)
         {
 
