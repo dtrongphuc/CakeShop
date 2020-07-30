@@ -27,6 +27,11 @@ namespace CakeShop.Views
             InitializeComponent();
             OrderDay.SelectedDate = DateTime.Today;
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as AddOrderViewModel;
+        }
+
         private int sum=0;
         private List<DetailOrder> listOrder = new List<DetailOrder>();
 
@@ -93,6 +98,12 @@ namespace CakeShop.Views
                 sum += totalprice;
                 listOrder.Add(detail);
             }
+        }
+
+        private void CoboboxNameProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Product product = CoboboxNameProduct.SelectedItem as Product;
+            CurrentViewModel.BindingPriceProduct(product.IdProduct);
         }
     }
 }
