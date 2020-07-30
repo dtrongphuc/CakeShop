@@ -14,16 +14,15 @@ namespace CakeShop.ViewModels
     public class CreatProductViewModel : Screen
     {
         public BindableCollection<string> ImagesCarousel { get; set; } = new BindableCollection<string>();
+        GetListObject Getlist = new GetListObject();
+       
+        public BindableCollection<Category> ComboboxCategoryBD { get; set; }
         public ImageSource AddAvatar { get; set; }
 
         public CreatProductViewModel()
         {
-            //AddAvatar = new BitmapImage(new Uri(@"/Resource/Images/Products/detail-test.jpg", UriKind.Absolute));
-            //AddAvatar = ImageSource;
-            ImagesCarousel = new BindableCollection<string>
-            {
-               
-            };
+            //liệt kê trong các danh mục trong combobox
+            ComboboxCategoryBD = Getlist.Get_AllCategory();
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace CakeShop.ViewModels
         public void AddImageProduct(List<FileInfo> ImagesFileList, int _ImagesAddCount, string avartar)
         {
             Models.Image image = new Models.Image();
-            image.ImagUri = $"/Resource/Images/Products/{avartar}";
+            image.ImageUri = $"/Resource/Images/Products/{avartar}";
             image.Add();
             for (int i = 1; i < _ImagesAddCount; i++)
             {
@@ -71,7 +70,7 @@ namespace CakeShop.ViewModels
                 {
                     avartar = $"{Guid.NewGuid()}{ImagesFileList[i].Extension}";
                     ImagesFileList[i].CopyTo($"{folderfile}Resource\\Images\\Products\\{avartar}");
-                    image.ImagUri = $"/Resource/Images/Products/{avartar}";
+                    image.ImageUri = $"/Resource/Images/Products/{avartar}";
                     image.Add();
                 }
             }

@@ -42,6 +42,7 @@ namespace CakeShop.Models
             }
         }
 
+     
         private BindableCollection<SizeProduct> _listSizeProduct { get; set; } = new BindableCollection<SizeProduct>();
         public BindableCollection<SizeProduct> ListSizeProduct
         {
@@ -167,7 +168,7 @@ namespace CakeShop.Models
             {
                 Image image = new Image();
                 image.IdProduct = row["IDPRODUCT"].ToString();
-                image.ImagUri = row["IMAGE"].ToString();
+                image.ImageUri = row["IMAGE"].ToString();
                 ListImageProduct.Add(image);
             }
             return ListImageProduct;

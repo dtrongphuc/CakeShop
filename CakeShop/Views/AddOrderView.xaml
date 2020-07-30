@@ -178,7 +178,7 @@
                 Grid.Column="2"
                 Margin="4,10,4,4">
                 <ComboBox
-                    Width="477"
+                    Width="334"
                     Height="64"
                     Margin="10,15,0,0"
                     Padding="5,10"

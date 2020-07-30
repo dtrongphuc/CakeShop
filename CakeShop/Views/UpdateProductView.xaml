@@ -14,6 +14,7 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
         <cv:CarouselItemWidthConverter x:Key="itemWidthConverter" />
         <sys:Int32 x:Key="ItemOfCarousel">4</sys:Int32>
         <Storyboard x:Key="CarouselStoryboard">
@@ -295,14 +296,14 @@
                                 </Border.Background>
                             </Border>
                             <ListView
-                                x:Name="ImagesCarousel"
-                                Width="{Binding ActualWidth, ElementName=MainLeft}"
-                                BorderThickness="0"
-                                PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-                                ScrollViewer.CanContentScroll="False"
-                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                Style="{StaticResource ListViewStyle}">
+                            x:Name="ImagesCarousel"
+                            Width="{Binding ActualWidth, ElementName=MainLeft}"
+                            BorderThickness="0"
+                            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                            ScrollViewer.CanContentScroll="False"
+                            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            Style="{StaticResource ListViewStyle}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="Background" Value="Transparent" />
@@ -318,20 +319,20 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Border
-                                            Width="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
-                                            Height="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
-                                            Margin="0,0,4,0"
-                                            BorderBrush="#FF666666"
-                                            BorderThickness="0.5"
-                                            Cursor="Hand">
+                                        Width="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Height="{Binding ActualWidth, ElementName=ImagesCarousel, Converter={StaticResource itemWidthConverter}, ConverterParameter={StaticResource ItemOfCarousel}}"
+                                        Margin="0,0,4,0"
+                                        BorderBrush="#FF666666"
+                                        BorderThickness="0.5"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="OnSelectedImage_MouseLeftButtonDown">
                                             <Border.Background>
                                                 <ImageBrush
-                                                    ImageSource="{Binding}"
-                                                    RenderOptions.BitmapScalingMode="HighQuality"
-                                                    Stretch="UniformToFill" />
+                                                ImageSource="{Binding ImageUri, Converter={StaticResource pathConverter}}"
+                                                RenderOptions.BitmapScalingMode="HighQuality"
+                                                Stretch="Fill" />
                                             </Border.Background>
                                         </Border>
-
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -368,7 +369,7 @@
                             FontWeight="DemiBold"
                             Foreground="#000"
                             Style="{StaticResource CommonBox}"
-                            Text="BASAS BLACK LACE - LOW TOP - DARK GREY" 
+                            Text="{Binding ProductName}" 
                             Name="NameProduct"/>
                         <TextBox
                             Height="60"
@@ -379,7 +380,7 @@
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
                             Style="{StaticResource CommonBox}"
-                            Text="450.000 VND" />
+                            Text="{Binding Price}" />
 
                         <Rectangle
                             Height="1"
@@ -394,12 +395,14 @@
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
                             SelectionMode="Extended"
-                            SelectionUnit="Cell">
+                            SelectionUnit="Cell"
+                            ItemsSource="{Binding SizeQuantify}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"
                                     Header="Size"
-                                    IsReadOnly="True">
+                                    IsReadOnly="True"
+                                    Binding="{Binding Size}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
                                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -414,7 +417,8 @@
                                     FontSize="26"
                                     FontWeight="ExtraBold"
                                     Header="Số lượng"
-                                    IsReadOnly="True">
+                                    IsReadOnly="True"
+                                    Binding="{Binding Quantity}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
                                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -441,7 +445,7 @@
                             FontSize="16"
                             FontWeight="Thin"
                             Style="{StaticResource CommonBox}"
-                            Text="Vẫn sử dụng những màu sắc cơ bản của Basas, Basas Black Lace Pack trở nên mạnh mẻ, ấn tượng hơn khi sử dụng dây giày màu đen làm điểm nhấn cho bản phối màu trắng-đen-xám tưởng chừng quá quen thuộc. Dáng giày low top cổ điển, đây sẽ là một lựa chọn an toàn nhưng không nhàm chán." />
+                            Text="{Binding Descriptiontext}" />
                     </StackPanel>
                 </Grid>
             </Grid>

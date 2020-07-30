@@ -78,7 +78,7 @@ namespace CakeShop.Views
                 parent.RaiseEvent(eventArg);
             }
         }
-        
+
         /// <summary>
         /// Thêm hình
         /// </summary>
@@ -105,6 +105,11 @@ namespace CakeShop.Views
                 // Liên lạc với viewmodel để thêm hình vào binding list
                 CurrentViewModel.UpdateImages(ImagesFileList);
             }
+        }
+
+        private void OnSelectedImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
