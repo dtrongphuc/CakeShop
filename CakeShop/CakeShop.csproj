@@ -301,6 +301,21 @@
     <None Include="Resource\Images\Products\banhcuonkemtuoitraxanh5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resource\Images\Products\banhkemteddy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
