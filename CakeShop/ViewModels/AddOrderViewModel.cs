@@ -18,7 +18,16 @@ namespace CakeShop.Views
         public string PriceProduct { get; set; }
         private int sum = 0;
         //tổng giá 1 sản phẩm 
-        public string TotalPriceProductsTextblock { get; set; }
+        private string _totalPriceProductsTextBlock;
+        public string TotalPriceProductsTextblock
+        {
+            get { return _totalPriceProductsTextBlock; }
+            set
+            {
+                _totalPriceProductsTextBlock = value;
+                NotifyOfPropertyChange(() => TotalPriceProductsTextblock);
+            }
+        }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
         private List<DetailOrder> listOrder = new List<DetailOrder>();
         public BindableCollection<dynamic> OrderedList { get; set; } = new BindableCollection<dynamic>();
@@ -26,7 +35,7 @@ namespace CakeShop.Views
         public AddOrderViewModel()
         {
             ProductsNameCombobox = GetList.Get_AllProduct();
-
+            TotalPriceProductsTextblock = "0";
         }
         public void AddOrder(string name, string email, string address, string des, string date, int status)
         {

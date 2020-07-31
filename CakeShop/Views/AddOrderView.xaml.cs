@@ -69,10 +69,6 @@ namespace CakeShop.Views
           
                 /// goi hàm thêm vào database. sum là tổng tiền tất cả các sản phẩm
                 CurrentViewModel.AddDetailOrder();
-            
-
-
-           
         }
 
         private void ADD_click(object sender, RoutedEventArgs e)
@@ -92,8 +88,7 @@ namespace CakeShop.Views
 
                 //gọi hàm binding
                 CurrentViewModel.AddToListbox(size, Amount, index);
-
             }
-}
+        }
     }
 }

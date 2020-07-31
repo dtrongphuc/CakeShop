@@ -2,9 +2,9 @@
     x:Class="CakeShop.Views.AddOrderView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:cv="clr-namespace:CakeShop.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CakeShop.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -183,41 +183,41 @@
                 <DockPanel LastChildFill="True">
                     <StackPanel>
                         <TextBlock
-                            Text="Tên sản phẩm"
                             Margin="15,0,0,0"
+                            FontWeight="ExtraBold"
                             Foreground="#c4c4c4"
-                            FontWeight="ExtraBold"/>
+                            Text="Tên sản phẩm" />
                         <ComboBox
-                        x:Name="CoboboxNameProduct"
-                        Width="334"
-                        Height="64"
-                        Padding="15,20"
-                        HorizontalAlignment="Left"
-                        materialDesign:HintAssist.Hint="Tên sản phẩm"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        DisplayMemberPath="ProductName"
-                        DockPanel.Dock="Left"
-                        FontSize="18"
-                        ItemsSource="{Binding ProductsNameCombobox}" />
+                            x:Name="CoboboxNameProduct"
+                            Width="334"
+                            Height="64"
+                            Padding="15,20"
+                            HorizontalAlignment="Left"
+                            materialDesign:HintAssist.Hint="Tên sản phẩm"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            BorderThickness="0"
+                            DisplayMemberPath="ProductName"
+                            DockPanel.Dock="Left"
+                            FontSize="18"
+                            ItemsSource="{Binding ProductsNameCombobox}" />
 
                     </StackPanel>
                     <StackPanel Margin="20,0,0,0" DockPanel.Dock="Right">
                         <TextBlock
-                            Text="Giá"
-                            TextAlignment="Center"
+                            FontWeight="ExtraBold"
                             Foreground="#c4c4c4"
-                            FontWeight="ExtraBold"                            />
+                            Text="Giá"
+                            TextAlignment="Center" />
                         <TextBlock
-                        x:Name="PriceproductTextblock"
-                        materialDesign:HintAssist.Hint="Giá"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        FontSize="20"
-                        FontWeight="ExtraBlack"
-                        Foreground="#f0668d"
-                        Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
-                        TextAlignment="Center"
-                            Margin="0,20"/>
+                            x:Name="PriceproductTextblock"
+                            Margin="0,20"
+                            materialDesign:HintAssist.Hint="Giá"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            FontSize="20"
+                            FontWeight="ExtraBlack"
+                            Foreground="#f0668d"
+                            Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
+                            TextAlignment="Center" />
                     </StackPanel>
 
                 </DockPanel>
@@ -293,7 +293,6 @@
                             TextAlignment="Center" />
                         <Button
                             Grid.Column="0"
-                            Width="40"
                             Background="Transparent"
                             BorderThickness="0"
                             Click="BtnPlusNumProduct_Click">
@@ -316,67 +315,61 @@
                     HorizontalAlignment="Stretch"
                     BorderBrush="#7B7D7D"
                     BorderThickness="0,0,1,0"
+                    ItemsSource="{Binding OrderedList}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    ItemsSource="{Binding OrderedList}">
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Image 
-                                Width="30" 
-                                Height="30"
-                                Source="{Binding image, Converter={StaticResource pathConverter}}"
-                                />
+                                <Image
+                                    Width="30"
+                                    Height="30"
+                                    Source="{Binding image, Converter={StaticResource pathConverter}}" />
                                 <TextBlock
-                                Width="200"
-                                Margin="10,0,0,0"
-                                FontSize="13"
-                                FontWeight="DemiBold"
-                                Text="{Binding nameProduct}"
-                                TextWrapping="Wrap"
-                                    VerticalAlignment="Center"/>
-                                <StackPanel 
-                                    Orientation="Horizontal"
-                                    Margin="10,0,0,0">
+                                    Width="200"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="13"
+                                    FontWeight="DemiBold"
+                                    Text="{Binding nameProduct}"
+                                    TextWrapping="Wrap" />
+                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <TextBlock
+                                        VerticalAlignment="Center"
                                         FontSize="13"
-                                         Text="Số lượng: "
-                                         TextWrapping="Wrap"
-                                        VerticalAlignment="Center"/>
+                                        Text="Số lượng: "
+                                        TextWrapping="Wrap" />
                                     <TextBlock
-                                         FontSize="13"
-                                         Text="{Binding Quantity}"
-                                         TextWrapping="Wrap"
-                                        VerticalAlignment="Center"/>
+                                        VerticalAlignment="Center"
+                                        FontSize="13"
+                                        Text="{Binding Quantity}"
+                                        TextWrapping="Wrap" />
 
                                 </StackPanel>
-                                <StackPanel 
-                                    Orientation="Horizontal"
-                                    Margin="10,0,0,0">
+                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <TextBlock
+                                        VerticalAlignment="Center"
                                         FontSize="13"
-                                         Text="Size: "
-                                         TextWrapping="Wrap" 
-                                        VerticalAlignment="Center"/>
+                                        Text="Size: "
+                                        TextWrapping="Wrap" />
                                     <TextBlock
+                                        VerticalAlignment="Center"
                                         FontSize="13"
                                         Text="{Binding size}"
-                                        TextWrapping="Wrap" 
-                                        VerticalAlignment="Center"/>
+                                        TextWrapping="Wrap" />
                                 </StackPanel>
 
-                                <TextBlock 
-                                x:Name="TotalPriceProductTextblock"                                
-                                Width="63"
-                                Margin="15,0,0,0"
-                                FontSize="13"
-                                Foreground="Red"
-                                Text="{Binding price}" 
-                                    VerticalAlignment="Center"/>
+                                <TextBlock
+                                    x:Name="TotalPriceProductTextblock"
+                                    Width="63"
+                                    Margin="15,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="13"
+                                    Foreground="Red"
+                                    Text="{Binding price}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
                 </ListBox>
 
                 <Grid Margin="0,15,0,0">
@@ -413,8 +406,6 @@
                         TextAlignment="Left" />
                 </Grid>
             </StackPanel>
-
         </Grid>
     </Grid>
-
 </UserControl>
