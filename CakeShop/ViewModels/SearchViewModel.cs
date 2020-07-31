@@ -30,12 +30,13 @@ namespace CakeShop.ViewModels
                 List<string> IDproducts = new List<string>();
                 foreach (var item in SearchListproduct)
                 {
-                    //if (!IDproducts.Contains(item.IdProduct))
-                    //{
-                    //    IDproducts.Add(item.IdProduct);
-                    //    dynamic productsearch = product.Find(item.IdProduct);
-                    //    Products.Add(productsearch);
-                    //}
+                    if (!IDproducts.Contains(item.IdProduct))
+                    {
+                        IDproducts.Add(item.IdProduct);
+                        //dynamic productsearch = product.Find(item.IdProduct);
+                        product.Find(item.IdProduct);
+                        Products.Insert(0, product);
+                    }
                 }
             }
         }
@@ -52,6 +53,13 @@ namespace CakeShop.ViewModels
                 subnets = productlist.Where(i => i.ProductName.ToLower().Contains(keyword.ToLower()));
             }
             return subnets;
+        }
+        public void ShowDetail(Product productSelected)
+        {
+            var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
+            Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
+            MainConductor.DeactivateItem(MainConductor.Items[0], true);
+            parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
 
     }
