@@ -189,15 +189,15 @@
                 <DockPanel Background="#f0668d" LastChildFill="True">
                     <Grid DockPanel.Dock="Right">
                         <Button
+                            x:Name="SearchButton"
+                            Click="SearchButton_Click"
                             Width="56"
                             Height="40"
                             Margin="0,0,26,0"
-                            cal:Message.Attach="[Event Click] = [Action ShowSearch]"
                             materialDesign:ButtonAssist.CornerRadius="4"
                             Background="#fff"
                             BorderBrush="#000"
                             BorderThickness="1"
-                            Click="BtnSearch_Click"
                             Foreground="#000"
                             IsDefault="True"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"

@@ -166,7 +166,7 @@
                 <TextBox
                     Name="Description"
                     Grid.Row="9"
-                    Height="148"
+                    Height="117"
                     Margin="10,30,9.6,0"
                     Padding="12,4"
                     materialDesign:HintAssist.Hint="Mô tả đơn hàng"
@@ -181,12 +181,17 @@
                 Grid.Column="2"
                 Margin="4,10,4,4">
                 <DockPanel LastChildFill="True">
-                    <ComboBox
+                    <StackPanel>
+                        <TextBlock
+                            Text="Tên sản phẩm"
+                            Margin="15,0,0,0"
+                            Foreground="#c4c4c4"
+                            FontWeight="ExtraBold"/>
+                        <ComboBox
                         x:Name="CoboboxNameProduct"
                         Width="334"
                         Height="64"
-                        Margin="10,15,0,0"
-                        Padding="5,10"
+                        Padding="15,20"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Tên sản phẩm"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -196,18 +201,25 @@
                         FontSize="18"
                         ItemsSource="{Binding ProductsNameCombobox}" />
 
-                    <TextBlock
+                    </StackPanel>
+                    <StackPanel Margin="20,0,0,0" DockPanel.Dock="Right">
+                        <TextBlock
+                            Text="Giá"
+                            TextAlignment="Center"
+                            Foreground="#c4c4c4"
+                            FontWeight="ExtraBold"                            />
+                        <TextBlock
                         x:Name="PriceproductTextblock"
-                        Margin="20,15,0,0"
-                        VerticalAlignment="Center"
                         materialDesign:HintAssist.Hint="Giá"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        DockPanel.Dock="Right"
                         FontSize="20"
                         FontWeight="ExtraBlack"
                         Foreground="#f0668d"
                         Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
-                        TextAlignment="Center" />
+                        TextAlignment="Center"
+                            Margin="0,20"/>
+                    </StackPanel>
+
                 </DockPanel>
 
                 <StackPanel Margin="00,10,0,0" Orientation="Horizontal">
@@ -316,35 +328,54 @@
                                 Source="{Binding image, Converter={StaticResource pathConverter}}"
                                 />
                                 <TextBlock
-                                Width="225"
+                                Width="200"
                                 Margin="10,0,0,0"
                                 FontSize="13"
                                 FontWeight="DemiBold"
                                 Text="{Binding nameProduct}"
-                                TextWrapping="Wrap" />
-                                <TextBlock
-                                Margin="10,0,0,0"
-                                FontSize="13"
-                                Text="{Binding Quantity}"
-                                TextWrapping="Wrap" />
-                                <TextBlock
-                                Margin="10,0,0,0"
-                                FontSize="13"
-                                Text="{Binding size}"
-                                TextWrapping="Wrap" />
+                                TextWrapping="Wrap"
+                                    VerticalAlignment="Center"/>
+                                <StackPanel 
+                                    Orientation="Horizontal"
+                                    Margin="10,0,0,0">
+                                    <TextBlock
+                                        FontSize="13"
+                                         Text="Số lượng: "
+                                         TextWrapping="Wrap"
+                                        VerticalAlignment="Center"/>
+                                    <TextBlock
+                                         FontSize="13"
+                                         Text="{Binding Quantity}"
+                                         TextWrapping="Wrap"
+                                        VerticalAlignment="Center"/>
+
+                                </StackPanel>
+                                <StackPanel 
+                                    Orientation="Horizontal"
+                                    Margin="10,0,0,0">
+                                    <TextBlock
+                                        FontSize="13"
+                                         Text="Size: "
+                                         TextWrapping="Wrap" 
+                                        VerticalAlignment="Center"/>
+                                    <TextBlock
+                                        FontSize="13"
+                                        Text="{Binding size}"
+                                        TextWrapping="Wrap" 
+                                        VerticalAlignment="Center"/>
+                                </StackPanel>
+
                                 <TextBlock 
                                 x:Name="TotalPriceProductTextblock"                                
                                 Width="63"
                                 Margin="15,0,0,0"
                                 FontSize="13"
                                 Foreground="Red"
-                                Text="{Binding price}" />
+                                Text="{Binding price}" 
+                                    VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
-
-
 
                 </ListBox>
 
@@ -372,13 +403,13 @@
                         Text="đ"
                         TextAlignment="Left" />
                     <TextBlock
-                        x:Name="TotalPriceProductsTextblock"
+                        x:Name="TotalPriceProducts"
                         Grid.Column="3"
                         VerticalAlignment="Top"
                         FontSize="30"
                         FontWeight="Medium"
                         Foreground="Red"
-                        Text="{Binding}"
+                        Text="{Binding TotalPriceProductsTextblock}"
                         TextAlignment="Left" />
                 </Grid>
             </StackPanel>

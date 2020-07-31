@@ -18,7 +18,6 @@ namespace CakeShop.Views
         public string PriceProduct { get; set; }
         private int sum = 0;
         //tổng giá 1 sản phẩm 
-        public string TotalPriceProductTextbox { get; set; }
         public string TotalPriceProductsTextblock { get; set; }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
         private List<DetailOrder> listOrder = new List<DetailOrder>();
@@ -65,6 +64,7 @@ namespace CakeShop.Views
 
             DetailOrder detail = new DetailOrder();
             product.Find((index + 1).ToString());
+            //thành tiền sản phẩm
             int totalprice = int.Parse(product.Price) * int.Parse(Amount);
             detail.PriceTotal = totalprice.ToString();
             detail.Quantity = Amount;
@@ -76,6 +76,9 @@ namespace CakeShop.Views
             OrderedList.Insert(0, GetList.Get_ProductAndSizeProduct(detail, product));
 
             listOrder.Add(detail);
+
+            //binding tổng tiền
+            TotalPriceProductsTextblock = sum.ToString();
         }
     }
 }

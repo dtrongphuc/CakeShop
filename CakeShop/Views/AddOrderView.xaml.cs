@@ -23,14 +23,12 @@ namespace CakeShop.Views
     public partial class AddOrderView : UserControl
     {
         AddOrderViewModel CurrentViewModel = null;
-        public static AddOrderView Instance { get; set; }
         GetListObject getlist = new GetListObject();
 
         public AddOrderView()
         {
             InitializeComponent();
             OrderDay.SelectedDate = DateTime.Today;
-            Instance = this;
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -96,11 +94,6 @@ namespace CakeShop.Views
                 CurrentViewModel.AddToListbox(size, Amount, index);
 
             }
-
-
-           
-
-
-        }
+}
     }
 }
