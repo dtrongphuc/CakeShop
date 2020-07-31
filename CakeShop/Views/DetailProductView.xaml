@@ -224,7 +224,9 @@
                         Grid.Row="0"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        BorderBrush="#FF8F8F8F"
+                        BorderThickness="0.5">
                         <Border.Background>
                             <ImageBrush ImageSource="{Binding ImageSelectChange, Converter={StaticResource pathConverter}}" Stretch="Uniform" />
                         </Border.Background>
@@ -348,6 +350,7 @@
                             IsReadOnly="True"
                             ItemsSource="{Binding SizeQuantify}"
                             PreviewMouseWheel="Datagrid_PreviewMouseWheel"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             SelectionMode="Extended"
                             SelectionUnit="Cell">
                             <DataGrid.Columns>

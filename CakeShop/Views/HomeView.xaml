@@ -205,8 +205,8 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Button
-                                        Width="344"
-                                        Height="188"
+                                        Width="348"
+                                        Height="194"
                                         Margin="4,10"
                                         Padding="0"
                                         Panel.ZIndex="99"
@@ -218,7 +218,7 @@
                                         <materialDesign:Card
                                             Width="340"
                                             Padding="-1,0"
-                                            materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                             materialDesign:ShadowAssist.ShadowEdges="All"
                                             UniformCornerRadius="4">
                                             <Grid>

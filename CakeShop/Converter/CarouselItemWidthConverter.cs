@@ -14,7 +14,7 @@ namespace CakeShop.Converter
         {
             int param = (int)parameter;
             double width = (double)value;
-            return ((width / param) - 2);
+            return ((width / param) - 3);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
