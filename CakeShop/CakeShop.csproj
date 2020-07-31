@@ -131,6 +131,7 @@
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\UpdateProductViewModel.cs" />
+	
     <Compile Include="Views\AddOrderView.xaml.cs">
       <DependentUpon>AddOrderView.xaml</DependentUpon>
     </Compile>
@@ -232,16 +233,15 @@
   <ItemGroup>
     <Resource Include="Resource\Images\Icons\arrow-end-left.png" />
     <Resource Include="Resource\Images\Icons\arrow-end-right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resource\Images\Products\detail-test.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Resource Include="Resource\Images\Icons\chevron.png" />
+	<Resource Include="Resource\Images\Icons\chevron.png" />
     <Resource Include="Resource\Images\Icons\chevron-right.png" />
     <Resource Include="Resource\Images\Icons\picture.png" />
-    <Resource Include="Resource\Images\Icons\icon.ico" />
+    <Resource Include="Resource\Images\Icons\order.png" />
+	<Resource Include="Resource\Images\Icons\Minus.png" />
+	<Resource Include="Resource\Images\Icons\plus.png" />
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resource\Images\Products\banhquysua1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -302,7 +302,120 @@
     <None Include="Resource\Images\Products\banhcuonkemtuoitraxanh5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Resource Include="Resource\Images\Icons\order.png" />
+    <None Include="Resource\Images\Products\banhkemteddy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhkemteddy5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhtuoinhantrungsua1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhtuoinhantrungsua2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhtuoinhantrungsua3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhtuoinhantrungsua4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhtuoinhantrungsua5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhcuonsocolamieng1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhcuonsocolamieng2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhcuonsocolamieng3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhcuonsocolamieng4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhcuonsocolamieng5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhquyvung1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhquyvung2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhquyvung3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhquyvung4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\banhquyvung5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\crowncake1.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\crowncake2.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\crowncake3.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\swancake1.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\swancake2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\swancake3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\swancake4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\swancake5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\cheesecake1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\cheesecake2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\cheesecake3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\cheesecake4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\cheesecake5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\sandwichcanguphomai1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\sandwichcanguphomai2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\sandwichcanguphomai3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\sandwichcanguphomai4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resource\Images\Products\sandwichcanguphomai5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

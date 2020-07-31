@@ -112,11 +112,11 @@ namespace CakeShop.Views
         private void Submit_click(object sender, RoutedEventArgs e)
         {
             string avartar = "";
-            if (Name.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
+            if (ProductName.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
             {
                 //thêm sản phẩm vào database
                 var index = ComboboxCategory.SelectedIndex;
-                 avartar = CurrentViewModel.AddProduct(Name.Text,index, price.Text, description.Text, ImagesFileList[0]);
+                 avartar = CurrentViewModel.AddProduct(ProductName.Text,index, price.Text, description.Text, ImagesFileList[0]);
             }
             if (ImagesFileList.Count > 0)
             {
