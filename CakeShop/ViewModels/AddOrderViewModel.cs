@@ -56,7 +56,6 @@ namespace CakeShop.Views
         }
 
         private int sum = 0;
-        int Totalproductlist = 0;
         
         public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {
@@ -77,11 +76,8 @@ namespace CakeShop.Views
 
             listOrder.Add(detail);
 
-
-            //lưu lại số tiền hiện tại trong listbox
-            Totalproductlist += totalprice;
             //binding tổng tiền
-            TotalPriceProductsTextblock = Totalproductlist.ToString();
+            TotalPriceProductsTextblock = sum.ToString();
         }
     }
 }

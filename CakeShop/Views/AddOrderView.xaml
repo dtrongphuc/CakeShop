@@ -181,12 +181,17 @@
                 Grid.Column="2"
                 Margin="4,10,4,4">
                 <DockPanel LastChildFill="True">
-                    <ComboBox
+                    <StackPanel>
+                        <TextBlock
+                            Text="Tên sản phẩm"
+                            Margin="15,0,0,0"
+                            Foreground="#c4c4c4"
+                            FontWeight="ExtraBold"/>
+                        <ComboBox
                         x:Name="CoboboxNameProduct"
                         Width="334"
                         Height="64"
-                        Margin="10,15,0,0"
-                        Padding="5,10"
+                        Padding="15,20"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Tên sản phẩm"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -196,18 +201,25 @@
                         FontSize="18"
                         ItemsSource="{Binding ProductsNameCombobox}" />
 
-                    <TextBlock
+                    </StackPanel>
+                    <StackPanel Margin="20,0,0,0" DockPanel.Dock="Right">
+                        <TextBlock
+                            Text="Giá"
+                            TextAlignment="Center"
+                            Foreground="#c4c4c4"
+                            FontWeight="ExtraBold"                            />
+                        <TextBlock
                         x:Name="PriceproductTextblock"
-                        Margin="20,15,0,0"
-                        VerticalAlignment="Center"
                         materialDesign:HintAssist.Hint="Giá"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        DockPanel.Dock="Right"
                         FontSize="20"
                         FontWeight="ExtraBlack"
                         Foreground="#f0668d"
                         Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
-                        TextAlignment="Center" />
+                        TextAlignment="Center"
+                            Margin="0,20"/>
+                    </StackPanel>
+
                 </DockPanel>
 
                 <StackPanel Margin="00,10,0,0" Orientation="Horizontal">
@@ -352,7 +364,7 @@
                                         TextWrapping="Wrap" 
                                         VerticalAlignment="Center"/>
                                 </StackPanel>
-                               
+
                                 <TextBlock 
                                 x:Name="TotalPriceProductTextblock"                                
                                 Width="63"

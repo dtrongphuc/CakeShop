@@ -232,7 +232,7 @@ namespace CakeShop.Models
             productAndSize.nameProduct = product.ProductName;
             productAndSize.size = detail.Size;
             productAndSize.Quantity = detail.Quantity;
-            productAndSize.price = product.Price;
+            productAndSize.price = detail.PriceTotal;
             return productAndSize;
         }
     }
