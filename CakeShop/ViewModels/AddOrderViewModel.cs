@@ -16,7 +16,7 @@ namespace CakeShop.Views
         Product product = new Product();
         GetListObject GetList = new GetListObject();
         public string PriceProduct { get; set; }
-
+        private int sum = 0;
         //tổng giá 1 sản phẩm 
         public string TotalPriceProductTextbox { get; set; }
         public string TotalPriceProductsTextblock { get; set; }
@@ -27,8 +27,9 @@ namespace CakeShop.Views
         public AddOrderViewModel()
         {
             ProductsNameCombobox = GetList.Get_AllProduct();
+
         }
-        public void AddOrder(string name, string email, string address, string des, string date, int status, int sum)
+        public void AddOrder(string name, string email, string address, string des, string date, int status)
         {
             Order order = new Order();
             order.CustomerName = name;
@@ -41,9 +42,9 @@ namespace CakeShop.Views
             order.Add();
         }
 
-        public void AddDetailOrder(List<DetailOrder> list)
+        public void AddDetailOrder()
         {
-            foreach(var detail in list)
+            foreach(var detail in listOrder)
             {
                 detail.Add();
             }
@@ -56,7 +57,7 @@ namespace CakeShop.Views
             PriceProduct = product.Price;
         }
 
-        private int sum = 0;
+       
         
         public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {

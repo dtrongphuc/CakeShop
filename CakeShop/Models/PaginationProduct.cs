@@ -25,7 +25,7 @@ namespace CakeShop.Models
             }
         }
 
-        private int _record1page = 8;
+        private int _record1page = 6;
         public int record1page
         {
             get { return _record1page; }

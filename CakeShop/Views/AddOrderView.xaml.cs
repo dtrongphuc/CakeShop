@@ -37,7 +37,7 @@ namespace CakeShop.Views
             CurrentViewModel = Main.DataContext as AddOrderViewModel;
         }
 
-        private int sum=0;
+      
         private List<DetailOrder> listOrder = new List<DetailOrder>();
 
         private void BtnMinusNumProduct_Click(object sender, RoutedEventArgs e)
@@ -62,18 +62,19 @@ namespace CakeShop.Views
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            //if (listOrder.Count > 0)
-            //{
-            //    / goi hàm thêm vào database. sum là tổng tiền tất cả các sản phẩm
-            //    CurrentViewModel.AddDetailOrder(listOrder);
-            //}
+
+            if (NameCustomer.Text.Trim() != string.Empty && EmailCustomer.Text.Trim() != string.Empty && AddressCustomer.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty && OrderDay.Text.Trim() != string.Empty)
+            {
+                var index = CoboboxStatus.SelectedIndex;///trang thái
+                CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text, index);
+            }
+          
+                /// goi hàm thêm vào database. sum là tổng tiền tất cả các sản phẩm
+                CurrentViewModel.AddDetailOrder();
+            
 
 
-            //if (NameCustomer.Text.Trim() != string.Empty && EmailCustomer.Text.Trim() != string.Empty && AddressCustomer.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty && OrderDay.Text.Trim() != string.Empty)
-            //{
-            //    var index = CoboboxStatus.SelectedIndex;//trang thái
-            //    CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text, index, sum);
-            //}
+           
         }
 
         private void ADD_click(object sender, RoutedEventArgs e)

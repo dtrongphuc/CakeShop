@@ -239,6 +239,12 @@
                             <TextBlock
                                 FontSize="20"
                                 IsEnabled="True"
+                                Text="S"
+                                TextAlignment="Center" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock
+                                FontSize="20"
                                 Text="M"
                                 TextAlignment="Center" />
                         </ComboBoxItem>
@@ -246,12 +252,6 @@
                             <TextBlock
                                 FontSize="20"
                                 Text="L"
-                                TextAlignment="Center" />
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock
-                                FontSize="20"
-                                Text="XL"
                                 TextAlignment="Center" />
                         </ComboBoxItem>
                     </ComboBox>
@@ -378,7 +378,7 @@
                         FontSize="30"
                         FontWeight="Medium"
                         Foreground="Red"
-                        Text="100.000"
+                        Text="{Binding}"
                         TextAlignment="Left" />
                 </Grid>
             </StackPanel>
