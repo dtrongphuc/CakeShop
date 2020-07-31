@@ -328,7 +328,7 @@
                                 Source="{Binding image, Converter={StaticResource pathConverter}}"
                                 />
                                 <TextBlock
-                                Width="225"
+                                Width="200"
                                 Margin="10,0,0,0"
                                 FontSize="13"
                                 FontWeight="DemiBold"
