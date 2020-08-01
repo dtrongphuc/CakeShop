@@ -33,8 +33,8 @@ namespace CakeShop.ViewModels
                     if (!IDproducts.Contains(item.IdProduct))
                     {
                         IDproducts.Add(item.IdProduct);
-                        //dynamic productsearch = product.Find(item.IdProduct);
                         product.Find(item.IdProduct);
+                        //Add vào list binding
                         Products.Insert(0, product);
                     }
                 }
