@@ -131,7 +131,6 @@
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\UpdateProductViewModel.cs" />
-	
     <Compile Include="Views\AddOrderView.xaml.cs">
       <DependentUpon>AddOrderView.xaml</DependentUpon>
     </Compile>
@@ -233,12 +232,12 @@
   <ItemGroup>
     <Resource Include="Resource\Images\Icons\arrow-end-left.png" />
     <Resource Include="Resource\Images\Icons\arrow-end-right.png" />
-	<Resource Include="Resource\Images\Icons\chevron.png" />
+    <Resource Include="Resource\Images\Icons\chevron.png" />
     <Resource Include="Resource\Images\Icons\chevron-right.png" />
     <Resource Include="Resource\Images\Icons\picture.png" />
     <Resource Include="Resource\Images\Icons\order.png" />
-	<Resource Include="Resource\Images\Icons\Minus.png" />
-	<Resource Include="Resource\Images\Icons\plus.png" />
+    <Resource Include="Resource\Images\Icons\Minus.png" />
+    <Resource Include="Resource\Images\Icons\plus.png" />
     <Resource Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>

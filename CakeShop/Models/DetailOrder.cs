@@ -96,7 +96,7 @@ namespace CakeShop.Models
         public bool Find(string id)
         {
             bool check = false;
-             sql = $"SELECT * FROM DETAILORDER WHERE IDORDER={id}";
+            sql = $"SELECT * FROM DETAILORDER WHERE IDORDER={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
             {

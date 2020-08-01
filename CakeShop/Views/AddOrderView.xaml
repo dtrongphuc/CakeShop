@@ -80,7 +80,6 @@
                     Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             </StackPanel>
 
-
             <StackPanel Grid.Row="1" Margin="00,15,0,0">
                 <TextBox
                     Name="NameCustomer"
@@ -106,9 +105,6 @@
                     Foreground="#000"
                     Style="{StaticResource CommonBox}"
                     Text="" />
-
-
-
 
                 <TextBox
                     Name="AddressCustomer"
@@ -236,7 +232,7 @@
                         Foreground="#cfcfcf"
                         Text="Số lượng" />
                 </StackPanel>
-                <StackPanel Margin="10,0,-0.2,0" Orientation="Horizontal">
+                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                     <ComboBox
                         Name="CoboboxSize"
                         Width="97"
@@ -268,14 +264,10 @@
                         </ComboBoxItem>
                     </ComboBox>
 
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="80,0,0,0"
-                        Orientation="Horizontal">
+                    <StackPanel Margin="80,0,0,0" Orientation="Horizontal">
                         <Button
                             x:Name="BtnMinusNumProduct"
                             Grid.Column="0"
-                            Width="40"
                             Background="Transparent"
                             BorderThickness="0"
                             Click="BtnMinusNumProduct_Click">

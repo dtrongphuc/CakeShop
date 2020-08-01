@@ -10,7 +10,7 @@
     d:DesignHeight="700"
     d:DesignWidth="1200"
     mc:Ignorable="d">
-    <Grid Background="#fff">
+    <Grid Background="#F2F2F9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="24" />
             <ColumnDefinition Width="4*" />
@@ -27,7 +27,9 @@
             Grid.Column="1"
             Margin="12"
             Padding="4,4,4,12"
-            Background="#fff">
+            materialDesign:ShadowAssist.ShadowDepth="Depth1"
+            Background="#fff"
+            UniformCornerRadius="4">
             <lvc:PieChart
                 DataClick="PieChart_DataClick"
                 Hoverable="True"
@@ -52,7 +54,9 @@
             Grid.Row="0"
             Grid.Column="2"
             Margin="12"
-            Padding="16">
+            Padding="16"
+            materialDesign:ShadowAssist.ShadowDepth="Depth1"
+            UniformCornerRadius="4">
             <lvc:CartesianChart LegendLocation="None" Series="{Binding CartesianChartData}">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Labels="{Binding MonthLabels}">
@@ -63,17 +67,213 @@
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
         </materialDesign:Card>
-        <materialDesign:Card
+        <Grid
             Grid.Row="1"
             Grid.Column="2"
             Margin="12">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-            </Grid>
-        </materialDesign:Card>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Card
+                Grid.Column="0"
+                Background="Transparent"
+                UniformCornerRadius="8">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform Angle="230" CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="#843cf6" />
+                                <GradientStop Offset="1" Color="#FF5C89FF" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="16,0,16,0"
+                        Padding="4,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="#FFF"
+                        Text="Số lượt mua" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="28"
+                        Foreground="#fff"
+                        Text="1234" />
+                    <materialDesign:PackIcon
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="48"
+                        Height="48"
+                        Foreground="#fff"
+                        Kind="Cart" />
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card
+                Grid.Column="2"
+                Background="Transparent"
+                UniformCornerRadius="8">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform Angle="230" CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Offset="1" Color="#fc5286" />
+                                <GradientStop Color="#FFFF9F95" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="16,0,0,0"
+                        Padding="4,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="#FFF"
+                        Text="Số tiền thanh toán"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="16,0,16,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="28"
+                        Foreground="#fff"
+                        Text="1234" />
+                    <materialDesign:PackIcon
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="48"
+                        Height="48"
+                        Foreground="#fff"
+                        Kind="Cash" />
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card
+                Grid.Column="4"
+                Background="Transparent"
+                UniformCornerRadius="8">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform Angle="230" CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Offset="1" Color="#FFFFBF75" />
+                                <GradientStop Color="#ff763b" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="16,0,16,0"
+                        Padding="4,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Foreground="#FFF"
+                        Text="Khách hàng thân thiết"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="28"
+                        Foreground="#fff"
+                        Text="1234" />
+                    <materialDesign:PackIcon
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="48"
+                        Height="48"
+                        Foreground="#fff"
+                        Kind="AccountGroup" />
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
     </Grid>
 </UserControl>
