@@ -19,6 +19,115 @@
             <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
             <collections:DictionaryEntry Key="Đã giao hàng" Value="1" />
         </collections:ArrayList>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+            <Setter Property="Foreground" Value="#333E50" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="4" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid
+                            x:Name="GridRoot"
+                            Width="4"
+                            Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*" />
+                            </Grid.RowDefinitions>
+
+                            <Track
+                                x:Name="PART_Track"
+                                Grid.Row="0"
+                                Focusable="false"
+                                IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb
+                                        x:Name="Thumb"
+                                        Background="{TemplateBinding Foreground}"
+                                        Style="{DynamicResource ScrollThumbs}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageUp"
+                                        Command="ScrollBar.PageDownCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton
+                                        x:Name="PageDown"
+                                        Command="ScrollBar.PageUpCommand"
+                                        Focusable="false"
+                                        Opacity="0" />
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource ButtonSelectBrush}" />
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter TargetName="Thumb" Property="Background" Value="{DynamicResource DarkBrush}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter Property="Height" Value="12" />
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid x:Name="Grid">
+                            <Rectangle
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Fill="Transparent" />
+                            <Border
+                                x:Name="Rectangle1"
+                                Width="Auto"
+                                Height="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid
         x:Name="Container"
@@ -29,195 +138,233 @@
             <ColumnDefinition Width="8*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
-        <Grid
+        <Grid.RowDefinitions>
+            <RowDefinition Height="88" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--  HEADER  -->
+        <StackPanel
+            Grid.Row="0"
             Grid.Column="1"
-            Margin="0,20"
-            Background="{Binding Background, ElementName=Container}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <StackPanel
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3">
-                <DockPanel LastChildFill="True">
-                    <StackPanel
-                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowAddorder]"
-                        Cursor="Hand"
-                        DockPanel.Dock="Right"
-                        Orientation="Horizontal">
-                        <Image
-                            Width="32"
-                            Height="32"
-                            Source="/Resource/Images/Icons/order.png"
-                            Stretch="UniformToFill" />
-                        <Label
-                            VerticalContentAlignment="Center"
-                            Content="Thêm đơn hàng"
-                            FontSize="16"
-                            Foreground="#000" />
-                    </StackPanel>
+            Margin="0,20">
+            <DockPanel LastChildFill="True">
+                <StackPanel
+                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowAddorder]"
+                    Cursor="Hand"
+                    DockPanel.Dock="Right"
+                    Orientation="Horizontal">
+                    <Image
+                        Width="32"
+                        Height="32"
+                        Source="/Resource/Images/Icons/order.png"
+                        Stretch="UniformToFill" />
                     <Label
-                        Padding="0,10"
                         VerticalContentAlignment="Center"
-                        Content="Đơn hàng"
-                        DockPanel.Dock="Left"
+                        Content="Thêm đơn hàng"
                         FontSize="16"
-                        FontWeight="SemiBold"
                         Foreground="#000" />
-                </DockPanel>
-                <Separator
-                    Height="2"
-                    Margin="0,0"
-                    Background="#f0668d"
-                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            </StackPanel>
-
-            <DataGrid
-                x:Name="OrdersDataGrid"
-                Grid.Row="1"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                AlternationCount="{Binding Path=OrdersDataGrid.Count}"
-                AutoGenerateColumns="False"
-                BorderBrush="#252D36"
-                BorderThickness="0.5"
-                CanUserAddRows="False"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                SelectionMode="Extended"
-                SelectionUnit="Cell">
-                <DataGrid.CellStyle>
-                    <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Transparent" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.CellStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex, Converter={StaticResource indexToCount}}"
-                        Header="STT"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                                <Setter Property="TextBlock.Padding" Value="4 0" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="2*"
-                        Binding="{Binding CustomerName}"
-                        Header="Tên khách hàng"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="2*"
-                        Binding="{Binding Date}"
-                        Header="Ngày đặt"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
-                        Width="2*"
-                        Binding="{Binding Total}"
-                        Header="Tổng tiền"
-                        IsReadOnly="True">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style>
-                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTemplateColumn
-                        Width="2*"
-                        Header="Trạng thái"
-                        IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox
-                                    materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
-                                    DisplayMemberPath="Key"
-                                    ItemsSource="{StaticResource statusList}"
-                                    SelectedValuePath="Value">
-                                    <ComboBox.Style>
-                                        <Style BasedOn="{StaticResource MaterialDesignFilledComboBox}" TargetType="ComboBox">
-                                            <Setter Property="SelectedIndex" Value="0" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Status}" Value="1">
-                                                    <Setter Property="SelectedIndex" Value="1" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ComboBox.Style>
-                                </ComboBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-                <!--<DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <DockPanel Background="GhostWhite">
-                            <Image
-                                Height="64"
-                                Margin="10"
-                                DockPanel.Dock="Left"
-                                Source="{Binding ImageUrl}" />
-                            <Grid Margin="0,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock FontWeight="Bold" Text="ID: " />
-                                <TextBlock Grid.Column="1" Text="{Binding Id}" />
-                                <TextBlock
-                                    Grid.Row="1"
-                                    FontWeight="Bold"
-                                    Text="Name: " />
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Text="{Binding Name}" />
-                                <TextBlock
-                                    Grid.Row="2"
-                                    FontWeight="Bold"
-                                    Text="Birthday: " />
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    Text="{Binding Birthday, StringFormat=d}" />
-                            </Grid>
-                        </DockPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>-->
-            </DataGrid>
-        </Grid>
+                </StackPanel>
+                <Label
+                    Padding="0,10"
+                    VerticalContentAlignment="Center"
+                    Content="Đơn hàng"
+                    DockPanel.Dock="Left"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="#000" />
+            </DockPanel>
+            <Separator
+                Height="2"
+                Margin="0,0"
+                Background="#f0668d"
+                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <DataGrid
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    AlternationCount="{Binding Path=OrdersDataGrid.Count}"
+                    AutoGenerateColumns="False"
+                    BorderBrush="#252D36"
+                    BorderThickness="0.5"
+                    CanUserAddRows="False"
+                    ItemsSource="{Binding OrdersDataGrid}"
+                    PreviewMouseWheel="OrdersDataGrid_PreviewMouseWheel"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <DataGrid.CellStyle>
+                        <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex, Converter={StaticResource indexToCount}}"
+                            Header="STT"
+                            IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.Padding" Value="4 0" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding CustomerName}"
+                            Header="Tên khách hàng"
+                            IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding Date}"
+                            Header="Ngày đặt"
+                            IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding Total}"
+                            Header="Tổng tiền"
+                            IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn
+                            Width="2*"
+                            Header="Trạng thái"
+                            IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                                        materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
+                                        DisplayMemberPath="Key"
+                                        ItemsSource="{StaticResource statusList}"
+                                        SelectedValuePath="Value">
+                                        <ComboBox.Style>
+                                            <Style BasedOn="{StaticResource MaterialDesignFilledComboBox}" TargetType="ComboBox">
+                                                <Setter Property="SelectedIndex" Value="0" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="1">
+                                                        <Setter Property="SelectedIndex" Value="1" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.Style>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DataGrid
+                                AutoGenerateColumns="False"
+                                CanUserAddRows="False"
+                                ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window, AncestorLevel=1}, Path=DataContext.DetailDataGrid}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding ProductName}"
+                                        Header="Têm sản phẩm"
+                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding Size}"
+                                        Header="Size"
+                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding Price}"
+                                        Header="Đơn giá"
+                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding Quantity}"
+                                        Header="Số lượng"
+                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding PriceTotal}"
+                                        Header="Tổng tiền"
+                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
