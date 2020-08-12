@@ -210,16 +210,9 @@
                             materialDesign:HintAssist.Hint="Danh Mục..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0"
-                            DockPanel.Dock="Left">
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
+                            DockPanel.Dock="Left"
+                            DisplayMemberPath="CategoryName"
+                            ItemsSource="{Binding CatogoryCombobox}">                           
                         </ComboBox>
                     </DockPanel>
                     <Separator
