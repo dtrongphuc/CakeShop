@@ -210,16 +210,9 @@
                             materialDesign:HintAssist.Hint="Danh Mục..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0"
-                            DockPanel.Dock="Left">
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock Text="CHON DANH MUC" />
-                            </ComboBoxItem>
+                            DockPanel.Dock="Left"
+                            DisplayMemberPath="CategoryName"
+                            ItemsSource="{Binding CatogoryCombobox}">                           
                         </ComboBox>
                     </DockPanel>
                     <Separator
@@ -406,7 +399,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
                                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
                                             <Setter Property="TextBlock.FontSize" Value="26" />
                                             <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
                                         </Style>
@@ -422,7 +415,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
                                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
                                             <Setter Property="TextBlock.FontSize" Value="26" />
                                             <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
                                         </Style>

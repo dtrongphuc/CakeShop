@@ -111,6 +111,7 @@
     <Compile Include="Converter\CarouselItemWidthConverter.cs" />
     <Compile Include="Converter\IndexToOrderCountConverter.cs" />
     <Compile Include="Converter\RelativeToAbsoluteConverter.cs" />
+    <Compile Include="Converter\StringToCurrencyConverter.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\DetailOrder.cs" />

@@ -19,12 +19,15 @@ namespace CakeShop.ViewModels
         public BindableCollection<Image> ImagesCarousel { get; set; }
         public BindableCollection<SizeProduct> SizeQuantify { get; set; }
         string folderfile = AppDomain.CurrentDomain.BaseDirectory;
+        public BindableCollection<Category> CatogoryCombobox { get; set; }
         public string ProductName { get; set; }
         public string Price { get; set; }
         public string Descriptiontext { get; set; }
         public string ImageSelectChange { get; set; }
         public UpdateProductViewModel(string idProduct)
         {
+            //danh mục
+            CatogoryCombobox = getListObject.Get_AllCategory();
             product.Find(idProduct);
 
             //tên sản phẩm
