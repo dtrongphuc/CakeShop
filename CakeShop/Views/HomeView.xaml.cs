@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CakeShop.Models;
+using CakeShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,55 +22,65 @@ namespace CakeShop.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        
+        public HomeViewModel CurrentViewModel { get; private set; } = null;
+        Style defaultStyle;
+        Style selectedStyle;
         public HomeView()
         {
             InitializeComponent();
         }
 
-        // Pagination
-        private void UpdatePagination()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //SetStylePagination();
-            //_list = Pages.GetSPPagination(Pages.CurrentPage);
-            //PaginationNumber.ItemsSource = PageStyleList;
-            //Products.ItemsSource = _list;
+            CurrentViewModel = GridMain.DataContext as HomeViewModel;
+            SetStylePagination();
+        }
+
+        private void SetStylePagination()
+        {
+            defaultStyle = this.FindResource("PaginationStyle") as Style;
+            selectedStyle = this.FindResource("PaginationStyleSelected") as Style;
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
+        }
+
+        /// <summary>
+        /// Cập nhật lại số trang
+        /// </summary>
+        /// <param name="currentPage">Trang hiện tại (-1 nếu không muốn đặt, 0 nếu muốn về trang cuối)</param>
+        /// <param name="isPrevClick">Có phải prev click không</param>
+        /// <param name="isNextClick">Có phải next click không</param>
+        private void UpdatePagination(int currentPage, bool isPrevClick, bool isNextClick)
+        {
+            CurrentViewModel.UpdateProductsPagination(currentPage, isPrevClick, isNextClick);
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
         private void OnPageNumber_Click(object sender, RoutedEventArgs e)
         {
-            //var Btn = (Button)sender;
-            //Pages.CurrentPage = (int)Btn.Content;
-            //UpdatePagination();
+            var Btn = (Button)sender;
+            int CurrPage = (int)Btn.Content;
+            UpdatePagination(CurrPage, false, false);
         }
 
         private void OnPrePage_Click(object sender, RoutedEventArgs e)
         {
-            //if (Pages.CurrentPage > 1)
-            //{
-            //    Pages.CurrentPage--;
-            //    UpdatePagination();
-            //}
+            UpdatePagination(-1, true, false);
         }
 
         private void OnNextPage_Click(object sender, RoutedEventArgs e)
         {
-            //if (Pages.CurrentPage < Pages.ToltalPage)
-            //{
-            //    Pages.CurrentPage++;
-            //    UpdatePagination();
-            //}
+            UpdatePagination(-1, false, true);
         }
 
         private void OnFirstPage_Click(object sender, RoutedEventArgs e)
         {
-            //Pages.CurrentPage = 1;
-            //UpdatePagination();
+            UpdatePagination(1, false, false);
         }
 
         private void OnLastPage_Click(object sender, RoutedEventArgs e)
         {
-            //Pages.CurrentPage = Pages.ToltalPage;
-            //UpdatePagination();
+            UpdatePagination(0, false, false);
         }
     }
 }
