@@ -8,13 +8,19 @@ using System.Windows.Data;
 
 namespace CakeShop.Converter
 {
-    class CarouselItemWidthConverter : IValueConverter
+    public class StringToCurrencyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int param = (int)parameter;
-            double width = (double)value;
-            return ((width / param) - 3.5);
+            string valueString = value as string;
+
+            double valueNumber = Double.Parse(valueString);
+
+            if (value is string && valueNumber == 0)
+            {
+                return "0 vnđ";
+            }
+            return String.Format("{0:#,#} vnđ", valueNumber);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
