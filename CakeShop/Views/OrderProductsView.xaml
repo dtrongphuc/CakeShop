@@ -273,8 +273,10 @@
                                     <ComboBox
                                         materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
                                         DisplayMemberPath="Key"
+                                        Name="ComboboxStatus"
                                         ItemsSource="{StaticResource statusList}"
-                                        SelectedValuePath="Value">
+                                        SelectedValuePath="Value"
+                                        SelectionChanged="Change_Status">
                                         <ComboBox.Style>
                                             <Style BasedOn="{StaticResource MaterialDesignFilledComboBox}" TargetType="ComboBox">
                                                 <Setter Property="SelectedIndex" Value="0" />

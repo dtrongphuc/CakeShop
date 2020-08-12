@@ -37,5 +37,10 @@ namespace CakeShop.Views
                 parent.RaiseEvent(eventArg);
             }
         }
+
+        private void Change_Status(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }
