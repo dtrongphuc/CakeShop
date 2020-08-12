@@ -10,8 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="700"
     d:DesignWidth="1200"
-    mc:Ignorable="d"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
@@ -121,6 +121,35 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style
+            x:Key="PaginationStyle"
+            BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}"
+            TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Gainsboro" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+        </Style>
+        <Style
+            x:Key="PaginationStyleSelected"
+            BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}"
+            TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="#f0668d" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -288,7 +317,6 @@
                                                         TextTrimming="CharacterEllipsis"
                                                         TextWrapping="Wrap" />
                                                 </Grid>
-
                                             </Grid>
                                         </materialDesign:Card>
                                     </Button>
@@ -331,7 +359,7 @@
                                 Click="OnPrePage_Click"
                                 ToolTip="Previous Page">
                                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="MenuLeft">
+                                    <materialDesign:PackIcon Foreground="Black" Kind="MenuLeft">
                                         <materialDesign:PackIcon.LayoutTransform>
                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
                                         </materialDesign:PackIcon.LayoutTransform>
@@ -367,7 +395,7 @@
                                 Click="OnNextPage_Click"
                                 ToolTip="Next Page">
                                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="MenuRight">
+                                    <materialDesign:PackIcon Foreground="Black" Kind="MenuRight">
                                         <materialDesign:PackIcon.LayoutTransform>
                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
                                         </materialDesign:PackIcon.LayoutTransform>

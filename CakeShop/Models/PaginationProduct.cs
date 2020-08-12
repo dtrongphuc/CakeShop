@@ -37,13 +37,13 @@ namespace CakeShop.Models
             }
         }
 
-        private int _totalpage = 0;
+        private int _totalPage = 0;
         public int ToltalPage
         {
-            get { return _totalpage; }
+            get { return _totalPage; }
             set
             {
-                _totalpage = value;
+                _totalPage = value;
                 PropertyChanged?.Invoke(
                     this, new PropertyChangedEventArgs("TotalPage"));
             }
@@ -71,12 +71,11 @@ namespace CakeShop.Models
             //ListProduct = new BindableCollection<Product>();
         }
 
-        GetListObject GetCtrl = new GetListObject();
         public BindableCollection<Product> GetProductPagination(int _curr)
         {
             CurrentPage = _curr;
             Sum_record = GetListObject.Get_CountALLProduct();
-            //CalculateTotalPage();
+            CalculateTotalPage();
             int sotranghienhanh = (CurrentPage - 1) * record1page;
             return Get_AllProduct(sotranghienhanh, record1page);
         }
@@ -86,10 +85,47 @@ namespace CakeShop.Models
             CurrentPage = _curr;
             sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id}";
             Sum_record = Connection.GetCount_Data(sql);
-            //CalculateTotalPage();
+            CalculateTotalPage();
             int sotranghienhanh = (CurrentPage - 1) * record1page;
             ListProduct = Get_ProductInCategory(id,sotranghienhanh, record1page);
             return ListProduct;
+        }
+
+        public List<int> GetPaginaitonNumbers()
+        {
+            List<int> Numbers = new List<int>();
+            int j = 2;
+            if (ToltalPage - CurrentPage < 2)
+            {
+                j = 5 - (ToltalPage - CurrentPage) - 1;
+            }
+            for (int i = j; i > 0; --i)
+            {
+                if (CurrentPage > i)
+                {
+                    Numbers.Add(CurrentPage - i);
+                }
+            }
+            j = (ToltalPage >= 5) ? 5 - Numbers.Count : ToltalPage - Numbers.Count;
+            if (ToltalPage - CurrentPage <= 2)
+            {
+                j = (ToltalPage - CurrentPage) + 1;
+            }
+            for (int i = 0; i < j; ++i)
+            {
+                if (CurrentPage <= ToltalPage)
+                {
+                    Numbers.Add(CurrentPage + i);
+                }
+            }
+            return Numbers;
+        }
+
+        public void CalculateTotalPage()
+        {
+            double num = (1.0 * Sum_record / record1page);
+            double ToltalPageTemp = Math.Ceiling(num); // Tính tổng số trang và làm tròn lên
+            ToltalPage = (int)ToltalPageTemp;
         }
 
         public BindableCollection<Product> Get_AllProduct(int curr, int recode1trang)

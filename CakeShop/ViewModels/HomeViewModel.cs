@@ -5,14 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CakeShop.Models;
+using System.Windows;
 
 namespace CakeShop.ViewModels
 {
     public class HomeViewModel : Screen
     {
         GetListObject Getlist = new GetListObject();
-        PaginationProduct  PagProduct = new PaginationProduct();
+        PaginationProduct PagProduct = new PaginationProduct();
+        List<int> PageNumbers;
+        
         public BindableCollection<Product> Products { get; set; }
+        public BindableCollection<Category> CatogoryCombobox { get; set; }
+        public BindableCollection<PaginationStyle> PaginationNumber { get; set; }
         public BindableCollection<Category> CategoryCombobox { get; set; } = new BindableCollection<Category>();
 
         public HomeViewModel()
@@ -23,7 +28,44 @@ namespace CakeShop.ViewModels
             CategoryCombobox = Getlist.Get_AllCategory();
             CategoryCombobox.Add(cate);
             //danh sách sản phẩm
-            Products = PagProduct.GetProductPagination(1);
+            UpdateProductsPagination(1, false, false, string.Empty);
+
+            PaginationNumber = new BindableCollection<PaginationStyle>();
+        }
+
+        public void UpdateProductsPagination(int currentPage, bool isPrevClick, bool isNextClick, string idCategory)
+        {
+            if (isPrevClick)
+            {
+                if (PagProduct.CurrentPage > 1)
+                {
+                    PagProduct.CurrentPage--;
+
+                }
+            } else if (isNextClick)
+            {
+                if (PagProduct.CurrentPage < PagProduct.ToltalPage)
+                {
+                    PagProduct.CurrentPage++;
+                }
+            }
+
+            if (currentPage == 0)
+            {
+                PagProduct.CurrentPage = PagProduct.ToltalPage;
+            } else if (currentPage != -1)
+            {
+                PagProduct.CurrentPage = currentPage;
+            }
+
+            if (idCategory != string.Empty)
+            {
+                Products = PagProduct.GetProductInCategoryPagination(PagProduct.CurrentPage, idCategory);
+            } else
+            {
+                Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
+            }
+            PageNumbers = PagProduct.GetPaginaitonNumbers();
         }
 
         /// <summary>
@@ -38,10 +80,24 @@ namespace CakeShop.ViewModels
             parentConductor.ActivateItem(new DetailProductViewModel(productSelected.IdProduct));
         }
 
+        public void SetStylePagination(Style defaultStyle, Style selectedStyle)
+        {
+            PaginationNumber.Clear();
+            foreach (var number in PageNumbers)
+            {
+                Style myStyle = defaultStyle;
+                if (number == PagProduct.CurrentPage)
+                {
+                    myStyle = selectedStyle;
+                }
+                PaginationNumber.Add(new PaginationStyle() { Number = number, PageBtnStyle = myStyle });
+            }
+        }
+
         public void ShowProductInCategory(int curr, string id)
         {
             ///danh sách sản phẩm theo danh mục
-            if (id == "5")
+            if (id == CategoryCombobox.Count.ToString())
             {
                 ///nếu là số 5 thì xuất tất cả các sản phẩm.
                 Products = PagProduct.GetProductPagination(1);
