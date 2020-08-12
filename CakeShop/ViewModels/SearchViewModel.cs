@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.ViewModels
 {
-    public class SearchViewModel:Screen
+    public class SearchViewModel : Screen
     {
         public string Keyword { get; set; }
         GetListObject Getlist = new GetListObject();
