@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.ViewModels
 {
-    public class SearchViewModel:Screen
+    public class SearchViewModel : Screen
     {
         public string Keyword { get; set; }
         GetListObject Getlist = new GetListObject();
@@ -16,7 +16,7 @@ namespace CakeShop.ViewModels
         public IEnumerable<Product> subnets;
         public IEnumerable<Product> SearchListproduct;
         PaginationProduct PagProduct = new PaginationProduct();
-        public BindableCollection<Product> Products { get; set; } = new BindableCollection<Product>();
+        public IEnumerable<Product> Products { get; set; }
         public BindableCollection<Category> CatogoryCombobox { get; set; }
         public SearchViewModel(string key)
         {
@@ -25,20 +25,8 @@ namespace CakeShop.ViewModels
 
             //danh sách sản phẩm      
             SearchListproduct = SearchProductName(key);
-            if (SearchListproduct.Count() != 0)
-            {
-                List<string> IDproducts = new List<string>();
-                foreach (var item in SearchListproduct)
-                {
-                    if (!IDproducts.Contains(item.IdProduct))
-                    {
-                        IDproducts.Add(item.IdProduct);
-                        product.Find(item.IdProduct);
-                        //Add vào list binding
-                        Products.Insert(0, product);
-                    }
-                }
-            }
+            Products = SearchListproduct;
+            
         }
         public IEnumerable<Product> SearchProductName(string keyword)
         {
