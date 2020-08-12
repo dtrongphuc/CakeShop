@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.ViewModels
 {
-    public class SearchViewModel:Screen
+    public class SearchViewModel : Screen
     {
         public string Keyword { get; set; }
         GetListObject Getlist = new GetListObject();
@@ -27,16 +27,14 @@ namespace CakeShop.ViewModels
             SearchListproduct = SearchProductName(key);
             if (SearchListproduct.Count() != 0)
             {
-                List<string> IDproducts = new List<string>();
+                //List<string> IDproducts = new List<string>();
                 foreach (var item in SearchListproduct)
                 {
-                    if (!IDproducts.Contains(item.IdProduct))
-                    {
-                        IDproducts.Add(item.IdProduct);
-                        product.Find(item.IdProduct);
-                        //Add vào list binding
-                        Products.Insert(0, product);
-                    }
+                    // IDproducts.Add(item.IdProduct);
+                    product.Find(item.IdProduct);
+                    //Add vào list binding
+                    Products.Add(product);
+
                 }
             }
         }
