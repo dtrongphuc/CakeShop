@@ -23,10 +23,12 @@ namespace CakeShop.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
-        
-        public HomeViewModel CurrentViewModel { get; private set; } = null;
         Style defaultStyle;
         Style selectedStyle;
+        
+        public HomeViewModel CurrentViewModel { get; private set; } = null;
+        private string _idCategory { get; set; } = string.Empty;
+
         public HomeView()
         {
             InitializeComponent();
@@ -51,9 +53,9 @@ namespace CakeShop.Views
         /// <param name="currentPage">Trang hiện tại (-1 nếu không muốn đặt, 0 nếu muốn về trang cuối)</param>
         /// <param name="isPrevClick">Có phải prev click không</param>
         /// <param name="isNextClick">Có phải next click không</param>
-        private void UpdatePagination(int currentPage, bool isPrevClick, bool isNextClick)
+        private void UpdatePagination(int currentPage, bool isPrevClick, bool isNextClick, string idCategory)
         {
-            CurrentViewModel.UpdateProductsPagination(currentPage, isPrevClick, isNextClick);
+            CurrentViewModel.UpdateProductsPagination(currentPage, isPrevClick, isNextClick, idCategory);
             CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
@@ -61,27 +63,27 @@ namespace CakeShop.Views
         {
             var Btn = (Button)sender;
             int CurrPage = (int)Btn.Content;
-            UpdatePagination(CurrPage, false, false);
+            UpdatePagination(CurrPage, false, false, _idCategory);
         }
 
         private void OnPrePage_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePagination(-1, true, false);
+            UpdatePagination(-1, true, false, _idCategory);
         }
 
         private void OnNextPage_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePagination(-1, false, true);
+            UpdatePagination(-1, false, true, _idCategory);
         }
 
         private void OnFirstPage_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePagination(1, false, false);
+            UpdatePagination(1, false, false, _idCategory);
         }
 
         private void OnLastPage_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePagination(0, false, false);
+            UpdatePagination(0, false, false, _idCategory);
         }
 
         private void ProductInCategory(object sender, SelectionChangedEventArgs e)
@@ -89,8 +91,9 @@ namespace CakeShop.Views
             var category = (Category.SelectedIndex+1).ToString();
             if (CurrentViewModel != null)
             {
+                _idCategory = category=="5" ? string.Empty : category;
                 CurrentViewModel.ShowProductInCategory(1, category);
-               
+                UpdatePagination(-1, false, false, _idCategory);
             }
         }
     }

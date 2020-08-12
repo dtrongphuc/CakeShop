@@ -85,7 +85,7 @@ namespace CakeShop.Models
             CurrentPage = _curr;
             sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id}";
             Sum_record = Connection.GetCount_Data(sql);
-            //CalculateTotalPage();
+            CalculateTotalPage();
             int sotranghienhanh = (CurrentPage - 1) * record1page;
             ListProduct = Get_ProductInCategory(id,sotranghienhanh, record1page);
             return ListProduct;

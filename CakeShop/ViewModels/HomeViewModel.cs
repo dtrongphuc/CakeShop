@@ -28,37 +28,43 @@ namespace CakeShop.ViewModels
             CategoryCombobox = Getlist.Get_AllCategory();
             CategoryCombobox.Add(cate);
             //danh sách sản phẩm
-            UpdateProductsPagination(1, false, false);
+            UpdateProductsPagination(1, false, false, string.Empty);
 
             PaginationNumber = new BindableCollection<PaginationStyle>();
         }
 
-        public void UpdateProductsPagination(int currentPage, bool isPrevClick, bool isNextClick)
+        public void UpdateProductsPagination(int currentPage, bool isPrevClick, bool isNextClick, string idCategory)
         {
-            if(isPrevClick)
+            if (isPrevClick)
             {
-                if(PagProduct.CurrentPage > 1)
+                if (PagProduct.CurrentPage > 1)
                 {
                     PagProduct.CurrentPage--;
-                    
+
                 }
             } else if (isNextClick)
             {
-                if(PagProduct.CurrentPage < PagProduct.ToltalPage)
+                if (PagProduct.CurrentPage < PagProduct.ToltalPage)
                 {
                     PagProduct.CurrentPage++;
                 }
             }
 
-             if (currentPage == 0)
+            if (currentPage == 0)
             {
                 PagProduct.CurrentPage = PagProduct.ToltalPage;
-            } else if(currentPage != -1)
+            } else if (currentPage != -1)
             {
                 PagProduct.CurrentPage = currentPage;
             }
 
-            Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
+            if (idCategory != string.Empty)
+            {
+                Products = PagProduct.GetProductInCategoryPagination(PagProduct.CurrentPage, idCategory);
+            } else
+            {
+                Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
+            }
             PageNumbers = PagProduct.GetPaginaitonNumbers();
         }
 
@@ -91,7 +97,7 @@ namespace CakeShop.ViewModels
         public void ShowProductInCategory(int curr, string id)
         {
             ///danh sách sản phẩm theo danh mục
-            if (id == "5")
+            if (id == CategoryCombobox.Count.ToString())
             {
                 ///nếu là số 5 thì xuất tất cả các sản phẩm.
                 Products = PagProduct.GetProductPagination(1);
