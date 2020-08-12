@@ -14,9 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CakeShop.Models;
 using Caliburn.Micro;
-using CakeShop.ViewModels;
 
 namespace CakeShop.Views
 {
@@ -94,9 +92,6 @@ namespace CakeShop.Views
                 CurrentViewModel.ShowProductInCategory(1, category);
                
             }
-
         }
-
-     
     }
 }
