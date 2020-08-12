@@ -23,10 +23,10 @@ namespace CakeShop.ViewModels
         public HomeViewModel()
         {
             string categoryAll = "Tất Cả";
-            Category cate = new Category("4",categoryAll);
+            Category cate = new Category("0",categoryAll);
             //danh mục
             CategoryCombobox = Getlist.Get_AllCategory();
-            CategoryCombobox.Add(cate);
+            CategoryCombobox.Insert(0,cate);
             //danh sách sản phẩm
             UpdateProductsPagination(1, false, false, string.Empty);
 
@@ -97,10 +97,10 @@ namespace CakeShop.ViewModels
         public void ShowProductInCategory(int curr, string id)
         {
             ///danh sách sản phẩm theo danh mục
-            if (id == CategoryCombobox.Count.ToString())
+            if (id == "0")
             {
-                ///nếu là số 5 thì xuất tất cả các sản phẩm.
-                Products = PagProduct.GetProductPagination(1);
+                ///nếu là số 0 thì xuất tất cả các sản phẩm.
+                Products = PagProduct.GetProductPagination(curr);
             }
             else
             {

@@ -195,7 +195,7 @@
                                 DisplayMemberPath="CategoryName"
                                 DockPanel.Dock="Right"
                                 ItemsSource="{Binding CategoryCombobox}" 
-                                SelectedIndex="4"
+                                SelectedIndex="0"
                                 SelectionChanged="ProductInCategory"/>
                         </DockPanel>
                         <Separator

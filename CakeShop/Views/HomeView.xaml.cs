@@ -88,10 +88,10 @@ namespace CakeShop.Views
 
         private void ProductInCategory(object sender, SelectionChangedEventArgs e)
         {
-            var category = (Category.SelectedIndex+1).ToString();
+            var category = (Category.SelectedIndex).ToString();
             if (CurrentViewModel != null)
             {
-                _idCategory = category=="5" ? string.Empty : category;
+                _idCategory = category=="0" ? string.Empty : category;
                 CurrentViewModel.ShowProductInCategory(1, category);
                 UpdatePagination(-1, false, false, _idCategory);
             }
