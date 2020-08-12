@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CakeShop.Models;
+using Caliburn.Micro;
+using CakeShop.ViewModels;
 
 namespace CakeShop.Views
 {
@@ -20,9 +23,15 @@ namespace CakeShop.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        HomeViewModel CurrentViewModel = null;
         public HomeView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = GridMain.DataContext as HomeViewModel;
         }
 
         // Pagination
@@ -70,5 +79,18 @@ namespace CakeShop.Views
             //Pages.CurrentPage = Pages.ToltalPage;
             //UpdatePagination();
         }
+
+        private void ProductInCategory(object sender, SelectionChangedEventArgs e)
+        {
+            var category = (Category.SelectedIndex+1).ToString();
+            if (CurrentViewModel != null)
+            {
+                CurrentViewModel.ShowProductInCategory(1, category);
+               
+            }
+
+        }
+
+     
     }
 }

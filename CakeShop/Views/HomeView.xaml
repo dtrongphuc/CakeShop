@@ -10,7 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="700"
     d:DesignWidth="1200"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
@@ -157,13 +158,16 @@
                                 FontSize="26"
                                 FontWeight="Bold" />
                             <ComboBox
+                                Name="Category"
                                 Width="200"
                                 Margin="0,4,16,0"
                                 HorizontalAlignment="Right"
                                 materialDesign:HintAssist.Hint="Danh mục"
                                 DisplayMemberPath="CategoryName"
                                 DockPanel.Dock="Right"
-                                ItemsSource="{Binding CatogoryCombobox}" />
+                                ItemsSource="{Binding CategoryCombobox}" 
+                                SelectedIndex="4"
+                                SelectionChanged="ProductInCategory"/>
                         </DockPanel>
                         <Separator
                             Grid.Row="1"

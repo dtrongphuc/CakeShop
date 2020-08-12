@@ -37,5 +37,10 @@ namespace CakeShop.Models
             this.IdCategory = " ";
             this.CategoryName = " ";
         }
+        public Category(string id, string name)
+        {
+            this.IdCategory =id;
+            this.CategoryName = name;
+        }
     }
 }
