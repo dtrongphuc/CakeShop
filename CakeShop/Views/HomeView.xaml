@@ -187,13 +187,16 @@
                                 FontSize="26"
                                 FontWeight="Bold" />
                             <ComboBox
+                                Name="Category"
                                 Width="200"
                                 Margin="0,4,16,0"
                                 HorizontalAlignment="Right"
                                 materialDesign:HintAssist.Hint="Danh mục"
                                 DisplayMemberPath="CategoryName"
                                 DockPanel.Dock="Right"
-                                ItemsSource="{Binding CatogoryCombobox}" />
+                                ItemsSource="{Binding CategoryCombobox}" 
+                                SelectedIndex="4"
+                                SelectionChanged="ProductInCategory"/>
                         </DockPanel>
                         <Separator
                             Grid.Row="1"

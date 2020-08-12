@@ -26,7 +26,8 @@ namespace CakeShop.Views
     public partial class UpdateProductView : UserControl
     {
         public UpdateProductViewModel CurrentViewModel { get; set; } = null;
-
+        //indexCategoryUpdate là danh mục khi thay đổi.
+        private int indexCategoryUpdate;
         private int _currentElement { get; set; } = 0;
         private int _maximumImagesCount { get; set; } = 0;
         public UpdateProductView()
@@ -122,17 +123,20 @@ namespace CakeShop.Views
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             string avartar = "";
+            indexCategoryUpdate = idCatagory.SelectedIndex+1;
+
             if (NameProduct.Text.Trim() != string.Empty && PriceProduct.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty)
             {
                 if (ImagesFileList.Count > 0)
                 {
-                    avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text);
+                    avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
                     CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
                 }
-                else
-                    avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text);
+                else///trường hợp người dùng k thêm hình ảnh 
+                    avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
             }
 
+            
             CurrentViewModel.UpadateSizeProduct();
         }
 
@@ -153,6 +157,11 @@ namespace CakeShop.Views
         {
             DataGridCell CellSelected = sender as DataGridCell;
             CellSelected.IsEditing = true;
+        }
+
+        private void Change_Category(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

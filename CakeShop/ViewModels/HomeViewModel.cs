@@ -18,11 +18,15 @@ namespace CakeShop.ViewModels
         public BindableCollection<Product> Products { get; set; }
         public BindableCollection<Category> CatogoryCombobox { get; set; }
         public BindableCollection<PaginationStyle> PaginationNumber { get; set; }
+        public BindableCollection<Category> CategoryCombobox { get; set; } = new BindableCollection<Category>();
 
         public HomeViewModel()
         {
+            string categoryAll = "Tất Cả";
+            Category cate = new Category("4",categoryAll);
             //danh mục
-            CatogoryCombobox = Getlist.Get_AllCategory();
+            CategoryCombobox = Getlist.Get_AllCategory();
+            CategoryCombobox.Add(cate);
             //danh sách sản phẩm
             UpdateProductsPagination(1, false, false);
 
@@ -81,6 +85,20 @@ namespace CakeShop.ViewModels
                     myStyle = selectedStyle;
                 }
                 PaginationNumber.Add(new PaginationStyle() { Number = number, PageBtnStyle = myStyle });
+            }
+        }
+
+        public void ShowProductInCategory(int curr, string id)
+        {
+            ///danh sách sản phẩm theo danh mục
+            if (id == "5")
+            {
+                ///nếu là số 5 thì xuất tất cả các sản phẩm.
+                Products = PagProduct.GetProductPagination(1);
+            }
+            else
+            {
+                Products = PagProduct.GetProductInCategoryPagination(curr, id);
             }
         }
     }
