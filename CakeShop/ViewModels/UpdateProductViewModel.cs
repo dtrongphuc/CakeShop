@@ -24,12 +24,16 @@ namespace CakeShop.ViewModels
         public string Price { get; set; }
         public string Descriptiontext { get; set; }
         public string ImageSelectChange { get; set; }
+
+        public int currCategory { get; set; }
         public UpdateProductViewModel(string idProduct)
         {
             //danh mục
             CatogoryCombobox = getListObject.Get_AllCategory();
             product.Find(idProduct);
 
+            //danhmuc ban đầu. trừ 1 vì ngoài giao diện tính bắt đầu từ 0 nhưng trong database bắt đầu là 1
+            currCategory = int.Parse(product.IdCategory)-1;
             //tên sản phẩm
             ProductName = product.ProductName;
 
@@ -77,12 +81,13 @@ namespace CakeShop.ViewModels
         }
         
         
-        public string UpdateProduct(FileInfo listimage, string name, string price, string des)
+        public string UpdateProduct(FileInfo listimage, string name, string price, string des,int idcategory)
         {
             string avartar="";
             product.ProductName = name;
             product.Price = price;
             product.Description = des;
+            product.IdCategory = idcategory.ToString();
             if (listimage.Name != null)
             {
                 avartar = $"{Guid.NewGuid()}{listimage.Extension}";
@@ -93,12 +98,20 @@ namespace CakeShop.ViewModels
             return avartar;
         }
 
-        public string UpdateProductNoAvartar( string name, string price, string des)
+        /// <summary>
+        /// khi người dùng không thay đổi ảnh chỉ thay đổi thông tin còn lại.
+        /// </summary>
+        /// <param name="name"> tên sản phẩm</param>
+        /// <param name="price">giá sản phẩm</param>
+        /// <param name="des">mô tả của sản phẩm</param>
+        /// <returns></returns>
+        public string UpdateProductNoAvartar( string name, string price, string des,int idcategory)
         {
             string avartar = "";
             product.ProductName = name;
             product.Price = price;
             product.Description = des;
+            product.IdCategory = idcategory.ToString();
             product.Update();
             return avartar;
         }

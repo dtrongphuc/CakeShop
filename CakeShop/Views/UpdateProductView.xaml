@@ -212,7 +212,10 @@
                             BorderThickness="0"
                             DockPanel.Dock="Left"
                             DisplayMemberPath="CategoryName"
-                            ItemsSource="{Binding CatogoryCombobox}">                           
+                            Name="idCatagory"
+                            SelectedIndex="{Binding currCategory}"
+                            ItemsSource="{Binding CatogoryCombobox}"
+                            SelectionChanged="Change_Category">                           
                         </ComboBox>
                     </DockPanel>
                     <Separator

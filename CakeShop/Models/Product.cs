@@ -108,7 +108,7 @@ namespace CakeShop.Models
         public bool Find(string id)
         {
             bool check = false;
-            string sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE IDPRODUCT={id}";
+            string sql = $"SELECT CATE.CATEGORYNAME,CATE.IDCATEGORY,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE IDPRODUCT={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)
             {
@@ -120,7 +120,7 @@ namespace CakeShop.Models
                 this._price = row["PRICE"].ToString();
                 this._description = row["DESCRIPTION"].ToString();
                 this._image = row["IMAGE"].ToString();
-               
+                this.IdCategory = row["IDCATEGORY"].ToString();
             }
             if (check == true)
             {
@@ -137,7 +137,7 @@ namespace CakeShop.Models
 
         public void Update()
         {
-            sql = $"UPDATE PRODUCT SET PRODUCTNAME=N'{ProductName}', PRICE={Price}, DESCRIPTION=N'{Description}', IMAGE='{Image}' WHERE IDPRODUCT={IdProduct}";
+            sql = $"UPDATE PRODUCT SET PRODUCTNAME=N'{ProductName}',IDCATEGORY={IdCategory}, PRICE={Price}, DESCRIPTION=N'{Description}', IMAGE='{Image}' WHERE IDPRODUCT={IdProduct}";
             Connection.Execute_SQL(sql);
         }
 
