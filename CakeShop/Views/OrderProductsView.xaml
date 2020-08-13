@@ -12,6 +12,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="700"
     d:DesignWidth="1200"
+    Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
@@ -128,9 +129,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style
+            x:Key="PaginationStyle"
+            BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}"
+            TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Gainsboro" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+        </Style>
+        <Style
+            x:Key="PaginationStyleSelected"
+            BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}"
+            TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="#f0668d" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+        </Style>
     </UserControl.Resources>
     <Grid
-        x:Name="Container"
+        x:Name="Main"
         Background="#fff"
         SnapsToDevicePixels="True">
         <Grid.ColumnDefinitions>
@@ -216,6 +246,11 @@
                             </Style.Triggers>
                         </Style>
                     </DataGrid.CellStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="PreviewMouseDoubleClick" Handler="ViewDetail_PreviewMouseDoubleClick" />
+                        </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="1*"
@@ -295,7 +330,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                    <DataGrid.RowDetailsTemplate>
+                    <!--<DataGrid.RowDetailsTemplate>
                         <DataTemplate>
                             <DataGrid
                                 AutoGenerateColumns="False"
@@ -367,7 +402,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                    </DataGrid.RowDetailsTemplate>-->
                 </DataGrid>
             </Grid>
         </ScrollViewer>

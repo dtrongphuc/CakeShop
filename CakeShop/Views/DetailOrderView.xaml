@@ -1,14 +1,17 @@
-﻿<UserControl x:Class="CakeShop.Views.DetailOrderView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CakeShop.Views"
-             xmlns:cal="http://www.caliburnproject.org" xmlns:cv="clr-namespace:CakeShop.Converter" 
-             xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="CakeShop.Views.DetailOrderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:cv="clr-namespace:CakeShop.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CakeShop.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
         <collections:ArrayList x:Key="statusList">
@@ -179,45 +182,43 @@
                 Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
         </StackPanel>
 
-        <DockPanel 
-            LastChildFill="True"
+        <DockPanel
             Grid.Row="1"
-            Grid.Column="1">
-            <StackPanel
-                DockPanel.Dock="Right" >
+            Grid.Column="1"
+            LastChildFill="True">
+            <StackPanel DockPanel.Dock="Right">
                 <StackPanel Orientation="Horizontal">
-                    <Image 
-                        Source="/Resource/Images/Icons/calendar.png"
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
-                    <Label                 
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/calendar.png" />
+                    <Label
                         Content="20/10/2020"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Foreground="#000"/>
+                        Foreground="#000" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Image 
-                        Source="/Resource/Images/Icons/loading.png"
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/loading.png" />
                     <Label
-                    DockPanel.Dock="Right"                  
-                    Content="Đang giao hàng"
-                    FontSize="13"
-                    FontWeight="SemiBold"
-                    Foreground="#000"/>
+                        Content="Đang giao hàng"
+                        DockPanel.Dock="Right"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="#000" />
                 </StackPanel>
-                
+
             </StackPanel>
-           
-            <StackPanel
-                DockPanel.Dock="Left">
+
+            <StackPanel DockPanel.Dock="Left">
                 <StackPanel Orientation="Horizontal">
-                    <Image 
-                        Source="/Resource/Images/Icons/Custemer.png"
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/Custemer.png" />
                     <Label
                         Content="Nguyễn Hiếu Nghĩa"
                         FontSize="20"
@@ -225,26 +226,26 @@
                         Foreground="#f0668d" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Image 
-                        Source="/Resource/Images/Icons/local.png"
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
-                    <Label                 
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/local.png" />
+                    <Label
                         Content="L22 cư xá Phú lâm A, F12, Q6"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Foreground="#000"/>
+                        Foreground="#000" />
                 </StackPanel>
-               
+
             </StackPanel>
-            
+
         </DockPanel>
 
         <ScrollViewer
-            Margin="00,10,0,0"
             Grid.Row="2"
             Grid.Column="0"
-            Grid.ColumnSpan="3">
+            Grid.ColumnSpan="3"
+            Margin="00,10,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*" />
@@ -338,10 +339,10 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn
-                                        Width="2*"
-                                        Binding="{Binding PriceTotal}"
-                                        Header="Tổng tiền"
-                                        IsReadOnly="True">
+                            Width="2*"
+                            Binding="{Binding PriceTotal}"
+                            Header="Tổng tiền"
+                            IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -350,65 +351,62 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
-                   
+
                 </DataGrid>
-                
-                
+
+
             </Grid>
         </ScrollViewer>
 
-        <StackPanel 
-            Grid.Row="3"
-            Grid.Column="1">
-            <DockPanel 
-                LastChildFill="True"
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <DockPanel
                 Grid.Row="1"
-                Grid.Column="1">
+                Grid.Column="1"
+                LastChildFill="True">
                 <Label
-                    DockPanel.Dock="Right"                  
                     Content="120.000 vnđ"
+                    DockPanel.Dock="Right"
                     FontSize="25"
                     FontWeight="SemiBold"
-                    Foreground="#f0668d"/>
+                    Foreground="#f0668d" />
                 <Label
-                    DockPanel.Dock="Left"
                     Content="Thành tiền:"
+                    DockPanel.Dock="Left"
                     FontSize="20"
                     Foreground="#f0668d" />
             </DockPanel>
 
-            <DockPanel 
-                LastChildFill="True"
+            <DockPanel
                 Grid.Row="1"
-                Grid.Column="1">
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"  >
-                    <Image 
-                        Source="/Resource/Images/Icons/pay.png"
+                Grid.Column="1"
+                LastChildFill="True">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/pay.png" />
                     <Label
-                                    
-                    Content="Thanh toán khi nhận hàng"
-                    FontSize="13"
-                    FontWeight="Medium"
-                    Foreground="#000"/>
+                        Content="Thanh toán khi nhận hàng"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Foreground="#000" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"  >
-                    <Image 
-                        Source="/Resource/Images/Icons/delivery.png"
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Image
                         Width="15"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/delivery.png" />
                     <Label
-                    DockPanel.Dock="Left"
-                    Content="Vận chuyển nhanh"
-                    FontSize="13"
+                        Content="Vận chuyển nhanh"
+                        DockPanel.Dock="Left"
+                        FontSize="13"
                         FontWeight="Medium"
-                    Foreground="#000" />
+                        Foreground="#000" />
                 </StackPanel>
             </DockPanel>
-            
+
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

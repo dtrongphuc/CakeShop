@@ -115,7 +115,6 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\DetailOrder.cs" />
-    <Compile Include="ViewModels\DetailOrderViewModel.cs" />
     <Compile Include="Models\GetListObject.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Order.cs" />
@@ -129,6 +128,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CreatProductViewModel.cs" />
+    <Compile Include="ViewModels\DetailOrderViewModel.cs" />
     <Compile Include="ViewModels\DetailProductViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

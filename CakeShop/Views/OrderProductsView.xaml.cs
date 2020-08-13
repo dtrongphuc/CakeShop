@@ -1,4 +1,4 @@
-﻿using CakeShop.Models;
+﻿using CakeShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +21,20 @@ namespace CakeShop.Views
     /// </summary>
     public partial class OrderProductsView : UserControl
     {
+        Style defaultStyle;
+        Style selectedStyle;
+
+        public OrderProductsViewModel CurrentViewModel { get; set; } = null;
+
         public OrderProductsView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as OrderProductsViewModel;
+            SetStylePagination();
         }
 
         private void OrdersDataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -39,12 +50,19 @@ namespace CakeShop.Views
             }
         }
 
+        private void SetStylePagination()
+        {
+            defaultStyle = this.FindResource("PaginationStyle") as Style;
+            selectedStyle = this.FindResource("PaginationStyleSelected") as Style;
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
+        }
+
         int i = 0;
         private void Change_Status(object sender, SelectionChangedEventArgs e)
         {
-            
+
             var CbBox = sender as ComboBox;
-            
+
             if (CbBox.DataContext != null)
             {
                 i++;
@@ -52,34 +70,55 @@ namespace CakeShop.Views
                 productSelected.Status = CbBox.SelectedValue.ToString();
                 //productSelected.UpdateStatus();
             }
-
-
-
         }
 
-        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Cập nhật lại số trang
+        /// </summary>
+        /// <param name="currentPage">Trang hiện tại (-1 nếu không muốn đặt, 0 nếu muốn về trang cuối)</param>
+        /// <param name="isPrevClick">Có phải prev click không</param>
+        /// <param name="isNextClick">Có phải next click không</param>
+        private void UpdatePagination(int currentPage, bool isPrevClick, bool isNextClick)
         {
-
+            CurrentViewModel.UpdateOrdersPagination(currentPage, isPrevClick, isNextClick);
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
         private void OnPageNumber_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void OnLastPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OnNextPage_Click(object sender, RoutedEventArgs e)
-        {
-
+            var Btn = (Button)sender;
+            int CurrPage = (int)Btn.Content;
+            UpdatePagination(CurrPage, false, false);
         }
 
         private void OnPrePage_Click(object sender, RoutedEventArgs e)
         {
+            UpdatePagination(-1, true, false);
+        }
 
+        private void OnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(-1, false, true);
+        }
+
+        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(1, false, false);
+        }
+
+        private void OnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(0, false, false);
+        }
+
+        private void Change_Status(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CurrentViewModel.ShowDetailOrder();
         }
     }
 }
