@@ -67,5 +67,10 @@ namespace CakeShop.Views
         {
 
         }
+
+        private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

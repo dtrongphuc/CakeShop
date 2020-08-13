@@ -216,6 +216,11 @@
                             </Style.Triggers>
                         </Style>
                     </DataGrid.CellStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="PreviewMouseDoubleClick" Handler="ViewDetail_PreviewMouseDoubleClick" />
+                        </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="1*"
@@ -294,7 +299,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                    <DataGrid.RowDetailsTemplate>
+                    <!--<DataGrid.RowDetailsTemplate>
                         <DataTemplate>
                             <DataGrid
                                 AutoGenerateColumns="False"
@@ -366,7 +371,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </DataTemplate>
-                    </DataGrid.RowDetailsTemplate>
+                    </DataGrid.RowDetailsTemplate>-->
                 </DataGrid>
             </Grid>
         </ScrollViewer>
