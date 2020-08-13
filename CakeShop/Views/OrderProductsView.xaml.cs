@@ -43,6 +43,29 @@ namespace CakeShop.Views
             
         }
 
-       
+        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnPageNumber_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnPrePage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
