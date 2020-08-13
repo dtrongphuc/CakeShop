@@ -33,22 +33,8 @@
             <lvc:PieChart
                 DataClick="PieChart_DataClick"
                 Hoverable="True"
-                LegendLocation="Bottom">
-                <lvc:PieChart.Series>
-                    <lvc:PieSeries
-                        Title="data 1"
-                        DataLabels="True"
-                        Values="4" />
-                    <lvc:PieSeries
-                        Title="data 2"
-                        DataLabels="True"
-                        Values="2" />
-                    <lvc:PieSeries
-                        Title="data 3"
-                        DataLabels="True"
-                        Values="5" />
-                </lvc:PieChart.Series>
-            </lvc:PieChart>
+                LegendLocation="Bottom"
+                Series="{Binding PieChart}" />
         </materialDesign:Card>
         <materialDesign:Card
             Grid.Row="0"
