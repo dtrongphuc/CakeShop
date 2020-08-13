@@ -1,4 +1,5 @@
-﻿using CakeShop.ViewModels;
+﻿using CakeShop.Models;
+using CakeShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +79,7 @@ namespace CakeShop.Views
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            CurrentViewModel.ShowDetailOrder();
+           
         }
     }
 }

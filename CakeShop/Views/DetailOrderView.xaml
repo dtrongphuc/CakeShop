@@ -248,9 +248,9 @@
             Margin="00,10,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="8*" />
-                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="11*" />
+                    <ColumnDefinition Width="175*" />
+                    <ColumnDefinition Width="7*" />
                 </Grid.ColumnDefinitions>
                 <DataGrid
                     Grid.Column="1"
@@ -264,7 +264,7 @@
                     CanUserAddRows="False"
                     ItemsSource="{Binding OrdersDataGrid}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,1,0.4">
                     <DataGrid.CellStyle>
                         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
                             <Setter Property="BorderThickness" Value="0" />
