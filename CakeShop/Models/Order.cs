@@ -115,5 +115,11 @@ namespace CakeShop.Models
             string sql = $"INSERT INTO ORDERS VALUES (N'{CustomerName}', N'{Address}', '{Email}', N'{Note}', {Total}, {Status}, '{Date}')";
             Connection.Execute_SQL(sql);
         }
+
+        public void UpdateStatus()
+        {
+            string sql = $"UPDATE ORDERS SET STATUS={Status} WHERE IDORDER={IdOrder}";
+            Connection.Execute_SQL(sql);
+        }
     }
 }

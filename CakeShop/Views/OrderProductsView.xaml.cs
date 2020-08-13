@@ -58,6 +58,20 @@ namespace CakeShop.Views
             CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
+        private void Change_Status(object sender, SelectionChangedEventArgs e)
+        {
+            var CbBox = sender as ComboBox;
+
+            if (CbBox.DataContext != null)
+            {
+                Order productSelected = CbBox.DataContext as Order;
+                if (!CbBox.SelectedValue.Equals(productSelected.Status))
+                {
+                    productSelected.UpdateStatus();
+                }
+            }
+        }
+
         /// <summary>
         /// Cập nhật lại số trang
         /// </summary>
@@ -97,10 +111,7 @@ namespace CakeShop.Views
             UpdatePagination(0, false, false);
         }
 
-        private void Change_Status(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
+       
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

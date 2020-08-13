@@ -305,7 +305,8 @@
                         <DataGridTemplateColumn
                             Width="2*"
                             Header="Trạng thái"
-                            IsReadOnly="True">
+                            IsReadOnly="True"
+                            >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox
