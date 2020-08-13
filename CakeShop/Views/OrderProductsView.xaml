@@ -12,6 +12,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="700"
     d:DesignWidth="1200"
+    Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
@@ -130,7 +131,7 @@
         </Style>
     </UserControl.Resources>
     <Grid
-        x:Name="Container"
+        x:Name="Main"
         Background="#fff"
         SnapsToDevicePixels="True">
         <Grid.ColumnDefinitions>
@@ -204,9 +205,7 @@
                     ItemsSource="{Binding OrdersDataGrid}"
                     PreviewMouseWheel="OrdersDataGrid_PreviewMouseWheel"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                    cal:Message.Attach="[Event MouseDoubleClick] = [Action ShowDetailOrder]"
-                    >
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
                     <DataGrid.CellStyle>
                         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
                             <Setter Property="BorderThickness" Value="0" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace CakeShop.Views
     /// </summary>
     public partial class OrderProductsView : UserControl
     {
+        public OrderProductsViewModel CurrentViewModel { get; set; } = null;
+
         public OrderProductsView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentViewModel = Main.DataContext as OrderProductsViewModel;
         }
 
         private void OrdersDataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -70,7 +78,7 @@ namespace CakeShop.Views
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            CurrentViewModel.ShowDetailOrder();
         }
     }
 }
