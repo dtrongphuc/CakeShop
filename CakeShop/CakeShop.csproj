@@ -115,6 +115,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\DetailOrder.cs" />
+    <Compile Include="ViewModels\DetailOrderViewModel.cs" />
     <Compile Include="Models\GetListObject.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Order.cs" />
@@ -139,6 +140,9 @@
       <DependentUpon>AddOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddOrderViewModel.cs" />
+    <Compile Include="Views\DetailOrderView.xaml.cs">
+      <DependentUpon>DetailOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailProductView.xaml.cs">
       <DependentUpon>DetailProductView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreatProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
