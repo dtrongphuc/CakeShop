@@ -175,3 +175,5 @@ select * from product
 
 SELECT IDORDER,CUSTOMERNAME,ADDRESS,EMAIL, NOTE,TOTAL,STATUS, MONTH(DATE) AS 'MONTH' FROM ORDERS
 select * from CATEGORY
+
+select cate.CATEGORYNAME,temp.doanthu from CATEGORY as cate join (select p.IDCATEGORY,sum(totalprice)as 'doanthu' from DETAILORDER as dt join PRODUCT as p on p.idproduct=dt.idproduct group by p.IDCATEGORY) as temp on cate.idcategory=temp.idcategory

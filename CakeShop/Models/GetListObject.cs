@@ -235,5 +235,21 @@ namespace CakeShop.Models
             productAndSize.price = detail.PriceTotal;
             return productAndSize;
         }
+
+        public BindableCollection<dynamic> Turnover()
+        {
+            BindableCollection<dynamic> listTurnover = new BindableCollection<dynamic>();
+            sql = "select cate.CATEGORYNAME,temp.Sales from CATEGORY as cate join (select p.IDCATEGORY,sum(totalprice)as 'Sales' from DETAILORDER as dt join PRODUCT as p on p.idproduct=dt.idproduct group by p.IDCATEGORY) as temp on cate.idcategory=temp.idcategory";
+
+            DataTable dt = Connection.GetALL_Data(sql);
+            foreach (DataRow row in dt.Rows)
+            {
+                dynamic turnover = new ExpandoObject();
+                turnover.CategoryName= row["CATEGORYNAME"].ToString();
+                turnover.sales= row["Sales"].ToString();
+                listTurnover.Add(turnover);
+            }
+            return listTurnover;
+        }
     }
 }

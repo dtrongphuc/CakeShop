@@ -138,14 +138,14 @@
                                 Padding="10,0,0,0"
                                 FontSize="16"
                                 FontWeight="Regular"
-                                Text="Đã giao hàng" />
+                                Text="Chưa giao hàng" />
                         </ComboBoxItem>
                         <ComboBoxItem Height="45" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
                                 FontSize="16"
                                 FontWeight="Regular"
-                                Text="Chưa giao hàng" />
+                                Text="Đã giao hàng" />
                         </ComboBoxItem>
                     </ComboBox>
 
@@ -262,11 +262,11 @@
                         materialDesign:HintAssist.Hint="Size"
                         materialDesign:HintAssist.IsFloating="False"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderBrush="#000"
-                        BorderThickness="0.5"
                         SelectedIndex="0"
+                        ItemsSource="{Binding SizeCombobox}"
+                        DisplayMemberPath="Size"
                         Style="{StaticResource MaterialDesignFilledComboBox}">
-                        <ComboBoxItem>
+                        <!--<ComboBoxItem>
                             <TextBlock
                                 FontSize="20"
                                 IsEnabled="True"
@@ -284,7 +284,7 @@
                                 FontSize="20"
                                 Text="L"
                                 TextAlignment="Center" />
-                        </ComboBoxItem>
+                        </ComboBoxItem>-->
                     </ComboBox>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
