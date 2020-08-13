@@ -196,11 +196,11 @@
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0.5"
                             BorderBrush="#000"
-                            DisplayMemberPath="ProductName"                          
-                            DockPanel.Dock="Left"                            
-                            FontSize="18"
-                            
-                            ItemsSource="{Binding ProductsNameCombobox}" Width="328" />
+                            DisplayMemberPath="ProductName"                            
+                            FontSize="18"                            
+                            ItemsSource="{Binding ProductsNameCombobox}"
+                            Width="328" 
+                            SelectionChanged="CoboboxNameProduct_SelectionChang"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -269,8 +269,10 @@
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0.5"
                         BorderBrush="#000"
-                        SelectedIndex="0">
-                        <ComboBoxItem>
+                        SelectedIndex="0"
+                        ItemsSource="{Binding SizeCombobox}"
+                        DisplayMemberPath="Size">
+                        <!--<ComboBoxItem>
                             <TextBlock
                                 FontSize="20"
                                 IsEnabled="True"
@@ -288,7 +290,7 @@
                                 FontSize="20"
                                 Text="L"
                                 TextAlignment="Center" />
-                        </ComboBoxItem>
+                        </ComboBoxItem>-->
                     </ComboBox>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal">

@@ -193,7 +193,7 @@
                         Margin="0,0,15,0"
                         Source="/Resource/Images/Icons/calendar.png" />
                     <Label
-                        Content="20/10/2020"
+                        Content="{Binding CreateOnDate}"
                         FontSize="14"
                         FontWeight="SemiBold"
                         Foreground="#000" />
@@ -204,7 +204,7 @@
                         Margin="0,0,15,0"
                         Source="/Resource/Images/Icons/loading.png" />
                     <Label
-                        Content="Đang giao hàng"
+                        Content="{Binding Delivery}"
                         DockPanel.Dock="Right"
                         FontSize="13"
                         FontWeight="SemiBold"
@@ -220,10 +220,11 @@
                         Margin="0,0,15,0"
                         Source="/Resource/Images/Icons/Custemer.png" />
                     <Label
-                        Content="Nguyễn Hiếu Nghĩa"
+                        Content="{Binding Custemer}"
                         FontSize="20"
                         FontWeight="SemiBold"
-                        Foreground="#f0668d" />
+                        Foreground="#f0668d" 
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Image
@@ -231,7 +232,7 @@
                         Margin="0,0,15,0"
                         Source="/Resource/Images/Icons/local.png" />
                     <Label
-                        Content="L22 cư xá Phú lâm A, F12, Q6"
+                        Content="{Binding Address}"
                         FontSize="14"
                         FontWeight="SemiBold"
                         Foreground="#000" />

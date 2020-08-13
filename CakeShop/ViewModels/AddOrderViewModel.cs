@@ -30,6 +30,7 @@ namespace CakeShop.Views
             }
         }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
+        public BindableCollection<SizeProduct> SizeCombobox { get; set; } = new BindableCollection<SizeProduct>();
         private List<DetailOrder> listOrder = new List<DetailOrder>();
         public BindableCollection<dynamic> OrderedList { get; set; } = new BindableCollection<dynamic>();
 
@@ -59,11 +60,11 @@ namespace CakeShop.Views
             }
         }
 
-        //binding gia sản phẩm tương ứng
-        public void BindingPriceProduct(string idproduct)
+        //binding size sản phẩm tương ứng
+        public void BindingSizeProduct(string idproduct)
         {
-            product.Find(idproduct);
-            PriceProduct = product.Price;
+            product.Find(idproduct);            
+            SizeCombobox = GetList.Get_SizeProduct(product.IdProduct);
         }
 
        
@@ -84,8 +85,7 @@ namespace CakeShop.Views
 
             //binding
             OrderedList.Insert(0, GetList.Get_ProductAndSizeProduct(detail, product));
-
-            listOrder.Add(detail);
+            listOrder.Add(detail);           
 
             //binding tổng tiền
             TotalPriceProductsTextblock = sum.ToString();

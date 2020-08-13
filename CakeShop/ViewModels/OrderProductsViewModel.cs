@@ -17,19 +17,17 @@ namespace CakeShop.ViewModels
         List<int> PageNumbers;
 
         public BindableCollection<Order> OrdersDataGrid { get; set; }
-        public BindableCollection<Product> DetailDataGrid { get; set; }
         public BindableCollection<PaginationStyle> PaginationNumber { get; set; }
 
         public OrderProductsViewModel() 
         {
             OrdersDataGrid = GetData.Get_AllOrder();
             GetDetail.Find("1");
-            DetailDataGrid = GetDetail.ListProduct;
             UpdateOrdersPagination(1, false, false);
             PaginationNumber = new BindableCollection<PaginationStyle>();
         }
 
-        public void ShowDetailOrder(string index)
+        public void ShowDetailOrder(Order index)
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
             Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;

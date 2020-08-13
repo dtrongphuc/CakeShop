@@ -102,5 +102,12 @@ namespace CakeShop.Views
                 CurrentViewModel.AddToListbox(size, Amount, index);
             }
         }
+
+
+        private void CoboboxNameProduct_SelectionChang(object sender, SelectionChangedEventArgs e)
+        {
+            var index = (CoboboxNameProduct.SelectedIndex + 1).ToString();
+            CurrentViewModel.BindingSizeProduct(index);
+        }
     }
 }

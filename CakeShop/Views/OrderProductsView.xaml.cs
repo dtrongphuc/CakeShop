@@ -58,17 +58,17 @@ namespace CakeShop.Views
             CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
-        int i = 0;
         private void Change_Status(object sender, SelectionChangedEventArgs e)
         {
-
             var CbBox = sender as ComboBox;
 
             if (CbBox.DataContext != null)
             {
-                i++;
                 Order productSelected = CbBox.DataContext as Order;
-                productSelected.UpdateStatus();
+                if (!CbBox.SelectedValue.Equals(productSelected.Status))
+                {
+                    productSelected.UpdateStatus();
+                }
             }
         }
 
@@ -115,7 +115,9 @@ namespace CakeShop.Views
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           
+            DataGridRow Selected = sender as DataGridRow;
+            Order OrderSelected = Selected.DataContext as Order;
+            CurrentViewModel.ShowDetailOrder(OrderSelected);
         }
     }
 }
