@@ -14,7 +14,10 @@ namespace CakeShop.Models
 {
     public class DetailOrderViewModel : Screen
     {
+        public DetailOrderViewModel()
+        {
 
+        }
         public void ShowOrder()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
