@@ -224,6 +224,13 @@ namespace CakeShop.Models
             return id;
         }
 
+        public static int Get_CountALLOrder()
+        {
+            string sql = "SELECT COUNT(*) AS [SOLUONG] FROM ORDERS";
+            int id = Connection.GetCount_Data(sql);
+            return id;
+        }
+
 
         public ExpandoObject Get_ProductAndSizeProduct(DetailOrder detail, Product product)
         {

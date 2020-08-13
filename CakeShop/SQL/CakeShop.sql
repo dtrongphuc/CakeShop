@@ -176,4 +176,6 @@ select * from product
 SELECT IDORDER,CUSTOMERNAME,ADDRESS,EMAIL, NOTE,TOTAL,STATUS, MONTH(DATE) AS 'MONTH' FROM ORDERS
 select * from CATEGORY
 
+SELECT COUNT(*) AS [SOLUONG] FROM ORDERS
+SELECT * FROM ORDERS ORDER BY IDORDER OFFSET  0 ROWS FETCH NEXT  5 ROWS ONLY
 select cate.CATEGORYNAME,temp.doanthu from CATEGORY as cate join (select p.IDCATEGORY,sum(totalprice)as 'doanthu' from DETAILORDER as dt join PRODUCT as p on p.idproduct=dt.idproduct group by p.IDCATEGORY) as temp on cate.idcategory=temp.idcategory
