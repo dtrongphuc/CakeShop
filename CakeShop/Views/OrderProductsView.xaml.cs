@@ -104,7 +104,9 @@ namespace CakeShop.Views
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           
+            DataGridRow Selected = sender as DataGridRow;
+            Order OrderSelected = Selected.DataContext as Order;
+            CurrentViewModel.ShowDetailOrder(OrderSelected);
         }
     }
 }

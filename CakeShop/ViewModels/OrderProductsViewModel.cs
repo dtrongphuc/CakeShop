@@ -29,7 +29,7 @@ namespace CakeShop.ViewModels
             PaginationNumber = new BindableCollection<PaginationStyle>();
         }
 
-        public void ShowDetailOrder(string index)
+        public void ShowDetailOrder(Order index)
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
             Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
