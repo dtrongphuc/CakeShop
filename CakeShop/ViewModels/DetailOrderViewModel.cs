@@ -9,6 +9,9 @@ namespace CakeShop.ViewModels
 {
     public class DetailOrderViewModel : Screen
     {
-        public DetailOrderViewModel() { }
+        public DetailOrderViewModel(string Idorder)
+        {
+            
+        }
     }
 }

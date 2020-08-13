@@ -427,6 +427,13 @@
     <None Include="Resource\Images\Products\sandwichcanguphomai5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Resource\Images\Icons\calendar.png" />
+    <Resource Include="Resource\Images\Icons\Custemer.png" />
+    <Resource Include="Resource\Images\Icons\delivery.png" />
+    <Resource Include="Resource\Images\Icons\loading.png" />
+    <Resource Include="Resource\Images\Icons\local.png" />
+    <Resource Include="Resource\Images\Icons\pay.png" />
+    <Resource Include="Resource\Images\Icons\return.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
