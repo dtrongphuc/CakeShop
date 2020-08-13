@@ -204,7 +204,9 @@
                     ItemsSource="{Binding OrdersDataGrid}"
                     PreviewMouseWheel="OrdersDataGrid_PreviewMouseWheel"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    cal:Message.Attach="[Event MouseDoubleClick] = [Action ShowDetailOrder]"
+                    >
                     <DataGrid.CellStyle>
                         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
                             <Setter Property="BorderThickness" Value="0" />

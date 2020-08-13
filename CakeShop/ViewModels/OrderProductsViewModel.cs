@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CakeShop.ViewModels
 {
@@ -19,6 +20,14 @@ namespace CakeShop.ViewModels
             OrdersDataGrid = GetData.Get_AllOrder();
             GetDetail.Find("1");
             DetailDataGrid = GetDetail.ListProduct;
+        }
+
+        public void ShowDetailOrder()
+        {
+            var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
+            Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
+            MainConductor.DeactivateItem(MainConductor.Items[0], true);
+            parentConductor.ActivateItem(new DetailOrderViewModel());
         }
     }
 }
