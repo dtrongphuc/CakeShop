@@ -1,4 +1,5 @@
-﻿using CakeShop.ViewModels;
+﻿using CakeShop.Models;
+using CakeShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,8 +68,7 @@ namespace CakeShop.Views
             {
                 i++;
                 Order productSelected = CbBox.DataContext as Order;
-                productSelected.Status = CbBox.SelectedValue.ToString();
-                //productSelected.UpdateStatus();
+                productSelected.UpdateStatus();
             }
         }
 
@@ -111,10 +111,7 @@ namespace CakeShop.Views
             UpdatePagination(0, false, false);
         }
 
-        private void Change_Status(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
+       
 
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
