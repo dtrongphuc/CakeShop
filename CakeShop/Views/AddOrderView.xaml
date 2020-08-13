@@ -130,20 +130,20 @@
                         materialDesign:HintAssist.Hint="Trạng thái"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        SelectedIndex="1">
+                        SelectedIndex="0">
                         <ComboBoxItem Height="46" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
                                 FontSize="23"
                                 FontWeight="Regular"
-                                Text="Đã giao hàng" />
+                                Text="Chưa giao hàng" />
                         </ComboBoxItem>
                         <ComboBoxItem Height="45" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
                                 FontSize="23"
                                 FontWeight="Regular"
-                                Text="Chưa giao hàng" />
+                                Text="Đã giao hàng" />
                         </ComboBoxItem>
                     </ComboBox>
 

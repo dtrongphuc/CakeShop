@@ -58,6 +58,11 @@ namespace CakeShop.Views
             AmountProductTextbox.Text = Amountproduct.ToString();
         }
 
+        /// <summary>
+        /// nút hoàn thành xữ lý trên giao diện.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
 
@@ -71,6 +76,13 @@ namespace CakeShop.Views
                 CurrentViewModel.AddDetailOrder();
         }
 
+
+
+        /// <summary>
+        /// thêm sản phẩm đơn hàng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ADD_click(object sender, RoutedEventArgs e)
         {
            
