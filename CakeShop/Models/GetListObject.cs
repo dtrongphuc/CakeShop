@@ -232,16 +232,7 @@ namespace CakeShop.Models
         }
 
 
-        public ExpandoObject Get_ProductAndSizeProduct(DetailOrder detail, Product product)
-        {
-            dynamic productAndSize = new ExpandoObject();
-            productAndSize.image = product.Image;
-            productAndSize.nameProduct = product.ProductName;
-            productAndSize.size = detail.Size;
-            productAndSize.Quantity = detail.Quantity;
-            productAndSize.price = detail.PriceTotal;
-            return productAndSize;
-        }
+        
 
         public BindableCollection<dynamic> Turnover()
         {

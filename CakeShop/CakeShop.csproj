@@ -117,6 +117,7 @@
     <Compile Include="Models\DetailOrder.cs" />
     <Compile Include="Models\GetListObject.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\ItemOrder.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\PaginationProduct.cs" />
     <Compile Include="Models\PaginationStyle.cs" />

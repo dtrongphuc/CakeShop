@@ -72,19 +72,20 @@ namespace CakeShop.Views
         public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {
             Product product = new Product();
-
+            ItemOrder itemorder = new ItemOrder();
             DetailOrder detail = new DetailOrder();
             product.Find((index + 1).ToString());
             //thành tiền sản phẩm
             int totalprice = int.Parse(product.Price) * int.Parse(Amount);
-            detail.PriceTotal = totalprice.ToString();
-            detail.Quantity = Amount;
-            detail.IdProduct = (index + 1).ToString();
-            detail.Size = Size;
+            itemorder.PriceTotal = totalprice.ToString();
+            itemorder.Quantity = Amount;
+            itemorder.IdProduct = (index + 1).ToString();
+            itemorder.Size = Size;
+            detail.ListProduct.Add(itemorder);
             sum += totalprice;
 
             //binding
-            OrderedList.Insert(0, GetList.Get_ProductAndSizeProduct(detail, product));
+            OrderedList.Insert(0, detail.ListProduct);
             listOrder.Add(detail);           
 
             //binding tổng tiền
