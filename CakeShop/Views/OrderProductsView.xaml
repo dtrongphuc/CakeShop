@@ -141,6 +141,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="88" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <!--  HEADER  -->
         <StackPanel
@@ -271,9 +273,9 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox
+                                        Name="ComboboxStatus"
                                         materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
                                         DisplayMemberPath="Key"
-                                        Name="ComboboxStatus"
                                         ItemsSource="{StaticResource statusList}"
                                         SelectedValuePath="Value"
                                         SelectionChanged="Change_Status">
@@ -368,5 +370,102 @@
                 </DataGrid>
             </Grid>
         </ScrollViewer>
+        <StackPanel
+            x:Name="Pagination"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,0,26,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="44"
+                Height="30"
+                Margin="0,0,8,0"
+                Padding="0"
+                VerticalContentAlignment="Center"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="Gainsboro"
+                BorderThickness="0"
+                Click="OnFirstPage_Click"
+                ToolTip="First page">
+                <Border Width="14" Height="14">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Resource/Images/Icons/arrow-end-left.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Border.Background>
+                </Border>
+            </Button>
+
+            <Button
+                Width="30"
+                Height="30"
+                Padding="0"
+                VerticalContentAlignment="Center"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="Gainsboro"
+                BorderThickness="0"
+                Click="OnPrePage_Click"
+                ToolTip="Previous Page">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <materialDesign:PackIcon Foreground="Black" Kind="MenuLeft">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                </StackPanel>
+            </Button>
+            <ItemsControl x:Name="PaginationNumber" Grid.Row="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            Height="30"
+                            Margin="4,0"
+                            Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Click="OnPageNumber_Click"
+                            Content="{Binding Number}"
+                            Style="{Binding PageBtnStyle}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button
+                Width="30"
+                Height="30"
+                Padding="0"
+                VerticalContentAlignment="Center"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="Gainsboro"
+                BorderThickness="0"
+                Click="OnNextPage_Click"
+                ToolTip="Next Page">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <materialDesign:PackIcon Foreground="Black" Kind="MenuRight">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                </StackPanel>
+            </Button>
+            <Button
+                Width="44"
+                Height="30"
+                Margin="8,0,0,0"
+                Padding="0"
+                VerticalContentAlignment="Center"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="Gainsboro"
+                BorderThickness="0"
+                Click="OnLastPage_Click"
+                ToolTip="Last page">
+                <Border Width="14" Height="14">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Resource/Images/Icons/arrow-end-right.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Border.Background>
+                </Border>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>
