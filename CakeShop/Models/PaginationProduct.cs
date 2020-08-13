@@ -12,8 +12,10 @@ namespace CakeShop.Models
     class PaginationProduct : INotifyPropertyChanged
     {
         private string sql;
+        private int record1page = 6;
         public static int Sum_record { get; set; }
         private int _currentPage;
+
         public int CurrentPage
         {
             get { return _currentPage; }
@@ -25,18 +27,8 @@ namespace CakeShop.Models
             }
         }
 
-        private int _record1page = 6;
-        public int record1page
-        {
-            get { return _record1page; }
-            set
-            {
-                _record1page = value;
-                PropertyChanged?.Invoke(
-                    this, new PropertyChangedEventArgs("recod1page"));
-            }
-        }
-
+       
+        
         private int _totalPage = 0;
         public int ToltalPage
         {
