@@ -61,7 +61,7 @@
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
                 <DockPanel LastChildFill="True">
                     <Button
-                        x:Name="ShowDetail"
+                        cal:Message.Attach="[Event Click] = [Action ShowOrder]"
                         Background="#f0668d"
                         Click="Submit_Click"
                         Content="Hoàn thành"
