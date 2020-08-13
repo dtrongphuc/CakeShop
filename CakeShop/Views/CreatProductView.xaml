@@ -317,16 +317,21 @@
                         Panel.ZIndex="10"
                         Cursor="Hand"
                         DockPanel.Dock="Right"
-                        MouseLeftButtonDown="OnNext_MouseLeftButtonDown">
+                        MouseLeftButtonDown="OnNext_MouseLeftButtonDown"
+                        Visibility="Visible">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MaximumImagesCount}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Border.Background>
                             <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
                         </Border.Background>
                     </Border>
-                    <TextBlock
-                        x:Name="CarouselCount"
-                        DockPanel.Dock="Bottom"
-                        Text="{Binding CarouselItemCount}"
-                        Visibility="Collapsed" />
                 </DockPanel>
             </Grid>
 

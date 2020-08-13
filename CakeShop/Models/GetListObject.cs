@@ -245,7 +245,7 @@ namespace CakeShop.Models
             foreach (DataRow row in dt.Rows)
             {
                 dynamic turnover = new ExpandoObject();
-                turnover.CategoryName= row["CATEGORYNAME"].ToString();
+                turnover.CategoryName = row["CATEGORYNAME"].ToString();
                 turnover.sales= row["Sales"].ToString();
                 listTurnover.Add(turnover);
             }

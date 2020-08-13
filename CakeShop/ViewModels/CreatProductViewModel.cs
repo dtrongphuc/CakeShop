@@ -15,7 +15,6 @@ namespace CakeShop.ViewModels
     {
         public BindableCollection<string> ImagesCarousel { get; set; } = new BindableCollection<string>();
         GetListObject Getlist = new GetListObject();
-       
         public BindableCollection<Category> ComboboxCategoryBD { get; set; }
         public ImageSource AddAvatar { get; set; }
 
@@ -23,7 +22,6 @@ namespace CakeShop.ViewModels
         {
             //liệt kê trong các danh mục trong combobox
             ComboboxCategoryBD = Getlist.Get_AllCategory();
-            
         }
 
         /// <summary>
@@ -37,14 +35,13 @@ namespace CakeShop.ViewModels
                 // Thêm hình mới update vào đầu
                 ImagesCarousel.Insert(0, image.FullName);
             }
+            MaximumImagesCount = ImagesCarousel.Count;
         }
 
         string folderfile = AppDomain.CurrentDomain.BaseDirectory;
         public string AddProduct(string name, int idcata, string price, string des, FileInfo listImage)
         {
             var avartar = "";
-
-
             Product product = new Product();
             product.IdCategory = (idcata + 1).ToString();
             product.ProductName = name.Trim();
@@ -84,7 +81,5 @@ namespace CakeShop.ViewModels
                 size.Add();
             }
         }
-
-
     }
 }

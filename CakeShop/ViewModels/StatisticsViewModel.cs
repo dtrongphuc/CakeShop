@@ -20,7 +20,7 @@ namespace CakeShop.ViewModels
 
         public StatisticsViewModel()
         {
-            RevenueByCategory();
+            GetDataForPieChart();
             GetDataForCartesianChart();
 
             MonthLabels = new[] {
@@ -31,20 +31,21 @@ namespace CakeShop.ViewModels
 
         public void GetDataForPieChart()
         {
-            BindableCollection<Category> Categories = _getList.Get_AllCategory();
-            BindableCollection<Order> AllOrder = _getList.Get_AllOrder();
-            foreach (Category CategoryItem in Categories)
+            BindableCollection<dynamic> RevenueByCategory = _getList.Turnover();
+            foreach(var item in RevenueByCategory)
             {
+                ChartValues<double> Revenue = new ChartValues<double>();
+                double TotalRevenue = Double.Parse(item.sales);
+                Revenue.Add(TotalRevenue);
 
+                PieSeries series = new PieSeries
+                {
+                    Values = Revenue,
+                    Title = item.CategoryName
+                };
+
+                PieChart.Add(series);
             }
-        }
-
-        public void RevenueByCategory()
-        {
-            BindableCollection<Category> Categories = _getList.Get_AllCategory();
-            BindableCollection<Order> AllOrder = _getList.Get_AllOrder();
-            DetailOrder Detail = new DetailOrder();
-            Detail.Find("1");
         }
 
         public void GetDataForCartesianChart()

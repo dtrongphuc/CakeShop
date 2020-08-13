@@ -28,6 +28,9 @@ namespace CakeShop.Views
     public partial class CreatProductView : UserControl
     {
         CreatProductViewModel CurrentViewModel = null;
+        private int _currentElement { get; set; } = 0;
+        public int MaximumImagesCount { get; set; } = 0;
+
         public CreatProductView()
         {
             InitializeComponent();
@@ -36,6 +39,8 @@ namespace CakeShop.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentViewModel = Main.DataContext as CreatProductViewModel;
+            MaximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
+            _currentElement = MaximumImagesCount >= 4 ? 4 : MaximumImagesCount;
         }
 
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -51,7 +56,6 @@ namespace CakeShop.Views
             }
         }
 
-        private int _currentElement = 0;
         private void AnimateCarousel()
         {
             var carousel = VisualTreeHelpers.FindChild<StackPanel>(ImagesCarousel, "Carousel");
@@ -64,7 +68,7 @@ namespace CakeShop.Views
 
         private void OnPrev_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_currentElement > 0)
+            if (_currentElement > 4)
             {
                 _currentElement--;
                 AnimateCarousel();
@@ -73,7 +77,7 @@ namespace CakeShop.Views
 
         private void OnNext_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_currentElement < 10)
+            if (_currentElement < MaximumImagesCount)
             {
                 _currentElement++;
                 AnimateCarousel();
@@ -86,7 +90,6 @@ namespace CakeShop.Views
         /// Thêm hình
         /// </summary>
         List<FileInfo> ImagesFileList = new List<FileInfo>(); // List lưu thông tin danh sách hình
-        private int _ImagesAddCount { get; set; } = 0; // Đếm số hình được add
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -106,6 +109,7 @@ namespace CakeShop.Views
             {
                 // Liên lạc với viewmodel để thêm hình vào binding list
                 CurrentViewModel.UpdateImages(ImagesFileList);
+                MaximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
             }
         }
 

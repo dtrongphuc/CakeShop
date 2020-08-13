@@ -18,11 +18,28 @@
             <ColumnDefinition Width="24" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
             <RowDefinition Height="7*" />
             <RowDefinition Height="3*" />
+            <RowDefinition Height="16" />
         </Grid.RowDefinitions>
         <materialDesign:Card
             Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            materialDesign:ShadowAssist.ShadowDepth="Depth1"
+            materialDesign:ShadowAssist.ShadowEdges="Bottom"
+            Background="#fff"
+            UniformCornerRadius="0">
+            <Label
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Thống kê doanh thu"
+                FontSize="26"
+                FontWeight="DemiBold" />
+        </materialDesign:Card>
+        <materialDesign:Card
+            Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
             Margin="12"
@@ -37,7 +54,7 @@
                 Series="{Binding PieChart}" />
         </materialDesign:Card>
         <materialDesign:Card
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="2"
             Margin="12"
             Padding="16"
@@ -54,7 +71,7 @@
             </lvc:CartesianChart>
         </materialDesign:Card>
         <Grid
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="2"
             Margin="12">
             <Grid.ColumnDefinitions>
