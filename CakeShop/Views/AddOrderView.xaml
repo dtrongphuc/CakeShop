@@ -14,6 +14,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <cv:RelativeToAbsoluteConverter x:Key="pathConverter" />
+        <cv:StringToCurrencyConverter x:Key="currencyConverter" />
         <Style
             x:Key="CommonBox"
             BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
@@ -123,25 +124,26 @@
                         Name="CoboboxStatus"
                         Width="200"
                         Height="55"
-                        Margin="20,0,0,0"
-                        Padding="0,10"
+                        Padding="12,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
+                        VerticalContentAlignment="Center"
                         materialDesign:HintAssist.Hint="Trạng thái"
+                        materialDesign:HintAssist.IsFloating="False"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        SelectedIndex="0">
+                        Style="{StaticResource MaterialDesignFilledComboBox}">
                         <ComboBoxItem Height="46" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
-                                FontSize="23"
+                                FontSize="16"
                                 FontWeight="Regular"
                                 Text="Chưa giao hàng" />
                         </ComboBoxItem>
                         <ComboBoxItem Height="45" Margin="0,0,0.4,0">
                             <TextBlock
                                 Padding="10,0,0,0"
-                                FontSize="23"
+                                FontSize="16"
                                 FontWeight="Regular"
                                 Text="Đã giao hàng" />
                         </ComboBoxItem>
@@ -172,16 +174,14 @@
                     Text="" />
 
             </StackPanel>
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="2">
-                <Grid >
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2.3*"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2.3*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel >
+                    <StackPanel>
                         <TextBlock
                             Margin="15,0,0,0"
                             FontWeight="ExtraBold"
@@ -189,18 +189,18 @@
                             Text="Tên sản phẩm" />
                         <ComboBox
                             x:Name="CoboboxNameProduct"
+                            Width="328"
                             Height="64"
                             Padding="15,20"
                             HorizontalAlignment="Left"
                             materialDesign:HintAssist.Hint="Tên sản phẩm"
+                            materialDesign:HintAssist.IsFloating="False"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0.5"
-                            BorderBrush="#000"
-                            DisplayMemberPath="ProductName"                            
-                            FontSize="18"                            
+                            DisplayMemberPath="ProductName"
+                            DockPanel.Dock="Left"
+                            FontSize="16"
                             ItemsSource="{Binding ProductsNameCombobox}"
-                            Width="328" 
-                            SelectionChanged="CoboboxNameProduct_SelectionChang"/>
+                            Style="{StaticResource MaterialDesignFilledComboBox}" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -209,55 +209,49 @@
                             Foreground="#c4c4c4"
                             Text="Giá"
                             TextAlignment="Center" />
-                        <Border
-                            BorderBrush="#000"
-                            BorderThickness="0.5"
-                            CornerRadius="2"
-                            Height="64">
-                            <TextBlock
+                        <TextBlock
                             x:Name="PriceproductTextblock"
                             Margin="0,20"
+                            HorizontalAlignment="Center"
                             materialDesign:HintAssist.Hint="Giá"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             FontSize="20"
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
-                            Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
+                            Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct, Converter={StaticResource currencyConverter}}"
                             TextAlignment="Center" />
-                        </Border>
-                       
                     </StackPanel>
                 </Grid>
 
                 <Grid Margin="00,10,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1.3*"/>
-                      
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1.3*" />
+
                     </Grid.ColumnDefinitions>
                     <TextBlock
+                        Margin="0,0,15,0"
                         FontSize="10"
                         FontWeight="SemiBold"
-                        TextAlignment="Center"
                         Foreground="#cfcfcf"
-                        Margin="0,0,15,0"
-                        Text="Size" />
+                        Text="Size"
+                        TextAlignment="Center" />
                     <TextBlock
                         Grid.Column="1"
+                        Margin="10,0,0,0"
                         FontSize="10"
                         FontWeight="SemiBold"
                         Foreground="#cfcfcf"
-                        TextAlignment="Center"
-                        Margin="10,0,0,0"
-                        Text="Số lượng" />
+                        Text="Số lượng"
+                        TextAlignment="Center" />
                 </Grid>
 
-                <Grid Margin="10,0,0,0" >
+                <Grid Margin="10,0,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <ComboBox
                         Name="CoboboxSize"
@@ -266,12 +260,12 @@
                         Padding="5,10"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Size"
+                        materialDesign:HintAssist.IsFloating="False"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0.5"
-                        BorderBrush="#000"
                         SelectedIndex="0"
                         ItemsSource="{Binding SizeCombobox}"
-                        DisplayMemberPath="Size">
+                        DisplayMemberPath="Size"
+                        Style="{StaticResource MaterialDesignFilledComboBox}">
                         <!--<ComboBoxItem>
                             <TextBlock
                                 FontSize="20"
@@ -298,8 +292,8 @@
                             x:Name="BtnMinusNumProduct"
                             Grid.Column="0"
                             Background="Transparent"
-                            BorderThickness="0.5"
                             BorderBrush="#000"
+                            BorderThickness="0.5"
                             Click="BtnMinusNumProduct_Click">
                             <Image Height="15" Source="/Resource/Images/Icons/Minus.png" />
                         </Button>
@@ -315,8 +309,8 @@
                         <Button
                             Grid.Column="0"
                             Background="Transparent"
-                            BorderThickness="0.5"
                             BorderBrush="#000"
+                            BorderThickness="0.5"
                             Click="BtnPlusNumProduct_Click">
                             <Image Height="15" Source="/Resource/Images/Icons/plus.png" />
                         </Button>
@@ -388,7 +382,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     Foreground="Red"
-                                    Text="{Binding price}" />
+                                    Text="{Binding price, Converter={StaticResource currencyConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -404,19 +398,11 @@
                     <TextBlock
                         Grid.Column="1"
                         VerticalAlignment="Center"
-                        FontSize="15"
+                        FontSize="30"
                         FontWeight="Light"
                         Foreground="Black"
                         Text="Tổng tiền:"
                         TextAlignment="Center" />
-                    <TextBlock
-                        Grid.Column="2"
-                        VerticalAlignment="Top"
-                        FontSize="20"
-                        FontWeight="Light"
-                        Foreground="Red"
-                        Text="đ"
-                        TextAlignment="Left" />
                     <TextBlock
                         x:Name="TotalPriceProducts"
                         Grid.Column="3"
@@ -424,7 +410,7 @@
                         FontSize="30"
                         FontWeight="Medium"
                         Foreground="Red"
-                        Text="{Binding TotalPriceProductsTextblock}"
+                        Text="{Binding TotalPriceProductsTextblock, Converter={StaticResource currencyConverter}}"
                         TextAlignment="Left" />
                 </Grid>
             </StackPanel>
