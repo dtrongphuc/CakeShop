@@ -177,7 +177,8 @@
                 Grid.Column="2">
                 <Grid >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2.3*"/>
+                        <ColumnDefinition Width="20"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel >
@@ -188,26 +189,32 @@
                             Text="Tên sản phẩm" />
                         <ComboBox
                             x:Name="CoboboxNameProduct"
-                            Width="334"
                             Height="64"
                             Padding="15,20"
                             HorizontalAlignment="Left"
                             materialDesign:HintAssist.Hint="Tên sản phẩm"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0"
-                            DisplayMemberPath="ProductName"
-                            DockPanel.Dock="Left"
+                            BorderThickness="0.5"
+                            BorderBrush="#000"
+                            DisplayMemberPath="ProductName"                          
+                            DockPanel.Dock="Left"                            
                             FontSize="18"
-                            ItemsSource="{Binding ProductsNameCombobox}" />
+                            
+                            ItemsSource="{Binding ProductsNameCombobox}" Width="328" />
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1">
+                    <StackPanel Grid.Column="2">
                         <TextBlock
                             FontWeight="ExtraBold"
                             Foreground="#c4c4c4"
                             Text="Giá"
                             TextAlignment="Center" />
-                        <TextBlock
+                        <Border
+                            BorderBrush="#000"
+                            BorderThickness="0.5"
+                            CornerRadius="2"
+                            Height="64">
+                            <TextBlock
                             x:Name="PriceproductTextblock"
                             Margin="0,20"
                             materialDesign:HintAssist.Hint="Giá"
@@ -217,6 +224,8 @@
                             Foreground="#f0668d"
                             Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct}"
                             TextAlignment="Center" />
+                        </Border>
+                       
                     </StackPanel>
                 </Grid>
 
@@ -258,7 +267,8 @@
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Size"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
+                        BorderThickness="0.5"
+                        BorderBrush="#000"
                         SelectedIndex="0">
                         <ComboBoxItem>
                             <TextBlock
@@ -286,10 +296,10 @@
                             x:Name="BtnMinusNumProduct"
                             Grid.Column="0"
                             Background="Transparent"
-                            BorderThickness="0"
+                            BorderThickness="0.5"
+                            BorderBrush="#000"
                             Click="BtnMinusNumProduct_Click">
                             <Image Height="15" Source="/Resource/Images/Icons/Minus.png" />
-
                         </Button>
                         <TextBox
                             x:Name="AmountProductTextbox"
@@ -303,7 +313,8 @@
                         <Button
                             Grid.Column="0"
                             Background="Transparent"
-                            BorderThickness="0"
+                            BorderThickness="0.5"
+                            BorderBrush="#000"
                             Click="BtnPlusNumProduct_Click">
                             <Image Height="15" Source="/Resource/Images/Icons/plus.png" />
                         </Button>
