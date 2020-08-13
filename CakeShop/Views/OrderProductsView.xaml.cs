@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,9 +39,22 @@ namespace CakeShop.Views
             }
         }
 
+        int i = 0;
         private void Change_Status(object sender, SelectionChangedEventArgs e)
         {
             
+            var CbBox = sender as ComboBox;
+            
+            if (CbBox.DataContext != null)
+            {
+                i++;
+                Order productSelected = CbBox.DataContext as Order;
+                productSelected.Status = CbBox.SelectedValue.ToString();
+                //productSelected.UpdateStatus();
+            }
+
+
+
         }
 
         private void OnFirstPage_Click(object sender, RoutedEventArgs e)
