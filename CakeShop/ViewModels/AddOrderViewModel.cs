@@ -30,7 +30,7 @@ namespace CakeShop.Views
             }
         }
         public BindableCollection<Product> ProductsNameCombobox { get; set; }
-        public BindableCollection<SizeProduct> SizeCombobox { get; set; }
+        public BindableCollection<SizeProduct> SizeCombobox { get; set; } = new BindableCollection<SizeProduct>();
         private List<DetailOrder> listOrder = new List<DetailOrder>();
         public BindableCollection<dynamic> OrderedList { get; set; } = new BindableCollection<dynamic>();
 

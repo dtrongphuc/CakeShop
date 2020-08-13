@@ -270,7 +270,7 @@
                         BorderThickness="0.5"
                         BorderBrush="#000"
                         SelectedIndex="0"
-                        ItemsSource="{Binding Path=SelectedItem.Size, ElementName=CoboboxNameProduct}"
+                        ItemsSource="{Binding SizeCombobox}"
                         DisplayMemberPath="Size">
                         <!--<ComboBoxItem>
                             <TextBlock
