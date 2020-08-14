@@ -16,6 +16,7 @@ namespace CakeShop.ViewModels
         public string Address { get; set; }
         public string Delivery { get; set; }
         public string Email { get; set; }
+        public string Note { get; set; }
         public BindableCollection<DetailOrder> OrdersDataGrid { get; set; }
         public DetailOrderViewModel(Order order)
         {
@@ -23,10 +24,13 @@ namespace CakeShop.ViewModels
             CreateOnDate = order.Date;
             Address = order.Address;
             Email = order.Email;
-            if (order.Status == "1")
-            {
-                Delivery = "Đã giao hàng";
-            }
+
+            if (order.Note == string.Empty) 
+                Note = "Không có mô tả.";
+            else Note = order.Note;
+
+            if (order.Status == "1")            
+                Delivery = "Đã giao hàng";            
             else Delivery = "Chưa giao hàng";
 
             detailOrder.Find(order.IdOrder);
