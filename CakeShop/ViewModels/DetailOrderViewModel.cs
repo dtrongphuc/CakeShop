@@ -32,8 +32,9 @@ namespace CakeShop.ViewModels
             if (order.Status == "1")            
                 Delivery = "Đã giao hàng";            
             else Delivery = "Chưa giao hàng";
-
+            //gọi hàm find để tìm ra detail order tương ứng
             detailOrder.Find(order.IdOrder);
+            OrdersDataGrid = detailOrder.ListProduct; // trong detail order có 1 list chứa thông tin sản phẩm người dùng mua
 
         }
 
