@@ -15,7 +15,7 @@ namespace CakeShop.ViewModels
         public string CreateOnDate { get; set; }
         public string Address { get; set; }
         public string Delivery { get; set; }
-        public BindableCollection<DetailOrder> OrdersDataGrid { get; set; }
+        public BindableCollection<ItemOrder> OrdersDataGrid { get; set; }
         public DetailOrderViewModel(Order order)
         {
             Custemer = order.CustomerName;
@@ -26,8 +26,9 @@ namespace CakeShop.ViewModels
                 Delivery = "Đã giao hàng";
             }
             else Delivery = "Chưa giao hàng";
-
-            //OrdersDataGrid = detailOrder.Find(order.IdOrder);
+            //gọi hàm find để tìm ra detail order tương ứng
+            detailOrder.Find(order.IdOrder);
+            OrdersDataGrid = detailOrder.ListProduct; // trong detail order có 1 list chứa thông tin sản phẩm người dùng mua
 
         }
     }
