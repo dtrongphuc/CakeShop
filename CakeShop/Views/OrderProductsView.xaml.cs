@@ -67,6 +67,7 @@ namespace CakeShop.Views
                 Order productSelected = CbBox.DataContext as Order;
                 if (!CbBox.SelectedValue.Equals(productSelected.Status))
                 {
+                    productSelected.Status = CbBox.SelectedValue.ToString();
                     productSelected.UpdateStatus();
                 }
             }

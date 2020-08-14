@@ -21,7 +21,7 @@ namespace CakeShop.ViewModels
 
         public OrderProductsViewModel() 
         {
-            OrdersDataGrid = GetData.Get_AllOrder();
+            OrdersDataGrid = PagProduct.GetOrderPagination(1);
             GetDetail.Find("1");
             UpdateOrdersPagination(1, false, false);
             PaginationNumber = new BindableCollection<PaginationStyle>();

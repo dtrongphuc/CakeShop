@@ -23,19 +23,10 @@ namespace CakeShop.Models
             }
         }
 
-        private string _idProduct;
-        public string IdProduct
-        {
-            get { return _idProduct; }
-            set
-            {
-                _idProduct = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdProduct"));
-            }
-        }
+        
 
-        private BindableCollection<Product> _listProduct { get; set; } = new BindableCollection<Product>();
-        public BindableCollection<Product> ListProduct
+        private BindableCollection<ItemOrder> _listProduct { get; set; } = new BindableCollection<ItemOrder>();
+        public BindableCollection<ItemOrder> ListProduct
         {
             get
             {
@@ -49,48 +40,16 @@ namespace CakeShop.Models
             }
         }
 
-        private string _quantity;
-        public string Quantity
-        {
-            get { return _quantity; }
-            set
-            {
-                _quantity = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Quantity"));
-            }
-        }
-
-        private string _size;
-        public string Size
-        {
-            get { return _size; }
-            set
-            {
-                _size = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
-            }
-        }
+      
 
 
-        private string _priceTotal;
-        public string PriceTotal
-        {
-            get { return _priceTotal; }
-            set
-            {
-                _priceTotal = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PriceTotal"));
-            }
-        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         public DetailOrder()
         {
             this.IdOrder = " ";
-            this.IdProduct = " ";
-            this.PriceTotal = " ";
-            this.Quantity = " ";
-            this.Size = " ";
+           
         }
 
         public bool Find(string id)
@@ -101,14 +60,14 @@ namespace CakeShop.Models
             foreach(DataRow row in dt.Rows)
             {
                 check = true;
-                Product product = new Product();
+                ItemOrder product = new ItemOrder();
                 this.IdOrder = row["IDORDER"].ToString();
-                this.IdProduct = row["IDPRODUCT"].ToString();
+                var IdProduct = row["IDPRODUCT"].ToString();
                 product.Find(IdProduct);
+                product.Quantity = row["QUATITY"].ToString();
+                product.Size = row["SIZE"].ToString();
+                product.PriceTotal = row["TOTALPRICE"].ToString();
                 ListProduct.Add(product);
-                this.Quantity = row["QUATITY"].ToString();
-                this.Size = row["SIZE"].ToString();
-                this.PriceTotal = row["TOTALPRICE"].ToString();
             }
             if (check == true)
                 return true;
@@ -118,8 +77,11 @@ namespace CakeShop.Models
         {
             sql = "SELECT IDENT_CURRENT('ORDERS') as LastID";
             IdOrder = Connection.GetCount_Data(sql).ToString();
-            sql = $"INSERT INTO DETAILORDER VALUES ({IdOrder}, {IdProduct}, {Quantity}, '{Size}', {PriceTotal})";
-            Connection.Execute_SQL(sql);
+            foreach (ItemOrder product in this.ListProduct)
+            {
+                sql = $"INSERT INTO DETAILORDER VALUES ({IdOrder}, {product.IdProduct}, {product.Quantity}, '{product.Size}', {product.PriceTotal})";
+                Connection.Execute_SQL(sql);
+            }
         }
     }
 }
