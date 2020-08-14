@@ -27,8 +27,14 @@ namespace CakeShop.ViewModels
             }
             else Delivery = "Chưa giao hàng";
 
-            //OrdersDataGrid = detailOrder.Find(order.IdOrder);
+            detailOrder.Find(order.IdOrder);
 
         }
+
+        //public void BindingDatagrid(Order order)
+        //{
+        //    var temp = detailOrder.Find(order.IdOrder);
+        //    var trara = detailOrder.ListProduct();
+        //}
     }
 }

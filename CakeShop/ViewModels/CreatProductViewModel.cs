@@ -35,7 +35,7 @@ namespace CakeShop.ViewModels
                 // Thêm hình mới update vào đầu
                 ImagesCarousel.Insert(0, image.FullName);
             }
-            MaximumImagesCount = ImagesCarousel.Count;
+            //MaximumImagesCount = ImagesCarousel.Count;
         }
 
         string folderfile = AppDomain.CurrentDomain.BaseDirectory;
