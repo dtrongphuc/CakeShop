@@ -39,10 +39,6 @@ namespace CakeShop.Models
                     this, new PropertyChangedEventArgs("ListProduct"));
             }
         }
-
-      
-
-
         
         public event PropertyChangedEventHandler PropertyChanged;
 

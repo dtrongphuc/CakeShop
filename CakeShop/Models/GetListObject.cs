@@ -44,20 +44,7 @@ namespace CakeShop.Models
         }
 
      
-        private BindableCollection<SizeProduct> _listSizeProduct { get; set; } = new BindableCollection<SizeProduct>();
-        public BindableCollection<SizeProduct> ListSizeProduct
-        {
-            get
-            {
-                return _listSizeProduct;
-            }
-            set
-            {
-                _listSizeProduct = value;
-                PropertyChanged?.Invoke(
-                    this, new PropertyChangedEventArgs("ListSizeProduct"));
-            }
-        }
+        public BindableCollection<SizeProduct> ListSizeProduct { get; set; } = new BindableCollection<SizeProduct>();
 
         private BindableCollection<Image> _listImageProduct { get; set; } = new BindableCollection<Image>();
         public BindableCollection<Image> ListImageProduct
@@ -147,6 +134,7 @@ namespace CakeShop.Models
         public BindableCollection<SizeProduct> Get_SizeProduct(string id)
         {
             ListSizeProduct.Clear();
+            if (id == string.Empty) return ListSizeProduct;
             sql = $"SELECT * FROM  SIZEPRODUCT WHERE IDPRODUCT={id}";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)

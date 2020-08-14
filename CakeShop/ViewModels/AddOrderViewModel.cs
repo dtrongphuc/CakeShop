@@ -14,7 +14,6 @@ namespace CakeShop.Views
 {
     public class AddOrderViewModel : Screen
     {
-        Product product = new Product();
         GetListObject GetList = new GetListObject();
         public string PriceProduct { get; set; }
         private int sum = 0;
@@ -38,7 +37,9 @@ namespace CakeShop.Views
         {
             ProductsNameCombobox = GetList.Get_AllProduct();
             TotalPriceProductsTextblock = "0";
+            SizeCombobox = GetList.Get_SizeProduct(string.Empty);
         }
+
         public void AddOrder(string name, string email, string address, string des, string date, int status)
         {
             Order order = new Order();
@@ -61,14 +62,11 @@ namespace CakeShop.Views
         }
 
         //binding size sản phẩm tương ứng
-        public void BindingSizeProduct(string idproduct)
+        public void BindingSizeProduct(string idProduct)
         {
-            product.Find(idproduct);            
-            SizeCombobox = GetList.Get_SizeProduct(product.IdProduct);
+            SizeCombobox = GetList.Get_SizeProduct(idProduct);
         }
 
-       
-        
         public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {
             Product product = new Product();
@@ -79,6 +77,8 @@ namespace CakeShop.Views
             int totalprice = int.Parse(product.Price) * int.Parse(Amount);
             itemorder.PriceTotal = totalprice.ToString();
             itemorder.Quantity = Amount;
+            itemorder.Image = product.Image;
+            itemorder.ProductName = product.ProductName;
             itemorder.IdProduct = (index + 1).ToString();
             itemorder.Size = Size;
             detail.ListProduct.Add(itemorder);
