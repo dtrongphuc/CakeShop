@@ -17,7 +17,7 @@ namespace CakeShop.ViewModels
         public string Delivery { get; set; }
         public string Email { get; set; }
         public string Note { get; set; }
-        public BindableCollection<DetailOrder> OrdersDataGrid { get; set; }
+        public BindableCollection<ItemOrder> OrdersDataGrid { get; set; }
         public DetailOrderViewModel(Order order)
         {
             Custemer = order.CustomerName;
