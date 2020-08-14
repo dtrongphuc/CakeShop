@@ -15,12 +15,14 @@ namespace CakeShop.ViewModels
         public string CreateOnDate { get; set; }
         public string Address { get; set; }
         public string Delivery { get; set; }
+        public string Email { get; set; }
         public BindableCollection<DetailOrder> OrdersDataGrid { get; set; }
         public DetailOrderViewModel(Order order)
         {
             Custemer = order.CustomerName;
             CreateOnDate = order.Date;
             Address = order.Address;
+            Email = order.Email;
             if (order.Status == "1")
             {
                 Delivery = "Đã giao hàng";

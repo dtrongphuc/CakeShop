@@ -182,11 +182,15 @@
                 Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
         </StackPanel>
 
-        <DockPanel
+        <Grid
             Grid.Row="1"
-            Grid.Column="1"
-            LastChildFill="True">
-            <StackPanel DockPanel.Dock="Right">
+            Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="2">
                 <StackPanel Orientation="Horizontal">
                     <Image
                         Width="15"
@@ -212,8 +216,33 @@
                 </StackPanel>
 
             </StackPanel>
+            <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="15"
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/email.png" />
+                    <Label
+                        Content="{Binding Email}"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#000" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="15"
+                        Margin="0,0,15,0"
+                        Source="/Resource/Images/Icons/delivery.png" />
+                    <Label
+                        Content="Vận chuyển nhanh"
+                        DockPanel.Dock="Left"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Foreground="#000" />
+                </StackPanel>
 
-            <StackPanel DockPanel.Dock="Left">
+            </StackPanel>
+            <StackPanel Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <Image
                         Width="15"
@@ -240,7 +269,7 @@
 
             </StackPanel>
 
-        </DockPanel>
+        </Grid>
 
         <ScrollViewer
             Grid.Row="2"
@@ -377,11 +406,7 @@
                     Foreground="#f0668d" />
             </DockPanel>
 
-            <DockPanel
-                Grid.Row="1"
-                Grid.Column="1"
-                LastChildFill="True">
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <!--<StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                     <Image
                         Width="15"
                         Margin="0,0,15,0"
@@ -391,22 +416,9 @@
                         FontSize="13"
                         FontWeight="Medium"
                         Foreground="#000" />
-                </StackPanel>
+                </StackPanel>-->
 
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                    <Image
-                        Width="15"
-                        Margin="0,0,15,0"
-                        Source="/Resource/Images/Icons/delivery.png" />
-                    <Label
-                        Content="Vận chuyển nhanh"
-                        DockPanel.Dock="Left"
-                        FontSize="13"
-                        FontWeight="Medium"
-                        Foreground="#000" />
-                </StackPanel>
-            </DockPanel>
-
+           
         </StackPanel>
 
     </Grid>

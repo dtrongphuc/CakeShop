@@ -435,6 +435,7 @@
     <Resource Include="Resource\Images\Icons\local.png" />
     <Resource Include="Resource\Images\Icons\pay.png" />
     <Resource Include="Resource\Images\Icons\return.png" />
+    <Resource Include="Resource\Images\Icons\email.png" />
     <Content Include="SQL\CakeShop.sql" />
     <Content Include="SQL\CakeShop.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
