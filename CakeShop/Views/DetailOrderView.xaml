@@ -406,17 +406,17 @@
                     VerticalContentAlignment="Center"
                     Content="Thành tiền:"
                     DockPanel.Dock="Left"
-                    FontSize="20"
-                    FontWeight="Light"
-                    Foreground="#f0668d" />
+                    FontSize="30"
+                    FontWeight="DemiBold"
+                    Foreground="Black" />
             </DockPanel>
 
             <DockPanel Margin="0,15,10,0">
                 <TextBlock
                     DockPanel.Dock="Left"
                     FontSize="20"
-                    FontWeight="ExtraBold"
-                    Text="Mô tả: " />
+                    FontWeight="DemiBold"
+                    Text="Ghi chú: " />
                 <TextBlock
                     Padding="15,4,10,0"
                     DockPanel.Dock="Right"

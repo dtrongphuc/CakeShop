@@ -194,9 +194,9 @@
                                 materialDesign:HintAssist.Hint="Danh mục"
                                 DisplayMemberPath="CategoryName"
                                 DockPanel.Dock="Right"
-                                ItemsSource="{Binding CategoryCombobox}" 
+                                ItemsSource="{Binding CategoryCombobox}"
                                 SelectedIndex="0"
-                                SelectionChanged="ProductInCategory"/>
+                                SelectionChanged="ProductInCategory" />
                         </DockPanel>
                         <Separator
                             Grid.Row="1"
@@ -247,7 +247,8 @@
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ClipToBounds="True"
-                                        Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                        ToolTip="{Binding ProductName}">
                                         <materialDesign:Card
                                             Width="340"
                                             Padding="-1,0"
