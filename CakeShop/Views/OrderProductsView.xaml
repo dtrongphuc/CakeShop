@@ -16,6 +16,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
+        <cv:StringToCurrencyConverter x:Key="currencyConverter" />
         <collections:ArrayList x:Key="statusList">
             <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
             <collections:DictionaryEntry Key="Đã giao hàng" Value="1" />
@@ -292,7 +293,7 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn
                             Width="2*"
-                            Binding="{Binding Total}"
+                            Binding="{Binding Total, Converter={StaticResource currencyConverter}}"
                             Header="Tổng tiền"
                             IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
