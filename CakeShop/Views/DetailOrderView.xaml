@@ -414,7 +414,6 @@
                     Height="30"
                     Margin="0,14,0,31.2"/>
 
-
             <DockPanel Margin="0,15,10,0">
                 <TextBlock
                     DockPanel.Dock="Left"
