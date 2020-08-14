@@ -140,7 +140,8 @@
                                 materialDesign:HintAssist.IsFloating="False"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
-                                Style="{StaticResource MaterialDesignFilledComboBox}">
+                                Style="{StaticResource MaterialDesignFilledComboBox}"
+                                SelectedIndex="0">
                                 <ComboBoxItem Height="46" Margin="0,0,0.4,0">
                                     <TextBlock
                                         Padding="10,0,0,0"
