@@ -98,16 +98,20 @@ namespace CakeShop.Views
                 CurrentViewModel.AddToListbox(size, Amount, index);
             } else
             {
-                
+                MessageBox.Show("Nhập đầy đủ thông tin !", "Yêu cầu", MessageBoxButton.OK);
             }
         }
 
         private void ComboboxNameProduct_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
+            AmountProductTextbox.Text = "1";
+
             ComboBox CbBox = sender as ComboBox;
             Product productSelected = CbBox.SelectedValue as Product;
             string productId = productSelected.IdProduct;
             CurrentViewModel.BindingSizeProduct(productId);
+
+            ComboboxSize.SelectedIndex = 0;
         }
     }
 }
