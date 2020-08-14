@@ -73,7 +73,6 @@ namespace CakeShop.Models
                 return true;
             return false;
         }
-
         public void Add()
         {
             sql = "SELECT IDENT_CURRENT('ORDERS') as LastID";
