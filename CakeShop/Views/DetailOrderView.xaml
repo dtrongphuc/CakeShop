@@ -14,6 +14,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
+        <cv:StringToCurrencyConverter x:Key="currencyConverter" />
         <collections:ArrayList x:Key="statusList">
             <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
             <collections:DictionaryEntry Key="Đã giao hàng" Value="1" />
@@ -346,13 +347,14 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn
                             Width="2*"
-                            Binding="{Binding Price}"
+                            Binding="{Binding Price, Converter={StaticResource currencyConverter}}"
                             Header="Đơn giá"
                             IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                     <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.Padding" Value="5,0,0,0" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -365,18 +367,20 @@
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                     <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.Padding" Value="18,0,0,0" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn
                             Width="2*"
-                            Binding="{Binding PriceTotal}"
+                            Binding="{Binding PriceTotal, Converter={StaticResource currencyConverter}}"
                             Header="Tổng tiền"
                             IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                     <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.Padding" Value="5,0,0,0" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -390,29 +394,28 @@
 
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
 
-            <TextBlock
-                    Grid.Column="2"
-                    Text="5.666.666 vnđ"
+            </Grid.ColumnDefinitions>
+           
+            <DockPanel LastChildFill="True" Grid.Column="1">
+                <Label
+                    Content="{Binding PriceTotal, Converter={StaticResource currencyConverter}}"
                     DockPanel.Dock="Right"
                     FontSize="40"
                     FontWeight="ExtraBlack"
                     Foreground="#f0668d"
                     VerticalAlignment="Center"/>
-            <TextBlock
-                    Grid.Column="1"
-                    Text="Thành tiền:"
+                <Label
+                    Padding="0,10"
+                    VerticalContentAlignment="Center"
+                    Content="Thành tiền:"
                     DockPanel.Dock="Left"
                     FontSize="20"
                     FontWeight="Light"
-                    Foreground="#f0668d"
-                    VerticalAlignment="Center"
-                    Height="30"
-                    Margin="0,14,0,31.2"/>
+                    Foreground="#f0668d" />
+            </DockPanel>
 
             <DockPanel Margin="0,15,10,0">
                 <TextBlock

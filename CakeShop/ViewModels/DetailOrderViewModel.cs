@@ -17,7 +17,8 @@ namespace CakeShop.ViewModels
         public string Delivery { get; set; }
         public string Email { get; set; }
         public string Note { get; set; }
-        public BindableCollection<DetailOrder> OrdersDataGrid { get; set; }
+        public string PriceTotal { get; set; }
+        public BindableCollection<ItemOrder> OrdersDataGrid { get; set; }
         public DetailOrderViewModel(Order order)
         {
             Custemer = order.CustomerName;
@@ -35,13 +36,19 @@ namespace CakeShop.ViewModels
             //gọi hàm find để tìm ra detail order tương ứng
             detailOrder.Find(order.IdOrder);
             OrdersDataGrid = detailOrder.ListProduct; // trong detail order có 1 list chứa thông tin sản phẩm người dùng mua
-
+            PriceTotal = SumOfMoney(OrdersDataGrid);
         }
 
-        //public void BindingDatagrid(Order order)
-        //{
-        //    var temp = detailOrder.Find(order.IdOrder);
-        //    var trara = detailOrder.ListProduct();
-        //}
+        public string SumOfMoney(BindableCollection<ItemOrder> ProductList)
+        {
+            int Sum = 0;
+            foreach(var item in ProductList)
+            {
+                Sum += int.Parse(item.PriceTotal);
+            }
+            string Result = Sum.ToString();
+            return Result;
+        }
+
     }
 }
