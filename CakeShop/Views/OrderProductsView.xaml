@@ -226,7 +226,7 @@
                     x:Name="OrderList"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
+                    VerticalAlignment="Top"
                     HorizontalContentAlignment="Center"
                     AlternationCount="{Binding Path=OrdersDataGrid.Count}"
                     AutoGenerateColumns="False"
@@ -306,8 +306,7 @@
                         <DataGridTemplateColumn
                             Width="2*"
                             Header="Trạng thái"
-                            IsReadOnly="True"
-                            >
+                            IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox

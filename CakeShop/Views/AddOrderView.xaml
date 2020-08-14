@@ -119,9 +119,9 @@
                     Foreground="#000"
                     Style="{StaticResource CommonBox}" />
 
-                <StackPanel Margin="10,30,9.6,0" Orientation="Horizontal">
+                <StackPanel Margin="10,30,10,0" Orientation="Horizontal">
                     <ComboBox
-                        Name="CoboboxStatus"
+                        Name="ComboboxStatus"
                         Width="200"
                         Height="55"
                         Padding="12,0"
@@ -174,161 +174,155 @@
                     Text="" />
 
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="2">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2.3*" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.3*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock
+                                Margin="0,0,0,6"
+                                FontSize="14"
+                                FontWeight="ExtraBold"
+                                Foreground="#c4c4c4"
+                                Text="Tên sản phẩm" />
+                            <ComboBox
+                                x:Name="ComboboxNameProduct"
+                                Width="328"
+                                Height="64"
+                                Padding="15,20"
+                                HorizontalAlignment="Left"
+                                materialDesign:HintAssist.Hint="Tên sản phẩm"
+                                materialDesign:HintAssist.IsFloating="False"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                DisplayMemberPath="ProductName"
+                                DockPanel.Dock="Left"
+                                FontSize="16"
+                                ItemsSource="{Binding ProductsNameCombobox}"
+                                SelectionChanged="ComboboxNameProduct_SelectionChange"
+                                Style="{StaticResource MaterialDesignFilledComboBox}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock
+                                Margin="0,0,0,6"
+                                FontSize="14"
+                                FontWeight="ExtraBold"
+                                Foreground="#c4c4c4"
+                                Text="Giá"
+                                TextAlignment="Center" />
+                            <TextBlock
+                                x:Name="PriceproductTextblock"
+                                Margin="0,20"
+                                HorizontalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Giá"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                FontSize="20"
+                                FontWeight="ExtraBlack"
+                                Foreground="#f0668d"
+                                Text="{Binding Path=SelectedItem.Price, ElementName=ComboboxNameProduct, Converter={StaticResource currencyConverter}}"
+                                TextAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="0" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1.3*" />
+
+                        </Grid.ColumnDefinitions>
                         <TextBlock
-                            Margin="15,0,0,0"
+                            Margin="0,0,0,6"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
                             FontWeight="ExtraBold"
                             Foreground="#c4c4c4"
-                            Text="Tên sản phẩm" />
-                        <ComboBox
-                            x:Name="CoboboxNameProduct"
-                            Width="328"
-                            Height="64"
-                            Padding="15,20"
+                            Text="Size"
+                            TextAlignment="Center" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="14,0,0,6"
                             HorizontalAlignment="Left"
-                            materialDesign:HintAssist.Hint="Tên sản phẩm"
+                            FontSize="14"
+                            FontWeight="ExtraBold"
+                            Foreground="#c4c4c4"
+                            Text="Số lượng"
+                            TextAlignment="Center" />
+                    </Grid>
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Name="ComboboxSize"
+                            Width="97"
+                            Height="48"
+                            Padding="12,10"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            materialDesign:HintAssist.Hint="Size"
                             materialDesign:HintAssist.IsFloating="False"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            DisplayMemberPath="ProductName"
-                            DockPanel.Dock="Left"
-                            FontSize="16"
-                            ItemsSource="{Binding ProductsNameCombobox}"
+                            DisplayMemberPath="Size"
+                            ItemsSource="{Binding SizeCombobox}"
                             Style="{StaticResource MaterialDesignFilledComboBox}" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="2">
-                        <TextBlock
-                            FontWeight="ExtraBold"
-                            Foreground="#c4c4c4"
-                            Text="Giá"
-                            TextAlignment="Center" />
-                        <TextBlock
-                            x:Name="PriceproductTextblock"
-                            Margin="0,20"
-                            HorizontalAlignment="Center"
-                            materialDesign:HintAssist.Hint="Giá"
-                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            FontSize="20"
-                            FontWeight="ExtraBlack"
-                            Foreground="#f0668d"
-                            Text="{Binding Path=SelectedItem.Price, ElementName=CoboboxNameProduct, Converter={StaticResource currencyConverter}}"
-                            TextAlignment="Center" />
-                    </StackPanel>
-                </Grid>
-
-                <Grid Margin="00,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1.3*" />
-
-                    </Grid.ColumnDefinitions>
-                    <TextBlock
-                        Margin="0,0,15,0"
-                        FontSize="10"
-                        FontWeight="SemiBold"
-                        Foreground="#cfcfcf"
-                        Text="Size"
-                        TextAlignment="Center" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="10,0,0,0"
-                        FontSize="10"
-                        FontWeight="SemiBold"
-                        Foreground="#cfcfcf"
-                        Text="Số lượng"
-                        TextAlignment="Center" />
-                </Grid>
-
-                <Grid Margin="10,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <ComboBox
-                        Name="CoboboxSize"
-                        Width="97"
-                        Height="48"
-                        Padding="5,10"
-                        HorizontalAlignment="Left"
-                        materialDesign:HintAssist.Hint="Size"
-                        materialDesign:HintAssist.IsFloating="False"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        SelectedIndex="0"
-                        ItemsSource="{Binding SizeCombobox}"
-                        DisplayMemberPath="Size"
-                        Style="{StaticResource MaterialDesignFilledComboBox}">
-                        <!--<ComboBoxItem>
-                            <TextBlock
-                                FontSize="20"
-                                IsEnabled="True"
-                                Text="S"
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button
+                                x:Name="BtnMinusNumProduct"
+                                Grid.Column="0"
+                                Background="Transparent"
+                                BorderBrush="#000"
+                                BorderThickness="0.5"
+                                Click="BtnMinusNumProduct_Click">
+                                <Image Height="15" Source="/Resource/Images/Icons/Minus.png" />
+                            </Button>
+                            <TextBox
+                                x:Name="AmountProductTextbox"
+                                Grid.Column="1"
+                                Width="28"
+                                VerticalAlignment="Center"
+                                BorderThickness="0"
+                                FontSize="18"
+                                Text="1"
                                 TextAlignment="Center" />
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock
-                                FontSize="20"
-                                Text="M"
-                                TextAlignment="Center" />
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock
-                                FontSize="20"
-                                Text="L"
-                                TextAlignment="Center" />
-                        </ComboBoxItem>-->
-                    </ComboBox>
-
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button
+                                Grid.Column="0"
+                                Background="Transparent"
+                                BorderBrush="#000"
+                                BorderThickness="0.5"
+                                Click="BtnPlusNumProduct_Click">
+                                <Image Height="15" Source="/Resource/Images/Icons/plus.png" />
+                            </Button>
+                        </StackPanel>
                         <Button
-                            x:Name="BtnMinusNumProduct"
-                            Grid.Column="0"
-                            Background="Transparent"
-                            BorderBrush="#000"
-                            BorderThickness="0.5"
-                            Click="BtnMinusNumProduct_Click">
-                            <Image Height="15" Source="/Resource/Images/Icons/Minus.png" />
-                        </Button>
-                        <TextBox
-                            x:Name="AmountProductTextbox"
-                            Grid.Column="1"
-                            Width="28"
-                            VerticalAlignment="Center"
-                            BorderThickness="0"
-                            FontSize="18"
-                            Text="1"
-                            TextAlignment="Center" />
-                        <Button
-                            Grid.Column="0"
-                            Background="Transparent"
-                            BorderBrush="#000"
-                            BorderThickness="0.5"
-                            Click="BtnPlusNumProduct_Click">
-                            <Image Height="15" Source="/Resource/Images/Icons/plus.png" />
-                        </Button>
-                    </StackPanel>
-                    <Button
-                        Grid.Column="2"
-                        Background="#f0668d"
-                        Click="ADD_click"
-                        Content="Thêm"
-                        DockPanel.Dock="Right"
-                        Foreground="#fff" />
-                </Grid>
+                            Grid.Column="2"
+                            Height="36"
+                            Background="#f0668d"
+                            Click="ADD_click"
+                            Content="Thêm"
+                            DockPanel.Dock="Right"
+                            Foreground="#fff" />
+                    </Grid>
+                </StackPanel>
                 <ListBox
-                    x:Name="LocationListbox"
-                    Grid.Column="0"
-                    Height="259"
+                    x:Name="ProductsListbox"
+                    Grid.Row="1"
                     Margin="10,30,10,0"
                     HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
                     BorderBrush="#7B7D7D"
                     BorderThickness="0,0,1,0"
                     ItemsSource="{Binding OrderedList}"
@@ -340,14 +334,14 @@
                                 <Image
                                     Width="30"
                                     Height="30"
-                                    Source="{Binding image, Converter={StaticResource pathConverter}}" />
+                                    Source="{Binding Image, Converter={StaticResource pathConverter}}" />
                                 <TextBlock
                                     Width="200"
                                     Margin="10,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     FontWeight="DemiBold"
-                                    Text="{Binding nameProduct}"
+                                    Text="{Binding ProductName}"
                                     TextWrapping="Wrap" />
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <TextBlock
@@ -371,7 +365,7 @@
                                     <TextBlock
                                         VerticalAlignment="Center"
                                         FontSize="13"
-                                        Text="{Binding size}"
+                                        Text="{Binding Size}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
 
@@ -382,13 +376,12 @@
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     Foreground="Red"
-                                    Text="{Binding price, Converter={StaticResource currencyConverter}}" />
+                                    Text="{Binding PriceTotal, Converter={StaticResource currencyConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
-                <Grid Margin="0,15,0,0">
+                <Grid Grid.Row="2" Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
@@ -406,14 +399,14 @@
                     <TextBlock
                         x:Name="TotalPriceProducts"
                         Grid.Column="3"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Center"
                         FontSize="30"
                         FontWeight="Medium"
                         Foreground="Red"
                         Text="{Binding TotalPriceProductsTextblock, Converter={StaticResource currencyConverter}}"
                         TextAlignment="Left" />
                 </Grid>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

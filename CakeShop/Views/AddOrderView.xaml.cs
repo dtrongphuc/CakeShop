@@ -68,7 +68,7 @@ namespace CakeShop.Views
 
             if (NameCustomer.Text.Trim() != string.Empty && EmailCustomer.Text.Trim() != string.Empty && AddressCustomer.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty && OrderDay.Text.Trim() != string.Empty)
             {
-                var index = CoboboxStatus.SelectedIndex;///trang thái
+                var index = ComboboxStatus.SelectedIndex;///trang thái
                 CurrentViewModel.AddOrder(NameCustomer.Text, EmailCustomer.Text, AddressCustomer.Text, Description.Text, OrderDay.Text, index);
             }
           
@@ -86,28 +86,27 @@ namespace CakeShop.Views
         private void ADD_click(object sender, RoutedEventArgs e)
         {
            
-            if (CoboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)
-            {                
-                
-                ComboBoxItem selected = CoboboxSize.SelectedValue as ComboBoxItem;
-               
-                TextBlock selectedTextBlock = selected.Content as TextBlock;
-                var size = selectedTextBlock.Text;
+            if (ComboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)
+            {
+                SizeProduct SizeOfProduct = ComboboxSize.SelectedValue as SizeProduct;
+
+                var size = SizeOfProduct.Size;
 
                 //ten sản phẩm
-                var index = CoboboxNameProduct.SelectedIndex;
+                var index = ComboboxNameProduct.SelectedIndex;
                 string Amount = AmountProductTextbox.Text.Trim();
 
-                //gọi hàm binding
+                // Gọi phương thức từ ViewModel
                 CurrentViewModel.AddToListbox(size, Amount, index);
             }
         }
 
-
-        private void CoboboxNameProduct_SelectionChang(object sender, SelectionChangedEventArgs e)
+        private void ComboboxNameProduct_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            var index = (CoboboxNameProduct.SelectedIndex + 1).ToString();
-            CurrentViewModel.BindingSizeProduct(index);
+            ComboBox CbBox = sender as ComboBox;
+            Product productSelected = CbBox.SelectedValue as Product;
+            string productId = productSelected.IdProduct;
+            CurrentViewModel.BindingSizeProduct(productId);
         }
     }
 }
