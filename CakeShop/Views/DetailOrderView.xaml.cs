@@ -24,7 +24,5 @@ namespace CakeShop.Views
         {
             InitializeComponent();
         }
-
-      
     }
 }

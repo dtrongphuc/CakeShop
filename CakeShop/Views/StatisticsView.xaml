@@ -40,7 +40,6 @@
         </materialDesign:Card>
         <materialDesign:Card
             Grid.Row="1"
-            Grid.RowSpan="2"
             Grid.Column="1"
             Margin="12"
             Padding="4,4,4,12"
@@ -72,7 +71,8 @@
         </materialDesign:Card>
         <Grid
             Grid.Row="2"
-            Grid.Column="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Margin="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />

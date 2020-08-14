@@ -198,8 +198,9 @@
                                 x:Name="ComboboxNameProduct"
                                 Width="328"
                                 Height="64"
-                                Padding="15,20"
+                                Padding="15,0"
                                 HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
                                 materialDesign:HintAssist.Hint="Tên sản phẩm"
                                 materialDesign:HintAssist.IsFloating="False"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -277,6 +278,7 @@
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             DisplayMemberPath="Size"
                             ItemsSource="{Binding SizeCombobox}"
+                            SelectedIndex="0"
                             Style="{StaticResource MaterialDesignFilledComboBox}" />
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -323,6 +325,7 @@
                     Margin="10,30,10,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
                     BorderBrush="#7B7D7D"
                     BorderThickness="0,0,1,0"
                     ItemsSource="{Binding OrderedList}"
@@ -330,20 +333,20 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <DockPanel>
                                 <Image
                                     Width="30"
                                     Height="30"
                                     Source="{Binding Image, Converter={StaticResource pathConverter}}" />
                                 <TextBlock
-                                    Width="200"
+                                    Width="160"
                                     Margin="10,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     FontWeight="DemiBold"
                                     Text="{Binding ProductName}"
                                     TextWrapping="Wrap" />
-                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         VerticalAlignment="Center"
                                         FontSize="13"
@@ -354,7 +357,6 @@
                                         FontSize="13"
                                         Text="{Binding Quantity}"
                                         TextWrapping="Wrap" />
-
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <TextBlock
@@ -368,16 +370,16 @@
                                         Text="{Binding Size}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
-
                                 <TextBlock
                                     x:Name="TotalPriceProductTextblock"
-                                    Width="63"
+                                    Grid.Column="2"
                                     Margin="15,0,0,0"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     Foreground="Red"
                                     Text="{Binding PriceTotal, Converter={StaticResource currencyConverter}}" />
-                            </StackPanel>
+                            </DockPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

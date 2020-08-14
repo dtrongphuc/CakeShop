@@ -39,7 +39,7 @@ namespace CakeShop.ViewModels
             ImagesCarousel = getListObject.Get_ImageProduct(productId);
 
             //ảnh đại diện sản phẩm
-            ImageSelectChange = product.Image;
+            ImageSelectChange = ImagesCarousel.Count > 0 ? ImagesCarousel.ElementAt(0).ImageUri : string.Empty;
         }
 
         public void ShowUpdate()

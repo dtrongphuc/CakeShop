@@ -15,7 +15,7 @@ namespace CakeShop.ViewModels
         Product product = new Product();
         public IEnumerable<Product> subnets;
         public IEnumerable<Product> SearchListproduct;
-        PaginationProduct PagProduct = new PaginationProduct();
+        Pagination PagProduct = new Pagination();
         public IEnumerable<Product> Products { get; set; }
         public BindableCollection<Category> CatogoryCombobox { get; set; }
         public SearchViewModel(string key)

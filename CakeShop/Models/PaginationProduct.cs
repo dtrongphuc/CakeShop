@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class PaginationProduct : INotifyPropertyChanged
+    class Pagination : INotifyPropertyChanged
     {
         private string sql;
         private int record1pageProduct = 6;//số lượng phần tử cho 1 trang sản phẩm (home)
@@ -70,7 +70,7 @@ namespace CakeShop.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public PaginationProduct()
+        public Pagination()
         {
             Sum_record = 0;
             CurrentPage = 1;
@@ -105,8 +105,6 @@ namespace CakeShop.Models
             int sotranghienhanh = (CurrentPage - 1) * record1pageOrder;
             return Get_AllOrder(sotranghienhanh, record1pageOrder);
         }
-
-
 
         public BindableCollection<Product> Get_AllProduct(int curr, int record1page)
         {

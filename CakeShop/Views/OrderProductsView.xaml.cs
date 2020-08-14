@@ -112,8 +112,6 @@ namespace CakeShop.Views
             UpdatePagination(0, false, false);
         }
 
-       
-
         private void ViewDetail_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGridRow Selected = sender as DataGridRow;

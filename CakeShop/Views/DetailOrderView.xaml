@@ -15,10 +15,6 @@
     <UserControl.Resources>
         <cv:IndexToOrderCountConverter x:Key="indexToCount" />
         <cv:StringToCurrencyConverter x:Key="currencyConverter" />
-        <collections:ArrayList x:Key="statusList">
-            <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
-            <collections:DictionaryEntry Key="Đã giao hàng" Value="1" />
-        </collections:ArrayList>
 
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
@@ -183,13 +179,11 @@
                 Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
         </StackPanel>
 
-        <Grid
-            Grid.Row="1"
-            Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="2">
                 <StackPanel Orientation="Horizontal">
@@ -253,8 +247,7 @@
                         Content="{Binding Custemer}"
                         FontSize="20"
                         FontWeight="SemiBold"
-                        Foreground="#f0668d" 
-                        />
+                        Foreground="#f0668d" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Image
@@ -285,6 +278,7 @@
                 </Grid.ColumnDefinitions>
                 <DataGrid
                     Grid.Column="1"
+                    Margin="0,0,1,0.4"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Center"
@@ -295,7 +289,7 @@
                     CanUserAddRows="False"
                     ItemsSource="{Binding OrdersDataGrid}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,1,0.4">
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
                     <DataGrid.CellStyle>
                         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
                             <Setter Property="BorderThickness" Value="0" />
@@ -394,19 +388,19 @@
 
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.7*" />
 
             </Grid.ColumnDefinitions>
-           
-            <DockPanel LastChildFill="True" Grid.Column="1">
+
+            <DockPanel Grid.Column="1" LastChildFill="True">
                 <Label
+                    VerticalAlignment="Center"
                     Content="{Binding PriceTotal, Converter={StaticResource currencyConverter}}"
                     DockPanel.Dock="Right"
                     FontSize="40"
                     FontWeight="ExtraBlack"
-                    Foreground="#f0668d"
-                    VerticalAlignment="Center"/>
+                    Foreground="#f0668d" />
                 <Label
                     Padding="0,10"
                     VerticalContentAlignment="Center"
@@ -420,16 +414,16 @@
             <DockPanel Margin="0,15,10,0">
                 <TextBlock
                     DockPanel.Dock="Left"
-                    Text="Mô tả: "
                     FontSize="20"
-                    FontWeight="ExtraBold"/>
+                    FontWeight="ExtraBold"
+                    Text="Mô tả: " />
                 <TextBlock
+                    Padding="15,4,10,0"
                     DockPanel.Dock="Right"
-                    Text="{Binding Note}"
                     FontSize="15"
-                    Foreground="#656566" 
-                    TextWrapping="Wrap"
-                    Padding="15,4,10,0"/>
+                    Foreground="#656566"
+                    Text="{Binding Note}"
+                    TextWrapping="Wrap" />
             </DockPanel>
 
         </Grid>
