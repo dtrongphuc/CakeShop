@@ -200,10 +200,31 @@ namespace CakeShop.Models
             return Numbers;
         }
 
-        public IEnumerable<Product> PaginationSearch(int pag, IEnumerable<Product> list)
+        public BindableCollection<Product> PaginationSearch(int pag, IEnumerable<Product> listsearch)
         {
-            IEnumerable<Product> result;
-            return result;
+            BindableCollection<Product> listproduct = new BindableCollection<Product>();
+            int pagpre = (pag - 1) * 6;
+            if((pagpre+6) <listsearch.Count())
+            {
+                for (int i = pagpre; i < (pagpre + 6); i++)
+                {
+                    Product product = new Product();
+                    product = listsearch.ElementAt(pagpre);
+                    listproduct.Add(product);
+                }
+            }
+            else
+            {
+                for(int i=pagpre;i<listsearch.Count();i++)
+                {
+                    Product product = new Product();
+                    product = listsearch.ElementAt(pagpre);
+                    listproduct.Add(product);
+                }
+            }
+
+
+            return listproduct;
 
         }
     }
