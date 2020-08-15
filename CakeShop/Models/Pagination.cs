@@ -199,5 +199,12 @@ namespace CakeShop.Models
             }
             return Numbers;
         }
+
+        public IEnumerable<Product> PaginationSearch(int pag, IEnumerable<Product> list)
+        {
+            IEnumerable<Product> result;
+            return result;
+
+        }
     }
 }
