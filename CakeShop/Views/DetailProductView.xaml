@@ -179,6 +179,26 @@
                     Grid.ColumnSpan="3">
                     <DockPanel LastChildFill="True">
                         <StackPanel
+                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Delete]"
+                            Cursor="Hand"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="#000"
+                                Kind="Delete" />
+                            <Label
+                                VerticalContentAlignment="Center"
+                                Content="Xoá sản phẩm"
+                                FontSize="16"
+                                Foreground="#000" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Margin="0,0,20,0"
                             cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowUpdate]"
                             Cursor="Hand"
                             DockPanel.Dock="Right"
@@ -196,6 +216,7 @@
                                 FontSize="16"
                                 Foreground="#000" />
                         </StackPanel>
+
                         <Label
                             Padding="0,10"
                             VerticalContentAlignment="Center"
