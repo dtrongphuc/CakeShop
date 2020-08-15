@@ -12,7 +12,7 @@ namespace CakeShop.ViewModels
     public class HomeViewModel : Screen
     {
         GetListObject Getlist = new GetListObject();
-        PaginationProduct PagProduct = new PaginationProduct();
+        Pagination PagProduct = new Pagination();
         List<int> PageNumbers;
         
         public BindableCollection<Product> Products { get; set; }
@@ -65,7 +65,7 @@ namespace CakeShop.ViewModels
             {
                 Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
             }
-            PageNumbers = PagProduct.GetPaginaitonNumbers();
+            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);
         }
 
         /// <summary>

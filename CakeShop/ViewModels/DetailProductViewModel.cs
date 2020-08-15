@@ -11,26 +11,16 @@ namespace CakeShop.ViewModels
     public class DetailProductViewModel : Screen
     {
         GetListObject getListObject = new GetListObject();
-        Product product = new Product();  
+
+        public Product CurrentProduct { get; set; } = new Product();  
         public BindableCollection<Image> ImagesCarousel { get; set; }
         public BindableCollection<SizeProduct> SizeQuantify { get; set; }
         
-        public string ProductName { get; set; }
-        public string Price { get; set; }
-        public string Descriptiontext { get; set; }
         public string ImageSelectChange { get; set; }
+
         public DetailProductViewModel(string productId) 
         {
-            product.Find(productId);
-
-            //tên sản phẩm
-            ProductName = product.ProductName;
-
-            //giá sản phẩm
-            Price = product.Price;
-
-            //mô tả sản phẩm
-            Descriptiontext = product.Description;
+            CurrentProduct.Find(productId);
 
             //danh sách số lượng và size sản phẩm
             SizeQuantify = getListObject.Get_SizeProduct(productId);
@@ -39,13 +29,13 @@ namespace CakeShop.ViewModels
             ImagesCarousel = getListObject.Get_ImageProduct(productId);
 
             //ảnh đại diện sản phẩm
-            ImageSelectChange = product.Image;
+            ImageSelectChange = ImagesCarousel.Count > 0 ? ImagesCarousel.ElementAt(0).ImageUri : string.Empty;
         }
 
         public void ShowUpdate()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
-            parentConductor.ActivateItem(new UpdateProductViewModel(product.IdProduct));
+            parentConductor.ActivateItem(new UpdateProductViewModel(CurrentProduct.IdProduct));
         }
     }
 }

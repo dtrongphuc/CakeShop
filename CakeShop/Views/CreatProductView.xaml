@@ -258,6 +258,19 @@
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top">
+                    <DockPanel.Style>
+                        <Style TargetType="DockPanel">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HaveImage}" Value="false">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HaveImage}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DockPanel.Style>
                     <Border
                         Width="32"
                         Height="32"
@@ -319,15 +332,6 @@
                         DockPanel.Dock="Right"
                         MouseLeftButtonDown="OnNext_MouseLeftButtonDown"
                         Visibility="Visible">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding MaximumImagesCount}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
                         <Border.Background>
                             <ImageBrush ImageSource="/Resource/Images/Icons/chevron-right.png" />
                         </Border.Background>
@@ -370,14 +374,15 @@
                         Name="ComboboxCategory"
                         Width="200"
                         Height="40"
-                        Margin="4,20,0,0"
-                        Padding="0,10"
+                        Margin="0,20,0,0"
+                        Padding="6,10"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Danh Mục..."
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
                         DisplayMemberPath="CategoryName"
-                        ItemsSource="{Binding ComboboxCategoryBD}" />
+                        ItemsSource="{Binding ComboboxCategoryBD}"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
 
                     <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
@@ -392,13 +397,14 @@
                             Name="ComboboxSize"
                             Grid.Row="0"
                             Grid.Column="0"
-                            Height="40"
+                            Height="44"
                             Padding="10"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             materialDesign:HintAssist.Hint="Size..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Style="{StaticResource MaterialDesignFilledComboBox}">
                             <ComboBoxItem>
                                 <TextBlock Text="S" />
                             </ComboBoxItem>

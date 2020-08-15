@@ -45,7 +45,7 @@ namespace CakeShop.Views
             Storyboard storyboard = (this.Resources["CarouselStoryboard"] as Storyboard);
             DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
             Storyboard.SetTarget(animation, carousel);
-            animation.To = -(ImagesCarousel.ActualWidth/4.0 + 2) * (_currentElement - 4);
+            animation.To = -(ImagesCarousel.ActualWidth/4.0 + 1) * (_currentElement - 4);
             storyboard.Begin();
         }
 

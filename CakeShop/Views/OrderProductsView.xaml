@@ -15,7 +15,6 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <cv:IndexToOrderCountConverter x:Key="indexToCount" />
         <cv:StringToCurrencyConverter x:Key="currencyConverter" />
         <collections:ArrayList x:Key="statusList">
             <collections:DictionaryEntry Key="Chưa giao hàng" Value="0" />
@@ -228,11 +227,11 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Center"
-                    AlternationCount="{Binding Path=OrdersDataGrid.Count}"
                     AutoGenerateColumns="False"
                     BorderBrush="#252D36"
                     BorderThickness="0.5"
                     CanUserAddRows="False"
+                    Cursor="Hand"
                     ItemsSource="{Binding OrdersDataGrid}"
                     PreviewMouseWheel="OrdersDataGrid_PreviewMouseWheel"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -256,8 +255,8 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="1*"
-                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGridRow}, Path=AlternationIndex, Converter={StaticResource indexToCount}}"
-                            Header="STT"
+                            Binding="{Binding IdOrder}"
+                            Header="Mã đơn hàng"
                             IsReadOnly="True">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>

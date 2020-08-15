@@ -12,8 +12,6 @@ namespace CakeShop.ViewModels
 {
     public class UpdateProductViewModel : Screen
     {
-        // Muốn lấy những hình ảnh mới thêm vào thì lấy CarouselTest.Count - _defaultImagesCount -> số ảnh lấy ở đầu list
-        private int _defaultImagesCount { get; set; } = 0;
         GetListObject getListObject = new GetListObject();
         Product product = new Product();
         public BindableCollection<Image> ImagesCarousel { get; set; }
@@ -48,8 +46,6 @@ namespace CakeShop.ViewModels
 
             //danh sách các hình của sản phẩm
             ImagesCarousel = getListObject.Get_ImageProduct(idProduct);
-
-            _defaultImagesCount = ImagesCarousel.Count;
         }
 
         /// <summary>
@@ -62,8 +58,6 @@ namespace CakeShop.ViewModels
             MainConductor.DeactivateItem(MainConductor.Items[0], true);
             parentConductor.ActivateItem(new DetailProductViewModel(product.IdProduct));
         }
-         
-       
 
         /// <summary>
         /// Phương thức xử lý update hình

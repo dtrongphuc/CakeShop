@@ -13,7 +13,7 @@ namespace CakeShop.ViewModels
     {
         public GetListObject GetData = new GetListObject();
         public DetailOrder GetDetail = new DetailOrder();
-        PaginationProduct PagProduct = new PaginationProduct();
+        Pagination PaginationOrder = new Pagination();
         List<int> PageNumbers;
 
         public BindableCollection<Order> OrdersDataGrid { get; set; }
@@ -21,7 +21,7 @@ namespace CakeShop.ViewModels
 
         public OrderProductsViewModel() 
         {
-            OrdersDataGrid = PagProduct.GetOrderPagination(1);
+            OrdersDataGrid = PaginationOrder.GetOrderPagination(1);
             GetDetail.Find("1");
             UpdateOrdersPagination(1, false, false);
             PaginationNumber = new BindableCollection<PaginationStyle>();
@@ -39,31 +39,31 @@ namespace CakeShop.ViewModels
         {
             if (isPrevClick)
             {
-                if (PagProduct.CurrentPage > 1)
+                if (PaginationOrder.CurrentPage > 1)
                 {
-                    PagProduct.CurrentPage--;
+                    PaginationOrder.CurrentPage--;
 
                 }
             }
             else if (isNextClick)
             {
-                if (PagProduct.CurrentPage < PagProduct.ToltalPage)
+                if (PaginationOrder.CurrentPage < PaginationOrder.ToltalPage)
                 {
-                    PagProduct.CurrentPage++;
+                    PaginationOrder.CurrentPage++;
                 }
             }
 
             if (currentPage == 0)
             {
-                PagProduct.CurrentPage = PagProduct.ToltalPage;
+                PaginationOrder.CurrentPage = PaginationOrder.ToltalPage;
             }
             else if (currentPage != -1)
             {
-                PagProduct.CurrentPage = currentPage;
+                PaginationOrder.CurrentPage = currentPage;
             }
 
-            //Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
-            PageNumbers = PagProduct.GetPaginaitonNumbers();
+            OrdersDataGrid = PaginationOrder.GetOrderPagination(PaginationOrder.CurrentPage);
+            PageNumbers = PaginationOrder.GetPaginaitonNumbers(PaginationOrder.record1pageOrder);
         }
 
         public void SetStylePagination(Style defaultStyle, Style selectedStyle)
@@ -72,7 +72,7 @@ namespace CakeShop.ViewModels
             foreach (var number in PageNumbers)
             {
                 Style myStyle = defaultStyle;
-                if (number == PagProduct.CurrentPage)
+                if (number == PaginationOrder.CurrentPage)
                 {
                     myStyle = selectedStyle;
                 }

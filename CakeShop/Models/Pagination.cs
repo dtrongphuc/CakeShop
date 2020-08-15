@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CakeShop.Models
 {
-    class PaginationProduct : INotifyPropertyChanged
+    class Pagination : INotifyPropertyChanged
     {
         private string sql;
-        private int record1pageProduct = 6;//số lượng phần tử cho 1 trang sản phẩm (home)
-        private int record1pageOrder = 5; // số lượng phần tử cho 1 trang đơn hàng
+        public int record1pageProduct = 6;//số lượng phần tử cho 1 trang sản phẩm (home)
+        public int record1pageOrder = 5; // số lượng phần tử cho 1 trang đơn hàng
         public static int Sum_record { get; set; }
         private int _currentPage;
 
@@ -27,8 +27,6 @@ namespace CakeShop.Models
                     this, new PropertyChangedEventArgs("CurrentPage"));
             }
         }
-
-       
         
         private int _totalPage = 0;
         public int ToltalPage
@@ -70,7 +68,7 @@ namespace CakeShop.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public PaginationProduct()
+        public Pagination()
         {
             Sum_record = 0;
             CurrentPage = 1;
@@ -81,7 +79,7 @@ namespace CakeShop.Models
         {
             CurrentPage = _curr;
             Sum_record = GetListObject.Get_CountALLProduct();
-            CalculateTotalPage();
+            CalculateTotalPage(record1pageProduct);
             int sotranghienhanh = (CurrentPage - 1) * record1pageProduct;
             return Get_AllProduct(sotranghienhanh, record1pageProduct);
         }
@@ -91,7 +89,7 @@ namespace CakeShop.Models
             CurrentPage = _curr;
             sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id}";
             Sum_record = Connection.GetCount_Data(sql);
-            CalculateTotalPage();
+            CalculateTotalPage(record1pageProduct);
             int sotranghienhanh = (CurrentPage - 1) * record1pageProduct;
             ListProduct = Get_ProductInCategory(id,sotranghienhanh, record1pageProduct);
             return ListProduct;
@@ -101,12 +99,10 @@ namespace CakeShop.Models
         {
             CurrentPage = _curr;
             Sum_record = GetListObject.Get_CountALLOrder();
-            CalculateTotalPage();
+            CalculateTotalPage(record1pageOrder);
             int sotranghienhanh = (CurrentPage - 1) * record1pageOrder;
             return Get_AllOrder(sotranghienhanh, record1pageOrder);
         }
-
-
 
         public BindableCollection<Product> Get_AllProduct(int curr, int record1page)
         {
@@ -167,14 +163,15 @@ namespace CakeShop.Models
             }
             return ListOrder;
         }
-        public void CalculateTotalPage()
+        public void CalculateTotalPage(int recordPage)
         {
-            double num = (1.0 * Sum_record / record1pageProduct);
+            double num = (1.0 * Sum_record / recordPage);
             double ToltalPageTemp = Math.Ceiling(num); // Tính tổng số trang và làm tròn lên
             ToltalPage = (int)ToltalPageTemp;
         }
-        public List<int> GetPaginaitonNumbers()
+        public List<int> GetPaginaitonNumbers(int recordPage)
         {
+            CalculateTotalPage(recordPage);
             List<int> Numbers = new List<int>();
             int j = 2;
             if (ToltalPage - CurrentPage < 2)

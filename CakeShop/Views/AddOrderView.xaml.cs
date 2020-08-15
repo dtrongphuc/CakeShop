@@ -85,11 +85,9 @@ namespace CakeShop.Views
         /// <param name="e"></param>
         private void ADD_click(object sender, RoutedEventArgs e)
         {
-           
-            if (ComboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty)
+            SizeProduct SizeOfProduct = ComboboxSize.SelectedValue as SizeProduct;
+            if (ComboboxNameProduct.Text.Trim() != string.Empty && AmountProductTextbox.Text.Trim() != string.Empty && SizeOfProduct != null)
             {
-                SizeProduct SizeOfProduct = ComboboxSize.SelectedValue as SizeProduct;
-
                 var size = SizeOfProduct.Size;
 
                 //ten sản phẩm
@@ -98,15 +96,22 @@ namespace CakeShop.Views
 
                 // Gọi phương thức từ ViewModel
                 CurrentViewModel.AddToListbox(size, Amount, index);
+            } else
+            {
+                MessageBox.Show("Nhập đầy đủ thông tin !", "Yêu cầu", MessageBoxButton.OK);
             }
         }
 
         private void ComboboxNameProduct_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
+            AmountProductTextbox.Text = "1";
+
             ComboBox CbBox = sender as ComboBox;
             Product productSelected = CbBox.SelectedValue as Product;
             string productId = productSelected.IdProduct;
             CurrentViewModel.BindingSizeProduct(productId);
+
+            ComboboxSize.SelectedIndex = 0;
         }
     }
 }

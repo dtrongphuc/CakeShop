@@ -17,6 +17,16 @@ namespace CakeShop.ViewModels
         GetListObject Getlist = new GetListObject();
         public BindableCollection<Category> ComboboxCategoryBD { get; set; }
         public ImageSource AddAvatar { get; set; }
+        private bool _haveImage { get; set; } = false;
+        public bool HaveImage
+        {
+            get { return _haveImage; }
+            set
+            {
+                _haveImage = value;
+                NotifyOfPropertyChange(() => HaveImage);
+            }
+        }
 
         public CreatProductViewModel()
         {
@@ -35,6 +45,7 @@ namespace CakeShop.ViewModels
                 // Thêm hình mới update vào đầu
                 ImagesCarousel.Insert(0, image.FullName);
             }
+            HaveImage = ImagesCarousel.Count > 0 ? true: false;
         }
 
         string folderfile = AppDomain.CurrentDomain.BaseDirectory;
@@ -58,7 +69,7 @@ namespace CakeShop.ViewModels
 
         public void AddImageProduct(List<FileInfo> ImagesFileList, string avartar)
         {
-            Models.Image image = new Models.Image();
+            Image image = new Image();
             image.ImageUri = $"/Resource/Images/Products/{avartar}";
             image.Add();
             for (int i = 1; i < ImagesFileList.Count; i++)
