@@ -81,7 +81,7 @@ namespace CakeShop.ViewModels
 
             SearchProductName(keysearch);//sử dùng hàm này dc list subnet chứa kết quả tìm kiếm
             Products = PagProduct.PaginationSearch(currentPage, subnets);//hàm này dùng phân trang cái list subnets đối số ( trang hiện hành - list chứa kết quả search)
-            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);//muốn tính số trang thì subnets.count() chia 6 lun cho lẹ
+            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);
         }
 
         public void SetStylePagination(Style defaultStyle, Style selectedStyle)
