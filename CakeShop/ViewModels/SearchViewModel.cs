@@ -28,6 +28,7 @@ namespace CakeShop.ViewModels
             UpdateProductsPagination(1, false, false);
             PaginationNumber = new BindableCollection<PaginationStyle>();
         }
+
         public IEnumerable<Product> SearchProductName(string keyword)
         {
             BindableCollection<Product> productlist = Getlist.Get_AllProduct();
