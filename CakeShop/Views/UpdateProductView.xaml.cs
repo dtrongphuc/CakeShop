@@ -123,7 +123,7 @@ namespace CakeShop.Views
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             string avartar = "";
-            indexCategoryUpdate = idCatagory.SelectedIndex+1;
+            indexCategoryUpdate = Category.SelectedIndex+1;
 
             if (NameProduct.Text.Trim() != string.Empty && PriceProduct.Text.Trim() != string.Empty && Description.Text.Trim() != string.Empty)
             {
@@ -157,11 +157,6 @@ namespace CakeShop.Views
         {
             DataGridCell CellSelected = sender as DataGridCell;
             CellSelected.IsEditing = true;
-        }
-
-        private void Change_Category(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

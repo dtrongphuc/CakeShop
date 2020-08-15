@@ -204,19 +204,18 @@
                             DockPanel.Dock="Right"
                             Foreground="#fff" />
                         <ComboBox
+                            Name="Category"
                             Width="200"
                             Padding="0,10"
                             HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
                             materialDesign:HintAssist.Hint="Danh Mục..."
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0"
-                            DockPanel.Dock="Left"
                             DisplayMemberPath="CategoryName"
-                            Name="idCatagory"
-                            SelectedIndex="{Binding currCategory}"
+                            DockPanel.Dock="Left"
                             ItemsSource="{Binding CatogoryCombobox}"
-                            SelectionChanged="Change_Category">                           
-                        </ComboBox>
+                            SelectedIndex="{Binding currCategory}" />
                     </DockPanel>
                     <Separator
                         Height="2"
