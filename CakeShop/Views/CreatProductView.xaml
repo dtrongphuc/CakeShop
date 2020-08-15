@@ -192,7 +192,6 @@
                 Grid.ColumnSpan="3">
                 <DockPanel LastChildFill="True">
                     <Button
-                        x:Name="ShowDetail"
                         Background="#f0668d"
                         Click="Submit_click"
                         Content="Hoàn thành"

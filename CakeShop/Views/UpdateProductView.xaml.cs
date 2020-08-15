@@ -133,12 +133,18 @@ namespace CakeShop.Views
                     avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
                     CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
                 }
-                else///trường hợp người dùng k thêm hình ảnh 
+                else ///trường hợp người dùng k thêm hình ảnh 
+                {
                     avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
+                }
+                CurrentViewModel.UpdateSizeProduct();
+                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButton.OK);
+                CurrentViewModel.ShowDetail();
+            } 
+            else
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButton.OK);
             }
-
-            
-            CurrentViewModel.UpadateSizeProduct();
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)

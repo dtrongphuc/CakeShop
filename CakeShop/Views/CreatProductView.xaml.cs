@@ -136,6 +136,7 @@ namespace CakeShop.Views
                 ///thêm kích thước và số lượng vào database.
                 CurrentViewModel.AddSizeProduct(_listSizeProduct);
                 MessageBox.Show("Thêm bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                CurrentViewModel.ShowHome();
             }
         }
 

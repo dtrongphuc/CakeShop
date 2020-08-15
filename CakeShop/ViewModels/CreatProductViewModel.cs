@@ -35,6 +35,17 @@ namespace CakeShop.ViewModels
         }
 
         /// <summary>
+        /// Mở trang chủ
+        /// </summary>
+        public void ShowHome()
+        {
+            var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
+            Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
+            MainConductor.DeactivateItem(MainConductor.Items[0], true);
+            parentConductor.ActivateItem(new HomeViewModel());
+        }
+
+        /// <summary>
         /// Phương thức xử lý update hình
         /// </summary>
         /// <param name="images"></param>
