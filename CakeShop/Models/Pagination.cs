@@ -224,7 +224,7 @@ namespace CakeShop.Models
                     listproduct.Add(product);
                 }
             }
-            Sum_record = listproduct.Count;
+            Sum_record = listsearch.Count();
             return listproduct;
         }
     }
