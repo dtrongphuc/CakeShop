@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -132,12 +133,18 @@ namespace CakeShop.Views
                     avartar = CurrentViewModel.UpdateProduct(ImagesFileList[0], NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
                     CurrentViewModel.UpdateImageProduct(ImagesFileList, avartar);
                 }
-                else///trường hợp người dùng k thêm hình ảnh 
+                else ///trường hợp người dùng k thêm hình ảnh 
+                {
                     avartar = CurrentViewModel.UpdateProductNoAvartar(NameProduct.Text, PriceProduct.Text, Description.Text, indexCategoryUpdate);
+                }
+                CurrentViewModel.UpdateSizeProduct();
+                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButton.OK);
+                CurrentViewModel.ShowDetail();
+            } 
+            else
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButton.OK);
             }
-
-            
-            CurrentViewModel.UpadateSizeProduct();
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -156,7 +163,17 @@ namespace CakeShop.Views
         private void CellQuantity_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGridCell CellSelected = sender as DataGridCell;
-            CellSelected.IsEditing = true;
+            TextBlock QuantitiyText = CellSelected.Content as TextBlock;
+            if(QuantitiyText != null)
+            {
+                CellSelected.IsEditing = Regex.IsMatch(QuantitiyText.Text, @"^\d+$");
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

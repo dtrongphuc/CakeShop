@@ -15,6 +15,7 @@ namespace CakeShop.Views
     public class AddOrderViewModel : Screen
     {
         GetListObject GetList = new GetListObject();
+        DetailOrder DetailListbox = new DetailOrder();
         public string PriceProduct { get; set; }
         private int sum = 0;
         //tổng giá 1 sản phẩm 
@@ -67,6 +68,7 @@ namespace CakeShop.Views
             SizeCombobox = GetList.Get_SizeProduct(idProduct);
         }
 
+        
         public void AddToListbox(string Size, string Amount,int index)//Productname, Priceproduct, Size, Amount
         {
             Product product = new Product();
@@ -90,7 +92,22 @@ namespace CakeShop.Views
 
             //binding tổng tiền
             TotalPriceProductsTextblock = sum.ToString();
+
+            //gán để binding xóa item trong listbox
+            DetailListbox.ListProduct.Insert(0, itemorder);
         }
+
+        public void DeleteItemListbox(int index)
+        {
+            sum -= int.Parse(DetailListbox.ListProduct[0].PriceTotal);
+           //Xóa khoi list -  item vị trí index
+            DetailListbox.ListProduct.RemoveAt(index);
+            //cập nhật lại item trong listbox và thành tiền
+            OrderedList.RemoveAt(index);
+            TotalPriceProductsTextblock = sum.ToString();
+
+        }
+
         public void ShowOrder()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);

@@ -86,7 +86,7 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ShowHome]"
-                            Content="Home"
+                            Content="Trang chủ"
                             Cursor="Hand"
                             FontSize="20"
                             MouseLeftButtonDown="HideMenuAndModal_MouseLeftButtonDown" />
@@ -101,7 +101,7 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             cal:Message.Attach="[Event MouseLeftButtonDown] = [Action AddProuct]"
-                            Content="Thêm Món ăn"
+                            Content="Thêm bánh mới"
                             Cursor="Hand"
                             FontSize="20"
                             MouseLeftButtonDown="HideMenuAndModal_MouseLeftButtonDown" />
@@ -190,7 +190,6 @@
                     <Grid DockPanel.Dock="Right">
                         <Button
                             x:Name="SearchButton"
-                            Click="SearchButton_Click"
                             Width="56"
                             Height="40"
                             Margin="0,0,26,0"
@@ -198,6 +197,7 @@
                             Background="#fff"
                             BorderBrush="#000"
                             BorderThickness="1"
+                            Click="SearchButton_Click"
                             Foreground="#000"
                             IsDefault="True"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"

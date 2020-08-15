@@ -197,7 +197,6 @@
                     Grid.ColumnSpan="3">
                     <DockPanel LastChildFill="True">
                         <Button
-                            cal:Message.Attach="[Event Click] = [Action ShowDetail]"
                             Background="#f0668d"
                             Click="Submit_Click"
                             Content="Hoàn thành"
@@ -368,6 +367,7 @@
                             FontSize="23"
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
+                            PreviewTextInput="NumberValidationTextBox"
                             Style="{StaticResource CommonBox}"
                             Text="{Binding Price}" />
                         <Rectangle
