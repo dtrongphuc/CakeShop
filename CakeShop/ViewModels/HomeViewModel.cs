@@ -65,7 +65,7 @@ namespace CakeShop.ViewModels
             {
                 Products = PagProduct.GetProductPagination(PagProduct.CurrentPage);
             }
-            PageNumbers = PagProduct.GetPaginaitonNumbers();
+            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);
         }
 
         /// <summary>

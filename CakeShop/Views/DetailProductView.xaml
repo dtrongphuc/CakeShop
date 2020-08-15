@@ -199,7 +199,7 @@
                         <Label
                             Padding="0,10"
                             VerticalContentAlignment="Center"
-                            Content="Bánh kem"
+                            Content="{Binding Path=CurrentProduct.CategoryName}"
                             DockPanel.Dock="Left"
                             FontSize="16"
                             FontWeight="SemiBold"
@@ -325,7 +325,7 @@
                             FontSize="30"
                             FontWeight="DemiBold"
                             Foreground="#000"
-                            Text="{Binding ProductName}"
+                            Text="{Binding Path=CurrentProduct.ProductName}"
                             TextWrapping="Wrap" />
 
                         <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
@@ -339,7 +339,7 @@
                                 FontSize="23"
                                 FontWeight="ExtraBlack"
                                 Foreground="#f0668d"
-                                Text="{Binding Price, Converter={StaticResource currencyConverter}}" />
+                                Text="{Binding Path=CurrentProduct.Price, Converter={StaticResource currencyConverter}}" />
                         </StackPanel>
 
                         <Rectangle
@@ -405,7 +405,7 @@
                             Padding="12,0"
                             FontSize="16"
                             FontWeight="Thin"
-                            Text="{Binding Descriptiontext}"
+                            Text="{Binding Path=CurrentProduct.Description}"
                             TextWrapping="Wrap" />
                     </StackPanel>
                 </ScrollViewer>

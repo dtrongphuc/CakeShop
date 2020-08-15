@@ -63,7 +63,7 @@ namespace CakeShop.ViewModels
             }
 
             OrdersDataGrid = PaginationOrder.GetOrderPagination(PaginationOrder.CurrentPage);
-            PageNumbers = PaginationOrder.GetPaginaitonNumbers();
+            PageNumbers = PaginationOrder.GetPaginaitonNumbers(PaginationOrder.record1pageOrder);
         }
 
         public void SetStylePagination(Style defaultStyle, Style selectedStyle)

@@ -29,7 +29,7 @@ namespace CakeShop.Views
     {
         CreatProductViewModel CurrentViewModel = null;
         private int _currentElement { get; set; } = 0;
-        public int MaximumImagesCount { get; set; } = 0;
+        private int _maximumImagesCount { get; set; } = 0;
 
         public CreatProductView()
         {
@@ -39,8 +39,8 @@ namespace CakeShop.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentViewModel = Main.DataContext as CreatProductViewModel;
-            MaximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
-            _currentElement = MaximumImagesCount >= 4 ? 4 : MaximumImagesCount;
+            _maximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
+            _currentElement = _maximumImagesCount >= 4 ? 4 : _maximumImagesCount;
         }
 
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -77,7 +77,7 @@ namespace CakeShop.Views
 
         private void OnNext_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_currentElement < MaximumImagesCount)
+            if (_currentElement < _maximumImagesCount)
             {
                 _currentElement++;
                 AnimateCarousel();
@@ -109,7 +109,7 @@ namespace CakeShop.Views
             {
                 // Liên lạc với viewmodel để thêm hình vào binding list
                 CurrentViewModel.UpdateImages(ImagesFileList);
-                MaximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
+                _maximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
             }
         }
 
