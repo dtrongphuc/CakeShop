@@ -37,5 +37,10 @@ namespace CakeShop.ViewModels
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
             parentConductor.ActivateItem(new UpdateProductViewModel(CurrentProduct.IdProduct));
         }
+
+        public void Delete()
+        {
+
+        }
     }
 }
