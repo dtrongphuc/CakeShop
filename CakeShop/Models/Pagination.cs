@@ -204,6 +204,7 @@ namespace CakeShop.Models
 
         public BindableCollection<Product> PaginationSearch(int pag, IEnumerable<Product> listsearch)
         {
+            
             BindableCollection<Product> listproduct = new BindableCollection<Product>();
             int pagpre = (pag - 1) * 6;
             if((pagpre+6) <listsearch.Count())
