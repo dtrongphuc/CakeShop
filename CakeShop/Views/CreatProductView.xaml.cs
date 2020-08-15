@@ -92,6 +92,7 @@ namespace CakeShop.Views
         List<FileInfo> ImagesFileList = new List<FileInfo>(); // List lưu thông tin danh sách hình
         private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            List<FileInfo> ImagesFile = new List<FileInfo>();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" + "All files (*.*)|*.*";
@@ -101,14 +102,18 @@ namespace CakeShop.Views
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     var info = new FileInfo(filename);
-                    ImagesFileList.Add(info);
+                    ImagesFile.Add(info);
                 }
             }
 
-            if (ImagesFileList.Count > 0)
+            if (ImagesFile.Count > 0)
             {
                 // Liên lạc với viewmodel để thêm hình vào binding list
-                CurrentViewModel.UpdateImages(ImagesFileList);
+                CurrentViewModel.UpdateImages(ImagesFile);
+                foreach(var image in ImagesFile)
+                {
+                    ImagesFileList.Add(image);
+                }
                 _maximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
             }
         }
@@ -116,24 +121,22 @@ namespace CakeShop.Views
         private void Submit_click(object sender, RoutedEventArgs e)
         {
             string avartar = "";
-            if (ProductName.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty && description.Text.Trim() != string.Empty)
+            if (ProductName.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty &&
+                description.Text.Trim() != string.Empty && ImagesFileList.Count > 0 &&
+                _listSizeProduct.Count > 0)
             {
                 //thêm sản phẩm vào database
                 var index = ComboboxCategory.SelectedIndex;
                  avartar = CurrentViewModel.AddProduct(ProductName.Text,index, price.Text, description.Text, ImagesFileList[0]);
-            }
-            if (ImagesFileList.Count > 0)
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            } else
             {
                 ///thêm ảnh vào database.
                 CurrentViewModel.AddImageProduct(ImagesFileList, avartar);
-            }
-            if (_listSizeProduct.Count > 0)
-            {
                 ///thêm kích thước và số lượng vào database.
                 CurrentViewModel.AddSizeProduct(_listSizeProduct);
+                MessageBox.Show("Thêm bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            MessageBox.Show("Thêm Bánh thành Công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
         }
 
         private void AddSize_Click(object sender, RoutedEventArgs e)
@@ -147,7 +150,7 @@ namespace CakeShop.Views
                 sizeproduct.Quantity = quantity.Text.Trim();
             }
             _listSizeProduct.Add(sizeproduct);
-            MessageBox.Show("Thêm kích thước Bánh thành Công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Thêm kích thước bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

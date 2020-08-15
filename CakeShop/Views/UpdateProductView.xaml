@@ -368,6 +368,7 @@
                             FontSize="23"
                             FontWeight="ExtraBlack"
                             Foreground="#f0668d"
+                            PreviewTextInput="NumberValidationTextBox"
                             Style="{StaticResource CommonBox}"
                             Text="{Binding Price}" />
                         <Rectangle

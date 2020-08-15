@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -156,7 +157,17 @@ namespace CakeShop.Views
         private void CellQuantity_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGridCell CellSelected = sender as DataGridCell;
-            CellSelected.IsEditing = true;
+            TextBlock QuantitiyText = CellSelected.Content as TextBlock;
+            if(QuantitiyText != null)
+            {
+                CellSelected.IsEditing = Regex.IsMatch(QuantitiyText.Text, @"^\d+$");
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

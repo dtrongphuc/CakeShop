@@ -343,7 +343,6 @@
                 x:Name="MainRight"
                 Grid.Row="1"
                 Grid.Column="2"
-                Margin="0,10,0,0"
                 Padding="4"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Visible">
@@ -368,8 +367,8 @@
                         FontSize="23"
                         FontWeight="ExtraBlack"
                         Foreground="#f0668d"
-                        Style="{StaticResource CommonBox}"
-                        Text="" />
+                        PreviewTextInput="NumberValidationTextBox"
+                        Style="{StaticResource CommonBox}" />
                     <ComboBox
                         Name="ComboboxCategory"
                         Width="200"
