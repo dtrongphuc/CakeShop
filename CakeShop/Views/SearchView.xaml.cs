@@ -33,6 +33,7 @@ namespace CakeShop.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentViewModel = GridMain.DataContext as SearchViewModel;
+            SetStylePagination();
         }
 
         public void SetStylePagination()

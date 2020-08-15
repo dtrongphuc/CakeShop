@@ -163,12 +163,14 @@ namespace CakeShop.Models
             }
             return ListOrder;
         }
+
         public void CalculateTotalPage(int recordPage)
         {
             double num = (1.0 * Sum_record / recordPage);
             double ToltalPageTemp = Math.Ceiling(num); // Tính tổng số trang và làm tròn lên
             ToltalPage = (int)ToltalPageTemp;
         }
+
         public List<int> GetPaginaitonNumbers(int recordPage)
         {
             CalculateTotalPage(recordPage);
@@ -222,10 +224,7 @@ namespace CakeShop.Models
                     listproduct.Add(product);
                 }
             }
-
-
             return listproduct;
-
         }
     }
 }
