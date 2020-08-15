@@ -199,5 +199,33 @@ namespace CakeShop.Models
             }
             return Numbers;
         }
+
+        public BindableCollection<Product> PaginationSearch(int pag, IEnumerable<Product> listsearch)
+        {
+            BindableCollection<Product> listproduct = new BindableCollection<Product>();
+            int pagpre = (pag - 1) * 6;
+            if((pagpre+6) <listsearch.Count())
+            {
+                for (int i = pagpre; i < (pagpre + 6); i++)
+                {
+                    Product product = new Product();
+                    product = listsearch.ElementAt(i);
+                    listproduct.Add(product);
+                }
+            }
+            else
+            {
+                for(int i=pagpre;i<listsearch.Count();i++)
+                {
+                    Product product = new Product();
+                    product = listsearch.ElementAt(i);
+                    listproduct.Add(product);
+                }
+            }
+
+
+            return listproduct;
+
+        }
     }
 }
