@@ -401,6 +401,11 @@
                                 </DockPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Xóa" Click="Delete_MenuItemClick"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
                     </ListBox>
                     <Grid Grid.Row="2" Margin="0,15,0,0">
                         <Grid.ColumnDefinitions>

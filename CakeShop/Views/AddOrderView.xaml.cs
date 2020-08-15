@@ -113,5 +113,15 @@ namespace CakeShop.Views
 
             ComboboxSize.SelectedIndex = 0;
         }
+
+        private void Delete_MenuItemClick(object sender, RoutedEventArgs e)
+        {
+            //ListBox Selected = sender as ListBox;
+            //ItemOrder itemOrder = Selected.DataContext as ItemOrder;
+            //ItemOrder listBoxItem = ProductsListbox.SelectedValue as ItemOrder;
+            //string price = listBoxItem.PriceTotal;
+            var index = ProductsListbox.SelectedIndex;
+            CurrentViewModel.DeleteItemListbox(index);
+        }
     }
 }
