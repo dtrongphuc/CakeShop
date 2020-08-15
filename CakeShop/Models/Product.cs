@@ -88,7 +88,17 @@ namespace CakeShop.Models
             }
         }
 
-       
+        private int _status;
+        public int Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Status"));
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -102,6 +112,7 @@ namespace CakeShop.Models
             this.Description = " ";
             this.Price = "";
             this.IdCategory= " ";
+            this.Status = 0;
         }
 
        
@@ -131,7 +142,7 @@ namespace CakeShop.Models
 
         public void Add()
         {
-            sql = $"INSERT INTO PRODUCT VALUES ({IdCategory}, N'{ProductName}',{Price}, N'{Description}' , '{Image}' )";
+            sql = $"INSERT INTO PRODUCT VALUES ({IdCategory}, N'{ProductName}',{Price}, N'{Description}' , '{Image}', {Status})";
             Connection.Execute_SQL(sql);
         }
 
@@ -141,6 +152,13 @@ namespace CakeShop.Models
             Connection.Execute_SQL(sql);
         }
 
+      
 
+        public void Delete()
+        {
+            Status = 1;
+            sql = $"UPDATE PRODUCT SET STATUS={Status} WHERE IDPRODUCT={IdProduct}";
+            Connection.Execute_SQL(sql);
+        }
     }
 }

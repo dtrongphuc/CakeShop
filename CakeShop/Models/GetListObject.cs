@@ -81,7 +81,7 @@ namespace CakeShop.Models
         public BindableCollection<Product> Get_AllProduct()
         {
             ListProduct.Clear();
-            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY";
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE P.STATUS=0";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach(DataRow row in dt.Rows)
             {
@@ -115,7 +115,7 @@ namespace CakeShop.Models
         public BindableCollection<Product> Get_ProductInCategory(string id)
         {
             ListProduct.Clear();
-            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE P.IDCATEGORY={id}";
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE P.IDCATEGORY={id} AND P.STATUS=0";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)
             {
@@ -207,7 +207,7 @@ namespace CakeShop.Models
 
         public static int Get_CountALLProduct()
         {
-            string sql = "SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT";
+            string sql = "SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT WHERE STATUS=0";
             int id = Connection.GetCount_Data(sql);
             return id;
         }
@@ -225,7 +225,7 @@ namespace CakeShop.Models
         public BindableCollection<dynamic> Turnover()
         {
             BindableCollection<dynamic> listTurnover = new BindableCollection<dynamic>();
-            sql = "select cate.CATEGORYNAME,temp.Sales from CATEGORY as cate join (select p.IDCATEGORY,sum(totalprice)as 'Sales' from DETAILORDER as dt join PRODUCT as p on p.idproduct=dt.idproduct group by p.IDCATEGORY) as temp on cate.idcategory=temp.idcategory";
+            sql = "select cate.CATEGORYNAME,temp.Sales from CATEGORY as cate join (select p.IDCATEGORY,sum(totalprice)as 'Sales' from DETAILORDER as dt join PRODUCT as p on p.idproduct=dt.idproduct WHERE P.STATUS=0 group by p.IDCATEGORY) as temp on cate.idcategory=temp.idcategory";
 
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)

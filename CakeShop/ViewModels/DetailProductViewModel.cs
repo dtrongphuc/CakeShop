@@ -40,7 +40,7 @@ namespace CakeShop.ViewModels
 
         public void Delete()
         {
-
+            CurrentProduct.Delete();
         }
     }
 }

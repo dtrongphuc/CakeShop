@@ -87,7 +87,7 @@ namespace CakeShop.Models
         public BindableCollection<Product> GetProductInCategoryPagination(int _curr, string id)
         {
             CurrentPage = _curr;
-            sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id}";
+            sql = $"SELECT COUNT(*) AS [SOLUONG] FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id} and p.status=0";
             Sum_record = Connection.GetCount_Data(sql);
             CalculateTotalPage(record1pageProduct);
             int sotranghienhanh = (CurrentPage - 1) * record1pageProduct;
@@ -104,10 +104,10 @@ namespace CakeShop.Models
             return Get_AllOrder(sotranghienhanh, record1pageOrder);
         }
 
-        public BindableCollection<Product> Get_AllProduct(int curr, int record1page)
+        private BindableCollection<Product> Get_AllProduct(int curr, int record1page)
         {
             ListProduct.Clear();
-            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { record1page} ROWS ONLY";
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE P.STATUS=0 ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { record1page} ROWS ONLY";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)
             {
@@ -123,10 +123,10 @@ namespace CakeShop.Models
             return ListProduct;
         }
 
-        public BindableCollection<Product> Get_ProductInCategory(string id, int curr, int record1page)
+        private BindableCollection<Product> Get_ProductInCategory(string id, int curr, int record1page)
         {
             ListProduct.Clear();
-            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id} ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { record1page} ROWS ONLY";
+            sql = $"SELECT CATE.CATEGORYNAME,P.* FROM PRODUCT AS P JOIN CATEGORY AS CATE ON P.IDCATEGORY=CATE.IDCATEGORY WHERE CATE.IDCATEGORY={id} AND P.STATUS=0 ORDER BY IDPRODUCT OFFSET  { curr}  ROWS FETCH NEXT  { record1page} ROWS ONLY";
             DataTable dt = Connection.GetALL_Data(sql);
             foreach (DataRow row in dt.Rows)
             {
@@ -142,7 +142,7 @@ namespace CakeShop.Models
             return ListProduct;
         }
 
-        public BindableCollection<Order> Get_AllOrder(int curr, int record1page)
+        private BindableCollection<Order> Get_AllOrder(int curr, int record1page)
         {
             ListOrder.Clear();
 
