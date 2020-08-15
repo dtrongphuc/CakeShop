@@ -12,11 +12,12 @@ namespace CakeShop.ViewModels
     public class SearchViewModel : Screen
     {
         public string Keyword { get; set; }
+        private string keysearch { get; set; }
         GetListObject Getlist = new GetListObject();
         public IEnumerable<Product> subnets;
         public IEnumerable<Product> SearchListproduct;
         Pagination PagProduct = new Pagination();
-        public IEnumerable<Product> Products { get; set; }
+        public BindableCollection<Product> Products { get; set; }
         public BindableCollection<Category> CatogoryCombobox { get; set; }
         public BindableCollection<PaginationStyle> PaginationNumber { get; set; }
         List<int> PageNumbers;
@@ -25,22 +26,23 @@ namespace CakeShop.ViewModels
         {
             //binding từ khóa tìm kiếm
             Keyword = "Kết quả tìm kiếm cho từ khóa '" + key + "'";
+            keysearch=key;
             UpdateProductsPagination(1, false, false);
             PaginationNumber = new BindableCollection<PaginationStyle>();
         }
-        public IEnumerable<Product> SearchProductName(string keyword)
+        public void SearchProductName(string keyword)
         {
             BindableCollection<Product> productlist = Getlist.Get_AllProduct();
 
             if (keyword == "")
             {
-                return subnets;
+                return;
             }
             else
             {
                 subnets = productlist.Where(i => i.ProductName.ToLower().Contains(keyword.ToLower()));
             }
-            return subnets;
+          
         }
 
         public void ShowDetail(Product productSelected)
@@ -78,8 +80,9 @@ namespace CakeShop.ViewModels
                 PagProduct.CurrentPage = currentPage;
             }
 
-            //Products = SearchProductName(key);
-            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);
+            SearchProductName(keysearch);//sử dùng hàm này dc list subnet chứa kết quả tìm kiếm
+            Products = PagProduct.PaginationSearch(2, subnets);//hàm này dùng phân trang cái list subnets đối số ( trang hiện hành - list chứa kết quả search)
+            PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);//muốn tính số trang thì subnets.count() chia 6 lun cho lẹ
         }
 
         public void SetStylePagination(Style defaultStyle, Style selectedStyle)

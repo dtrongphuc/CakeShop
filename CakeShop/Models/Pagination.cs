@@ -209,7 +209,7 @@ namespace CakeShop.Models
                 for (int i = pagpre; i < (pagpre + 6); i++)
                 {
                     Product product = new Product();
-                    product = listsearch.ElementAt(pagpre);
+                    product = listsearch.ElementAt(i);
                     listproduct.Add(product);
                 }
             }
@@ -218,7 +218,7 @@ namespace CakeShop.Models
                 for(int i=pagpre;i<listsearch.Count();i++)
                 {
                     Product product = new Product();
-                    product = listsearch.ElementAt(pagpre);
+                    product = listsearch.ElementAt(i);
                     listproduct.Add(product);
                 }
             }
