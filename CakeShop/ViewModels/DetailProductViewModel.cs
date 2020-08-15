@@ -32,6 +32,17 @@ namespace CakeShop.ViewModels
             ImageSelectChange = ImagesCarousel.Count > 0 ? ImagesCarousel.ElementAt(0).ImageUri : string.Empty;
         }
 
+        /// <summary>
+        /// Mở trang chủ
+        /// </summary>
+        public void ShowHome()
+        {
+            var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
+            Conductor<IScreen>.Collection.OneActive MainConductor = (Conductor<IScreen>.Collection.OneActive)parentConductor;
+            MainConductor.DeactivateItem(MainConductor.Items[0], true);
+            parentConductor.ActivateItem(new HomeViewModel());
+        }
+
         public void ShowUpdate()
         {
             var parentConductor = (Conductor<IScreen>.Collection.OneActive)(this.Parent);
@@ -41,6 +52,7 @@ namespace CakeShop.ViewModels
         public void Delete()
         {
             CurrentProduct.Delete();
+            ShowHome();
         }
     }
 }

@@ -248,7 +248,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         BorderBrush="#FFBDBDBD"
-                        BorderThickness="1">
+                        BorderThickness="0">
                         <Border.Background>
                             <ImageBrush ImageSource="{Binding ImageSelectChange, Converter={StaticResource pathConverter}}" Stretch="Uniform" />
                         </Border.Background>

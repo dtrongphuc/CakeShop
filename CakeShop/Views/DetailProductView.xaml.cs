@@ -75,7 +75,12 @@ namespace CakeShop.Views
         private void OnSelectedImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Border selected = sender as Border;
-            ImageSelected.Background = selected.Background as ImageBrush;
+            ImageBrush CurrentImage = selected.Background as ImageBrush;
+
+            ImageBrush CloneImage = new ImageBrush();
+            CloneImage.ImageSource = CurrentImage.ImageSource;
+            CloneImage.Stretch = Stretch.Uniform;
+            ImageSelected.Background = CloneImage;
         }
 
         private void Datagrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)

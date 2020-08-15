@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,34 +21,64 @@ namespace CakeShop.Views
     /// </summary>
     public partial class SearchView : UserControl
     {
+        Style defaultStyle;
+        Style selectedStyle;
+        public SearchViewModel CurrentViewModel { get; set; }
+
         public SearchView()
         {
             InitializeComponent();
         }
 
-        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            CurrentViewModel = GridMain.DataContext as SearchViewModel;
         }
 
-        private void OnPrePage_Click(object sender, RoutedEventArgs e)
+        public void SetStylePagination()
         {
-
+            defaultStyle = this.FindResource("PaginationStyle") as Style;
+            selectedStyle = this.FindResource("PaginationStyleSelected") as Style;
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
-        private void OnNextPage_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Cập nhật lại số trang
+        /// </summary>
+        /// <param name="currentPage">Trang hiện tại (-1 nếu không muốn đặt, 0 nếu muốn về trang cuối)</param>
+        /// <param name="isPrevClick">Có phải prev click không</param>
+        /// <param name="isNextClick">Có phải next click không</param>
+        private void UpdatePagination(int currentPage, bool isPrevClick, bool isNextClick)
         {
-
-        }
-
-        private void OnLastPage_Click(object sender, RoutedEventArgs e)
-        {
-
+            CurrentViewModel.UpdateProductsPagination(currentPage, isPrevClick, isNextClick);
+            CurrentViewModel.SetStylePagination(defaultStyle, selectedStyle);
         }
 
         private void OnPageNumber_Click(object sender, RoutedEventArgs e)
         {
+            var Btn = (Button)sender;
+            int CurrPage = (int)Btn.Content;
+            UpdatePagination(CurrPage, false, false);
+        }
 
+        private void OnPrePage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(-1, true, false);
+        }
+
+        private void OnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(-1, false, true);
+        }
+
+        private void OnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(1, false, false);
+        }
+
+        private void OnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePagination(0, false, false);
         }
     }
 }
