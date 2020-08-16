@@ -134,23 +134,23 @@
                             Padding="12,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Left"
                             materialDesign:HintAssist.Hint="Trạng thái"
                             materialDesign:HintAssist.IsFloating="False"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             materialDesign:TextFieldAssist.UnderlineBrush="#f0668d"
                             SelectedIndex="0"
                             Style="{StaticResource MaterialDesignFilledComboBox}">
-                            <ComboBoxItem Height="46" Margin="0,0,0.4,0">
+                            <ComboBoxItem Height="46">
                                 <TextBlock
-                                    Padding="10,0,0,0"
+                                    HorizontalAlignment="Left"
                                     FontSize="16"
                                     FontWeight="Regular"
                                     Text="Chưa giao hàng" />
                             </ComboBoxItem>
                             <ComboBoxItem Height="45" Margin="0,0,0.4,0">
                                 <TextBlock
-                                    Padding="10,0,0,0"
+                                    HorizontalAlignment="Left"
                                     FontSize="16"
                                     FontWeight="Regular"
                                     Text="Đã giao hàng" />
