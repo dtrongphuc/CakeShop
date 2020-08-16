@@ -66,6 +66,9 @@ namespace CakeShop.Models
             }
         }
 
+        public BindableCollection<Product> ListProductSearch { get; set; } = new BindableCollection<Product>();
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Pagination()
@@ -204,8 +207,7 @@ namespace CakeShop.Models
 
         public BindableCollection<Product> PaginationSearch(int pag, IEnumerable<Product> listsearch)
         {
-            
-            BindableCollection<Product> listproduct = new BindableCollection<Product>();
+            ListProductSearch.Clear();
             int pagpre = (pag - 1) * 6;
             if((pagpre+6) <listsearch.Count())
             {
@@ -213,7 +215,7 @@ namespace CakeShop.Models
                 {
                     Product product = new Product();
                     product = listsearch.ElementAt(i);
-                    listproduct.Add(product);
+                    ListProductSearch.Add(product);
                 }
             }
             else
@@ -222,11 +224,11 @@ namespace CakeShop.Models
                 {
                     Product product = new Product();
                     product = listsearch.ElementAt(i);
-                    listproduct.Add(product);
+                    ListProductSearch.Add(product);
                 }
             }
             Sum_record = listsearch.Count();
-            return listproduct;
+            return ListProductSearch;
         }
     }
 }

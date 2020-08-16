@@ -425,8 +425,6 @@
                     Text="{Binding Note}"
                     TextWrapping="Wrap" />
             </DockPanel>
-
         </Grid>
-
     </Grid>
 </UserControl>

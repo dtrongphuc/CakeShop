@@ -124,10 +124,9 @@ namespace CakeShop.Views
             var index = ComboboxCategory.SelectedIndex;
             if (ProductName.Text.Trim() != string.Empty && price.Text.Trim() != string.Empty &&
                 description.Text.Trim() != string.Empty && ImagesFileList.Count > 0 &&
-                _listSizeProduct.Count > 0 && index !=-1)
+                _listSizeProduct.Count > 0 && index != -1)
             {
                 //thêm sản phẩm vào database
-                
                  avartar = CurrentViewModel.AddProduct(ProductName.Text,index, price.Text, description.Text, ImagesFileList[0]);
                 ///thêm ảnh vào database.
                 CurrentViewModel.AddImageProduct(ImagesFileList, avartar);
@@ -135,11 +134,10 @@ namespace CakeShop.Views
                 CurrentViewModel.AddSizeProduct(_listSizeProduct);
                 MessageBox.Show("Thêm bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 CurrentViewModel.ShowHome();
-
             }
             else
             {
-                //MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

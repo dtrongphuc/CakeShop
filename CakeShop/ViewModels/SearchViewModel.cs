@@ -17,7 +17,7 @@ namespace CakeShop.ViewModels
         public IEnumerable<Product> subnets;
         public IEnumerable<Product> SearchListproduct;
         Pagination PagProduct = new Pagination();
-        public BindableCollection<Product> Products { get; set; }
+        public BindableCollection<Product> Products { get; set; } = new BindableCollection<Product>();
         public BindableCollection<Category> CatogoryCombobox { get; set; }
         public BindableCollection<PaginationStyle> PaginationNumber { get; set; }
         List<int> PageNumbers;
@@ -80,7 +80,7 @@ namespace CakeShop.ViewModels
             }
 
             SearchProductName(keysearch);//sử dùng hàm này dc list subnet chứa kết quả tìm kiếm
-            Products = PagProduct.PaginationSearch(currentPage, subnets);//hàm này dùng phân trang cái list subnets đối số ( trang hiện hành - list chứa kết quả search)
+            Products = PagProduct.PaginationSearch(PagProduct.CurrentPage, subnets);//hàm này dùng phân trang cái list subnets đối số ( trang hiện hành - list chứa kết quả search)
             PageNumbers = PagProduct.GetPaginaitonNumbers(PagProduct.record1pageProduct);
         }
 

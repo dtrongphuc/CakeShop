@@ -250,6 +250,7 @@
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <EventSetter Event="PreviewMouseDoubleClick" Handler="ViewDetail_PreviewMouseDoubleClick" />
+                            <Setter Property="ToolTip" Value="Double click - Xem chi tiết đơn hàng" />
                         </Style>
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>

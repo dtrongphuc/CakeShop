@@ -22,7 +22,7 @@ namespace CakeShop.Views
     /// </summary>
     public partial class MainView : Window
     {
-        MainViewModel mainviewmodel = null;
+        public MainViewModel CurrentViewModel = null;
         public MainView()
         {
             InitializeComponent();
@@ -72,7 +72,7 @@ namespace CakeShop.Views
                 var screen = new Views.SplashWindow();
                 screen.ShowDialog();
             }
-            mainviewmodel = GridMain.DataContext as MainViewModel;
+            CurrentViewModel = GridMain.DataContext as MainViewModel;
         }
 
         private void HideMenuAndModal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -83,7 +83,8 @@ namespace CakeShop.Views
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string Keyword = SearchBox.Text.Trim();
-            mainviewmodel.ShowSearch(Keyword);
+            SearchBox.Text = string.Empty;
+            CurrentViewModel.ShowSearch(Keyword);
         }
     }
 }

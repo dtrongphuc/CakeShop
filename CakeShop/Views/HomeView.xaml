@@ -186,17 +186,27 @@
                                 DockPanel.Dock="Left"
                                 FontSize="26"
                                 FontWeight="Bold" />
-                            <ComboBox
-                                Name="Category"
-                                Width="200"
-                                Margin="0,4,16,0"
-                                HorizontalAlignment="Right"
-                                materialDesign:HintAssist.Hint="Danh mục"
-                                DisplayMemberPath="CategoryName"
-                                DockPanel.Dock="Right"
-                                ItemsSource="{Binding CategoryCombobox}"
-                                SelectedIndex="0"
-                                SelectionChanged="ProductInCategory" />
+                            <DockPanel LastChildFill="True">
+                                <ComboBox
+                                    Name="Category"
+                                    Width="200"
+                                    Margin="0,4,16,0"
+                                    HorizontalAlignment="Right"
+                                    materialDesign:HintAssist.Hint="Danh mục"
+                                    DisplayMemberPath="CategoryName"
+                                    DockPanel.Dock="Right"
+                                    ItemsSource="{Binding CategoryCombobox}"
+                                    SelectedIndex="0"
+                                    SelectionChanged="ProductInCategory" />
+                                <Label
+                                    Margin="0,0,14,0"
+                                    HorizontalContentAlignment="Right"
+                                    VerticalContentAlignment="Center"
+                                    Content="Danh mục: "
+                                    DockPanel.Dock="Right"
+                                    FontSize="16"
+                                    FontWeight="Bold" />
+                            </DockPanel>
                         </DockPanel>
                         <Separator
                             Grid.Row="1"

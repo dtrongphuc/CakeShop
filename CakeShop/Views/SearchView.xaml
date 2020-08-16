@@ -232,7 +232,7 @@
                                 Click="OnPrePage_Click"
                                 ToolTip="Previous Page">
                                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="MenuLeft">
+                                    <materialDesign:PackIcon Foreground="Black" Kind="MenuLeft">
                                         <materialDesign:PackIcon.LayoutTransform>
                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
                                         </materialDesign:PackIcon.LayoutTransform>
@@ -268,7 +268,7 @@
                                 Click="OnNextPage_Click"
                                 ToolTip="Next Page">
                                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="MenuRight">
+                                    <materialDesign:PackIcon Foreground="Black" Kind="MenuRight">
                                         <materialDesign:PackIcon.LayoutTransform>
                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.4" ScaleY="1.4" />
                                         </materialDesign:PackIcon.LayoutTransform>
