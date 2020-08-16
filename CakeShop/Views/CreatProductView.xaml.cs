@@ -62,7 +62,7 @@ namespace CakeShop.Views
             Storyboard storyboard = (this.Resources["CarouselStoryboard"] as Storyboard);
             DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
             Storyboard.SetTarget(animation, carousel);
-            animation.To = -(ImagesCarousel.ActualWidth + 10) * _currentElement;
+            animation.To = -(ImagesCarousel.ActualWidth / 4.0 + 1) * (_currentElement - 4);
             storyboard.Begin();
         }
 
@@ -115,6 +115,7 @@ namespace CakeShop.Views
                     ImagesFileList.Add(image);
                 }
                 _maximumImagesCount = CurrentViewModel.ImagesCarousel.Count;
+                _currentElement = _maximumImagesCount >= 4 ? 4 : _maximumImagesCount;
             }
         }
 
