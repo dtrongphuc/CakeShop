@@ -412,6 +412,9 @@
                             <ComboBoxItem>
                                 <TextBlock Text="L" />
                             </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="FREESIZE" />
+                            </ComboBoxItem>
                         </ComboBox>
 
                         <TextBox

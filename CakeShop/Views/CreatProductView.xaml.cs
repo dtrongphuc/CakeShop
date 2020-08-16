@@ -150,9 +150,10 @@ namespace CakeShop.Views
             if(quantity.Text.Trim() != string.Empty)
             {
                 sizeproduct.Quantity = quantity.Text.Trim();
+                _listSizeProduct.Add(sizeproduct);
+                MessageBox.Show("Thêm kích thước bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            _listSizeProduct.Add(sizeproduct);
-            MessageBox.Show("Thêm kích thước bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Vui lòng điền đầy đủ kích thước bánh", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
