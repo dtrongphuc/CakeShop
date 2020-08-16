@@ -153,7 +153,10 @@ namespace CakeShop.Views
                 _listSizeProduct.Add(sizeproduct);
                 MessageBox.Show("Thêm kích thước bánh thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            MessageBox.Show("Vui lòng điền đầy đủ kích thước bánh", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ kích thước bánh", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
